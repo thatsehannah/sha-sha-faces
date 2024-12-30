@@ -9,9 +9,6 @@ export default {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        hero: "url('/images/hero.jpeg')",
-      },
       colors: {
         'dusty-rose': 'hsl(var(--dusty-rose))',
         'soft-pink': 'hsl(var(--soft-pink))',
