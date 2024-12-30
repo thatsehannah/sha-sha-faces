@@ -1,13 +1,8 @@
 import type { Metadata } from 'next';
-import { Cabin } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import Container from '@/components/global/Container';
-
-const cabin = Cabin({
-  subsets: ['latin'],
-  display: 'swap',
-});
+import { cabin } from '@/lib/fonts';
 
 export const metadata: Metadata = {
   title: 'Sha Sha Faces',
@@ -23,7 +18,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${cabin.className} antialiased`}>
         <Navbar />
-        <Container className='py-20'>{children}</Container>
+        <Container>{children}</Container>
       </body>
     </html>
   );
