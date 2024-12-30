@@ -26,7 +26,7 @@ const carouselImages = [
 
 const HeroCarousel = () => {
   return (
-    <div className='hidden lg:flex lg:justify-center lg:items-center max-w-4xl'>
+    <div className='hidden lg:flex'>
       <Carousel>
         <CarouselContent>
           {carouselImages.map((img, idx) => {
