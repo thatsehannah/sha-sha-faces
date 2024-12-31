@@ -1,12 +1,12 @@
 import React from 'react';
 import Container from '../global/Container';
 
-const Portfolio = () => {
+const Shop = () => {
   return (
     <section>
-      <Container>Portfolio</Container>
+      <Container>Shop</Container>
     </section>
   );
 };
 
-export default Portfolio;
+export default Shop;
