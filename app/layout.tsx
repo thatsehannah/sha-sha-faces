@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
-import Container from '@/components/global/Container';
-import { cabin } from '@/lib/fonts';
+import { afacadFlux } from '@/lib/fonts';
 
 export const metadata: Metadata = {
   title: 'Sha Sha Faces',
@@ -16,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${cabin.className} antialiased`}>
+      <body className={`${afacadFlux.className} antialiased`}>
         <Navbar />
         {children}
       </body>

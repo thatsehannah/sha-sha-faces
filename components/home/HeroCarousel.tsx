@@ -7,6 +7,8 @@ import carousel2 from '@/public/images/photo2.jpeg';
 import carousel3 from '@/public/images/photo3.jpeg';
 import carousel4 from '@/public/images/photo4.jpeg';
 import carousel5 from '@/public/images/photo5.jpeg';
+import carousel6 from '@/public/images/photo6.jpeg';
+import carousel7 from '@/public/images/photo7.jpeg';
 import {
   Carousel,
   CarouselContent,
@@ -19,12 +21,14 @@ import Image from 'next/image';
 import Autoplay from 'embla-carousel-autoplay';
 
 const carouselImages = [
+  carousel6,
   carousel0,
   carousel1,
   carousel2,
   carousel3,
   carousel4,
   carousel5,
+  carousel7,
 ];
 
 const HeroCarousel = () => {
