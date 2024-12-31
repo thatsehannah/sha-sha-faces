@@ -16,7 +16,7 @@ const TestimonyCarousel = () => {
   const plugin = useRef(Autoplay({ delay: 6000, stopOnInteraction: true }));
 
   return (
-    <Container className='mt-8'>
+    <Container className='mt-2 w-full p-6'>
       <Carousel
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
@@ -26,29 +26,25 @@ const TestimonyCarousel = () => {
           {testimonies.map((item, idx) => {
             return (
               <CarouselItem key={idx}>
-                <div className='p-4'>
-                  <Card>
-                    <CardContent className='flex flex-col justify-center items-center p-8'>
-                      <div className='flex flex-row gap-4'>
-                        {Array.from({ length: item.starCount }).map(
-                          (_, idx) => (
-                            <Star
-                              key={idx}
-                              size={40}
-                              fill='gold'
-                              strokeWidth={0}
-                              className='shrink-2'
-                            />
-                          )
-                        )}
-                      </div>
-                      <p className='text-2xl shrink-2'>{item.testimony}</p>
-                      <p className='text-2xl font-bold shrink-2'>
-                        {item.reviewer}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
+                <Card>
+                  <CardContent className='flex flex-col justify-center items-center p-8 gap-4'>
+                    <div className='flex flex-row gap-4'>
+                      {Array.from({ length: item.starCount }).map((_, idx) => (
+                        <Star
+                          key={idx}
+                          size={40}
+                          fill='gold'
+                          strokeWidth={0}
+                          className='shrink-2'
+                        />
+                      ))}
+                    </div>
+                    <p className='text-2xl shrink-2'>{item.testimony}</p>
+                    <p className='text-2xl font-bold shrink-2'>
+                      {item.reviewer}
+                    </p>
+                  </CardContent>
+                </Card>
               </CarouselItem>
             );
           })}
