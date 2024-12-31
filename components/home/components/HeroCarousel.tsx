@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useRef } from 'react';
+import React from 'react';
 import carousel0 from '@/public/images/photo0.jpeg';
 import carousel1 from '@/public/images/photo1.jpeg';
 import carousel2 from '@/public/images/photo2.jpeg';
@@ -15,10 +13,9 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '../ui/carousel';
-import { Card, CardContent } from '../ui/card';
+} from '../../ui/carousel';
+import { Card, CardContent } from '../../ui/card';
 import Image from 'next/image';
-import Autoplay from 'embla-carousel-autoplay';
 
 const carouselImages = [
   carousel6,
@@ -32,14 +29,9 @@ const carouselImages = [
 ];
 
 const HeroCarousel = () => {
-  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
   return (
     <div className='hidden lg:flex'>
-      <Carousel
-        plugins={[plugin.current]}
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}
-      >
+      <Carousel>
         <CarouselContent>
           {carouselImages.map((img, idx) => {
             return (

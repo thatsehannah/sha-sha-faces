@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 
 const About = () => {
   return (
-    <section>
+    <section className='my-8'>
       <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 py-8'>
         <div className='relative w-[25rem] h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-auto'>
           <Image

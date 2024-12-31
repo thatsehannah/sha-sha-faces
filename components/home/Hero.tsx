@@ -3,7 +3,7 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { asap } from '@/lib/fonts';
-import HeroCarousel from './HeroCarousel';
+import HeroCarousel from './components/HeroCarousel';
 
 const Hero = () => {
   return (
