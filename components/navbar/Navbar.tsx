@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 mx-auto max-w-6xl px-8'>
         <Logo />
         <Links />
-        <Button>Book Now</Button>
+        <Button className='hover:bg-secondary'>Book Now</Button>
       </div>
     </nav>
   );

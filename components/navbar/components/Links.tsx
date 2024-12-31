@@ -8,6 +8,7 @@ const LinkButton = ({ page }: { page: string }) => {
     <Button
       variant='ghost'
       asChild
+      className='hover:bg-secondary'
     >
       <Link
         href={`/${page}`}
