@@ -16,9 +16,9 @@ const Hero = () => {
           height={400}
         />
         <p
-          className={`${asap.className} text-5xl font-extrabold uppercase mt-4`}
+          className={`${asap.className} text-xl font-extrabold uppercase mt-4`}
         >
-          Makeup Artist
+          Where your face is beat delicately
         </p>
         <Button
           variant='link'

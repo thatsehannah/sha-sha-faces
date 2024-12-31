@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${cabin.className} antialiased`}>
         <Navbar />
-        <Container>{children}</Container>
+        {children}
       </body>
     </html>
   );
