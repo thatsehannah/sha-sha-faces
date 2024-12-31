@@ -45,8 +45,8 @@ const HeroCarousel = () => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className='hover:bg-secondary' />
+        <CarouselNext className='hover:bg-secondary' />
       </Carousel>
     </div>
   );

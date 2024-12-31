@@ -7,8 +7,8 @@ import HeroCarousel from './HeroCarousel';
 
 const Hero = () => {
   return (
-    <section className='mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 px-24 py-8 items-center bg-gradient-to-tl from-white to-soft-pink'>
-      <div className='flex flex-col justify-center items-center p-20'>
+    <section className='mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 px-24 py-8 items-center bg-gradient-to-tl from-soft-pink to-white'>
+      <div className='flex flex-col justify-center items-center'>
         <Image
           src='/logo/logo-color-2.svg'
           alt='logo'
@@ -23,9 +23,9 @@ const Hero = () => {
         <Button
           variant='link'
           asChild
-          className='mt-8 text-2xl'
+          className='mt-8 text-2xl text-muted-foreground'
         >
-          <Link href='/book'>View Portfolio 💋</Link>
+          <Link href='/book'>View Portfolio &gt;</Link>
         </Button>
       </div>
       <HeroCarousel />
