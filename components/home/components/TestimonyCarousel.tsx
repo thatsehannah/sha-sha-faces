@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import testimonies from '@/lib/testimonials.json';
+import testimonials from '@/lib/testimonials.json';
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +15,37 @@ import Autoplay from 'embla-carousel-autoplay';
 const TestimonyCarousel = () => {
   const plugin = useRef(Autoplay({ delay: 6000, stopOnInteraction: true }));
 
+  const emphasizeWords = (testimonial: string) => {
+    const emphasisWords = [
+      'love',
+      'loved',
+      'great',
+      'professional',
+      'happy',
+      'looking good',
+    ];
+
+    const regex = new RegExp(`\\b(${emphasisWords.join('|')})\\b`, 'i');
+    const matched = testimonial.match(regex);
+
+    if (matched) {
+      const foundWord = matched[0];
+      const splitIdx = matched.index;
+
+      return {
+        before: testimonial.slice(0, splitIdx),
+        emphasizedWord: foundWord,
+        after: testimonial.slice(splitIdx! + foundWord.length),
+      };
+    }
+
+    return {
+      before: testimonial,
+      emphasizeWord: null,
+      after: '',
+    };
+  };
+
   return (
     <Container className='mt-2 w-full p-6'>
       <Carousel
@@ -23,7 +54,11 @@ const TestimonyCarousel = () => {
         onMouseLeave={() => plugin.current.play(false)}
       >
         <CarouselContent>
-          {testimonies.map((item, idx) => {
+          {testimonials.map((item, idx) => {
+            const { before, emphasizedWord, after } = emphasizeWords(
+              item.testimony
+            );
+
             return (
               <CarouselItem key={idx}>
                 <Card>
@@ -42,7 +77,15 @@ const TestimonyCarousel = () => {
                       fill='black'
                       size={30}
                     />
-                    <p className='text-2xl shrink-2'>{item.testimony}</p>
+                    <p className='text-2xl shrink-2 normal-case'>
+                      {before}{' '}
+                      {emphasizedWord && (
+                        <span className='text-primary tracking-wide font-black uppercase text-3xl'>
+                          {emphasizedWord}
+                        </span>
+                      )}{' '}
+                      {after}
+                    </p>
                     <p className='text-2xl font-bold shrink-2'>
                       -- {item.reviewer}
                     </p>
