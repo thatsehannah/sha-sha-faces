@@ -63,7 +63,7 @@ const TestimonyCarousel = () => {
               <CarouselItem key={idx}>
                 <Card>
                   <CardContent className='flex flex-col justify-center items-center p-8 gap-5'>
-                    <div className='flex flex-row gap-4'>
+                    {/* <div className='flex flex-row gap-4'>
                       {Array.from({ length: item.starCount }).map((_, idx) => (
                         <Star
                           key={idx}
@@ -72,7 +72,7 @@ const TestimonyCarousel = () => {
                           strokeWidth={0}
                         />
                       ))}
-                    </div>
+                    </div> */}
                     <Quote
                       fill='black'
                       size={30}
