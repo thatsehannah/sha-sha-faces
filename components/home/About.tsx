@@ -6,7 +6,14 @@ import { Button } from '../ui/button';
 const About = () => {
   return (
     <section className='my-8'>
-      <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 py-8'>
+      <div className='relative'>
+        <div className='flex items-center gap-2 absolute -top-3 right-8'>
+          <p className='text-xl uppercase font-medium'>About Me</p>
+          <div className='h-[1.5px] w-56 bg-primary font-extralight'></div>
+        </div>
+      </div>
+      <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 py-8 relative'>
+        <div className='-z-10 hidden lg:block w-[420] h-[420] bg-soft-pink absolute rounded-sm' />
         <div className='relative w-[25rem] h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-auto'>
           <Image
             fill
@@ -16,19 +23,37 @@ const About = () => {
             sizes='(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw'
           />
         </div>
-        <div className='mx-auto text-center lg:text-left'>
-          <p className='text-6xl font-extrabold text-secondary mb-4'>
-            About Naisha 💋
+        <div className='flex flex-col mx-auto'>
+          <p className='text-4xl lg:text-5xl font-medium mb-6'>
+            I&apos;m Naisha Renous
           </p>
-          <p className='text-2xl font-light mb-16'>
+          <p className='text-xl lg:text-3xl font-light'>
             Hello Gorgeous! Welcome to my website where I have the pleasure of
             presenting my services. I am a self taught makeup artist who is
             passionate about what I do. Let me know what you desire as I am here
             to serve you.
           </p>
           <Button
+            variant='outline'
+            size='icon'
+            className='w-10 mt-4'
+            asChild
+          >
+            <a
+              href='https://www.instagram.com/shashafaces'
+              target='_blank'
+            >
+              <Image
+                src='/icons/instagram.svg'
+                alt='instagram icon'
+                width={20}
+                height={20}
+              />
+            </a>
+          </Button>
+          <Button
             size='lg'
-            className='bg-secondary text-xl font-medium'
+            className='bg-secondary text-xl font-medium w-28 mt-16'
           >
             Book Now
           </Button>
