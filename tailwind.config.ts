@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'section-breaker': "url('/images/photo8.jpeg')",
+      },
       colors: {
         'dusty-rose': 'hsl(var(--dusty-rose))',
         'soft-pink': 'hsl(var(--soft-pink))',
