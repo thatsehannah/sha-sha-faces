@@ -6,10 +6,10 @@ import SectionTitle from '../global/SectionTitle';
 
 const About = () => {
   return (
-    <section className='py-8'>
+    <section className='py-8 relative'>
       <SectionTitle
         title='About Me'
-        orientation='right'
+        alignment='right'
       />
       <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 py-20 relative'>
         <div className='-z-10 hidden lg:block w-[420] h-[420] bg-soft-pink absolute rounded-sm' />

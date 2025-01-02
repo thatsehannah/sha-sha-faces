@@ -5,10 +5,10 @@ import SectionTitle from '../global/SectionTitle';
 
 const Testimonies = () => {
   return (
-    <section className='bg-gradient-to-tl from-white to-secondary py-8'>
+    <section className='bg-gradient-to-tl from-white to-secondary py-8 relative'>
       <SectionTitle
         title='Testimonials'
-        orientation='left'
+        alignment='left'
       />
       <Container className='flex flex-col justify-center items-center py-20'>
         <TestimonyCarousel />
