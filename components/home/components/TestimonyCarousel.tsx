@@ -8,7 +8,7 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
-import { Star } from 'lucide-react';
+import { Quote, Star } from 'lucide-react';
 import Container from '@/components/global/Container';
 import Autoplay from 'embla-carousel-autoplay';
 
@@ -27,7 +27,7 @@ const TestimonyCarousel = () => {
             return (
               <CarouselItem key={idx}>
                 <Card>
-                  <CardContent className='flex flex-col justify-center items-center p-8 gap-4'>
+                  <CardContent className='flex flex-col justify-center items-center p-8 gap-5'>
                     <div className='flex flex-row gap-4'>
                       {Array.from({ length: item.starCount }).map((_, idx) => (
                         <Star
@@ -35,13 +35,16 @@ const TestimonyCarousel = () => {
                           size={40}
                           fill='gold'
                           strokeWidth={0}
-                          className='shrink-2'
                         />
                       ))}
                     </div>
+                    <Quote
+                      fill='black'
+                      size={30}
+                    />
                     <p className='text-2xl shrink-2'>{item.testimony}</p>
                     <p className='text-2xl font-bold shrink-2'>
-                      {item.reviewer}
+                      -- {item.reviewer}
                     </p>
                   </CardContent>
                 </Card>
