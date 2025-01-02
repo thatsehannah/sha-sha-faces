@@ -8,7 +8,7 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
-import { Quote, Star } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import Container from '@/components/global/Container';
 import Autoplay from 'embla-carousel-autoplay';
 
@@ -77,10 +77,10 @@ const TestimonyCarousel = () => {
                       fill='black'
                       size={30}
                     />
-                    <p className='text-2xl shrink-2 normal-case'>
+                    <p className='text-xl lg:text-2xl shrink-2 normal-case'>
                       {before}{' '}
                       {emphasizedWord && (
-                        <span className='text-primary tracking-wide font-black uppercase text-3xl'>
+                        <span className='text-primary tracking-wide font-black uppercase text-2xl lg:text-3xl'>
                           {emphasizedWord}
                         </span>
                       )}{' '}
