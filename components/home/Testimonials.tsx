@@ -4,7 +4,7 @@ import TestimonyCarousel from './components/TestimonyCarousel';
 
 const Testimonies = () => {
   return (
-    <section className='my-8 bg-secondary h-4/5 py-12'>
+    <section className='my-8 bg-gradient-to-tl from-white to-secondary h-4/5 py-12'>
       <Container className='flex flex-col justify-center items-center'>
         <p className='text-4xl lg:text-5xl font-light mb-8'>
           My Customer
