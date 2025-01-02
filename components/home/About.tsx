@@ -2,17 +2,16 @@ import React from 'react';
 import Container from '../global/Container';
 import Image from 'next/image';
 import { Button } from '../ui/button';
+import SectionTitle from '../global/SectionTitle';
 
 const About = () => {
   return (
     <section className='my-8'>
-      <div className='relative'>
-        <div className='flex items-center gap-2 absolute -top-3 right-8'>
-          <p className='text-xl uppercase font-medium'>About Me</p>
-          <div className='h-[1.5px] w-56 bg-primary font-extralight'></div>
-        </div>
-      </div>
-      <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 py-8 relative'>
+      <SectionTitle
+        title='About Me'
+        orientation='right'
+      />
+      <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 py-20 relative'>
         <div className='-z-10 hidden lg:block w-[420] h-[420] bg-soft-pink absolute rounded-sm' />
         <div className='relative w-[25rem] h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-auto'>
           <Image
