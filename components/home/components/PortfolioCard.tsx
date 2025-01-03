@@ -7,12 +7,12 @@ const PortfolioCard = ({ title }: { title: string }) => {
   return (
     <article className='group relative'>
       <Link href={`/gallery/${title}`}>
-        <Card className='h-[35rem]'>
+        <Card className='h-[35rem] transform group-hover:shadow-xl transition-shadow duration-300'>
           <CardContent className='p-6'>
-            <div className='relative h-[28rem] transition ease-linear hover:opacity-35 hover:scale-105'>
+            <div className='relative h-[28rem] overflow-hidden'>
               <Image
                 priority
-                className='rounded w-full object-cover'
+                className='rounded w-full object-cover transform group-hover:opacity-35 group-hover:scale-110 transition-transform duration-300 '
                 src={`/images/${title}.jpg`}
                 alt={`${title} image`}
                 fill
