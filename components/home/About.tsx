@@ -16,7 +16,7 @@ const About = () => {
       />
       <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 py-20 relative'>
         <div className='-z-10 hidden lg:block w-[420] h-[420] bg-soft-pink absolute rounded-sm' />
-        <div className='relative w-[25rem] h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-auto'>
+        <div className='relative w-full h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-auto'>
           <Image
             fill
             src='/images/theartist.jpeg'
@@ -26,7 +26,12 @@ const About = () => {
           />
         </div>
         <div className='flex flex-col mx-auto'>
-          <p className='text-4xl lg:text-5xl font-semibold mb-6'>Meet Naisha</p>
+          <p className='text-4xl lg:text-5xl font-semibold mb-6'>
+            Meet Naisha{' '}
+            <span className='text-muted-foreground text-lg text-center'>
+              (she/her/hers)
+            </span>
+          </p>
           <p className='text-xl lg:text-2xl font-light'>
             Hello Gorgeous! Welcome to my website where I have the pleasure of
             presenting my services. I am a self taught makeup artist who is

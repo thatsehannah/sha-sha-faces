@@ -13,6 +13,7 @@ const Logo = () => {
     >
       <Link href='/'>
         <Image
+          priority
           src={logo}
           alt='logo'
           width={64}
