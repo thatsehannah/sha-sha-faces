@@ -22,7 +22,7 @@ const LinkButton = ({ page }: { page: string }) => {
 
 const Links = () => {
   return (
-    <Container className='flex justify-evenly gap-4'>
+    <Container className='flex justify-evenly gap-2 lg:gap-4'>
       <LinkButton page='about' />
       <LinkButton page='portfolio' />
       <LinkButton page='testimonials' />
