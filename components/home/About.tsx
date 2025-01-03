@@ -6,7 +6,10 @@ import SectionTitle from '../global/SectionTitle';
 
 const About = () => {
   return (
-    <section className='py-8 relative'>
+    <section
+      id='about'
+      className='py-8 relative'
+    >
       <SectionTitle
         title='About Me'
         alignment='right'
