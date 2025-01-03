@@ -7,13 +7,13 @@ const Portfolio = () => {
   return (
     <section
       id='portfolio'
-      className='py-8 relative'
+      className='relative'
     >
       <SectionTitle
         title='portfolio'
         alignment='right'
       />
-      <Container className='grid grid-cols-1 lg:grid-cols-2 gap-12 py-20'>
+      <Container className='grid grid-cols-1 lg:grid-cols-2 gap-12 py-24'>
         <PortfolioCard title='glam' />
         <PortfolioCard title='bridal' />
       </Container>

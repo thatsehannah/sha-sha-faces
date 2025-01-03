@@ -7,7 +7,9 @@ type SectionTypeProps = {
 
 const SectionTitle = ({ title, alignment }: SectionTypeProps) => {
   return (
-    <div className={`flex items-center gap-2 absolute top-5 ${alignment}-8`}>
+    <div
+      className={`flex items-center px-4 gap-2 absolute top-5 ${alignment}-8`}
+    >
       {alignment === 'left' && <div className='h-[1.5px] w-56 bg-primary' />}
       <p className='text-xl uppercase font-medium'>{title}</p>
       {alignment === 'right' && <div className='h-[1.5px] w-56 bg-primary' />}

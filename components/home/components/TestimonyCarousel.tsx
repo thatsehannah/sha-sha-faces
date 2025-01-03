@@ -47,7 +47,7 @@ const TestimonyCarousel = () => {
   };
 
   return (
-    <Container className='mt-2 w-full p-6'>
+    <Container className='w-full lg:p-6'>
       <Carousel
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
@@ -77,7 +77,7 @@ const TestimonyCarousel = () => {
                       fill='black'
                       size={30}
                     />
-                    <p className='text-xl lg:text-2xl shrink-2 normal-case'>
+                    <p className='text-xl lg:text-2xl normal-case'>
                       {before}{' '}
                       {emphasizedWord && (
                         <span className='text-primary tracking-wide font-black uppercase text-2xl lg:text-3xl'>

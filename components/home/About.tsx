@@ -8,13 +8,13 @@ const About = () => {
   return (
     <section
       id='about'
-      className='py-8 relative'
+      className='relative'
     >
       <SectionTitle
         title='About Me'
         alignment='right'
       />
-      <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 py-20 relative'>
+      <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 relative py-24'>
         <div className='-z-10 hidden lg:block w-[420] h-[420] bg-soft-pink absolute rounded-sm' />
         <div className='relative w-full h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-auto'>
           <Image
