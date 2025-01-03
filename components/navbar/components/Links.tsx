@@ -11,7 +11,7 @@ const LinkButton = ({ page }: { page: string }) => {
       className='hover:bg-secondary'
     >
       <Link
-        href={`/${page}`}
+        href={`/#${page}`}
         className='text-lg capitalize'
       >
         {page}
@@ -25,6 +25,7 @@ const Links = () => {
     <Container className='flex justify-evenly gap-4'>
       <LinkButton page='about' />
       <LinkButton page='portfolio' />
+      <LinkButton page='testimonials' />
       <LinkButton page='contact' />
       <LinkButton page='services' />
     </Container>

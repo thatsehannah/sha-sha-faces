@@ -5,7 +5,10 @@ import PortfolioCard from './components/PortfolioCard';
 
 const Portfolio = () => {
   return (
-    <section className='py-8 relative'>
+    <section
+      id='portfolio'
+      className='py-8 relative'
+    >
       <SectionTitle
         title='portfolio'
         alignment='right'

@@ -5,7 +5,10 @@ import SectionTitle from '../global/SectionTitle';
 
 const Testimonies = () => {
   return (
-    <section className='bg-gradient-to-tl from-white to-secondary py-8 relative'>
+    <section
+      id='testimonials'
+      className='bg-gradient-to-tl from-white to-secondary py-8 relative'
+    >
       <SectionTitle
         title='Testimonials'
         alignment='left'
