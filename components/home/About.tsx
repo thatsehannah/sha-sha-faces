@@ -26,14 +26,12 @@ const About = () => {
           />
         </div>
         <div className='flex flex-col mx-auto'>
-          <p className='text-4xl lg:text-5xl font-medium mb-6'>
-            I&apos;m Naisha Renous
-          </p>
-          <p className='text-xl lg:text-3xl font-light'>
+          <p className='text-4xl lg:text-5xl font-semibold mb-6'>Meet Naisha</p>
+          <p className='text-xl lg:text-2xl font-light'>
             Hello Gorgeous! Welcome to my website where I have the pleasure of
             presenting my services. I am a self taught makeup artist who is
             passionate about what I do. Let me know what you desire as I am here
-            to serve you.
+            to serve you 💋.
           </p>
           <Button
             variant='outline'
