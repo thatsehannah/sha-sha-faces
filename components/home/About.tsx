@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import Container from '../global/Container';
 import Image from 'next/image';
 import { Button } from '../ui/button';
@@ -16,8 +19,22 @@ const About = () => {
         alignment='right'
       />
       <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 relative py-24'>
-        <div className='-z-10 hidden lg:block w-[420] h-[420] bg-soft-pink absolute rounded-sm' />
-        <div className='relative w-full h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-auto'>
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: false, amount: 0.5 }}
+          exit={{ opacity: 0, y: -100 }}
+          className='-z-10 hidden lg:block w-[420] h-[420] bg-soft-pink absolute rounded-sm'
+        />
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: false, amount: 0.5 }}
+          exit={{ opacity: 0, y: 100 }}
+          className='relative w-full h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-auto'
+        >
           <Image
             fill
             src='/images/theartist.jpeg'
@@ -25,7 +42,7 @@ const About = () => {
             className='w-full rounded-md object-cover'
             sizes='(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw'
           />
-        </div>
+        </motion.div>
         <div className='flex flex-col mx-auto'>
           <p className='text-4xl lg:text-5xl font-semibold mb-6'>
             Meet Naisha{' '}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import { afacadFlux } from '@/lib/fonts';
+import PageTransition from '@/components/global/PageTransition';
 
 export const metadata: Metadata = {
   title: 'Sha Sha Faces',
@@ -17,7 +18,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${afacadFlux.className} antialiased`}>
         <Navbar />
-        {children}
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );
