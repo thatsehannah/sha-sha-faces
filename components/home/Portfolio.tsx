@@ -1,7 +1,6 @@
 import React from 'react';
 import Container from '../global/Container';
 import SectionTitle from '../global/SectionTitle';
-import PortfolioCard from './components/PortfolioCard';
 import GalleryCarousel from '../gallery/GalleryCarousel';
 import { Button } from '../ui/button';
 import Link from 'next/link';
