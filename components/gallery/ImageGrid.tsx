@@ -1,9 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Container from '../global/Container';
+import GalleryDialog from '../global/PhotoDialog';
 
 type ImageGridProps = {
   photos: {
@@ -13,6 +14,18 @@ type ImageGridProps = {
 };
 
 const ImageGrid = ({ photos }: ImageGridProps) => {
+  const [selectedPhoto, setSelectedPhoto] = useState<{
+    url: string;
+    alt: string;
+  }>();
+
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+
+  const handlePhotoClick = (photo: { url: string; alt: string }) => {
+    setSelectedPhoto(photo);
+    setIsDialogOpen(true);
+  };
+
   const gridVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -27,32 +40,43 @@ const ImageGrid = ({ photos }: ImageGridProps) => {
   };
 
   return (
-    <Container className='columns-2 lg:columns-5'>
-      <motion.div
-        variants={gridVariants}
-        initial='hidden'
-        animate='visible'
-      >
-        {photos.map((img, idx) => {
-          return (
-            <motion.div
-              key={idx}
-              variants={imageVariant}
-            >
-              <Image
-                src={img.url}
-                alt={img.alt}
+    <>
+      <Container className='columns-2 lg:columns-5'>
+        <motion.div
+          variants={gridVariants}
+          initial='hidden'
+          animate='visible'
+        >
+          {photos.map((img, idx) => {
+            return (
+              <motion.div
                 key={idx}
-                width={500}
-                height={500}
-                sizes='100vw'
-                className='rounded-md object-cover mb-4'
-              />
-            </motion.div>
-          );
-        })}
-      </motion.div>
-    </Container>
+                variants={imageVariant}
+              >
+                <Image
+                  src={img.url}
+                  alt={img.alt}
+                  key={idx}
+                  width={500}
+                  height={500}
+                  sizes='100vw'
+                  className='rounded-md object-cover mb-4 hover:cursor-pointer'
+                  onClick={() => handlePhotoClick(img)}
+                />
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </Container>
+
+      {selectedPhoto && (
+        <GalleryDialog
+          open={isDialogOpen}
+          onOpenChange={setIsDialogOpen}
+          photo={selectedPhoto}
+        />
+      )}
+    </>
   );
 };
 

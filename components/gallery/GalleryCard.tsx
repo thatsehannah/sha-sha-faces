@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const PortfolioCard = ({ title }: { title: string }) => {
+const GalleryCard = ({ title }: { title: string }) => {
   return (
     <article className='group relative'>
       <Link href={`/gallery/${title}`}>
@@ -24,4 +24,4 @@ const PortfolioCard = ({ title }: { title: string }) => {
   );
 };
 
-export default PortfolioCard;
+export default GalleryCard;

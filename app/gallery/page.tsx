@@ -1,11 +1,11 @@
-import PortfolioCard from '@/components/gallery/PortfolioCard';
+import PortfolioCard from '@/components/gallery/GalleryCard';
 import Container from '@/components/global/Container';
 import SectionTitle from '@/components/global/SectionTitle';
 import React from 'react';
 
 const GalleryPage = () => {
   return (
-    <div className='relative py-20 bg-gradient-to-tr from-secondary to-white'>
+    <div className='relative py-20'>
       <SectionTitle
         title='gallery'
         alignment='left'
@@ -14,7 +14,7 @@ const GalleryPage = () => {
         <div className='lg:w-1/2 lg:h-screen'>
           <PortfolioCard title='glam' />
         </div>
-        <div className='lg:w-1/2 lgh-screen'>
+        <div className='lg:w-1/2 h-screen'>
           <PortfolioCard title='bridal' />
         </div>
       </Container>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '../global/Container';
 import SectionTitle from '../global/SectionTitle';
-import GalleryCarousel from '../gallery/GalleryCarousel';
+import GalleryCarousel from './components/PortfolioCarousel';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 
