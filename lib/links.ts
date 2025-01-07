@@ -4,8 +4,8 @@ export const links = [
     path: '/about',
   },
   {
-    label: 'portfolio',
-    path: '/#portfolio',
+    label: 'gallery',
+    path: '/gallery',
   },
   {
     label: 'testimonials',
