@@ -3,6 +3,7 @@ import Container from '../global/Container';
 import Image from 'next/image';
 import { Button } from '../ui/button';
 import SectionTitle from '../global/SectionTitle';
+import Link from 'next/link';
 
 const About = () => {
   return (
@@ -59,8 +60,9 @@ const About = () => {
           <Button
             size='lg'
             className='bg-secondary text-xl font-medium w-28 mt-16'
+            asChild
           >
-            Book Now
+            <Link href='/about'>Learn More</Link>
           </Button>
         </div>
       </Container>

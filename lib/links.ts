@@ -1,7 +1,7 @@
 export const links = [
   {
     label: 'about',
-    path: '/#about',
+    path: '/about',
   },
   {
     label: 'portfolio',
