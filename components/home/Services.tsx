@@ -3,8 +3,8 @@ import Container from '../global/Container';
 
 const Services = () => {
   return (
-    <section>
-      <Container>Services</Container>
+    <section id='services'>
+      <Container className='py-20'>Services</Container>
     </section>
   );
 };

@@ -1,0 +1,58 @@
+[
+  {
+    "name": "virtual one on one makeup lesson",
+    "price": 400,
+    "duration": 2.5,
+    "description": "This is a one on one lesson done on yourself via FaceTime or Zoom. This lesson teaches you how to get a perfect soft everyday glam. My tips, tricks and products used will be shared. Products are provided by you.",
+    "popular": false
+  },
+  {
+    "name": "full glam makeup application",
+    "price": 120,
+    "duration": 1.5,
+    "description": "Includes, brow fill, flawless foundation,contour/ bronzer, highlight, blush lip color and natural eyeshadow of choice. Strip lashes of choice will also be included.",
+    "popular": true
+  },
+  {
+    "name": "daily set rate",
+    "price": 1200,
+    "duration": 8,
+    "description": "This is my price for an 8 hour day varies depending on how many people and what needs to be done. OT is $100 per hour. Half day is $600. Please email shashafaces@gmail.com to inquire.",
+    "popular": false
+  },
+  {
+    "name": "one on one makeup lesson",
+    "price": 350,
+    "duration": 3,
+    "description": "This is a one on one lesson done on yourself. This lesson teaches you how to get a perfect soft everyday glam. My tips, tricks and products used will be shared. Products are provided by you.",
+    "popular": false
+  },
+  {
+    "name": "bridal consultation",
+    "price": 160,
+    "duration": 2.75,
+    "description": "The bride will choose the perfect look for the wedding based on color schemes and accessories. Eyeshadow options are endless; from a sparkly to a simple and sultry look the choice is yours.",
+    "popular": true
+  },
+  {
+    "name": "bridal makeup",
+    "price": 190,
+    "duration": 2.5,
+    "description": "Please call or email shashafaces@gmail to book this service.",
+    "popular": false
+  },
+  {
+    "name": "bridal party",
+    "price": 150,
+    "duration": 1,
+    "description": "This price varies based on the location of wedding and the size of bridal party. Please call or email shashafaces@gmail.com to provide more information and book.",
+    "popular": true
+  },
+  {
+    "name": "house call/travel fee",
+    "price": 60,
+    "duration": 1,
+    "description": "$60 flat rate within 10 miles of Hollywood. $1.75 per mile both ways for anything over the 10 mile radius",
+    "popular": true
+  }
+]

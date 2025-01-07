@@ -3,7 +3,6 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { asap } from '@/lib/fonts';
-import heroImg from '@/public/images/photo6.jpeg';
 import Container from '../global/Container';
 
 const Hero = () => {
@@ -12,7 +11,7 @@ const Hero = () => {
       <Container className='grid grid-cols-1 lg:grid-cols-2 lg:gap-24 justify-center items-center'>
         <div className='flex flex-col justify-center items-center'>
           <Image
-            src={heroImg}
+            src='/images/photo6.jpeg'
             height={300}
             width={500}
             alt='hero image'
@@ -43,7 +42,7 @@ const Hero = () => {
 
         <div>
           <Image
-            src={heroImg}
+            src='/images/photo6.jpeg'
             height={300}
             width={300}
             alt='hero image'
