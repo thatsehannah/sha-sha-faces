@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'section-breaker': "url('/images/photo8.jpeg')",
+        'section-breaker': "url('/images/glam/photo8.jpeg')",
       },
       colors: {
         'dusty-rose': 'hsl(var(--dusty-rose))',

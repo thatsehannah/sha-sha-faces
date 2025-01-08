@@ -20,7 +20,7 @@ const Hero = () => {
       <Container className='grid grid-cols-1 lg:grid-cols-2 lg:gap-24 justify-center items-center'>
         <div className='flex flex-col justify-center items-center'>
           <Image
-            src='/images/photo6.jpeg'
+            src='/images/glam/photo6.jpeg'
             height={300}
             width={500}
             alt='hero image'
@@ -51,7 +51,7 @@ const Hero = () => {
 
         <div>
           <Image
-            src='/images/photo6.jpeg'
+            src='/images/glam/photo6.jpeg'
             height={300}
             width={300}
             alt='hero image'
