@@ -11,6 +11,7 @@ export default {
     extend: {
       backgroundImage: {
         'section-breaker': "url('/images/glam/photo8.jpeg')",
+        'service-img': "url('/images/gif1.gif')",
       },
       colors: {
         'dusty-rose': 'hsl(var(--dusty-rose))',
