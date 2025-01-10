@@ -2,7 +2,6 @@ import React from 'react';
 import ServiceIconSvg from './ServiceIconSvg';
 import { Banknote, Clock, Star } from 'lucide-react';
 import { Button } from '../ui/button';
-import { p } from 'framer-motion/client';
 
 type ServiceDetailsProps = {
   index: number;
