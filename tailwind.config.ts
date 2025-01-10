@@ -16,6 +16,7 @@ export default {
       colors: {
         'dusty-rose': 'hsl(var(--dusty-rose))',
         'soft-pink': 'hsl(var(--soft-pink))',
+        periwinkle: 'hsl(var(--periwinkle))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -33,6 +34,10 @@ export default {
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
+        },
+        tertiary: {
+          DEFAULT: 'hsl(var(--tertiary))',
+          foreground: 'hsl(var(--tertiary-foreground))',
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',

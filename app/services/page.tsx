@@ -1,17 +1,26 @@
 import React from 'react';
 import services from '@/lib/services.json';
 import ServiceDetails from '@/components/services/ServiceDetails';
+import Container from '@/components/global/Container';
+import SectionTitle from '@/components/global/SectionTitle';
 
 const ServicesPage = () => {
   return (
-    <div>
-      {services.map((service, idx) => (
-        <ServiceDetails
-          key={idx}
-          service={service}
-        />
-      ))}
-    </div>
+    <main className='relative'>
+      <SectionTitle
+        title='services'
+        alignment='right'
+      />
+      <Container className='py-20'>
+        {services.map((service, idx) => (
+          <ServiceDetails
+            key={idx}
+            index={idx}
+            service={service}
+          />
+        ))}
+      </Container>
+    </main>
   );
 };
 
