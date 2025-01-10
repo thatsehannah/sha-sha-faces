@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '../global/Container';
 import SectionTitle from '../global/SectionTitle';
-import GalleryCarousel from './components/PortfolioCarousel';
+import GalleryCarousel from './components/GalleryCarousel';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import photos from '@/lib/glamPhotos.json';
@@ -18,7 +18,7 @@ const Portfolio = () => {
         title='portfolio'
         alignment='right'
       />
-      <Container className='flex flex-col justify-center items-center p-24 gap-16'>
+      <Container className='flex flex-col justify-center items-center py-24 gap-16'>
         <GalleryCarousel photos={featuredPhotos} />
         <Button
           asChild

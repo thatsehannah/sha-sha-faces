@@ -18,7 +18,7 @@ type PortfolioCarouselProps = {
   }[];
 };
 
-const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
+const GalleryCarousel = ({ photos }: PortfolioCarouselProps) => {
   const [selectedPhoto, setSelectedPhoto] = useState<{
     url: string;
     alt: string;
@@ -42,7 +42,7 @@ const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
             return (
               <CarouselItem
                 key={idx}
-                className='flex lg:basis-1/3 justify-center'
+                className='lg:basis-1/3 flex justify-center'
               >
                 <Image
                   src={img.url}
@@ -56,8 +56,8 @@ const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className='hover:bg-secondary' />
-        <CarouselNext className='hover:bg-secondary' />
+        <CarouselPrevious className='hover:bg-secondary lg:flex hidden' />
+        <CarouselNext className='hover:bg-secondary lg:flex hidden' />
       </Carousel>
 
       {selectedPhoto && (
@@ -71,4 +71,4 @@ const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
   );
 };
 
-export default PortfolioCarousel;
+export default GalleryCarousel;
