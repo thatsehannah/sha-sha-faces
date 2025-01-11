@@ -44,14 +44,16 @@ const GalleryCarousel = ({ photos }: PortfolioCarouselProps) => {
                 key={idx}
                 className='lg:basis-1/3 flex justify-center'
               >
-                <Image
-                  src={img.url}
-                  alt={img.alt}
-                  width={500}
-                  height={500}
-                  className='w-auto h-[28rem] rounded-md object-cover hover:cursor-pointer'
-                  onClick={() => handlePhotoClick(img)}
-                />
+                <div className='bg-gradient-to-r from-tertiary via-white to-tertiary flex justify-center items-center p-2 rounded-md'>
+                  <Image
+                    src={img.url}
+                    alt={img.alt}
+                    width={500}
+                    height={500}
+                    className='w-auto h-[28rem] rounded-md object-cover hover:cursor-pointer'
+                    onClick={() => handlePhotoClick(img)}
+                  />
+                </div>
               </CarouselItem>
             );
           })}
