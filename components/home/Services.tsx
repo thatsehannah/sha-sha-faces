@@ -12,7 +12,7 @@ const Services = () => {
   return (
     <section
       id='services'
-      className='relative bg-gradient-to-tl from-soft-pink to-white'
+      className='relative bg-gradient-to-tr from-background to-primary'
     >
       <SectionTitle
         title='popular services'
@@ -32,7 +32,7 @@ const Services = () => {
         <Button
           asChild
           size='lg'
-          className='bg-secondary'
+          className='bg-primary text-lg'
         >
           <Link href='/services'>View All Services</Link>
         </Button>

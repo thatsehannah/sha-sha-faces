@@ -47,7 +47,7 @@ const ServicesCard = ({ service }: ServiceCardProps) => {
           <div className='h-full'>{service.description}</div>
         </CardContent>
         <CardFooter className=''>
-          <Button>Book Now</Button>
+          <Button className='bg-secondary text-md'>Book Now</Button>
         </CardFooter>
       </Card>
     </article>

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { asap } from '@/lib/fonts';
+import { parisienne } from '@/lib/fonts';
 import Container from '../global/Container';
 
 const Hero = () => {
@@ -15,7 +15,7 @@ const Hero = () => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      className='h-screen bg-gradient-to-tl from-soft-pink to-white py-12'
+      className='h-screen bg-gradient-to-tl from-primary to-background py-12'
     >
       <Container className='grid grid-cols-1 lg:grid-cols-2 lg:gap-24 justify-center items-center'>
         <div className='flex flex-col justify-center items-center'>
@@ -36,14 +36,14 @@ const Hero = () => {
             className='h-[10rem] lg:h-[24rem]'
           />
           <p
-            className={`${asap.className} text-lg lg:text-2xl font-extrabold uppercase mt-4`}
+            className={`${parisienne.className} text-3xl lg:text-4xl font-extrabold mt-4`}
           >
             Glam that soothes, beauty that shines
           </p>
           <Button
             variant='link'
             asChild
-            className='mt-8 text-2xl text-muted-foreground'
+            className='mt-8 text-2xl'
           >
             <Link href='/#portfolio'>View Portfolio &gt;</Link>
           </Button>

@@ -23,6 +23,7 @@ const Portfolio = () => {
         <Button
           asChild
           size='lg'
+          className='bg-primary text-lg'
         >
           <Link href='/gallery'>View More of My Work</Link>
         </Button>

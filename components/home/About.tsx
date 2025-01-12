@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { Button } from '../ui/button';
 import SectionTitle from '../global/SectionTitle';
 import Link from 'next/link';
+import { Instagram } from 'lucide-react';
 
 const About = () => {
   return (
@@ -23,23 +24,23 @@ const About = () => {
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: false, amount: 0.5 }}
+          viewport={{ once: false, amount: 0.3 }}
           exit={{ opacity: 0, y: -100 }}
-          className='-z-10 hidden lg:block w-[420] h-[420] bg-soft-pink absolute rounded-sm'
+          className='-z-10 w-[210] h-[360] top-28 left-8 xl:w-[420] xl:h-[420] bg-soft-pink absolute rounded-sm'
         />
         <motion.div
           initial={{ opacity: 0, y: -100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: false, amount: 0.5 }}
+          viewport={{ once: false, amount: 0.3 }}
           exit={{ opacity: 0, y: 100 }}
-          className='relative w-full h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-auto'
+          className='relative w-full h-[25rem] xl:w-[30rem] xl:h-[30rem] mx-auto'
         >
           <Image
             fill
             src='/images/theartist.jpeg'
             alt='naisha'
-            className='w-full rounded-md object-cover'
+            className='w-full rounded-md object-contain xl:object-cover'
             sizes='(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw'
           />
         </motion.div>
@@ -59,24 +60,19 @@ const About = () => {
           <Button
             variant='outline'
             size='icon'
-            className='w-10 mt-4'
+            className='mt-4 bg-secondary'
             asChild
           >
             <a
               href='https://www.instagram.com/shashafaces'
               target='_blank'
             >
-              <Image
-                src='/icons/instagram.svg'
-                alt='instagram icon'
-                width={20}
-                height={20}
-              />
+              <Instagram stroke='black' />
             </a>
           </Button>
           <Button
             size='lg'
-            className='bg-secondary text-xl font-medium w-28 mt-16'
+            className='bg-primary text-xl font-medium w-28 mt-16'
             asChild
           >
             <Link href='/about'>Learn More</Link>

@@ -7,7 +7,7 @@ const Testimonies = () => {
   return (
     <section
       id='testimonials'
-      className='bg-gradient-to-tl from-white to-secondary relative'
+      className='bg-gradient-to-tl from-background to-secondary relative'
     >
       <SectionTitle
         title='Testimonials'

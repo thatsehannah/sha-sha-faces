@@ -38,7 +38,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
         </div>
       </div>
       <div
-        className={`lg:w-1/2 lg:h-[80vh] flex bg-fixed ${detailsBackground} from-tertiary via-white to-tertiary`}
+        className={`lg:w-1/2 lg:h-[80vh] flex bg-fixed ${detailsBackground} rounded-lg xl:rounded-none from-tertiary via-accent to-tertiary`}
       >
         <div className='flex flex-col lg:p-12 p-8'>
           <div className='lg:hidden flex justify-center items-center mb-8'>
@@ -52,6 +52,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
             {popular && (
               <div className='flex gap-2 mt-1'>
                 <Star
+                  stroke='black'
                   strokeWidth={1}
                   fill='gold'
                 />
@@ -60,11 +61,11 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
             )}
           </div>
           <div className='flex justify-between text-2xl mb-12'>
-            <div className='flex gap-3 p-4 rounded-full bg-slate-200 font-bold shadow-md'>
+            <div className='flex gap-3 p-4 rounded-full bg-accent font-bold shadow-md'>
               <Clock />
               <p className='text-xl'>{duration} hours</p>
             </div>
-            <div className='flex gap-3 p-4 rounded-full bg-slate-200 font-bold shadow-md'>
+            <div className='flex gap-3 p-4 rounded-full bg-accent font-bold shadow-md'>
               <Banknote
                 size={20}
                 className='transform rotate-45'
@@ -74,7 +75,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
           </div>
 
           <p className='text-2xl font-light mb-12'>{description}</p>
-          <Button className='mt-auto capitalize text-xl bg-primary'>
+          <Button className='mt-auto capitalize text-xl bg-secondary'>
             book a time
           </Button>
         </div>
