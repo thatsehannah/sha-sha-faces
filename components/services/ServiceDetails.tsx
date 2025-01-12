@@ -52,9 +52,8 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
             {popular && (
               <div className='flex gap-2 mt-1'>
                 <Star
-                  stroke='black'
-                  strokeWidth={1}
                   fill='gold'
+                  strokeWidth={0}
                 />
                 <p className='uppercase'>popular service</p>
               </div>
