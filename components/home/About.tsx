@@ -64,7 +64,7 @@ const About = () => {
             asChild
           >
             <a
-              href='https://www.instagram.com/shashafaces'
+              href='https://www.instagram.com/wownaisha'
               target='_blank'
             >
               <Instagram stroke='black' />
