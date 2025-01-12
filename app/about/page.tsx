@@ -1,5 +1,4 @@
 import Container from '@/components/global/Container';
-import SectionTitle from '@/components/global/SectionTitle';
 import { parisienne } from '@/lib/fonts';
 import Image from 'next/image';
 import React from 'react';
