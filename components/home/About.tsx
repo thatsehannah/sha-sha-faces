@@ -19,14 +19,14 @@ const About = () => {
         title='About Me'
         alignment='right'
       />
-      <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 relative py-24'>
+      <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 relative py-20'>
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: false, amount: 0.3 }}
           exit={{ opacity: 0, y: -100 }}
-          className='-z-10 w-[210] h-[360] top-28 left-8 xl:w-[420] xl:h-[420] bg-soft-pink absolute rounded-sm'
+          className='hidden lg:block -z-10 top-28 left-8 w-[20rem] h-[26rem] bg-soft-pink absolute rounded-md'
         />
         <motion.div
           initial={{ opacity: 0, y: -100 }}
@@ -34,13 +34,14 @@ const About = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: false, amount: 0.3 }}
           exit={{ opacity: 0, y: 100 }}
-          className='relative w-full h-[25rem] xl:w-[30rem] xl:h-[30rem] mx-auto'
+          className='flex justify-center items-center relative w-full lg:w-[28rem] lg:h-[30rem] mx-auto drop-shadow-2xl'
         >
           <Image
-            fill
+            height={800}
+            width={800}
             src='/images/theartist.jpeg'
             alt='naisha'
-            className='w-full rounded-md object-contain xl:object-cover'
+            className='w-[45vh] lg:w-[55vh] h-[28rem] lg:h-[30rem] object-contain rounded-md lg:object-cover '
             sizes='(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw'
           />
         </motion.div>

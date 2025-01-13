@@ -15,17 +15,17 @@ const Hero = () => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      className='h-screen bg-gradient-to-tl from-primary to-background py-12'
+      className='h-full bg-gradient-to-tl from-primary to-background py-12'
     >
       <Container className='grid grid-cols-1 lg:grid-cols-2 lg:gap-24 justify-center items-center'>
         <div className='flex flex-col justify-center items-center'>
           <Image
             src='/images/glam/photo6.jpeg'
-            height={300}
+            height={500}
             width={500}
             alt='hero image'
             priority
-            className='block lg:hidden w-full h-[23rem] mb-8 rounded-md object-cover'
+            className='block lg:hidden w-full lg:h-[26rem] h-[30rem] mb-8 rounded-xl object-contain xl:object-cover'
           />
           <Image
             src='/logo/logo-color-2.svg'
@@ -33,7 +33,7 @@ const Hero = () => {
             alt='logo'
             width={400}
             height={400}
-            className='h-[10rem] lg:h-[24rem]'
+            className='h-[16rem] lg:h-[24rem]'
           />
           <p
             className={`${parisienne.className} text-3xl lg:text-4xl font-extrabold mt-4`}
@@ -43,7 +43,7 @@ const Hero = () => {
           <Button
             variant='link'
             asChild
-            className='mt-8 text-2xl'
+            className='mt-8 text-2xl text-foreground'
           >
             <Link href='/#portfolio'>View Portfolio &gt;</Link>
           </Button>

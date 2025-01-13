@@ -62,6 +62,7 @@ const ImageGrid = ({ photos }: ImageGridProps) => {
                   sizes='100vw'
                   className='rounded-md object-cover mb-4 hover:cursor-pointer'
                   onClick={() => handlePhotoClick(img)}
+                  priority
                 />
               </motion.div>
             );
