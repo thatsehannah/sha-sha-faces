@@ -22,10 +22,10 @@ const ContactPage = () => {
       />
       <Container className='py-20 flex flex-col justify-center items-center'>
         <div className='flex flex-col items-center gap-3'>
-          <p className='text-2xl'>
+          <p className='text-2xl font-light'>
             Please review{' '}
             <span
-              className='text-primary font-bold hover:cursor-pointer'
+              className='text-primary font-bold hover:cursor-pointer underline'
               onClick={handleOpenDrawer}
             >
               instructions

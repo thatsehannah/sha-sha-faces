@@ -25,30 +25,49 @@ const InstructionsDrawer = ({
       onOpenChange={onOpenChange}
     >
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle className='text-4xl tracking-wide font-extrabold text-secondary'>
-            Please Read Carefully
-          </DrawerTitle>
-        </DrawerHeader>
-        <Container className='flex flex-col gap-6 p-4 text-2xl'>
-          <p>
-            Once your appointment is booked, prepare to receive a personal text
-            REQUESTING A NON-REFUNDABLE deposit to secure your appointment. This
-            will go towards your service. If a deposit is not received with 3
-            hours of time of request, the appointment will be cancelled.
-            Location will be provided on the day of service (Hollywood area).
-          </p>
-          <p>Please no extra guests.</p>
-          <p>
-            Cash or electronic payments (CashApp, Zelle, or Apple Pay preferred)
-            only upon service.
-          </p>
+        <Container className='flex flex-col gap-6 pt-8'>
+          <DrawerHeader className='p-0'>
+            <DrawerTitle className='text-4xl tracking-wide font-extrabold'>
+              🚨 Please Read Carefully.
+            </DrawerTitle>
+          </DrawerHeader>
+          <div className='flex flex-col gap-8 text-xl font-light'>
+            <p>
+              Once your appointment is booked, prepare to receive a personal
+              text{' '}
+              <span className='uppercase text-primary font-bold'>
+                requesting a non-refundable
+              </span>{' '}
+              deposit to secure your appointment. This will go towards your
+              service. If a deposit is not received with 3 hours from time of
+              request, the appointment will be{' '}
+              <span className='text-red-500 font-bold tracking-wider'>
+                cancelled
+              </span>
+              . Location will be provided on the day of service (Hollywood
+              area).
+            </p>
+            <p>
+              Please{' '}
+              <span className='uppercase font-black tracking-wider'>no</span>{' '}
+              extra guests.
+            </p>
+            <p>
+              Cash or electronic payments (CashApp, Zelle, or Apple Pay
+              preferred) only upon service.
+            </p>
+          </div>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button
+                variant='secondary'
+                className='text-xl'
+              >
+                Confirm
+              </Button>
+            </DrawerClose>
+          </DrawerFooter>
         </Container>
-        <DrawerFooter>
-          <DrawerClose asChild>
-            <Button variant='outline'>Confirm</Button>
-          </DrawerClose>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
