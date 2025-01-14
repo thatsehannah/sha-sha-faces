@@ -8,15 +8,11 @@ export const links = [
     path: '/gallery',
   },
   {
-    label: 'testimonials',
-    path: '/#testimonials',
+    label: 'services',
+    path: '/services',
   },
   {
     label: 'contact',
     path: '/contact',
-  },
-  {
-    label: 'services',
-    path: '/services',
   },
 ];

@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '../ui/form';
 import services from '@/lib/services.json';
 import FormDropdown from './components/FormDropdown';
+import { Button } from '../ui/button';
 
 const ContactForm = () => {
   const form = useForm<z.infer<typeof appointmentSchema>>({
@@ -37,28 +38,63 @@ const ContactForm = () => {
         className='bg-secondary dark:bg-secondary/80 rounded-md p-8 lg:px-20 lg:py-8 w-full lg:w-[65vw]'
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <FormInput
-          name='name'
-          label='full name'
-          placeholder='e.g. Jane Doe'
-          form={form}
-          type='text'
-        />
-        <FormInput
-          name='email'
-          label='email'
-          placeholder='e.g. janedoe@domain.com'
-          form={form}
-          type='text'
-        />
-        <FormDropdown
-          name='service'
-          label='service'
-          placeholder='Select a service'
-          form={form}
-          values={serviceNames}
-          description='Please select only service per booking.'
-        />
+        <section className='mb-20'>
+          <p className='text-3xl lg:text-4xl text-black font-bold mb-6'>
+            Contact Information
+          </p>
+          <FormInput
+            name='name'
+            label='full name'
+            placeholder='e.g. Jane Doe'
+            form={form}
+            type='text'
+          />
+          <FormInput
+            name='email'
+            label='email'
+            placeholder='e.g. janedoe@domain.com'
+            form={form}
+            type='text'
+          />
+          <FormInput
+            name='phoneNumber'
+            label='phone number'
+            placeholder='e.g. (213) 555-5555'
+            form={form}
+            type='tel'
+          />
+        </section>
+
+        <section className='mb-20'>
+          <p className='text-3xl lg:text-4xl text-black font-bold mb-4'>
+            Service Information
+          </p>
+          <FormDropdown
+            name='service'
+            label='type'
+            placeholder='Select a service'
+            form={form}
+            values={serviceNames}
+            description='Please select only 1 service per booking.'
+          />
+          {/* date */}
+          {/* time */}
+          {/* location */}
+        </section>
+
+        <section className='mb-20'>
+          <p className='text-3xl lg:text-4xl text-black font-bold mb-4'>
+            Additional Information
+          </p>
+          {/* how did you hear about us */}
+          {/* custom requests */}
+        </section>
+        <Button
+          className='text-xl uppercase'
+          type='submit'
+        >
+          Send Request
+        </Button>
       </form>
     </Form>
   );

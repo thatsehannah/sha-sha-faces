@@ -4,6 +4,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
 import {
   Select,
@@ -68,6 +69,7 @@ const FormDropdown = ({
           <FormDescription className='text-black italic tracking-wider font-semibold'>
             {description}
           </FormDescription>
+          <FormMessage />
         </FormItem>
       )}
     />
