@@ -11,6 +11,7 @@ export const appointmentSchema = z.object({
   phoneNumber: z.string().length(10, { message: 'invalid phone number' }),
   date: z.string().date(),
   time: z.string().time(),
+  location: z.string(),
   service: z.string(),
   addtlDetails: z.string(),
 });

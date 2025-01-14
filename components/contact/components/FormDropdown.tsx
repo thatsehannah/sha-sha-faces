@@ -1,0 +1,80 @@
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+} from '@/components/ui/form';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Appointment, AppointmentFormFields } from '@/utils/types';
+import React from 'react';
+import { UseFormReturn } from 'react-hook-form';
+
+type FormDropwdownProps = {
+  name: AppointmentFormFields;
+  label: string;
+  values: string[];
+  description: string;
+  placeholder?: string;
+  defaultValue?: string;
+  form: UseFormReturn<Appointment>;
+};
+
+const FormDropdown = ({
+  name,
+  label,
+  values,
+  description,
+  placeholder,
+  defaultValue,
+  form,
+}: FormDropwdownProps) => {
+  return (
+    <FormField
+      control={form.control}
+      name={name}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className='text-black text-lg font-light'>
+            {label}
+          </FormLabel>
+          <Select
+            onValueChange={field.onChange}
+            defaultValue={defaultValue || field.value}
+          >
+            <FormControl>
+              <SelectTrigger className='h-12 border-black text-xl md:text-2xl font-semibold placeholder:text-lg placeholder:text-black'>
+                <SelectValue
+                  asChild
+                  placeholder={placeholder}
+                />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent className='capitalize text-lg'>
+              {values.map((value, idx) => (
+                <SelectItem
+                  value={value}
+                  key={idx}
+                  className='capitalize text-lg font-medium'
+                >
+                  {value}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <FormDescription className='text-black italic tracking-wider font-semibold'>
+            {description}
+          </FormDescription>
+        </FormItem>
+      )}
+    />
+  );
+};
+
+export default FormDropdown;

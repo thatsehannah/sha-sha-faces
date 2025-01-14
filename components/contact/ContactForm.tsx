@@ -7,6 +7,8 @@ import { z } from 'zod';
 import { appointmentSchema } from '@/utils/appointmentSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '../ui/form';
+import services from '@/lib/services.json';
+import FormDropdown from './components/FormDropdown';
 
 const ContactForm = () => {
   const form = useForm<z.infer<typeof appointmentSchema>>({
@@ -19,8 +21,11 @@ const ContactForm = () => {
       time: '',
       service: '',
       addtlDetails: '',
+      location: '',
     },
   });
+
+  const serviceNames = services.map((service) => service.name);
 
   const onSubmit = (values: z.infer<typeof appointmentSchema>) => {
     console.log(values);
@@ -29,7 +34,7 @@ const ContactForm = () => {
   return (
     <Form {...form}>
       <form
-        className='bg-primary rounded-md p-4 w-full lg:w-[50vw]'
+        className='bg-soft-pink dark:bg-primary rounded-md p-4 w-full lg:w-[50vw]'
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormInput
@@ -43,6 +48,14 @@ const ContactForm = () => {
           label='Email'
           placeholder='Your email'
           form={form}
+        />
+        <FormDropdown
+          name='service'
+          label='Service'
+          placeholder='Select a service'
+          form={form}
+          values={serviceNames}
+          description='Please select only service per booking.'
         />
       </form>
     </Form>

@@ -9,6 +9,7 @@ export type Appointment = {
   time: string;
   service: string;
   addtlDetails: string;
+  location: string;
 };
 
 export type AppointmentFormFields = keyof z.infer<typeof appointmentSchema>;
