@@ -39,19 +39,21 @@ const ContactForm = () => {
       >
         <FormInput
           name='name'
-          label='Full Name'
+          label='full name'
           placeholder='e.g. Jane Doe'
           form={form}
+          type='text'
         />
         <FormInput
           name='email'
-          label='Email'
+          label='email'
           placeholder='e.g. janedoe@domain.com'
           form={form}
+          type='text'
         />
         <FormDropdown
           name='service'
-          label='Service'
+          label='service'
           placeholder='Select a service'
           form={form}
           values={serviceNames}

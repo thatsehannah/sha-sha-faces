@@ -41,7 +41,9 @@ const FormDropdown = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className='text-black text-lg'>{label}</FormLabel>
+          <FormLabel className='text-black text-lg capitalize'>
+            {label}
+          </FormLabel>
           <Select
             onValueChange={field.onChange}
             defaultValue={defaultValue || field.value}
