@@ -1,5 +1,6 @@
 'use client';
 
+import ContactForm from '@/components/contact/ContactForm';
 import InstructionsDrawer from '@/components/contact/InstructionsDrawer';
 import Container from '@/components/global/Container';
 import SectionTitle from '@/components/global/SectionTitle';
@@ -21,8 +22,8 @@ const ContactPage = () => {
         alignment='left'
       />
       <Container className='py-20 flex flex-col justify-center items-center'>
-        <div className='flex flex-col items-center gap-3'>
-          <p className='text-2xl font-light'>
+        <div className='flex flex-col items-center gap-5 lg:gap-3 mb-28'>
+          <p className='text-xl lg:text-2xl font-light'>
             Please review{' '}
             <span
               className='text-primary font-bold hover:cursor-pointer underline'
@@ -45,6 +46,7 @@ const ContactPage = () => {
             </Label>
           </div>
         </div>
+        <ContactForm />
       </Container>
       <InstructionsDrawer
         open={open}

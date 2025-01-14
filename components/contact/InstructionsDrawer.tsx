@@ -48,6 +48,15 @@ const InstructionsDrawer = ({
               area).
             </p>
             <p>
+              Appointments booked with less than 2 hours notice will incur a{' '}
+              <span className='text-primary font-bold'>$60</span> fee.
+            </p>
+            <p>
+              Appointments before 8am and after 9pm are considered an early/late
+              call and will incur a{' '}
+              <span className='text-primary font-bold'>$15</span> fee.
+            </p>
+            <p>
               Please{' '}
               <span className='uppercase font-black tracking-wider'>no</span>{' '}
               extra guests.
