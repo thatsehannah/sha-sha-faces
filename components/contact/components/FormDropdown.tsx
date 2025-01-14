@@ -50,10 +50,7 @@ const FormDropdown = ({
           >
             <FormControl>
               <SelectTrigger className='h-12 border-black text-xl md:text-2xl font-semibold placeholder:text-lg placeholder:text-black'>
-                <SelectValue
-                  asChild
-                  placeholder={placeholder}
-                />
+                <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
             <SelectContent className='capitalize text-lg'>
