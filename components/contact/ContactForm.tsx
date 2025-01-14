@@ -34,19 +34,19 @@ const ContactForm = () => {
   return (
     <Form {...form}>
       <form
-        className='bg-soft-pink dark:bg-primary rounded-md p-4 w-full lg:w-[50vw]'
+        className='bg-secondary dark:bg-secondary/80 rounded-md p-8 lg:px-20 lg:py-8 w-full lg:w-[65vw]'
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormInput
           name='name'
           label='Full Name'
-          placeholder='Your full name'
+          placeholder='e.g. Jane Doe'
           form={form}
         />
         <FormInput
           name='email'
           label='Email'
-          placeholder='Your email'
+          placeholder='e.g. janedoe@domain.com'
           form={form}
         />
         <FormDropdown

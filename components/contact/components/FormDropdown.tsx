@@ -41,15 +41,13 @@ const FormDropdown = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className='text-black text-lg font-light'>
-            {label}
-          </FormLabel>
+          <FormLabel className='text-black text-lg'>{label}</FormLabel>
           <Select
             onValueChange={field.onChange}
             defaultValue={defaultValue || field.value}
           >
             <FormControl>
-              <SelectTrigger className='h-12 border-black text-xl md:text-2xl font-semibold placeholder:text-lg placeholder:text-black'>
+              <SelectTrigger className='h-12 border-black capitalize text-black text-xl md:text-2xl font-semibold data-[placeholder]:text-gray-500 dark:data-[placeholder]:text-gray-700 data-[placeholder]:text-xl data-[placeholder]:normal-case data-[placeholder]:font-extralight'>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
