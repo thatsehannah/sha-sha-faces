@@ -2,45 +2,37 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Appointment, AppointmentFormFields } from '@/utils/types';
-import React, { HTMLInputTypeAttribute } from 'react';
+import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
+import FormInputLabel from './FormInputLabel';
 
 type FormInputProps = {
   name: AppointmentFormFields;
   label: string;
   placeholder?: string;
   form: UseFormReturn<Appointment>;
-  type: HTMLInputTypeAttribute;
 };
 
-const FormInput = ({
-  name,
-  label,
-  placeholder,
-  form,
-  type,
-}: FormInputProps) => {
+const FormInput = ({ name, label, placeholder, form }: FormInputProps) => {
   return (
     <FormField
       control={form.control}
       name={name}
       render={({ field }) => (
         <FormItem className='mb-8'>
-          <FormLabel className='text-black text-lg capitalize'>
-            {label}
-          </FormLabel>
+          <FormInputLabel text={label} />
           <FormControl>
-            <Input
-              placeholder={placeholder}
-              type={type}
-              {...field}
-              className='h-12 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black border-x-0 border-t-0 shadow-none rounded-none text-xl md:text-2xl font-semibold'
-            />
+            <div>
+              <Input
+                placeholder={placeholder}
+                {...field}
+                className='h-12 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black border-x-0 border-t-0 shadow-none rounded-none text-xl md:text-2xl font-semibold'
+              />
+            </div>
           </FormControl>
           <FormMessage className='text-lg' />
         </FormItem>

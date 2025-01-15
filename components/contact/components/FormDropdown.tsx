@@ -3,7 +3,6 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import {
@@ -16,6 +15,7 @@ import {
 import { Appointment, AppointmentFormFields } from '@/utils/types';
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
+import FormInputLabel from './FormInputLabel';
 
 type FormDropwdownProps = {
   name: AppointmentFormFields;
@@ -41,13 +41,11 @@ const FormDropdown = ({
       control={form.control}
       name={name}
       render={({ field }) => (
-        <FormItem>
-          <FormLabel className='text-black text-lg capitalize'>
-            {label}
-          </FormLabel>
+        <FormItem className='mb-8'>
+          <FormInputLabel text={label} />
           <Select
             onValueChange={field.onChange}
-            defaultValue={defaultValue || field.value}
+            defaultValue={defaultValue || field.value.toString()}
           >
             <FormControl>
               <SelectTrigger className='h-12 border-black capitalize text-black text-xl md:text-2xl font-semibold data-[placeholder]:text-gray-500 dark:data-[placeholder]:text-gray-700 data-[placeholder]:text-xl data-[placeholder]:normal-case data-[placeholder]:font-extralight'>
