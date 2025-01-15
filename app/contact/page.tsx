@@ -6,7 +6,7 @@ import Container from '@/components/global/Container';
 import SectionTitle from '@/components/global/SectionTitle';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 
 const ContactPage = () => {
   const [open, setOpen] = useState(false);
@@ -46,7 +46,9 @@ const ContactPage = () => {
             </Label>
           </div>
         </div>
-        <ContactForm />
+        <Suspense>
+          <ContactForm />
+        </Suspense>
       </Container>
       <InstructionsDrawer
         open={open}
