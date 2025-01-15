@@ -11,6 +11,7 @@ import services from '@/lib/services.json';
 import FormDropdown from './components/FormDropdown';
 import { Button } from '../ui/button';
 import FormDatePicker from './components/FormDatePicker';
+import { useSearchParams } from 'next/navigation';
 
 const ContactForm = () => {
   const form = useForm<z.infer<typeof appointmentSchema>>({
@@ -28,6 +29,13 @@ const ContactForm = () => {
   });
 
   const serviceNames = services.map((service) => service.name);
+  const searchParams = useSearchParams();
+  const paramValue = searchParams.has('a') && searchParams.get('a');
+  let defaultService: string = '';
+  if (paramValue) {
+    const idx = parseInt(paramValue);
+    defaultService = serviceNames[idx];
+  }
 
   const onSubmit = (values: z.infer<typeof appointmentSchema>) => {
     console.log(values);
@@ -74,6 +82,7 @@ const ContactForm = () => {
             form={form}
             values={serviceNames}
             description='Please select only 1 service per booking.'
+            defaultValue={defaultService}
           />
           {/* date */}
           <FormDatePicker

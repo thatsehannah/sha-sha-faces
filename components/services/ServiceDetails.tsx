@@ -2,6 +2,7 @@ import React from 'react';
 import ServiceIconSvg from './ServiceIconSvg';
 import { Banknote, Clock, Star } from 'lucide-react';
 import { Button } from '../ui/button';
+import Link from 'next/link';
 
 type ServiceDetailsProps = {
   index: number;
@@ -74,8 +75,11 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
           </div>
 
           <p className='text-2xl font-light mb-12'>{description}</p>
-          <Button className='mt-auto capitalize text-xl bg-secondary'>
-            book a time
+          <Button
+            className='mt-auto capitalize text-xl bg-secondary'
+            asChild
+          >
+            <Link href={`/contact?a=${index}`}>book a time</Link>
           </Button>
         </div>
       </div>
