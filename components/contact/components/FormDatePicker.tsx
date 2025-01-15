@@ -21,7 +21,7 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
       control={form.control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className='mb-8'>
           <FormInputLabel text={label} />
           <Popover>
             <PopoverTrigger asChild>

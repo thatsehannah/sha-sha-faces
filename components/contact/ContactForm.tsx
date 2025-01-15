@@ -93,6 +93,12 @@ const ContactForm = () => {
 
           {/* time */}
           {/* location */}
+          <FormInput
+            name='location'
+            label='location'
+            placeholder='e.g. Los Angeles, CA'
+            form={form}
+          />
         </section>
 
         <section className='mb-20'>
