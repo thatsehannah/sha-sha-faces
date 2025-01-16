@@ -44,7 +44,7 @@ const ContactForm = () => {
   return (
     <Form {...form}>
       <form
-        className='bg-secondary dark:bg-secondary/80 rounded-md p-8 lg:px-20 lg:py-8 w-full lg:w-[65vw]'
+        className='bg-secondary rounded-md p-8 lg:px-20 lg:py-8 w-full lg:w-[65vw]'
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <section className='mb-20'>
