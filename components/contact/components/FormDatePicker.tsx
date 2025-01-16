@@ -16,7 +16,18 @@ type FormDatePickerProps = {
 };
 
 const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
-  return (
+  //test, will not be final product
+  const unavailableDates = [
+    new Date(2025, 0, 20),
+    new Date(2025, 1, 14),
+    new Date(2025, 1, 20),
+  ];
+
+  const getUnavailableDates = (date: Date) => {
+    return unavailableDates.some((d) => d.getTime() === date.getTime());
+  };
+
+  https: return (
     <FormField
       control={form.control}
       name={name}
@@ -42,11 +53,18 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
             >
               <Calendar
                 className='bg-background rounded-md'
+                classNames={{
+                  caption_label: 'text-lg',
+                  day_disabled: 'line-through',
+                }}
                 mode='single'
                 selected={new Date(field.value)}
                 onSelect={field.onChange}
-                disabled={(date) => date < new Date()}
+                disabled={(date) =>
+                  date < new Date() || getUnavailableDates(date)
+                }
                 initialFocus
+                captionLayout='dropdown'
               />
             </PopoverContent>
           </Popover>

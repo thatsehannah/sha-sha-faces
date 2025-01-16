@@ -21,7 +21,7 @@ type FormDropwdownProps = {
   name: AppointmentFormFields;
   label: string;
   values: string[];
-  description: string;
+  description?: string;
   placeholder?: string;
   defaultValue?: string;
   form: UseFormReturn<Appointment>;

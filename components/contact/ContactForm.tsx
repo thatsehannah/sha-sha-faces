@@ -8,6 +8,7 @@ import { appointmentSchema } from '@/utils/appointmentSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '../ui/form';
 import services from '@/utils/services.json';
+import times from '@/utils/appointmentTimes.json';
 import FormDropdown from './components/FormDropdown';
 import { Button } from '../ui/button';
 import FormDatePicker from './components/FormDatePicker';
@@ -92,6 +93,14 @@ const ContactForm = () => {
           />
 
           {/* time */}
+          <FormDropdown
+            name='time'
+            label='time'
+            placeholder='Select a time'
+            form={form}
+            values={times}
+            defaultValue={defaultService}
+          />
           {/* location */}
           <FormInput
             name='location'
