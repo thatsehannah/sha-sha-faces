@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '../ui/form';
 import services from '@/utils/services.json';
 import times from '@/utils/appointmentTimes.json';
+import discoveries from '@/utils/discoveries.json';
 import FormDropdown from './components/FormDropdown';
 import { Button } from '../ui/button';
 import FormDatePicker from './components/FormDatePicker';
@@ -104,6 +105,13 @@ const ContactForm = () => {
             Additional Information
           </p>
           {/* how did you hear about us */}
+          <FormDropdown
+            name='discovery'
+            label='how did you hear about us?'
+            placeholder='Select a source'
+            form={form}
+            values={discoveries}
+          />
           {/* custom requests */}
         </section>
         <Button
