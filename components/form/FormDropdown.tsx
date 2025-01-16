@@ -67,7 +67,7 @@ const FormDropdown = ({
           <FormDescription className='text-black italic tracking-wider font-semibold'>
             {description}
           </FormDescription>
-          <FormMessage />
+          <FormMessage className='text-lg dark:text-red-700' />
         </FormItem>
       )}
     />

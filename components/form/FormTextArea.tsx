@@ -1,23 +1,23 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { Appointment, AppointmentFormFields } from '@/utils/types';
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
+import { FormControl, FormField, FormItem } from '../ui/form';
 import FormInputLabel from './FormInputLabel';
+import { Textarea } from '../ui/textarea';
 
-type FormInputProps = {
+type FormTextAreaProps = {
   name: AppointmentFormFields;
   label: string;
   placeholder?: string;
   form: UseFormReturn<Appointment>;
 };
 
-const FormInput = ({ name, label, placeholder, form }: FormInputProps) => {
+const FormTextArea = ({
+  name,
+  label,
+  placeholder,
+  form,
+}: FormTextAreaProps) => {
   return (
     <FormField
       control={form.control}
@@ -27,18 +27,17 @@ const FormInput = ({ name, label, placeholder, form }: FormInputProps) => {
           <FormInputLabel text={label} />
           <FormControl>
             <div>
-              <Input
+              <Textarea
                 placeholder={placeholder}
                 {...field}
-                className='h-12 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black border-x-0 border-t-0 shadow-none rounded-none text-xl md:text-2xl font-semibold'
+                className='h-32 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black shadow-none rounded-md text-xl md:text-2xl font-semibold'
               />
             </div>
           </FormControl>
-          <FormMessage className='text-lg dark:text-red-700' />
         </FormItem>
       )}
     />
   );
 };
 
-export default FormInput;
+export default FormTextArea;

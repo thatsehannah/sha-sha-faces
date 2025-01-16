@@ -1,5 +1,10 @@
 import { Calendar } from '@/components/ui/calendar';
-import { FormControl, FormField, FormItem } from '@/components/ui/form';
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from '@/components/ui/form';
 import { Popover, PopoverTrigger } from '@/components/ui/popover';
 import { Appointment, AppointmentFormFields } from '@/utils/types';
 import { PopoverContent } from '@radix-ui/react-popover';
@@ -58,7 +63,7 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
                   day_disabled: 'line-through',
                 }}
                 mode='single'
-                selected={new Date(field.value)}
+                selected={field.value ? new Date(field.value) : undefined}
                 onSelect={field.onChange}
                 disabled={(date) =>
                   date < new Date() || getUnavailableDates(date)
@@ -68,6 +73,7 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
               />
             </PopoverContent>
           </Popover>
+          <FormMessage className='text-lg dark:text-red-700' />
         </FormItem>
       )}
     />

@@ -14,6 +14,7 @@ import { useSearchParams } from 'next/navigation';
 import FormInput from '../form/FormInput';
 import FormDropdown from '../form/FormDropdown';
 import FormDatePicker from '../form/FormDatePicker';
+import FormTextArea from '../form/FormTextArea';
 
 const AppointmentForm = () => {
   const searchParams = useSearchParams();
@@ -113,6 +114,12 @@ const AppointmentForm = () => {
             values={discoveries}
           />
           {/* custom requests */}
+          <FormTextArea
+            name='addtlDetails'
+            label='comments'
+            placeholder='Add any information you would like for me to know prior to your appointment.'
+            form={form}
+          />
         </section>
         <Button
           className='text-xl uppercase'

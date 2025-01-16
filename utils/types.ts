@@ -8,7 +8,7 @@ export type Appointment = {
   date: string;
   time: string;
   service: string;
-  addtlDetails: string;
+  addtlDetails?: string;
   location: string;
   discovery: string;
 };
