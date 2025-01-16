@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import FormInput from './components/FormInput';
 import { z } from 'zod';
 import { appointmentSchema } from '@/utils/appointmentSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -10,12 +9,13 @@ import { Form } from '../ui/form';
 import services from '@/utils/services.json';
 import times from '@/utils/appointmentTimes.json';
 import discoveries from '@/utils/discoveries.json';
-import FormDropdown from './components/FormDropdown';
 import { Button } from '../ui/button';
-import FormDatePicker from './components/FormDatePicker';
 import { useSearchParams } from 'next/navigation';
+import FormInput from '../form/FormInput';
+import FormDropdown from '../form/FormDropdown';
+import FormDatePicker from '../form/FormDatePicker';
 
-const ContactForm = () => {
+const AppointmentForm = () => {
   const searchParams = useSearchParams();
   const serviceNames = services.map((service) => service.name);
   const paramValue = searchParams.has('a') && searchParams.get('a');
@@ -125,4 +125,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default AppointmentForm;
