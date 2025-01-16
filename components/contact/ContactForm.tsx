@@ -15,28 +15,18 @@ import FormDatePicker from './components/FormDatePicker';
 import { useSearchParams } from 'next/navigation';
 
 const ContactForm = () => {
-  const form = useForm<z.infer<typeof appointmentSchema>>({
-    resolver: zodResolver(appointmentSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      phoneNumber: '',
-      date: '',
-      time: '',
-      service: '',
-      addtlDetails: '',
-      location: '',
-    },
-  });
-
-  const serviceNames = services.map((service) => service.name);
   const searchParams = useSearchParams();
+  const serviceNames = services.map((service) => service.name);
   const paramValue = searchParams.has('a') && searchParams.get('a');
   let defaultService: string = '';
   if (paramValue) {
     const idx = parseInt(paramValue);
     defaultService = serviceNames[idx];
   }
+
+  const form = useForm<z.infer<typeof appointmentSchema>>({
+    resolver: zodResolver(appointmentSchema),
+  });
 
   const onSubmit = (values: z.infer<typeof appointmentSchema>) => {
     console.log(values);
@@ -76,6 +66,7 @@ const ContactForm = () => {
           <p className='text-3xl lg:text-4xl text-black font-bold mb-4'>
             Appointment Information
           </p>
+          {/* service */}
           <FormDropdown
             name='service'
             label='type'
@@ -91,7 +82,6 @@ const ContactForm = () => {
             label='date'
             form={form}
           />
-
           {/* time */}
           <FormDropdown
             name='time'
@@ -99,7 +89,6 @@ const ContactForm = () => {
             placeholder='Select a time'
             form={form}
             values={times}
-            defaultValue={defaultService}
           />
           {/* location */}
           <FormInput

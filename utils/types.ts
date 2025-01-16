@@ -10,6 +10,7 @@ export type Appointment = {
   service: string;
   addtlDetails: string;
   location: string;
+  discovery: string;
 };
 
 export type AppointmentFormFields = keyof z.infer<typeof appointmentSchema>;

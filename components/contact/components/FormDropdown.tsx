@@ -45,7 +45,7 @@ const FormDropdown = ({
           <FormInputLabel text={label} />
           <Select
             onValueChange={field.onChange}
-            defaultValue={defaultValue || field.value.toString()}
+            defaultValue={defaultValue || field.value}
           >
             <FormControl>
               <SelectTrigger className='h-12 border-black capitalize text-black text-xl md:text-2xl font-semibold data-[placeholder]:text-gray-500 dark:data-[placeholder]:text-gray-700 data-[placeholder]:text-xl data-[placeholder]:normal-case data-[placeholder]:font-extralight'>

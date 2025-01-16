@@ -13,5 +13,6 @@ export const appointmentSchema = z.object({
   time: z.string().time(),
   location: z.string(),
   service: z.string({ required_error: 'Service not selected' }),
+  discovery: z.string(),
   addtlDetails: z.string(),
 });

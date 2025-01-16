@@ -17,17 +17,17 @@ type FormDatePickerProps = {
 
 const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
   //test, will not be final product
-  const unavailableDates = [
-    new Date(2025, 0, 20),
-    new Date(2025, 1, 14),
-    new Date(2025, 1, 20),
-  ];
-
   const getUnavailableDates = (date: Date) => {
+    const unavailableDates = [
+      new Date(2025, 0, 20),
+      new Date(2025, 1, 14),
+      new Date(2025, 1, 20),
+    ];
+
     return unavailableDates.some((d) => d.getTime() === date.getTime());
   };
 
-  https: return (
+  return (
     <FormField
       control={form.control}
       name={name}
