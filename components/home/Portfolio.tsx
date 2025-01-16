@@ -4,7 +4,7 @@ import SectionTitle from '../global/SectionTitle';
 import GalleryCarousel from './components/GalleryCarousel';
 import { Button } from '../ui/button';
 import Link from 'next/link';
-import photos from '@/lib/glamPhotos.json';
+import photos from '@/utils/glamPhotos.json';
 
 const Portfolio = () => {
   const featuredPhotos = photos.slice(0, 5);

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import testimonials from '@/lib/testimonials.json';
+import testimonials from '@/utils/testimonials.json';
 import {
   Carousel,
   CarouselContent,

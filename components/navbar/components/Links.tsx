@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '@/components/global/Container';
-import { links } from '@/lib/links';
+import { links } from '@/utils/links';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 

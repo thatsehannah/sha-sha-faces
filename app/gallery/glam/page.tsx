@@ -1,5 +1,5 @@
 import React from 'react';
-import glamPhotos from '@/lib/glamPhotos.json';
+import glamPhotos from '@/utils/glamPhotos.json';
 import SectionTitle from '@/components/global/SectionTitle';
 import ImageGrid from '@/components/gallery/ImageGrid';
 

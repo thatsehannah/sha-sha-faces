@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Menu } from 'lucide-react';
-import { links } from '@/lib/links';
+import { links } from '@/utils/links';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 

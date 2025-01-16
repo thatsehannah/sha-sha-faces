@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '../global/Container';
-import services from '@/lib/services.json';
+import services from '@/utils/services.json';
 import ServicesCard from './components/ServicesCard';
 import SectionTitle from '../global/SectionTitle';
 import { Button } from '../ui/button';

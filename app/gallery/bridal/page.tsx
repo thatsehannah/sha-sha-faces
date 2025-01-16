@@ -1,6 +1,6 @@
 import ImageGrid from '@/components/gallery/ImageGrid';
 import SectionTitle from '@/components/global/SectionTitle';
-import bridalPhotos from '@/lib/bridalPhotos.json';
+import bridalPhotos from '@/utils/bridalPhotos.json';
 import React from 'react';
 
 const BridalGallery = () => {

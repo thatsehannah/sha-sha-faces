@@ -1,5 +1,5 @@
 import React from 'react';
-import services from '@/lib/services.json';
+import services from '@/utils/services.json';
 import ServiceDetails from '@/components/services/ServiceDetails';
 import Container from '@/components/global/Container';
 import SectionTitle from '@/components/global/SectionTitle';

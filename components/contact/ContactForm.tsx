@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { appointmentSchema } from '@/utils/appointmentSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '../ui/form';
-import services from '@/lib/services.json';
+import services from '@/utils/services.json';
 import FormDropdown from './components/FormDropdown';
 import { Button } from '../ui/button';
 import FormDatePicker from './components/FormDatePicker';
