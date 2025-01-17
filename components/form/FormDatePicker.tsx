@@ -64,7 +64,11 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
                 }}
                 mode='single'
                 selected={field.value ? new Date(field.value) : undefined}
-                onSelect={field.onChange}
+                onSelect={(date) =>
+                  date
+                    ? field.onChange(date.toISOString().split('T')[0])
+                    : field.onChange('')
+                }
                 disabled={(date) =>
                   date < new Date() || getUnavailableDates(date)
                 }
