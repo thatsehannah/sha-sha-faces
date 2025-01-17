@@ -15,9 +15,12 @@ import FormInput from '../form/FormInput';
 import FormDropdown from '../form/FormDropdown';
 import FormDatePicker from '../form/FormDatePicker';
 import FormTextArea from '../form/FormTextArea';
-import { logToServer } from '@/utils/serverLog';
+import { Appointment } from '@/utils/types';
+import { createAppointmentAction } from '@/utils/actions';
+import { useToast } from '@/hooks/use-toast';
 
 const AppointmentForm = () => {
+  const { toast } = useToast();
   const serviceNames = services.map((service) => service.name);
 
   //getting service (via index) from query string
@@ -43,15 +46,21 @@ const AppointmentForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof appointmentSchema>) => {
-    logToServer(values);
+  const handleOnSubmit = (values: Appointment) => {
+    const result = createAppointmentAction(values);
+
+    toast({
+      variant: result.type === 'success' ? 'success' : 'destructive',
+      title: result.title,
+      description: result.message,
+    });
   };
 
   return (
     <Form {...form}>
       <form
         className='bg-secondary rounded-md p-8 lg:px-20 lg:py-8 w-full lg:w-[65vw]'
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(handleOnSubmit)}
       >
         <section className='mb-20'>
           <p className='text-3xl lg:text-4xl text-black font-bold mb-6'>

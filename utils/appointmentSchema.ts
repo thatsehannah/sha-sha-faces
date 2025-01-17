@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { Appointment } from './types';
 
 export const appointmentSchema = z.object({
   name: z
@@ -20,3 +21,15 @@ export const appointmentSchema = z.object({
   discovery: z.string(),
   addtlDetails: z.string().optional(),
 });
+
+export const validateAppointmentSchema = (data: Appointment) => {
+  const result = appointmentSchema.safeParse(data);
+
+  if (!result.success) {
+    throw new Error(
+      'Please fix the above errors before submitting your appointment request.'
+    );
+  }
+
+  return result.data;
+};
