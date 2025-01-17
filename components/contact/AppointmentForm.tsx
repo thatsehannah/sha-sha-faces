@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { appointmentSchema } from '@/utils/appointmentSchema';
@@ -28,11 +28,26 @@ const AppointmentForm = () => {
 
   const form = useForm<z.infer<typeof appointmentSchema>>({
     resolver: zodResolver(appointmentSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      phoneNumber: '',
+      date: '',
+      time: '',
+      service: '',
+      addtlDetails: '',
+      location: '',
+    },
   });
 
   const onSubmit = (values: z.infer<typeof appointmentSchema>) => {
     console.log(values);
   };
+
+  const values = form.watch();
+  useEffect(() => {
+    console.log('Updated form values:', values);
+  }, [values]);
 
   return (
     <Form {...form}>
