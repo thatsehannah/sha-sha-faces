@@ -66,7 +66,7 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
                 selected={field.value ? new Date(field.value) : undefined}
                 onSelect={(date) =>
                   date
-                    ? field.onChange(date.toISOString().split('T')[0])
+                    ? field.onChange(format(date, 'yyyy-MM-dd'))
                     : field.onChange('')
                 }
                 disabled={(date) =>

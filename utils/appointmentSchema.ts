@@ -14,7 +14,7 @@ export const appointmentSchema = z.object({
     .string({ required_error: 'Your phone number is required' })
     .length(10, { message: 'Invalid phone number' }),
   date: z.string({ required_error: 'Date not selected' }).date(),
-  time: z.string({ required_error: 'Time not selected' }).time(),
+  time: z.string({ required_error: 'Time not selected' }),
   location: z.string({ required_error: 'Your desired location is required' }),
   service: z.string({ required_error: 'Service not selected' }),
   discovery: z.string(),

@@ -23,7 +23,6 @@ type FormDropwdownProps = {
   values: string[];
   description?: string;
   placeholder?: string;
-  defaultValue?: string;
   form: UseFormReturn<Appointment>;
 };
 
@@ -33,7 +32,6 @@ const FormDropdown = ({
   values,
   description,
   placeholder,
-  defaultValue,
   form,
 }: FormDropwdownProps) => {
   return (
@@ -44,8 +42,9 @@ const FormDropdown = ({
         <FormItem className='mb-8'>
           <FormInputLabel text={label} />
           <Select
+            value={field.value}
             onValueChange={field.onChange}
-            defaultValue={defaultValue || field.value}
+            defaultValue={field.value}
           >
             <FormControl>
               <SelectTrigger className='h-12 border-black capitalize text-black text-xl md:text-2xl font-semibold data-[placeholder]:text-gray-500 dark:data-[placeholder]:text-gray-700 data-[placeholder]:text-xl data-[placeholder]:normal-case data-[placeholder]:font-extralight'>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { appointmentSchema } from '@/utils/appointmentSchema';
@@ -15,10 +15,13 @@ import FormInput from '../form/FormInput';
 import FormDropdown from '../form/FormDropdown';
 import FormDatePicker from '../form/FormDatePicker';
 import FormTextArea from '../form/FormTextArea';
+import { logToServer } from '@/utils/serverLog';
 
 const AppointmentForm = () => {
-  const searchParams = useSearchParams();
   const serviceNames = services.map((service) => service.name);
+
+  //getting service (via index) from query string
+  const searchParams = useSearchParams();
   const paramValue = searchParams.has('a') && searchParams.get('a');
   let defaultService: string = '';
   if (paramValue) {
@@ -34,20 +37,15 @@ const AppointmentForm = () => {
       phoneNumber: '',
       date: '',
       time: '',
-      service: '',
+      service: defaultService,
       addtlDetails: '',
       location: '',
     },
   });
 
   const onSubmit = (values: z.infer<typeof appointmentSchema>) => {
-    console.log(values);
+    logToServer(values);
   };
-
-  const values = form.watch();
-  useEffect(() => {
-    console.log('Updated form values:', values);
-  }, [values]);
 
   return (
     <Form {...form}>
@@ -91,7 +89,6 @@ const AppointmentForm = () => {
             form={form}
             values={serviceNames}
             description='Please select only 1 service per booking.'
-            defaultValue={defaultService}
           />
           {/* date */}
           <FormDatePicker
