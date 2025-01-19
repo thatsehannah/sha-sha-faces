@@ -20,6 +20,10 @@ export const appointmentSchema = z.object({
   service: z.string({ required_error: 'Service not selected' }),
   discovery: z.string(),
   addtlDetails: z.string().optional(),
+  isInstructionsAcknowledged: z.boolean({
+    required_error:
+      "Please acknowledge that you've read the booking instructions",
+  }),
 });
 
 export const validateAppointmentSchema = (data: Appointment) => {

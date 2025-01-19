@@ -42,6 +42,7 @@ const FormDropdown = ({
         <FormItem className='mb-8'>
           <FormInputLabel text={label} />
           <Select
+            {...field}
             value={field.value}
             onValueChange={field.onChange}
             defaultValue={field.value}

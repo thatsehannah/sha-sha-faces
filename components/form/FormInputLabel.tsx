@@ -6,9 +6,7 @@ type FormInputLabelProps = {
 };
 
 const FormInputLabel = ({ text }: FormInputLabelProps) => {
-  return (
-    <FormLabel className='text-black text-lg capitalize'>{text}</FormLabel>
-  );
+  return <FormLabel className='text-black text-lg'>{text}</FormLabel>;
 };
 
 export default FormInputLabel;

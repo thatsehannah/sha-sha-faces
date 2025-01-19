@@ -11,6 +11,7 @@ export type Appointment = {
   addtlDetails?: string;
   location: string;
   discovery: string;
+  isInstructionsAcknowledged: boolean;
 };
 
 export type AppointmentFormFields = keyof z.infer<typeof appointmentSchema>;
