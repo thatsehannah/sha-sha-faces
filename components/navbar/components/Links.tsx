@@ -12,7 +12,7 @@ const LinkButton = ({ link }: { link: { label: string; path: string } }) => {
     >
       <Link
         href={link.path}
-        className={`text-lg capitalize hover:scale-105 hover:bg-soft-pink transition-all`}
+        className={`text-lg capitalize hover:scale-105 hover:bg-primary transition-all`}
       >
         {link.label}
       </Link>
