@@ -11,6 +11,7 @@ import times from '@/utils/appointmentTimes.json';
 import discoveries from '@/utils/discoveries.json';
 import { Button } from '../ui/button';
 import { useSearchParams } from 'next/navigation';
+import { motion } from 'framer-motion';
 import FormInput from '../form/FormInput';
 import FormDropdown from '../form/FormDropdown';
 import FormDatePicker from '../form/FormDatePicker';
@@ -56,22 +57,13 @@ const AppointmentForm = () => {
   });
 
   const handleOnSubmit = (values: Appointment) => {
-    if (!values.isInstructionsAcknowledged) {
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh!',
-        description:
-          'Please acknowledge that you have read the booking instructions.',
-      });
-    } else {
-      const result = createAppointmentAction(values);
+    const result = createAppointmentAction(values);
 
-      toast({
-        variant: result.type === 'success' ? 'success' : 'destructive',
-        title: result.title,
-        description: result.message,
-      });
-    }
+    toast({
+      variant: result.type === 'success' ? 'success' : 'destructive',
+      title: result.title,
+      description: result.message,
+    });
   };
 
   return (
@@ -100,7 +92,13 @@ const AppointmentForm = () => {
               />
             </div>
           </section>
-          <section className='bg-secondary rounded-md p-8 lg:px-20 lg:py-8'>
+          <motion.section
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5 }}
+            className='bg-secondary rounded-md p-8 lg:px-20 lg:py-8'
+          >
             <div className='mb-20'>
               <p className='text-3xl lg:text-4xl text-black font-bold mb-6'>
                 Contact Information
@@ -184,7 +182,7 @@ const AppointmentForm = () => {
             >
               Send Request
             </Button>
-          </section>
+          </motion.section>
         </form>
       </Form>
       <InstructionsDrawer
