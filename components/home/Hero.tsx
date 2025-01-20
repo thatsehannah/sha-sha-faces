@@ -10,15 +10,15 @@ import Container from '../global/Container';
 
 const Hero = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0, x: 75 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 2 }}
-      className='h-full bg-gradient-to-tl from-primary to-background py-12'
-    >
+    <section className='h-full bg-gradient-to-tl from-primary to-background py-12'>
       <Container className='grid grid-cols-1 lg:grid-cols-2 lg:gap-24 justify-center items-center'>
-        <div className='flex flex-col justify-center items-center'>
+        <motion.div
+          initial={{ opacity: 0, x: 75 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5 }}
+          className='flex flex-col justify-center items-center'
+        >
           <Image
             src='/images/glam/photo6.jpeg'
             height={500}
@@ -47,9 +47,14 @@ const Hero = () => {
           >
             <Link href='/#portfolio'>View Portfolio &gt;</Link>
           </Button>
-        </div>
+        </motion.div>
 
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: -75 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5 }}
+        >
           <Image
             src='/images/glam/photo6.jpeg'
             height={300}
@@ -58,9 +63,9 @@ const Hero = () => {
             priority
             className='hidden lg:block w-full h-[36rem] rounded-md object-cover'
           />
-        </div>
+        </motion.div>
       </Container>
-    </motion.section>
+    </section>
   );
 };
 
