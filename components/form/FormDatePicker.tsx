@@ -45,7 +45,9 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
                 <div>
                   <Input
                     placeholder='mm/dd/yyyy'
-                    value={field.value ? format(field.value, 'PPPP') : ''}
+                    value={
+                      field.value ? format(String(field.value), 'PPPP') : ''
+                    }
                     onChange={field.onChange}
                     className='h-12 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black border-x-0 border-t-0 shadow-none rounded-none text-xl md:text-2xl font-semibold text-left'
                   />
@@ -63,7 +65,9 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
                   day_disabled: 'line-through',
                 }}
                 mode='single'
-                selected={field.value ? new Date(field.value) : undefined}
+                selected={
+                  field.value ? new Date(String(field.value)) : undefined
+                }
                 onSelect={(date) =>
                   date
                     ? field.onChange(format(date, 'yyyy-MM-dd'))

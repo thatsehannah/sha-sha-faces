@@ -1,6 +1,5 @@
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -21,7 +20,6 @@ type FormDropwdownProps = {
   name: AppointmentFormFields;
   label: string;
   values: string[];
-  description?: string;
   placeholder?: string;
   form: UseFormReturn<Appointment>;
 };
@@ -30,7 +28,6 @@ const FormDropdown = ({
   name,
   label,
   values,
-  description,
   placeholder,
   form,
 }: FormDropwdownProps) => {
@@ -43,9 +40,9 @@ const FormDropdown = ({
           <FormInputLabel text={label} />
           <Select
             {...field}
-            value={field.value}
-            onValueChange={field.onChange}
-            defaultValue={field.value}
+            value={field.value ? String(field.value) : ''}
+            onValueChange={(value) => field.onChange(value)}
+            defaultValue={field.value ? String(field.value) : ''}
           >
             <FormControl>
               <SelectTrigger className='h-12 border-black capitalize text-black text-xl md:text-2xl font-semibold data-[placeholder]:text-gray-500 dark:data-[placeholder]:text-gray-700 data-[placeholder]:text-xl data-[placeholder]:normal-case data-[placeholder]:font-extralight'>
@@ -64,9 +61,7 @@ const FormDropdown = ({
               ))}
             </SelectContent>
           </Select>
-          <FormDescription className='text-black italic tracking-wider font-semibold'>
-            {description}
-          </FormDescription>
+
           <FormMessage className='text-lg dark:text-red-700' />
         </FormItem>
       )}

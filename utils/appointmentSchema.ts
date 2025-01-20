@@ -3,27 +3,30 @@ import { Appointment } from './types';
 
 export const appointmentSchema = z.object({
   name: z
-    .string({ required_error: 'Your name is required' })
-    .min(4, { message: 'Name is too short, should be at least 4 characters.' })
+    .string()
     .max(50, {
       message: 'Name is too long, should be less than 50 characters.',
-    }),
+    })
+    .nonempty('Your name is required'),
   email: z
-    .string({ required_error: 'Your email is required' })
-    .email({ message: 'Invalid email address' }),
+    .string()
+    .email({ message: 'Invalid email address' })
+    .nonempty('Your email is required'),
   phoneNumber: z
-    .string({ required_error: 'Your phone number is required' })
-    .length(10, { message: 'Invalid phone number' }),
-  date: z.string({ required_error: 'Date not selected' }).date(),
-  time: z.string({ required_error: 'Time not selected' }),
-  location: z.string({ required_error: 'Your desired location is required' }),
-  service: z.string({ required_error: 'Service not selected' }),
-  discovery: z.string(),
+    .string()
+    .length(10, { message: 'Invalid phone number' })
+    .nonempty('Your phone number is required'),
+  date: z.string().date().nonempty('Please choose a time'),
+  time: z.string().nonempty('Please select a time'),
+  location: z.string().nonempty('Your desired location is required'),
+  service: z.string().nonempty('Service is not selected'),
+  discovery: z.string({ required_error: 'Please select a source' }),
   addtlDetails: z.string().optional(),
-  isInstructionsAcknowledged: z.boolean({
-    required_error:
-      "Please acknowledge that you've read the booking instructions",
-  }),
+  isInstructionsAcknowledged: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: "Please acknowledge that you've read the booking instructions",
+    }),
 });
 
 export const validateAppointmentSchema = (data: Appointment) => {

@@ -28,8 +28,10 @@ const FormInput = ({ name, label, placeholder, form }: FormInputProps) => {
           <FormControl>
             <div>
               <Input
-                placeholder={placeholder}
                 {...field}
+                placeholder={placeholder}
+                value={field.value ? String(field.value) : ''}
+                onChange={(value) => field.onChange(value)}
                 className='h-12 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black border-x-0 border-t-0 shadow-none rounded-none text-xl md:text-2xl font-semibold'
               />
             </div>
