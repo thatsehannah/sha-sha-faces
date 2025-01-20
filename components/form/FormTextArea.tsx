@@ -28,8 +28,9 @@ const FormTextArea = ({
           <FormControl>
             <div>
               <Textarea
-                placeholder={placeholder}
                 {...field}
+                value={field.value ? String(field.value) : ''}
+                placeholder={placeholder}
                 className='h-32 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black shadow-none rounded-md text-xl md:text-2xl font-semibold'
               />
             </div>
