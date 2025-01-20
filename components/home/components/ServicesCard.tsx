@@ -8,31 +8,30 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Star } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 type ServiceCardProps = {
+  idx: number;
   service: {
     name: string;
     price: number;
     duration: number;
     description: string;
-    popular: boolean;
   };
 };
 
-const ServicesCard = ({ service }: ServiceCardProps) => {
+const ServicesCard = ({ idx, service }: ServiceCardProps) => {
   return (
     <article>
       <Card className='flex flex-col justify-between h-full'>
         <CardHeader>
           <CardTitle className='capitalize flex justify-between text-2xl text-left font-semibold'>
             {service.name}
-            {service.popular && (
-              <Star
-                fill='gold'
-                strokeWidth={0}
-              />
-            )}
+            <Star
+              fill='gold'
+              strokeWidth={0}
+            />
           </CardTitle>
           <CardDescription className='text-lg text-right'>
             <div className='flex justify-between'>
@@ -47,7 +46,12 @@ const ServicesCard = ({ service }: ServiceCardProps) => {
           <div className='h-full'>{service.description}</div>
         </CardContent>
         <CardFooter className=''>
-          <Button className='bg-secondary text-md'>Book Now</Button>
+          <Button
+            className='bg-secondary text-md'
+            asChild
+          >
+            <Link href={`/contact?a=${idx}`}>Book Now</Link>
+          </Button>
         </CardFooter>
       </Card>
     </article>

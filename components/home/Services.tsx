@@ -20,11 +20,14 @@ const Services = () => {
       />
       <Container className='py-20 flex flex-col justify-center items-center gap-12'>
         <div className='grid grid-cols-1 lg:grid-cols-3 justify-between gap-y-8 gap-x-4'>
-          {popularServices.map((service, idx) => {
+          {popularServices.map((service) => {
+            const popServiceIdx = services.indexOf(service);
+
             return (
               <ServicesCard
-                key={idx}
+                key={popServiceIdx}
                 service={service}
+                idx={popServiceIdx}
               />
             );
           })}
