@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -10,6 +12,7 @@ import {
 import { Star } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
+import { motion } from 'framer-motion';
 
 type ServiceCardProps = {
   idx: number;
@@ -23,7 +26,13 @@ type ServiceCardProps = {
 
 const ServicesCard = ({ idx, service }: ServiceCardProps) => {
   return (
-    <article>
+    <motion.article
+      initial={{ opacity: 0, y: -100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, delay: idx * 0.2 }}
+      viewport={{ once: true, amount: 0.5 }}
+      exit={{ opacity: 0, y: 100 }}
+    >
       <Card className='flex flex-col justify-between h-full'>
         <CardHeader>
           <CardTitle className='capitalize flex justify-between text-2xl text-left font-semibold'>
@@ -54,7 +63,7 @@ const ServicesCard = ({ idx, service }: ServiceCardProps) => {
           </Button>
         </CardFooter>
       </Card>
-    </article>
+    </motion.article>
   );
 };
 
