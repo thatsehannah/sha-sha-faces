@@ -47,7 +47,7 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
               <FormControl>
                 <div>
                   <Input
-                    placeholder='mm/dd/yyyy'
+                    placeholder='Select a date'
                     value={
                       field.value ? format(String(field.value), 'PPPP') : ''
                     }
@@ -72,9 +72,7 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
                   field.value ? new Date(String(field.value)) : undefined
                 }
                 onSelect={(date) =>
-                  date
-                    ? field.onChange(format(date, 'yyyy-MM-dd'))
-                    : field.onChange('')
+                  date ? field.onChange(date.toISOString()) : field.onChange('')
                 }
                 disabled={(date) =>
                   date < new Date() || getUnavailableDates(date)

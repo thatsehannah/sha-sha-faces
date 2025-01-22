@@ -16,17 +16,27 @@ export const appointmentSchema = z.object({
     .string()
     .length(10, { message: 'Invalid phone number' })
     .nonempty('Your phone number is required'),
-  date: z.string().date().nonempty('Please choose a time'),
+  date: z
+    .string()
+    .nonempty('Please choose a date')
+    .refine(
+      (value) => {
+        const date = new Date(value);
+        return !isNaN(date.getTime()) && value === date.toISOString();
+      },
+      {
+        message:
+          'Date must be a valid ISO string (e.g., 2025-01-22T00:00:00.000Z)',
+      }
+    ),
   time: z.string().nonempty('Please select a time'),
   location: z.string().nonempty('Your desired location is required'),
   service: z.string().nonempty('Service is not selected'),
   discovery: z.string({ required_error: 'Please select a source' }),
   addtlDetails: z.string().optional(),
-  isInstructionsAcknowledged: z
-    .boolean()
-    .refine((val) => val === true, {
-      message: "Please acknowledge that you've read the booking instructions",
-    }),
+  isInstructionsAcknowledged: z.boolean().refine((val) => val === true, {
+    message: "Please acknowledge that you've read the booking instructions",
+  }),
 });
 
 export const validateAppointmentSchema = (data: Appointment) => {

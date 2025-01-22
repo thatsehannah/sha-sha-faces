@@ -17,6 +17,7 @@ export const createAppointmentAction = async (
     await db.appointment.create({
       data: {
         ...result,
+        date: result.date.split('T')[0],
         addtlDetails: result.addtlDetails ? result.addtlDetails : '',
       },
     });
