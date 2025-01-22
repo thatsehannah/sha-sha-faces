@@ -24,7 +24,10 @@ const FormTextArea = ({
       name={name}
       render={({ field }) => (
         <FormItem className='mb-8'>
-          <FormInputLabel text={label} />
+          <FormInputLabel
+            name={name}
+            text={label}
+          />
           <FormControl>
             <div>
               <Textarea
