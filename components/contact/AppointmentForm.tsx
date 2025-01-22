@@ -82,7 +82,11 @@ const AppointmentForm = () => {
   return (
     <>
       <Form {...form}>
-        <form
+        <motion.form
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 2 }}
           className='w-full lg:w-[65vw]'
           onSubmit={form.handleSubmit(handleOnSubmit)}
         >
@@ -106,13 +110,7 @@ const AppointmentForm = () => {
               />
             </div>
           </section>
-          <motion.section
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5 }}
-            className='bg-secondary rounded-md p-8 lg:px-20 lg:py-8'
-          >
+          <section className='bg-gradient-to-bl from-soft-pink to-secondary rounded-md p-8 lg:px-20 lg:py-8 drop-shadow-2xl'>
             <div className='mb-20'>
               <p className='text-3xl lg:text-4xl text-black font-bold mb-6'>
                 Contact Information
@@ -217,8 +215,8 @@ const AppointmentForm = () => {
                 <>submit request</>
               )}
             </Button>
-          </motion.section>
-        </form>
+          </section>
+        </motion.form>
       </Form>
       <InstructionsDrawer
         open={open}
