@@ -3,10 +3,18 @@ import React from 'react';
 
 type FormInputLabelProps = {
   text: string;
+  name: string;
 };
 
-const FormInputLabel = ({ text }: FormInputLabelProps) => {
-  return <FormLabel className='text-black text-lg'>{text}</FormLabel>;
+const FormInputLabel = ({ text, name }: FormInputLabelProps) => {
+  return (
+    <FormLabel
+      htmlFor={name}
+      className='text-black text-lg'
+    >
+      {text}
+    </FormLabel>
+  );
 };
 
 export default FormInputLabel;

@@ -38,7 +38,10 @@ const FormDatePicker = ({ name, label, form }: FormDatePickerProps) => {
       name={name}
       render={({ field }) => (
         <FormItem className='mb-8'>
-          <FormInputLabel text={label} />
+          <FormInputLabel
+            name={name}
+            text={label}
+          />
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>

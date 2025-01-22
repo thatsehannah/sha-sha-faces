@@ -29,7 +29,12 @@ const FormCheckbox = ({ name, label, form }: FormCheckboxProps) => {
                 checked={!!field.value}
                 onCheckedChange={(checked) => field.onChange(checked)}
               />
-              <FormLabel className='text-lg text-foreground'>{label}</FormLabel>
+              <FormLabel
+                htmlFor={name}
+                className='text-lg text-foreground'
+              >
+                {label}
+              </FormLabel>
             </div>
           </FormControl>
           <FormMessage className='text-lg dark:text-red-700' />

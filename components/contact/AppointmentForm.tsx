@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { appointmentSchema } from '@/utils/appointmentSchema';
@@ -9,7 +9,6 @@ import { Form } from '../ui/form';
 import services from '@/utils/services.json';
 import times from '@/utils/appointmentTimes.json';
 import discoveries from '@/utils/discoveries.json';
-import { Button } from '../ui/button';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import FormInput from '../form/FormInput';
@@ -21,6 +20,8 @@ import { createAppointmentAction } from '@/utils/actions';
 import { useToast } from '@/hooks/use-toast';
 import InstructionsDrawer from './InstructionsDrawer';
 import FormCheckbox from '../form/FormCheckbox';
+import { RotateCw } from 'lucide-react';
+import { Button } from '../ui/button';
 
 const AppointmentForm = () => {
   const { toast } = useToast();
@@ -56,15 +57,27 @@ const AppointmentForm = () => {
     },
   });
 
-  const handleOnSubmit = (values: Appointment) => {
-    const result = createAppointmentAction(values);
+  const handleOnSubmit = async (values: Appointment) => {
+    const result = await createAppointmentAction(values);
 
     toast({
-      variant: result.type === 'success' ? 'success' : 'destructive',
+      variant: result.type,
       title: result.title,
       description: result.message,
     });
+
+    form.reset();
   };
+
+  useEffect(() => {
+    if (form.formState.isSubmitting && !form.formState.isValid) {
+      toast({
+        title: 'Uh oh ☹️',
+        description: "Please make sure you've filled out all fields.",
+        variant: 'destructive',
+      });
+    }
+  }, [form.formState.isValid, form.formState.isSubmitting, toast]);
 
   return (
     <>
@@ -85,6 +98,7 @@ const AppointmentForm = () => {
               prior to booking to ensure a smooth experience.
             </p>
             <div className='flex items-center space-x-2'>
+              {/* instruction acknowledgement */}
               <FormCheckbox
                 name='isInstructionsAcknowledged'
                 label='I have read and understood booking instructions.'
@@ -103,18 +117,24 @@ const AppointmentForm = () => {
               <p className='text-3xl lg:text-4xl text-black font-bold mb-6'>
                 Contact Information
               </p>
+
+              {/* name */}
               <FormInput
                 name='name'
                 label='Full Name'
                 placeholder='e.g. Jane Doe'
                 form={form}
               />
+
+              {/* email */}
               <FormInput
                 name='email'
                 label='Email'
                 placeholder='e.g. janedoe@domain.com'
                 form={form}
               />
+
+              {/* phone number */}
               <FormInput
                 name='phoneNumber'
                 label='Phone Number'
@@ -126,6 +146,7 @@ const AppointmentForm = () => {
               <p className='text-3xl lg:text-4xl text-black font-bold mb-4'>
                 Appointment Information
               </p>
+
               {/* service */}
               <FormDropdown
                 name='service'
@@ -134,12 +155,14 @@ const AppointmentForm = () => {
                 form={form}
                 values={serviceNames}
               />
+
               {/* date */}
               <FormDatePicker
                 name='date'
                 label='Date'
                 form={form}
               />
+
               {/* time */}
               <FormDropdown
                 name='time'
@@ -148,6 +171,7 @@ const AppointmentForm = () => {
                 form={form}
                 values={times}
               />
+
               {/* location */}
               <FormInput
                 name='location'
@@ -160,6 +184,7 @@ const AppointmentForm = () => {
               <p className='text-3xl lg:text-4xl text-black font-bold mb-4'>
                 Additional Information
               </p>
+
               {/* how did you hear about us */}
               <FormDropdown
                 name='discovery'
@@ -168,6 +193,7 @@ const AppointmentForm = () => {
                 form={form}
                 values={discoveries}
               />
+
               {/* custom requests */}
               <FormTextArea
                 name='addtlDetails'
@@ -176,11 +202,20 @@ const AppointmentForm = () => {
                 form={form}
               />
             </div>
+            {/* submit button */}
             <Button
-              className='text-xl uppercase'
+              disabled={form.formState.isSubmitting}
               type='submit'
+              className='uppercase text-xl'
             >
-              Send Request
+              {form.formState.isSubmitting ? (
+                <>
+                  <RotateCw className='mr-2 h-4 w-4 animate-spin' />
+                  Please wait...
+                </>
+              ) : (
+                <>submit request</>
+              )}
             </Button>
           </motion.section>
         </form>

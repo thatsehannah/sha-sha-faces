@@ -37,7 +37,10 @@ const FormDropdown = ({
       name={name}
       render={({ field }) => (
         <FormItem className='mb-8'>
-          <FormInputLabel text={label} />
+          <FormInputLabel
+            name={name}
+            text={label}
+          />
           <Select
             {...field}
             value={field.value ? String(field.value) : ''}

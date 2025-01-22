@@ -25,6 +25,7 @@ model Appointment {
   addtlDetails String
   location String
   discovery String
+  isInstructionsAcknowledged Boolean
   status String @default("Pending")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

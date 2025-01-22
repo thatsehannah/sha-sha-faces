@@ -1,14 +1,26 @@
-import { validateAppointmentSchema } from './appointmentSchema';
-import { logToServer } from './serverLog';
-import { Appointment } from './types';
+'use server';
 
-export const createAppointmentAction = (
+import { validateAppointmentSchema } from './appointmentSchema';
+import { Appointment } from './types';
+import db from './db';
+
+export const createAppointmentAction = async (
   formData: Appointment
-): { message: string; title: string; type: 'success' | 'error' } => {
+): Promise<{
+  message: string;
+  title: string;
+  type: 'success' | 'destructive';
+}> => {
   try {
     const result = validateAppointmentSchema(formData);
-    //TODO: save to database once set up is complete
-    logToServer(result);
+
+    await db.appointment.create({
+      data: {
+        ...result,
+        addtlDetails: result.addtlDetails ? result.addtlDetails : '',
+      },
+    });
+
     return {
       type: 'success',
       title: 'Success! ✅',
@@ -17,9 +29,9 @@ export const createAppointmentAction = (
     };
   } catch (error) {
     return {
-      type: 'error',
+      type: 'destructive',
       title: 'Uh oh! ☹️',
-      message: error instanceof Error ? error.message : 'An error occurred',
+      message: error instanceof Error ? error.message : 'An error occurred.',
     };
   }
 };
