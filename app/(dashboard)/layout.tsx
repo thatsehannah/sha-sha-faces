@@ -1,6 +1,6 @@
 import AdminSidebar from '@/components/dashboard/AdminSidebar';
 import Container from '@/components/global/Container';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import React, { ReactNode } from 'react';
 import '../globals.css';
 import { afacadFlux } from '@/lib/fonts';
@@ -15,7 +15,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <SidebarProvider>
           <AdminSidebar />
           <main className='relative'>
-            <SidebarTrigger />
             <section className='py-20'>
               <Container className='grid lg: grid-cols-12 gap-12'>
                 <div className='lg:col-span-10'>{children}</div>
