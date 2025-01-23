@@ -15,3 +15,18 @@ export type Appointment = {
 };
 
 export type AppointmentFormFields = keyof z.infer<typeof appointmentSchema>;
+
+export type Service = {
+  name: string;
+  price: number;
+  duration: number;
+  description: string;
+  popular: boolean;
+  svg: {
+    // svgs from uxwing.com
+    pathData: string;
+    properties: {
+      [key: string]: string | undefined;
+    };
+  };
+};

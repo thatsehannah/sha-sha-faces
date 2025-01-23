@@ -1,4 +1,4 @@
-import AdminSidebar from '@/components/dashboard/AdminSidebar';
+import AdminSidebar from '@/components/dashboard/components/AdminSidebar';
 import Container from '@/components/global/Container';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import React, { ReactNode } from 'react';

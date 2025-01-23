@@ -10,7 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '../ui/sidebar';
+} from '../../ui/sidebar';
 import { tabs } from '@/utils/links';
 import Link from 'next/link';
 

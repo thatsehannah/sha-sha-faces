@@ -3,23 +3,11 @@ import ServiceIconSvg from './ServiceIconSvg';
 import { Banknote, Clock, Star } from 'lucide-react';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import { Service } from '@/utils/types';
 
 type ServiceDetailsProps = {
   index: number;
-  service: {
-    name: string;
-    price: number;
-    duration: number;
-    description: string;
-    popular: boolean;
-    svg: {
-      // svgs from uxwing.com
-      pathData: string;
-      properties: {
-        [key: string]: string | undefined;
-      };
-    };
-  };
+  service: Service;
 };
 
 const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {

@@ -36,3 +36,19 @@ export const createAppointmentAction = async (
     };
   }
 };
+
+export const fetchAppointmentsByDate = async (date?: string) => {
+  if (!date) {
+    date = new Date().toISOString().split('T')[0];
+  }
+
+  const appointments = await db.appointment.findMany({
+    where: {
+      date: date,
+      //TODO: add a switch in AdminAppointmentsPage to change from pending-confirmed-completed
+      // status: 'Confirmed'
+    },
+  });
+
+  return appointments;
+};
