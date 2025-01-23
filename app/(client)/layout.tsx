@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '../globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import { afacadFlux } from '@/lib/fonts';
-import Providers from './providers';
+import Providers from '../providers';
 
 export const metadata: Metadata = {
   title: 'Sha Sha Faces',
