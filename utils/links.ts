@@ -28,27 +28,27 @@ export const links = [
 export const tabs = [
   {
     title: 'Home',
-    url: '#',
+    url: '/admin',
     icon: Home,
   },
   {
     title: 'Appointments',
-    url: '#',
+    url: '/admin/appointments',
     icon: CalendarDays,
   },
   {
     title: 'My Information',
-    url: '#',
+    url: '/admin/info',
     icon: Info,
   },
   {
     title: 'Orders',
-    url: '#',
+    url: '/admin/orders',
     icon: ShoppingBasket,
   },
   {
     title: 'My Services',
-    url: '#',
+    url: '/admin/services',
     icon: EyeClosed,
   },
 ];
