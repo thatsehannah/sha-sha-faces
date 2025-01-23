@@ -1,10 +1,9 @@
 import AdminSidebar from '@/components/dashboard/AdminSidebar';
 import Container from '@/components/global/Container';
-import SectionTitle from '@/components/global/SectionTitle';
-import { SidebarProvider } from '@/components/ui/sidebar';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import React, { ReactNode } from 'react';
 import '../globals.css';
-import { cabin } from '@/lib/fonts';
+import { afacadFlux } from '@/lib/fonts';
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
@@ -12,14 +11,11 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
       lang='en'
       suppressHydrationWarning
     >
-      <body className={`${cabin.className}`}>
+      <body className={`${afacadFlux.className}`}>
         <SidebarProvider>
           <AdminSidebar />
           <main className='relative'>
-            <SectionTitle
-              title='dashboard'
-              alignment='right'
-            />
+            <SidebarTrigger />
             <section className='py-20'>
               <Container className='grid lg: grid-cols-12 gap-12'>
                 <div className='lg:col-span-10'>{children}</div>
