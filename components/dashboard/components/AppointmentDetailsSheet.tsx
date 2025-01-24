@@ -10,6 +10,7 @@ import { Appointment } from '@prisma/client';
 import { format } from 'date-fns';
 import React, { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
+import { isDateWithinTwoDays } from '@/lib/utils';
 
 type AppointmentDetailProps = {
   data: string;
@@ -40,6 +41,8 @@ const AppointmentDetailsSheet = ({
   appointment,
   children,
 }: AppointmentDetailsProps) => {
+  const isNew = isDateWithinTwoDays(appointment.createdAt);
+
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
@@ -50,11 +53,19 @@ const AppointmentDetailsSheet = ({
           </SheetTitle>
           <Separator />
         </SheetHeader>
+
         <div className='flex flex-col gap-8'>
-          <AppointmentDetail
-            data={format(appointment.createdAt, 'PPPP')}
-            label='appointment created'
-          />
+          <div className='flex gap-2'>
+            <AppointmentDetail
+              data={format(appointment.createdAt, 'PPPP')}
+              label='appointment created'
+            />
+            {isNew && (
+              <div className='w-12 h-8 text-center bg-lime-200 p-1 rounded-md text-black font-semibold'>
+                New
+              </div>
+            )}
+          </div>
           <AppointmentDetail
             data={appointment.status}
             label='status'

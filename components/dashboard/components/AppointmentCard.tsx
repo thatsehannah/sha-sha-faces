@@ -4,6 +4,7 @@ import React from 'react';
 import ServiceIconSvg from '@/components/services/ServiceIconSvg';
 import { BadgeCheck, MapPin, User } from 'lucide-react';
 import AppointmentDetailsSheet from './AppointmentDetailsSheet';
+import { isDateWithinTwoDays } from '@/lib/utils';
 
 type AppointmentCardProps = {
   appointment: Appointment;
@@ -11,11 +12,17 @@ type AppointmentCardProps = {
 
 const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
   const serviceSvg = services.find((s) => s.name === appointment.service)!.svg;
+  const isNew = isDateWithinTwoDays(appointment.createdAt);
 
   return (
     <>
       <AppointmentDetailsSheet appointment={appointment}>
-        <div className='w-full shadow-lg rounded-lg p-6 mb-8 bg-slate-100 dark:bg-sidebar hover:cursor-pointer hover:-translate-y-4 hover:scale-105 transition-all duration-300'>
+        <div className='w-full shadow-lg rounded-lg p-6 mb-8 bg-slate-100 dark:bg-sidebar hover:cursor-pointer hover:-translate-y-4 hover:scale-105 transition-all duration-300 relative'>
+          {isNew && (
+            <div className='absolute top-2 right-2 bg-lime-200 p-1 rounded-md text-black font-semibold'>
+              New
+            </div>
+          )}
           <div className='flex gap-6 h-full'>
             <div className='w-1/5 bg-secondary hidden xl:flex items-center justify-center p-4 rounded-md'>
               <ServiceIconSvg
@@ -24,7 +31,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
               />
             </div>
             <div className='flex flex-col justify-between gap-8'>
-              <p className='font-bold text-2xl'>
+              <p className='font-bold text-xl'>
                 <span className='capitalize'>{appointment.service}</span> @{' '}
                 {appointment.time}
               </p>
