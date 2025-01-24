@@ -13,15 +13,26 @@ import {
 } from '../../ui/sidebar';
 import { tabs } from '@/utils/links';
 import Link from 'next/link';
+import DarkModeButton from '@/components/global/DarkModeButton';
+import Image from 'next/image';
 
 const AdminSidebar = () => {
   return (
     <Sidebar>
-      <SidebarHeader />
+      <SidebarHeader className='bg-slate-100 border-b-2 dark:bg-slate-800 mb-4'>
+        <Image
+          src='/logo/logo-color-2.svg'
+          priority
+          alt='logo'
+          width={400}
+          height={400}
+          className='h-[4rem] lg:h-[4rem]'
+        />
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className='text-4xl uppercase font-extrabold mb-12 text-primary'>
-            dashboard
+          <SidebarGroupLabel className='text-2xl uppercase font-medium mb-8'>
+            dashboard <DarkModeButton />
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>

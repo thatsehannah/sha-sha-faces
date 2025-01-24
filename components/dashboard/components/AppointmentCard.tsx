@@ -12,7 +12,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
   const serviceSvg = services.find((s) => s.name === appointment.service)!.svg;
 
   return (
-    <div className='w-full shadow-lg rounded-lg p-6 mb-8 bg-slate-100 hover:cursor-pointer hover:-translate-y-4 hover:scale-105 transition-all duration-300'>
+    <div className='w-full shadow-lg rounded-lg p-6 mb-8 bg-slate-100 dark:bg-sidebar hover:cursor-pointer hover:-translate-y-4 hover:scale-105 hover:shadow-secondary transition-all duration-300'>
       <div className='flex gap-6 h-full'>
         <div className='w-1/5 bg-secondary flex items-center justify-center p-4 rounded-md'>
           <ServiceIconSvg
