@@ -52,3 +52,7 @@ export const fetchAppointmentsByDate = async (date?: string) => {
 
   return appointments;
 };
+
+export const fetchAllAppointments = async () => {
+  return await db.appointment.findMany();
+};

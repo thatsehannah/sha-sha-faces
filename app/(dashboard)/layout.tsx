@@ -1,5 +1,4 @@
 import AdminSidebar from '@/components/dashboard/components/AdminSidebar';
-import Container from '@/components/global/Container';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import React, { ReactNode } from 'react';
 import '../globals.css';
@@ -16,13 +15,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <Providers>
           <SidebarProvider>
             <AdminSidebar />
-            <main>
-              <section className='py-20'>
-                <Container>
-                  <div>{children}</div>
-                </Container>
-              </section>
-            </main>
+            {children}
           </SidebarProvider>
         </Providers>
       </body>

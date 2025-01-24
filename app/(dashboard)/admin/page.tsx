@@ -4,11 +4,11 @@ import React from 'react';
 
 const AdminHomePage = () => {
   return (
-    <div className=''>
-      <Container>
+    <main>
+      <Container className='py-20'>
         <Hero />
       </Container>
-    </div>
+    </main>
   );
 };
 
