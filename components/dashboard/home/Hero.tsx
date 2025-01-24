@@ -1,6 +1,7 @@
 import { fetchAppointmentsByDate } from '@/utils/actions';
 import React from 'react';
 import AppointmentCard from '../components/AppointmentCard';
+import { format } from 'date-fns';
 
 const Hero = async () => {
   const todayAppointments = await fetchAppointmentsByDate();
@@ -18,11 +19,12 @@ const Hero = async () => {
 
   return (
     <section>
-      <div className='mb-24 flex justify-center gap-4'>
-        <p className='text-7xl capitalize font-extralight'>
+      <div className='mb-24 flex flex-col justify-center gap-4'>
+        <p className='lg:text-7xl text-4xl capitalize'>
           Good {timeOfDay},{' '}
           <span className='font-extrabold text-primary'>Naisha</span>.
         </p>
+        <p className='text-2xl font-extralight'>{format(new Date(), 'PPPP')}</p>
       </div>
       <div>
         <p className='font-medium text-4xl mb-6'>Your day at a glance:</p>

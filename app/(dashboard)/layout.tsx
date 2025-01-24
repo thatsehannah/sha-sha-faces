@@ -16,10 +16,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <Providers>
           <SidebarProvider>
             <AdminSidebar />
-            <main className='relative'>
+            <main>
               <section className='py-20'>
-                <Container className='grid lg: grid-cols-12 gap-12'>
-                  <div className='lg:col-span-10'>{children}</div>
+                <Container>
+                  <div>{children}</div>
                 </Container>
               </section>
             </main>
