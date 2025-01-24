@@ -45,7 +45,7 @@ export const fetchAppointmentsByDate = async (date?: string) => {
   const appointments = await db.appointment.findMany({
     where: {
       date: date,
-      //TODO: add a switch in AdminAppointmentsPage to change from pending-confirmed-completed
+      //TODO: add a switch in AdminAppointmentsPage to change from pending-confirmed-completed-canceled
       // status: 'Confirmed'
     },
   });
