@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -10,6 +11,7 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import React from 'react';
@@ -27,6 +29,12 @@ const DataTable = <TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      pagination: {
+        pageSize: 8,
+      },
+    },
   });
 
   return (
@@ -80,6 +88,26 @@ const DataTable = <TData, TValue>({
           )}
         </TableBody>
       </Table>
+      <div className='flex items-center justify-end space-x-2 p-4'>
+        <div className='mr-4'>
+          Showing {table.getRowModel().rows.length.toLocaleString()} of{' '}
+          {table.getRowCount().toLocaleString()} Appointments
+        </div>
+        <Button
+          variant='outline'
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          variant='outline'
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
+      </div>
     </div>
   );
 };
