@@ -1,7 +1,7 @@
 import { columns } from '@/app/(dashboard)/admin/appointments/columns';
-import DataTable from '@/app/(dashboard)/admin/appointments/dataTable';
 import { Appointment } from '@prisma/client';
 import React from 'react';
+import DataTable from './DataTable';
 
 type AppointmentTableProps = {
   appointments: Appointment[];
