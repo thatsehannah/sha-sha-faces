@@ -11,6 +11,7 @@ import { format } from 'date-fns';
 import React, { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { isDateWithinTwoDays } from '@/lib/utils';
+import Link from 'next/link';
 
 type AppointmentDetailProps = {
   data: string;
@@ -96,7 +97,12 @@ const AppointmentDetailsSheet = ({
           />
         </div>
         <Separator />
-        <Button className='w-full mt-4 text-lg'>Edit Appointment</Button>
+        <Button
+          className='w-full mt-4 text-lg'
+          asChild
+        >
+          <Link href={`appointments/${appointment.id}`}>Edit Appointment</Link>
+        </Button>
       </SheetContent>
     </Sheet>
   );

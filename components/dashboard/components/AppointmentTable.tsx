@@ -1,7 +1,6 @@
 import { columns } from '@/app/(dashboard)/admin/appointments/columns';
-import DataTable from '@/app/(dashboard)/admin/appointments/DataTable';
+import DataTable from '@/app/(dashboard)/admin/appointments/dataTable';
 import { Appointment } from '@prisma/client';
-import { format } from 'date-fns';
 import React from 'react';
 
 type AppointmentTableProps = {
@@ -9,17 +8,11 @@ type AppointmentTableProps = {
 };
 
 const AppointmentTable = ({ appointments }: AppointmentTableProps) => {
-  const formattedAppointments = appointments.map((appt) => {
-    const formattedDate = format(appt.date, 'PPPP');
-
-    return { ...appt, date: formattedDate };
-  });
-
   return (
-    <div>
+    <div className='mt-8'>
       <DataTable
         columns={columns}
-        data={formattedAppointments}
+        data={appointments}
       />
     </div>
   );

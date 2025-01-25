@@ -3,6 +3,7 @@
 import { validateAppointmentSchema } from './appointmentSchema';
 import { Appointment } from './types';
 import db from './db';
+import { redirect } from 'next/navigation';
 
 export const createAppointmentAction = async (
   formData: Appointment
@@ -55,4 +56,18 @@ export const fetchAppointmentsByDate = async (date?: string) => {
 
 export const fetchAllAppointments = async () => {
   return await db.appointment.findMany();
+};
+
+export const fetchAppointmentById = async (apptId: string) => {
+  const appointment = await db.appointment.findFirst({
+    where: {
+      id: apptId,
+    },
+  });
+
+  if (!appointment) {
+    redirect('/admin/appointments');
+  }
+
+  return appointment;
 };

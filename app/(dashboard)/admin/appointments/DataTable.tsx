@@ -30,14 +30,17 @@ const DataTable = <TData, TValue>({
   });
 
   return (
-    <div>
-      <Table>
+    <div className='rounded-md border overflow-x-scroll'>
+      <Table className='text-lg w-full'>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead
+                    key={header.id}
+                    className='bg-secondary/20 p-3 text-primary'
+                  >
                     {flexRender(
                       header.column.columnDef.header,
                       header.getContext()
@@ -56,7 +59,10 @@ const DataTable = <TData, TValue>({
                 data-state={row.getIsSelected() && 'selected'}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell
+                    key={cell.id}
+                    className='p-3 truncate'
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
