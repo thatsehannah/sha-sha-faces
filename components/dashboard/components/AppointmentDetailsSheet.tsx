@@ -101,7 +101,9 @@ const AppointmentDetailsSheet = ({
           className='w-full mt-4 text-lg'
           asChild
         >
-          <Link href={`appointments/${appointment.id}`}>Edit Appointment</Link>
+          <Link href={`/admin/appointments/${appointment.id}`}>
+            Edit Appointment
+          </Link>
         </Button>
       </SheetContent>
     </Sheet>
