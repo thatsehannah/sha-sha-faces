@@ -1,5 +1,4 @@
-import { z } from 'zod';
-import { appointmentSchema } from './appointmentSchema';
+import { Appointment as EditAppointment } from '@prisma/client';
 
 export type Appointment = {
   name: string;
@@ -14,7 +13,8 @@ export type Appointment = {
   isInstructionsAcknowledged: boolean;
 };
 
-export type AppointmentFormFields = keyof z.infer<typeof appointmentSchema>;
+export type AppointmentFormFields = keyof Appointment;
+export type EditAppointmentFormFields = keyof EditAppointment;
 
 export type Service = {
   name: string;

@@ -16,6 +16,8 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import { FormProvider, useForm } from 'react-hook-form';
+import { DialogDescription } from '@radix-ui/react-dialog';
 
 type EditAppointmentProps = {
   appointment: Appointment;
@@ -27,53 +29,93 @@ const EditAppointmentForm = ({ appointment }: EditAppointmentProps) => {
     appointment;
   const serviceNames = services.map((service) => service.name);
 
+  const form = useForm<Appointment>({
+    defaultValues: {
+      name,
+      email,
+      phoneNumber,
+      service,
+      location,
+      time,
+      status,
+    },
+  });
+
+  const handleSubmit = async (values: Appointment) => {
+    const dirtyFields = Object.keys(form.formState.dirtyFields);
+
+    // dirtyFields.map(): Loops over the dirty fields and creates an array of [fieldName, fieldValue] pairs.
+    // values[field as keyof Appointment]: Retrieves the value for each dirty field from the values object.
+    // Object.fromEntries(): Converts the array of key-value pairs into an object, where each key is the name of a dirty field, and each value is its corresponding value in the form.
+    const updatedValues = Object.fromEntries(
+      dirtyFields.map((field) => [field, values[field as keyof Appointment]])
+    ) as Partial<Appointment>;
+
+    console.log(updatedValues);
+
+    setOpenConfirmDialog(false);
+  };
+
   return (
     <>
-      <div>
-        <div className='grid grid-cols-1 xl:grid-cols-3 gap-8 my-8'>
-          <EditTextInput
-            label='name'
-            value={name}
-          />
-          <EditTextInput
-            label='email'
-            value={email}
-          />
-          <EditTextInput
-            label='phone number'
-            value={phoneNumber}
-          />
-          <EditDropdown
-            label='service'
-            values={serviceNames}
-            defaultValue={service}
-          />
-          <EditTextInput
-            label='location'
-            value={location}
-            disabled={false}
-          />
-          <EditDropdown
-            label='service'
-            values={times}
-            defaultValue={time}
-          />
-          <EditDropdown
-            label='status'
-            values={STATUSES}
-            defaultValue={status}
-          />
-        </div>
-        <Separator className='block lg:hidden' />
-        <div className='flex justify-center lg:justify-end mt-8'>
-          <Button
-            className='w-full lg:w-auto'
-            onClick={() => setOpenConfirmDialog(true)}
-          >
-            Save Changes
-          </Button>
-        </div>
-      </div>
+      <FormProvider {...form}>
+        <form
+          onSubmit={form.handleSubmit(handleSubmit)}
+          id='editAppointmentForm'
+        >
+          <div>
+            <div className='grid grid-cols-1 xl:grid-cols-3 gap-8 my-8'>
+              <EditTextInput
+                label='name'
+                name='name'
+              />
+              <EditTextInput
+                label='email'
+                name='email'
+              />
+              <EditTextInput
+                label='phone number'
+                name='phoneNumber'
+              />
+              <EditDropdown
+                label='service'
+                name='service'
+                values={serviceNames}
+                form={form}
+              />
+              <EditTextInput
+                label='location'
+                name='location'
+                disabled={false}
+              />
+              <EditDropdown
+                label='time'
+                name='time'
+                values={times}
+                form={form}
+              />
+              <EditDropdown
+                label='status'
+                name='status'
+                values={STATUSES}
+                form={form}
+              />
+            </div>
+            <Separator className='block lg:hidden' />
+            <div className='flex justify-center lg:justify-end mt-8'>
+              <p>Form is {form.formState.isDirty ? 'dirty' : 'clean'}.</p>
+              <Button
+                className='w-full lg:w-auto'
+                type='button'
+                disabled={!form.formState.isDirty}
+                onClick={() => setOpenConfirmDialog(true)}
+              >
+                Save Changes
+              </Button>
+            </div>
+          </div>
+        </form>
+      </FormProvider>
 
       <Dialog
         open={openConfirmDialog}
@@ -85,9 +127,22 @@ const EditAppointmentForm = ({ appointment }: EditAppointmentProps) => {
               Are you sure you want to make these changes?
             </DialogTitle>
           </DialogHeader>
+          <DialogDescription>
+            Press confirm to continue, cancel to discard changes.
+          </DialogDescription>
           <DialogFooter>
-            <Button variant='outline'>Cancel</Button>
-            <Button>Confirm</Button>
+            <Button
+              variant='outline'
+              onClick={() => setOpenConfirmDialog(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type='submit'
+              form='editAppointmentForm'
+            >
+              Confirm
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -2,18 +2,21 @@
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import React, { useState } from 'react';
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+
+type EditTextInputProps = {
+  label: string;
+  disabled?: boolean;
+  name: string;
+};
 
 const EditTextInput = ({
   label,
-  value,
   disabled = true,
-}: {
-  label: string;
-  value: string;
-  disabled?: boolean;
-}) => {
-  const [inputValue, setInputValue] = useState(value);
+  name,
+}: EditTextInputProps) => {
+  const { register } = useFormContext();
 
   return (
     <div>
@@ -26,8 +29,7 @@ const EditTextInput = ({
       <div>
         <Input
           id={label}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          {...register(name)}
           disabled={disabled}
           className='font-medium text-xl border-x-0 border-t-0 rounded-none shadow-none'
         />

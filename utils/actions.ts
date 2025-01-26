@@ -1,12 +1,14 @@
 'use server';
 
 import { validateAppointmentSchema } from './appointmentSchema';
-import { Appointment } from './types';
+import { Appointment as NewAppointment } from './types';
+import { Appointment } from '@prisma/client';
 import db from './db';
 import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 export const createAppointmentAction = async (
-  formData: Appointment
+  formData: NewAppointment
 ): Promise<{
   message: string;
   title: string;
@@ -58,10 +60,10 @@ export const fetchAllAppointments = async () => {
   return await db.appointment.findMany();
 };
 
-export const fetchAppointmentById = async (apptId: string) => {
+export const fetchAppointmentById = async (id: string) => {
   const appointment = await db.appointment.findFirst({
     where: {
-      id: apptId,
+      id,
     },
   });
 
@@ -70,4 +72,35 @@ export const fetchAppointmentById = async (apptId: string) => {
   }
 
   return appointment;
+};
+
+export const updateAppointment = async (
+  id: string,
+  updates: Partial<Appointment>
+): Promise<{
+  message: string;
+  title: string;
+  type: 'success' | 'destructive';
+}> => {
+  try {
+    await db.appointment.update({
+      where: {
+        id,
+      },
+      data: { ...updates },
+    });
+
+    revalidatePath('/admin/appointments');
+    return {
+      type: 'success',
+      title: 'Success! ✅',
+      message: 'Appointment updated 💋.',
+    };
+  } catch (error) {
+    return {
+      type: 'destructive',
+      title: 'Uh oh! ☹️',
+      message: error instanceof Error ? error.message : 'An error occurred.',
+    };
+  }
 };
