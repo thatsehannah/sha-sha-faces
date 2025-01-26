@@ -20,17 +20,17 @@ type AppointmentDetailProps = {
 
 const AppointmentDetail = ({ data, label }: AppointmentDetailProps) => {
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-1'>
       <p
         data-label={label}
         data-status={data}
-        className={`font-bold text-2xl data-[label='email']:normal-case capitalize ${getStatusClasses(
+        className={`font-bold text-xl data-[label='email']:normal-case capitalize ${getStatusClasses(
           data
         )}`}
       >
         {data}
       </p>
-      <p className='font-light text-lg capitalize'>{label}</p>
+      <p className='font-light text-[1rem] capitalize'>{label}</p>
     </div>
   );
 };
@@ -50,14 +50,14 @@ const AppointmentDetailsSheet = ({
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className='overflow-y-scroll'>
-        <SheetHeader className='mb-8'>
+        <SheetHeader className=''>
           <SheetTitle className='text-4xl'>
             {appointment.name}&apos;s Appointment
           </SheetTitle>
           <Separator />
         </SheetHeader>
 
-        <div className='flex flex-col gap-8'>
+        <div className='flex flex-col gap-8 my-8'>
           <div className='flex gap-2'>
             <AppointmentDetail
               data={format(appointment.createdAt, 'PPPP')}

@@ -22,7 +22,7 @@ const Overview = async () => {
 
   return (
     <section>
-      <div className='grid grid-cols-2 lg:grid-cols-4 items-center justify-center gap-8 mb-12'>
+      <div className='grid grid-cols-2 lg:grid-cols-3 items-center justify-center gap-x-12 gap-y-8 mb-12'>
         <OverviewCard
           title='Total'
           value={allAppointments.length}
@@ -41,9 +41,9 @@ const Overview = async () => {
         />
       </div>
       <div>
-        <p className='font-medium text-4xl mb-6'>Your day at a glance:</p>
+        <p className='font-normal text-2xl mb-6'>Your day at a glance:</p>
         {todayAppointments.length === 0 ? (
-          <p className='text-center font-normal text-2xl bg-gradient-to-r from-background via-secondary to-background rounded-md p-4'>
+          <p className='text-center font-medium text-xl tracking-wide bg-gradient-to-r from-background via-secondary to-background rounded-md p-4'>
             No appointments today.
           </p>
         ) : (

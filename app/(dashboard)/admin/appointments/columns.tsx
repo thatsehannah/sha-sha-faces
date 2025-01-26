@@ -99,7 +99,10 @@ export const columns: ColumnDef<Appointment>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
-            <DropdownMenuItem asChild>
+            <DropdownMenuItem
+              className='text-lg'
+              asChild
+            >
               <Link href={`/admin/appointments/${appointment.id}`}>
                 Edit Appointment
               </Link>

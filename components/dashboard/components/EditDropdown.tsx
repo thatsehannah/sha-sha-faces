@@ -38,7 +38,7 @@ const EditDropdown = ({ label, values, name, form }: EditDropdownProps) => {
             value={field.value ? String(field.value) : ''}
             onValueChange={field.onChange}
           >
-            <SelectTrigger className='capitalize font-medium'>
+            <SelectTrigger className='capitalize font-medium text-[1rem]'>
               <SelectValue></SelectValue>
             </SelectTrigger>
             <SelectContent>
@@ -46,7 +46,7 @@ const EditDropdown = ({ label, values, name, form }: EditDropdownProps) => {
                 <SelectItem
                   key={value}
                   value={value}
-                  className='capitalize'
+                  className='capitalize text-lg'
                 >
                   {value}
                 </SelectItem>

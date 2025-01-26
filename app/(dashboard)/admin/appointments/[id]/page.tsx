@@ -17,7 +17,7 @@ const EditAppointmentPage = async ({ params }: Params) => {
     <main>
       <Container className='py-20 w-screen lg:w-[80vw]'>
         <div>
-          <p className='text-5xl lg:text-7xl font-normal'>Edit Appointment</p>
+          <p className='text-5xl font-normal'>Edit Appointment</p>
         </div>
         <Separator />
         <EditAppointmentForm appointment={appointment} />

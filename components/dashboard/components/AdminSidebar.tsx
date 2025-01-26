@@ -33,23 +33,20 @@ const AdminSidebar = () => {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className='text-2xl uppercase font-medium mb-8'>
-            dashboard <DarkModeButton />
+          <SidebarGroupLabel className='font-medium text-xl'>
+            Dashboard
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {tabs.map((tab) => (
-                <SidebarMenuItem
-                  key={tab.title}
-                  className='mb-4'
-                >
+                <SidebarMenuItem key={tab.title}>
                   <SidebarMenuButton
                     className='hover:bg-secondary p-5 transition-all duration-300'
                     asChild
                   >
                     <Link href={tab.url}>
                       <tab.icon />
-                      <span className='text-xl font-light'>{tab.title}</span>
+                      <span className='font-light'>{tab.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

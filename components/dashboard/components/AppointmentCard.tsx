@@ -35,14 +35,16 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
                 <span className='capitalize'>{appointment.service}</span> @{' '}
                 {appointment.time}
               </p>
-              <div className='flex gap-12 text-muted-foreground'>
+              <div className='flex gap-10 text-muted-foreground'>
                 <div className='flex flex-col justify-center'>
                   <User className='stroke-primary' />
-                  <p className='lg:text-lg font-medium'>{appointment.name}</p>
+                  <p className='lg:text-[16px] font-medium'>
+                    {appointment.name}
+                  </p>
                 </div>
                 <div className='flex flex-col justify-center'>
                   <MapPin className='stroke-secondary' />
-                  <p className='lg:text-lg font-medium'>
+                  <p className='lg:text-[16px] font-medium'>
                     {appointment.location}
                   </p>
                 </div>
@@ -50,7 +52,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
                   <BadgeCheck className='stroke-muted-foreground' />
                   <p
                     data-status={appointment.status}
-                    className={`lg:text-lg font-medium ${getStatusClasses(
+                    className={`lg:text-[16px] font-medium ${getStatusClasses(
                       appointment.status
                     )}`}
                   >

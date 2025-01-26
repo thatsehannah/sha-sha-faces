@@ -18,7 +18,7 @@ const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
   return (
     <Container className='py-20 w-screen lg:w-[80vw]'>
       <div className='flex justify-between items-center '>
-        <p className='text-5xl lg:text-7xl font-normal'>Appointments</p>
+        <p className='text-5xl font-normal'>Appointments</p>
         <div className='flex gap-2'>
           <Button
             variant='outline'

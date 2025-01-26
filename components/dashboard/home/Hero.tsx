@@ -17,7 +17,7 @@ const Hero = () => {
   return (
     <section>
       <div className='mb-16 flex flex-col justify-center gap-4'>
-        <p className='lg:text-7xl text-4xl capitalize'>
+        <p className='text-5xl capitalize'>
           Good {timeOfDay},{' '}
           <span className='font-extrabold text-primary'>Naisha</span>.
         </p>

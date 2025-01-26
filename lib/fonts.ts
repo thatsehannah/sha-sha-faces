@@ -1,4 +1,4 @@
-import { Cabin, Asap, Afacad_Flux, Parisienne } from 'next/font/google';
+import { Cabin, Asap, Afacad_Flux, Parisienne, Inter } from 'next/font/google';
 
 export const cabin = Cabin({
   subsets: ['latin'],
@@ -16,6 +16,12 @@ export const afacadFlux = Afacad_Flux({
 });
 
 export const parisienne = Parisienne({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+export const inter = Inter({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
