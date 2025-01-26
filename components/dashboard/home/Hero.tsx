@@ -1,11 +1,8 @@
-import { fetchAppointmentsByDate } from '@/utils/actions';
 import React from 'react';
-import AppointmentCard from '../components/AppointmentCard';
 import { format } from 'date-fns';
+import Overview from './Overview';
 
-const Hero = async () => {
-  const todayAppointments = await fetchAppointmentsByDate();
-
+const Hero = () => {
   const currentHour = new Date().getHours();
   let timeOfDay: string;
 
@@ -19,7 +16,7 @@ const Hero = async () => {
 
   return (
     <section>
-      <div className='mb-24 flex flex-col justify-center gap-4'>
+      <div className='mb-16 flex flex-col justify-center gap-4'>
         <p className='lg:text-7xl text-4xl capitalize'>
           Good {timeOfDay},{' '}
           <span className='font-extrabold text-primary'>Naisha</span>.
@@ -27,19 +24,7 @@ const Hero = async () => {
         <p className='text-2xl font-extralight'>{format(new Date(), 'PPPP')}</p>
       </div>
       <div>
-        <p className='font-medium text-4xl mb-6'>Your day at a glance:</p>
-        {todayAppointments.length === 0 ? (
-          <p className='text-center font-normal text-2xl bg-secondary rounded-md p-4'>
-            No appointments today.
-          </p>
-        ) : (
-          todayAppointments.map((appt, idx) => (
-            <AppointmentCard
-              key={idx}
-              appointment={appt}
-            />
-          ))
-        )}
+        <Overview />
       </div>
     </section>
   );

@@ -5,6 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { getStatusClasses } from '@/lib/utils';
 import { Appointment } from '@prisma/client';
 import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
@@ -66,7 +67,7 @@ export const columns: ColumnDef<Appointment>[] = [
       return (
         <div
           data-status={row.original.status}
-          className="data-[status='Pending']:text-orange-400 data-[status='Confirmed']:text-blue-400 data-[status='Completed']:text-green-400 data-[status='Canceled']:text-red-400"
+          className={getStatusClasses(row.original.status)}
         >
           {row.original.status}
         </div>

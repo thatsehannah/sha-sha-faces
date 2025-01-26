@@ -4,7 +4,7 @@ import React from 'react';
 import ServiceIconSvg from '@/components/services/ServiceIconSvg';
 import { BadgeCheck, MapPin, User } from 'lucide-react';
 import AppointmentDetailsSheet from './AppointmentDetailsSheet';
-import { isDateWithinTwoDays } from '@/lib/utils';
+import { getStatusClasses, isDateWithinTwoDays } from '@/lib/utils';
 
 type AppointmentCardProps = {
   appointment: Appointment;
@@ -50,7 +50,9 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
                   <BadgeCheck className='stroke-muted-foreground' />
                   <p
                     data-status={appointment.status}
-                    className="lg:text-lg font-medium data-[status='Pending']:text-orange-400 data-[status='Confirmed']:text-blue-400 data-[status='Completed']:text-green-400 data-[status='Canceled']:text-red-400"
+                    className={`lg:text-lg font-medium ${getStatusClasses(
+                      appointment.status
+                    )}`}
                   >
                     {appointment.status}
                   </p>

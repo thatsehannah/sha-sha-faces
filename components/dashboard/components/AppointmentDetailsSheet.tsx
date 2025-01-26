@@ -10,7 +10,7 @@ import { Appointment } from '@prisma/client';
 import { format } from 'date-fns';
 import React, { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
-import { isDateWithinTwoDays } from '@/lib/utils';
+import { getStatusClasses, isDateWithinTwoDays } from '@/lib/utils';
 import Link from 'next/link';
 
 type AppointmentDetailProps = {
@@ -24,7 +24,9 @@ const AppointmentDetail = ({ data, label }: AppointmentDetailProps) => {
       <p
         data-label={label}
         data-status={data}
-        className="font-bold text-2xl data-[label='email']:normal-case capitalize data-[status='Pending']:text-orange-400 data-[status='Confirmed']:text-blue-400 data-[status='Completed']:text-green-400 data-[status='Canceled']:text-red-400"
+        className={`font-bold text-2xl data-[label='email']:normal-case capitalize ${getStatusClasses(
+          data
+        )}`}
       >
         {data}
       </p>
