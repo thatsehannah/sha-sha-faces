@@ -18,14 +18,18 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { FormProvider, useForm } from 'react-hook-form';
 import { DialogDescription } from '@radix-ui/react-dialog';
+import { updateAppointment } from '@/utils/actions';
+import { useToast } from '@/hooks/use-toast';
+import { redirect } from 'next/navigation';
 
 type EditAppointmentProps = {
   appointment: Appointment;
 };
 
 const EditAppointmentForm = ({ appointment }: EditAppointmentProps) => {
+  const { toast } = useToast();
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
-  const { name, email, phoneNumber, service, location, time, status } =
+  const { name, email, phoneNumber, service, location, time, status, id } =
     appointment;
   const serviceNames = services.map((service) => service.name);
 
@@ -43,17 +47,20 @@ const EditAppointmentForm = ({ appointment }: EditAppointmentProps) => {
 
   const handleSubmit = async (values: Appointment) => {
     const dirtyFields = Object.keys(form.formState.dirtyFields);
-
-    // dirtyFields.map(): Loops over the dirty fields and creates an array of [fieldName, fieldValue] pairs.
-    // values[field as keyof Appointment]: Retrieves the value for each dirty field from the values object.
-    // Object.fromEntries(): Converts the array of key-value pairs into an object, where each key is the name of a dirty field, and each value is its corresponding value in the form.
     const updatedValues = Object.fromEntries(
       dirtyFields.map((field) => [field, values[field as keyof Appointment]])
     ) as Partial<Appointment>;
 
-    console.log(updatedValues);
+    const result = await updateAppointment(id, updatedValues);
+
+    toast({
+      variant: result.type,
+      title: result.title,
+      description: result.message,
+    });
 
     setOpenConfirmDialog(false);
+    redirect('/admin/appointments');
   };
 
   return (
@@ -103,7 +110,6 @@ const EditAppointmentForm = ({ appointment }: EditAppointmentProps) => {
             </div>
             <Separator className='block lg:hidden' />
             <div className='flex justify-center lg:justify-end mt-8'>
-              <p>Form is {form.formState.isDirty ? 'dirty' : 'clean'}.</p>
               <Button
                 className='w-full lg:w-auto'
                 type='button'
