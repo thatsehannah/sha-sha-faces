@@ -5,6 +5,7 @@ import { Appointment as NewAppointment } from './types';
 import { Appointment } from '@prisma/client';
 import db from './db';
 import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 export const createAppointmentAction = async (
   formData: NewAppointment
@@ -89,6 +90,7 @@ export const updateAppointment = async (
       data: { ...updates },
     });
 
+    revalidatePath('/admin/appointments');
     return {
       type: 'success',
       title: 'Success! ✅',

@@ -18,16 +18,18 @@ import Image from 'next/image';
 
 const AdminSidebar = () => {
   return (
-    <Sidebar>
+    <Sidebar collapsible='icon'>
       <SidebarHeader className='bg-slate-100 border-b-2 dark:bg-slate-800 mb-4'>
-        <Image
-          src='/logo/logo-color-2.svg'
-          priority
-          alt='logo'
-          width={400}
-          height={400}
-          className='h-[4rem] lg:h-[4rem]'
-        />
+        <Link href='/'>
+          <Image
+            src='/logo/logo-color-2.svg'
+            priority
+            alt='logo'
+            width={400}
+            height={400}
+            className='h-[4rem] lg:h-[4rem]'
+          />
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
