@@ -16,7 +16,7 @@ const EditAppointmentPage = async ({ params }: Params) => {
   return (
     <main>
       <Container className='py-20 w-screen lg:w-[80vw]'>
-        <div>
+        <div className='pb-3'>
           <p className='text-5xl font-normal'>Edit Appointment</p>
         </div>
         <Separator />

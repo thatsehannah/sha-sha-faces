@@ -15,10 +15,12 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <Providers>
           <SidebarProvider>
             <AdminSidebar />
-            <>
-              <SidebarTrigger />
+            <div className='relative'>
+              <div className='absolute top-1 left-1'>
+                <SidebarTrigger />
+              </div>
               {children}
-            </>
+            </div>
           </SidebarProvider>
         </Providers>
       </body>

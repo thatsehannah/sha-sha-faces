@@ -17,11 +17,13 @@ const Hero = () => {
   return (
     <section>
       <div className='mb-16 flex flex-col justify-center gap-4'>
-        <p className='text-5xl capitalize'>
+        <p className='text-[2rem] lg:text-5xl capitalize'>
           Good {timeOfDay},{' '}
           <span className='font-extrabold text-primary'>Naisha</span>.
         </p>
-        <p className='text-2xl font-extralight'>{format(new Date(), 'PPPP')}</p>
+        <p className='text-xl lg:text-2xl font-thin'>
+          {format(new Date(), 'PPPP')}
+        </p>
       </div>
       <div>
         <Overview />

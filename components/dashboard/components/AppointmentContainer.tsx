@@ -17,8 +17,8 @@ const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
   const [view, setView] = useState<'grid' | 'table'>('grid');
   return (
     <Container className='py-20 w-screen lg:w-[80vw]'>
-      <div className='flex justify-between items-center '>
-        <p className='text-5xl font-normal'>Appointments</p>
+      <div className='flex justify-between items-center pb-3'>
+        <p className='text-3xl lg:text-5xl font-normal'>Appointments</p>
         <div className='flex gap-2'>
           <Button
             variant='outline'

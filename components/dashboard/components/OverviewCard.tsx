@@ -9,12 +9,10 @@ type OverviewCardProps = {
 };
 
 const OverviewCard = ({ title, value, caption }: OverviewCardProps) => {
-  console.log(title);
-
   return (
-    <Card className='w-48 lg:w-72'>
+    <Card className='w-42 lg:w-72'>
       <CardHeader className='p-4 pb-1'>
-        <CardTitle className={`capitalize text-lg font-light`}>
+        <CardTitle className={`capitalize text-[1rem] lg:text-lg font-light`}>
           <span className='uppercase font-bold tracking-wide'>{title}</span>{' '}
           Appointments
         </CardTitle>
@@ -22,7 +20,9 @@ const OverviewCard = ({ title, value, caption }: OverviewCardProps) => {
       <CardContent className='p-6 pt-0'>
         <p
           data-status={title}
-          className={`text-3xl font-bold ${getStatusClasses(title)}`}
+          className={`lg:text-3xl text-2xl font-bold ${getStatusClasses(
+            title
+          )}`}
         >
           {value}
         </p>
