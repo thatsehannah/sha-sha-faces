@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { LayoutGrid, Table } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Container from '@/components/global/Container';
+import FilterOptions from '../appointments/FilterOptions';
 
 type AppointmentContainerProps = {
   appointments: Appointment[];
@@ -41,6 +42,9 @@ const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
         </div>
       </div>
       <Separator />
+      <div className='mb-8 mt-4 flex items-center gap-4'>
+        <FilterOptions />
+      </div>
       {view === 'grid' ? (
         <AppointmentGrid appointments={appointments} />
       ) : (
