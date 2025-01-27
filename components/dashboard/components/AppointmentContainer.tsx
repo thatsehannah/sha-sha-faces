@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import AppointmentGrid from './AppointmentGrid';
 import AppointmentTable from './AppointmentTable';
 import { Appointment } from '@prisma/client';
@@ -53,7 +53,9 @@ const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
       </div>
       <Separator />
       <div className='mb-8 mt-4 flex items-center gap-4'>
-        <FilterOptions />
+        <Suspense>
+          <FilterOptions />
+        </Suspense>
       </div>
       {view === 'grid' ? (
         <AppointmentGrid appointments={appointments} />
