@@ -1,6 +1,6 @@
 import AppointmentContainer from '@/components/dashboard/components/AppointmentContainer';
 import { fetchAllAppointments } from '@/utils/actions';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 export type Layout = 'grid' | 'table';
 
@@ -9,7 +9,9 @@ const AdminAppointmentsPage = async () => {
 
   return (
     <main>
-      <AppointmentContainer appointments={appointments} />
+      <Suspense>
+        <AppointmentContainer appointments={appointments} />
+      </Suspense>
     </main>
   );
 };
