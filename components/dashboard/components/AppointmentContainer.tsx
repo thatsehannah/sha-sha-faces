@@ -9,6 +9,7 @@ import { LayoutGrid, Table } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Container from '@/components/global/Container';
 import FilterOptions from '../appointments/FilterOptions';
+import { useSearchParams } from 'next/navigation';
 
 type AppointmentContainerProps = {
   appointments: Appointment[];
@@ -16,6 +17,15 @@ type AppointmentContainerProps = {
 
 const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
   const [view, setView] = useState<'grid' | 'table'>('grid');
+  const searchParams = useSearchParams();
+  const paramValue = searchParams.has('f') && searchParams.get('f');
+
+  if (paramValue) {
+    appointments = appointments.filter(
+      (appt) => appt.status.toLowerCase() === paramValue
+    );
+  }
+
   return (
     <Container className='py-20 w-screen lg:w-[80vw]'>
       <div className='flex justify-between items-center pb-3'>
