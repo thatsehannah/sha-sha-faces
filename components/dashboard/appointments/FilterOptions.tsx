@@ -3,16 +3,20 @@
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { STATUSES } from '@/utils/constants';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 const FilterOptions = () => {
-  const [filterValue, setFilterValue] = useState('all');
   const { replace } = useRouter();
-  const params = new URLSearchParams();
+  const searchParams = useSearchParams();
+  console.log(searchParams);
+
+  const filterParam = searchParams.get('f') || 'all';
+  const [filterValue, setFilterValue] = useState(filterParam);
 
   const handleFilter = (value: string) => {
     setFilterValue(value);
+    const params = new URLSearchParams(searchParams.toString());
 
     if (value !== 'all') {
       params.set('f', value);
@@ -23,9 +27,13 @@ const FilterOptions = () => {
     replace(`/admin/appointments?${params.toString()}`);
   };
 
+  useEffect(() => {
+    setFilterValue(filterParam);
+  }, [filterParam]);
+
   return (
     <RadioGroup
-      defaultValue={filterValue}
+      value={filterValue}
       orientation='horizontal'
       className='flex gap-8'
       onValueChange={handleFilter}
