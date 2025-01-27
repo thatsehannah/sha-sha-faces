@@ -2,6 +2,7 @@ import { fetchAllAppointments } from '@/utils/actions';
 import React from 'react';
 import AppointmentCard from '../components/AppointmentCard';
 import OverviewCard from '../components/OverviewCard';
+import VisitorChart from '../components/VisitorChart';
 
 const Overview = async () => {
   const allAppointments = await fetchAllAppointments();
@@ -54,6 +55,9 @@ const Overview = async () => {
             />
           ))
         )}
+      </div>
+      <div className='mt-8'>
+        <VisitorChart />
       </div>
     </section>
   );

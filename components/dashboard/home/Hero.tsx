@@ -21,7 +21,7 @@ const Hero = () => {
           Good {timeOfDay},{' '}
           <span className='font-extrabold text-primary'>Naisha</span>.
         </p>
-        <p className='text-xl lg:text-2xl font-thin'>
+        <p className='text-xl lg:text-2xl font-light'>
           {format(new Date(), 'PPPP')}
         </p>
       </div>
