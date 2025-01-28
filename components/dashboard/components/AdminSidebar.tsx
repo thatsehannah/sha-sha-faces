@@ -17,6 +17,7 @@ import {
 import { tabs } from '@/utils/links';
 import Link from 'next/link';
 import Image from 'next/image';
+import DarkModeButton from '@/components/global/DarkModeButton';
 
 const AdminSidebar = () => {
   const { setOpenMobile } = useSidebar();
@@ -58,6 +59,7 @@ const AdminSidebar = () => {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              <DarkModeButton />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

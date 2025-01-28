@@ -41,7 +41,11 @@ export const createAppointmentAction = async (
 };
 
 export const fetchAllAppointments = async () => {
-  return await db.appointment.findMany();
+  return await db.appointment.findMany({
+    orderBy: {
+      updatedAt: 'desc',
+    },
+  });
 };
 
 export const fetchAppointmentById = async (id: string) => {

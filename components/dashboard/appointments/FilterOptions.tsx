@@ -1,7 +1,5 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
   Select,
   SelectContent,
@@ -11,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
 import { STATUSES } from '@/utils/constants';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -41,66 +40,37 @@ const FilterOptions = () => {
   }, [filterParam]);
 
   return (
-    <>
-      <div className='hidden lg:block'>
-        <RadioGroup
-          value={filterValue}
-          orientation='horizontal'
-          className='flex gap-8'
-          onValueChange={handleFilter}
-        >
-          <div className='flex items-center space-x-2'>
-            <RadioGroupItem
+    <div className='flex items-center'>
+      <Select
+        value={filterValue}
+        onValueChange={handleFilter}
+      >
+        <SelectTrigger className='text-lg lg:text-sm'>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel className='text-[1rem]'>Filter</SelectLabel>
+            <Separator />
+            <SelectItem
               value='all'
-              id='all'
-            />
-            <Label htmlFor='all'>All</Label>
-          </div>
-          {STATUSES.map((status, idx) => (
-            <div
-              key={idx}
-              className='flex items-center space-x-2'
+              className='text-lg lg:text-sm'
             >
-              <RadioGroupItem
-                value={status.toLowerCase()}
-                id={status}
-              />
-              <Label htmlFor={status}>{status}</Label>
-            </div>
-          ))}
-        </RadioGroup>
-      </div>
-      <div className='lg:hidden flex'>
-        <Select
-          value={filterValue}
-          onValueChange={handleFilter}
-        >
-          <SelectTrigger className='text-lg'>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Filter</SelectLabel>
+              All
+            </SelectItem>
+            {STATUSES.map((status, idx) => (
               <SelectItem
-                value='all'
-                className='text-lg'
+                key={idx}
+                value={status.toLowerCase()}
+                className='text-lg lg:text-sm'
               >
-                All
+                {status}
               </SelectItem>
-              {STATUSES.map((status, idx) => (
-                <SelectItem
-                  key={idx}
-                  value={status.toLowerCase()}
-                  className='text-lg'
-                >
-                  {status}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
-    </>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
   );
 };
 
