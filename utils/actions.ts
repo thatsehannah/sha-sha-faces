@@ -5,7 +5,7 @@ import { Appointment as NewAppointment } from './types';
 import { Appointment } from '@prisma/client';
 import db from './db';
 import { redirect } from 'next/navigation';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 export const createAppointmentAction = async (
   formData: NewAppointment
@@ -25,7 +25,7 @@ export const createAppointmentAction = async (
       },
     });
 
-    revalidateTag('appointments');
+    revalidatePath('/');
 
     return {
       type: 'success',
@@ -43,15 +43,11 @@ export const createAppointmentAction = async (
 };
 
 export const fetchAllAppointments = async () => {
-  const appointments = await db.appointment.findMany({
+  return await db.appointment.findMany({
     orderBy: {
       updatedAt: 'desc',
     },
   });
-
-  revalidateTag('appointments');
-
-  return appointments;
 };
 
 export const fetchAppointmentById = async (id: string) => {
@@ -84,7 +80,7 @@ export const updateAppointment = async (
       data: { ...updates },
     });
 
-    revalidateTag('appointments');
+    revalidatePath('/');
     return {
       type: 'success',
       title: 'Success! ✅',
