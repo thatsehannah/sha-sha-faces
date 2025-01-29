@@ -92,3 +92,7 @@ export const updateAppointment = async (
     };
   }
 };
+
+export const fetchAllServices = async () => {
+  return db.service.findMany();
+};

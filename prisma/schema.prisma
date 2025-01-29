@@ -30,3 +30,27 @@ model Appointment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Service {
+  id String @id @default(uuid())
+  name String
+  price Int
+  isSale Boolean @default(false)
+  salePrice Int @default(0)
+  duration String
+  description String
+  popular Boolean
+  svgUrl String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Review {
+  id String @id @default(uuid())
+  service String
+  starCount Int
+  reviewer String
+  email String
+  comment String
+  wouldRecommend Boolean
+}
