@@ -17,7 +17,6 @@ import React, { useEffect, useState } from 'react';
 const FilterOptions = () => {
   const { replace } = useRouter();
   const searchParams = useSearchParams();
-  console.log(searchParams);
 
   const filterParam = searchParams.get('f') || 'all';
   const [filterValue, setFilterValue] = useState(filterParam);
