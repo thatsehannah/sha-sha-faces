@@ -25,7 +25,8 @@ export const createAppointmentAction = async (
       },
     });
 
-    revalidatePath('/');
+    revalidatePath('/admin');
+    revalidatePath('/admin/appointments');
 
     return {
       type: 'success',
@@ -80,7 +81,8 @@ export const updateAppointment = async (
       data: { ...updates },
     });
 
-    revalidatePath('/');
+    revalidatePath('/admin');
+    revalidatePath('/admin/appointments');
     return {
       type: 'success',
       title: 'Success! ✅',
