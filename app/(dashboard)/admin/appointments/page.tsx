@@ -4,7 +4,6 @@ import React, { Suspense } from 'react';
 
 const AdminAppointmentsPage = async () => {
   const appointments = await fetchAllAppointments();
-  console.log('Fetched appointments: ', appointments);
 
   return (
     <main>

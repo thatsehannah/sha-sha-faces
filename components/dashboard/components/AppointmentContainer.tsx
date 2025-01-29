@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { LayoutGrid, Table } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Container from '@/components/global/Container';
-import FilterOptions from '../appointments/FilterOptions';
+import StatusFilterOptions from '../appointments/StatusFilterOptions';
 import { useSearchParams } from 'next/navigation';
 
 type AppointmentContainerProps = {
@@ -18,11 +18,11 @@ type AppointmentContainerProps = {
 const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
   const [view, setView] = useState<'grid' | 'table'>('grid');
   const searchParams = useSearchParams();
-  const paramValue = searchParams.has('f') && searchParams.get('f');
+  const statusParamValue = searchParams.has('s') && searchParams.get('s');
 
-  if (paramValue) {
+  if (statusParamValue) {
     appointments = appointments.filter(
-      (appt) => appt.status.toLowerCase() === paramValue
+      (appt) => appt.status.toLowerCase() === statusParamValue
     );
   }
 
@@ -54,7 +54,7 @@ const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
       <Separator />
       <div className='mb-8 mt-4 flex items-center gap-4'>
         <Suspense>
-          <FilterOptions />
+          <StatusFilterOptions />
         </Suspense>
       </div>
       {view === 'grid' ? (
