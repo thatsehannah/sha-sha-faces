@@ -24,7 +24,7 @@ const AppointmentDetail = ({ data, label }: AppointmentDetailProps) => {
       <p
         data-label={label}
         data-status={data}
-        className={`font-bold text-xl data-[label='email']:normal-case capitalize ${getStatusClasses(
+        className={`font-medium text-xl data-[label='email']:normal-case capitalize ${getStatusClasses(
           data
         )}`}
       >
@@ -51,7 +51,7 @@ const AppointmentDetailsSheet = ({
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className='overflow-y-scroll'>
         <SheetHeader className=''>
-          <SheetTitle className='text-4xl'>
+          <SheetTitle className='text-3xl lg:text-4xl text-left'>
             {appointment.name}&apos;s Appointment
           </SheetTitle>
           <Separator />

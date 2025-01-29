@@ -10,6 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import Container from '@/components/global/Container';
 import StatusFilterOptions from '../appointments/StatusFilterOptions';
 import { useSearchParams } from 'next/navigation';
+import SearchFilter from '../appointments/SearchFilter';
 
 type AppointmentContainerProps = {
   appointments: Appointment[];
@@ -18,11 +19,22 @@ type AppointmentContainerProps = {
 const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
   const [view, setView] = useState<'grid' | 'table'>('grid');
   const searchParams = useSearchParams();
-  const statusParamValue = searchParams.has('s') && searchParams.get('s');
+  const statusParamValue =
+    searchParams.has('status') && searchParams.get('status');
+  const searchParamValue =
+    searchParams.has('search') && searchParams.get('search');
 
   if (statusParamValue) {
     appointments = appointments.filter(
       (appt) => appt.status.toLowerCase() === statusParamValue
+    );
+  }
+
+  if (searchParamValue) {
+    appointments = appointments.filter(
+      (appt) =>
+        appt.email.includes(searchParamValue) ||
+        appt.name.includes(searchParamValue)
     );
   }
 
@@ -52,9 +64,10 @@ const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
         </div>
       </div>
       <Separator />
-      <div className='mb-8 mt-4 flex items-center gap-4'>
+      <div className='mb-8 mt-4 flex items-center lg:gap-8 justify-between lg:justify-normal'>
         <Suspense>
           <StatusFilterOptions />
+          <SearchFilter />
         </Suspense>
       </div>
       {view === 'grid' ? (
