@@ -1,48 +1,92 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Appointment, AppointmentFormFields } from '@/utils/types';
 import React from 'react';
-import { UseFormReturn } from 'react-hook-form';
-import FormInputLabel from './FormInputLabel';
+import { useFormContext } from 'react-hook-form';
+import { Label } from '../ui/label';
+import { Textarea } from '../ui/textarea';
+import { Checkbox } from '../ui/checkbox';
+import FormError from './FormError';
 
 type FormInputProps = {
-  name: AppointmentFormFields;
+  name: string;
   label: string;
+  type?: 'input' | 'textarea' | 'checkbox';
   placeholder?: string;
-  form: UseFormReturn<Appointment>;
 };
 
-const FormInput = ({ name, label, placeholder, form }: FormInputProps) => {
-  return (
-    <FormField
-      control={form.control}
-      name={name}
-      render={({ field }) => (
-        <FormItem className='mb-8'>
-          <FormInputLabel
-            name={name}
-            text={label}
+const FormInput = ({
+  name,
+  label,
+  placeholder,
+  type = 'input',
+}: FormInputProps) => {
+  const {
+    register,
+    watch,
+    setValue,
+    clearErrors,
+    formState: { errors },
+  } = useFormContext();
+
+  if (type === 'checkbox') {
+    const checked = watch(name);
+
+    return (
+      <div className='flex flex-col justify-center items-center'>
+        <div className='flex justify-center items-center gap-2'>
+          <Checkbox
+            id={name}
+            checked={checked}
+            onCheckedChange={(value) => {
+              setValue(name, value);
+              clearErrors(name);
+            }}
           />
-          <FormControl>
-            <div>
-              <Input
-                {...field}
-                placeholder={placeholder}
-                value={field.value ? String(field.value) : ''}
-                onChange={(value) => field.onChange(value)}
-                className='h-12 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black border-x-0 border-t-0 shadow-none rounded-none text-xl md:text-2xl font-semibold'
-              />
-            </div>
-          </FormControl>
-          <FormMessage className='text-lg dark:text-red-700' />
-        </FormItem>
-      )}
-    />
+          <Label
+            htmlFor={name}
+            className='text-lg text-foreground'
+          >
+            {label}
+          </Label>
+        </div>
+        {errors[name] && (
+          <FormError>{errors[name].message as string}</FormError>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className='mb-8'>
+      <div>
+        <Label
+          htmlFor={name}
+          className='text-black text-lg'
+        >
+          {label}
+        </Label>
+      </div>
+      <div>
+        {type === 'input' && (
+          <Input
+            id={name}
+            {...register(name)}
+            placeholder={placeholder}
+            className='h-12 mt-2 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black border-x-0 border-t-0 shadow-none rounded-none text-xl md:text-2xl font-semibold'
+          />
+        )}
+        {type === 'textarea' && (
+          <Textarea
+            id={name}
+            {...register(name)}
+            placeholder={placeholder}
+            className='h-32 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black shadow-none rounded-md text-xl md:text-2xl font-semibold'
+          />
+        )}
+        {errors[name] && (
+          <FormError>{errors[name].message as string}</FormError>
+        )}
+      </div>
+    </div>
   );
 };
 

@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { appointmentSchema } from '@/utils/appointmentSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Form } from '../ui/form';
 import services from '@/utils/services.json';
 import times from '@/utils/appointmentTimes.json';
 import discoveries from '@/utils/discoveries.json';
@@ -14,12 +13,10 @@ import { motion } from 'framer-motion';
 import FormInput from '../form/FormInput';
 import FormDropdown from '../form/FormDropdown';
 import FormDatePicker from '../form/FormDatePicker';
-import FormTextArea from '../form/FormTextArea';
 import { Appointment } from '@/utils/types';
 import { createAppointmentAction } from '@/utils/actions';
 import { useToast } from '@/hooks/use-toast';
 import InstructionsDrawer from './InstructionsDrawer';
-import FormCheckbox from '../form/FormCheckbox';
 import { RotateCw } from 'lucide-react';
 import { Button } from '../ui/button';
 
@@ -42,7 +39,6 @@ const AppointmentForm = () => {
     defaultService = serviceNames[idx];
   }
 
-  //TODO: Add instagram to schema
   const form = useForm<z.infer<typeof appointmentSchema>>({
     resolver: zodResolver(appointmentSchema),
     defaultValues: {
@@ -59,7 +55,7 @@ const AppointmentForm = () => {
     },
   });
 
-  const handleOnSubmit = async (values: Appointment) => {
+  const onSubmit = async (values: Appointment) => {
     const result = await createAppointmentAction(values);
 
     toast({
@@ -71,26 +67,17 @@ const AppointmentForm = () => {
     form.reset();
   };
 
-  useEffect(() => {
-    if (form.formState.isSubmitting && !form.formState.isValid) {
-      toast({
-        title: 'Uh oh ☹️',
-        description: "Please make sure you've filled out all fields.",
-        variant: 'destructive',
-      });
-    }
-  }, [form.formState.isValid, form.formState.isSubmitting, toast]);
-
   return (
     <>
-      <Form {...form}>
+      <FormProvider {...form}>
         <motion.form
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 2 }}
           className='w-full lg:w-[65vw]'
-          onSubmit={form.handleSubmit(handleOnSubmit)}
+          id='createAppointmentForm'
+          onSubmit={form.handleSubmit(onSubmit)}
         >
           <section className='flex flex-col items-center gap-5 lg:gap-3 mb-20'>
             <p className='text-xl lg:text-2xl font-light'>
@@ -105,10 +92,10 @@ const AppointmentForm = () => {
             </p>
             <div className='flex items-center space-x-2'>
               {/* instruction acknowledgement */}
-              <FormCheckbox
+              <FormInput
                 name='isInstructionsAcknowledged'
                 label='I have read and understood booking instructions.'
-                form={form}
+                type='checkbox'
               />
             </div>
           </section>
@@ -123,7 +110,6 @@ const AppointmentForm = () => {
                 name='name'
                 label='Full Name'
                 placeholder='e.g. Jane Doe'
-                form={form}
               />
 
               {/* email */}
@@ -131,7 +117,6 @@ const AppointmentForm = () => {
                 name='email'
                 label='Email'
                 placeholder='e.g. janedoe@domain.com'
-                form={form}
               />
 
               {/* TODO: Add instagram field */}
@@ -139,7 +124,6 @@ const AppointmentForm = () => {
                 name='instagram'
                 label='Instagram Username'
                 placeholder='e.g. @username'
-                form={form}
               />
 
               {/* phone number */}
@@ -147,7 +131,6 @@ const AppointmentForm = () => {
                 name='phoneNumber'
                 label='Phone Number'
                 placeholder='e.g. (213) 555-5555'
-                form={form}
               />
             </div>
             <div className='mb-20'>
@@ -160,7 +143,6 @@ const AppointmentForm = () => {
                 name='service'
                 label='Type'
                 placeholder='Select a service'
-                form={form}
                 values={serviceNames}
               />
 
@@ -168,7 +150,6 @@ const AppointmentForm = () => {
               <FormDatePicker
                 name='date'
                 label='Date'
-                form={form}
               />
 
               {/* time */}
@@ -176,7 +157,6 @@ const AppointmentForm = () => {
                 name='time'
                 label='Time'
                 placeholder='Select a time'
-                form={form}
                 values={times}
               />
 
@@ -185,7 +165,6 @@ const AppointmentForm = () => {
                 name='location'
                 label='Location'
                 placeholder='e.g. Los Angeles, CA'
-                form={form}
               />
             </div>
             <div className='mb-20'>
@@ -198,16 +177,15 @@ const AppointmentForm = () => {
                 name='discovery'
                 label='How did you hear about us?'
                 placeholder='Select a source'
-                form={form}
                 values={discoveries}
               />
 
               {/* custom requests */}
-              <FormTextArea
+              <FormInput
                 name='addtlDetails'
                 label='Comments'
                 placeholder='Add any information you would like for me to know prior to your appointment.'
-                form={form}
+                type='textarea'
               />
             </div>
             {/* submit button */}
@@ -227,7 +205,7 @@ const AppointmentForm = () => {
             </Button>
           </section>
         </motion.form>
-      </Form>
+      </FormProvider>
       <InstructionsDrawer
         open={open}
         onOpenChange={handleOpenDrawer}
