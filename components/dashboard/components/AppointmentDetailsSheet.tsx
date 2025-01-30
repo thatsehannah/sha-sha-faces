@@ -28,7 +28,7 @@ const AppointmentDetail = ({ data, label }: AppointmentDetailProps) => {
           data
         )}`}
       >
-        {data}
+        {data ? data : '---'}
       </p>
       <p className='font-light text-[1rem] capitalize'>{label}</p>
     </div>
@@ -64,7 +64,7 @@ const AppointmentDetailsSheet = ({
               label='appointment created'
             />
             {isNew && (
-              <div className='w-12 h-8 text-center bg-lime-200 p-1 rounded-md text-black font-semibold'>
+              <div className='w-12 h-8 text-center bg-lime-200 p-1 rounded-md text-black font-semibold text-sm'>
                 New
               </div>
             )}
@@ -92,6 +92,10 @@ const AppointmentDetailsSheet = ({
           <AppointmentDetail
             data={appointment.email}
             label='email'
+          />
+          <AppointmentDetail
+            data={appointment.instagram}
+            label='instagram'
           />
           <AppointmentDetail
             data={appointment.discovery}

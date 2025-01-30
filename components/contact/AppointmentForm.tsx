@@ -42,6 +42,7 @@ const AppointmentForm = () => {
     defaultService = serviceNames[idx];
   }
 
+  //TODO: Add instagram to schema
   const form = useForm<z.infer<typeof appointmentSchema>>({
     resolver: zodResolver(appointmentSchema),
     defaultValues: {
@@ -54,6 +55,7 @@ const AppointmentForm = () => {
       addtlDetails: '',
       location: '',
       isInstructionsAcknowledged: false,
+      instagram: '',
     },
   });
 
@@ -129,6 +131,14 @@ const AppointmentForm = () => {
                 name='email'
                 label='Email'
                 placeholder='e.g. janedoe@domain.com'
+                form={form}
+              />
+
+              {/* TODO: Add instagram field */}
+              <FormInput
+                name='instagram'
+                label='Instagram Username'
+                placeholder='e.g. @username'
                 form={form}
               />
 

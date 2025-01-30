@@ -14,6 +14,7 @@ datasource db {
   directUrl     = env("DIRECT_URL")
 }
 
+// TODO: Add instagram field
 model Appointment {
   id  String  @id @default(uuid())
   name String
@@ -26,6 +27,7 @@ model Appointment {
   location String
   discovery String
   isInstructionsAcknowledged Boolean
+  instagram String @default("")
   status String @default("Pending")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

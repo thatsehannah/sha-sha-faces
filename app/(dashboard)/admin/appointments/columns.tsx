@@ -26,6 +26,17 @@ export const columns: ColumnDef<Appointment>[] = [
     header: 'Email',
   },
   {
+    accessorKey: 'instagram',
+    header: 'Instagram',
+    cell: ({ row }) => {
+      return (
+        <div>
+          {row.original.instagram !== '' ? row.original.instagram : '---'}
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: 'phoneNumber',
     header: 'Phone Number',
   },

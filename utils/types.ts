@@ -1,5 +1,6 @@
 import { Appointment as EditAppointment } from '@prisma/client';
 
+//TODO: Add instagram property
 export type Appointment = {
   name: string;
   email: string;
@@ -11,6 +12,7 @@ export type Appointment = {
   location: string;
   discovery: string;
   isInstructionsAcknowledged: boolean;
+  instagram: string;
 };
 
 export type AppointmentFormFields = keyof Appointment;

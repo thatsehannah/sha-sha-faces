@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { Appointment } from './types';
 
+//TODO: Add instagram property
 export const appointmentSchema = z.object({
   name: z
     .string()
@@ -37,6 +38,7 @@ export const appointmentSchema = z.object({
   isInstructionsAcknowledged: z.boolean().refine((val) => val === true, {
     message: "Please acknowledge that you've read the booking instructions",
   }),
+  instagram: z.string().nonempty('Provide your instagram username'),
 });
 
 export const validateAppointmentSchema = (data: Appointment) => {
