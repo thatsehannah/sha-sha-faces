@@ -19,7 +19,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
       <AppointmentDetailsSheet appointment={appointment}>
         <div className='w-full shadow-lg rounded-lg p-6 mb-8 bg-slate-100 dark:bg-sidebar hover:cursor-pointer hover:-translate-y-4 hover:scale-105 transition-all duration-300 relative'>
           {isNew && (
-            <div className='absolute top-2 right-2 bg-lime-200 p-1 rounded-md text-black font-semibold'>
+            <div className='absolute top-2 right-2 bg-lime-200 p-1 rounded-md text-black text-[12px] font-medium'>
               New
             </div>
           )}

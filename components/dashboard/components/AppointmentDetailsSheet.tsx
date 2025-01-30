@@ -24,7 +24,7 @@ const AppointmentDetail = ({ data, label }: AppointmentDetailProps) => {
       <p
         data-label={label}
         data-status={data}
-        className={`font-medium text-xl data-[label='email']:normal-case capitalize ${getStatusClasses(
+        className={`font-medium text-xl data-[label='email']:normal-case data-[label='instagram']:normal-case capitalize ${getStatusClasses(
           data
         )}`}
       >
@@ -64,7 +64,7 @@ const AppointmentDetailsSheet = ({
               label='appointment created'
             />
             {isNew && (
-              <div className='w-12 h-8 text-center bg-lime-200 p-1 rounded-md text-black font-semibold text-sm'>
+              <div className='w-10 h-6 text-center bg-lime-200 p-1 rounded-md text-black font-semibold text-[12px]'>
                 New
               </div>
             )}
