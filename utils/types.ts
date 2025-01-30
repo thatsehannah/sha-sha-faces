@@ -17,6 +17,7 @@ export type Appointment = {
 
 export type AppointmentFormFields = keyof Appointment;
 export type EditAppointmentFormFields = keyof EditAppointment;
+export type ReviewFormFields = keyof Review;
 
 export type Service = {
   name: string;
@@ -31,4 +32,13 @@ export type Service = {
       [key: string]: string | undefined;
     };
   };
+};
+
+export type Review = {
+  reviewer: string;
+  service: string;
+  email: string;
+  starCount: number;
+  comment: string;
+  wouldRecommend: boolean;
 };
