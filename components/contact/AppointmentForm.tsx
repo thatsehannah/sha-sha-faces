@@ -5,7 +5,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { appointmentSchema } from '@/utils/appointmentSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import services from '@/utils/services.json';
 import times from '@/utils/appointmentTimes.json';
 import discoveries from '@/utils/discoveries.json';
 import { useSearchParams } from 'next/navigation';
@@ -19,6 +18,7 @@ import { useToast } from '@/hooks/use-toast';
 import InstructionsDrawer from './InstructionsDrawer';
 import { RotateCw } from 'lucide-react';
 import { Button } from '../ui/button';
+import { getServiceNames } from '@/lib/utils';
 
 const AppointmentForm = () => {
   const { toast } = useToast();
@@ -31,7 +31,7 @@ const AppointmentForm = () => {
   //getting service (via index) from query string
   const searchParams = useSearchParams();
   const paramValue = searchParams.has('a') && searchParams.get('a');
-  const serviceNames = services.map((service) => service.name);
+  const serviceNames = getServiceNames();
 
   let defaultService: string = '';
   if (paramValue) {

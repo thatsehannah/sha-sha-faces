@@ -5,17 +5,19 @@ import { Review } from '@/utils/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { z } from 'zod';
-import { Form } from '../ui/form';
 import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { Label } from '../ui/label';
-import { Input } from '../ui/input';
-import { Textarea } from '../ui/textarea';
-import { Select, SelectTrigger, SelectValue } from '../ui/select';
 import { Star } from 'lucide-react';
 import { Button } from '../ui/button';
+import FormInput from '../form/FormInput';
+import FormDropdown from '../form/FormDropdown';
+import { getServiceNames } from '@/lib/utils';
+import FormRadioGroup from '../form/FormRadioGroup';
 
 const ReviewForm = () => {
+  const serviceNames = getServiceNames();
+
   const form = useForm<z.infer<typeof reviewSchema>>({
     resolver: zodResolver(reviewSchema),
     defaultValues: {
@@ -34,7 +36,7 @@ const ReviewForm = () => {
 
   return (
     <>
-      <Form {...form}>
+      <FormProvider {...form}>
         <motion.form
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,57 +46,55 @@ const ReviewForm = () => {
           onSubmit={form.handleSubmit(handleOnSubmit)}
         >
           <section className='bg-gradient-to-bl from-soft-pink to-secondary rounded-md p-8 lg:px-20 lg:py-8 drop-shadow-2xl'>
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
-              <div>
-                <Label>Name</Label>
-                <Input></Input>
-              </div>
-              <div>
-                <Label>Email</Label>
-                <Input></Input>
-              </div>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+              <FormInput
+                name='name'
+                label='Name'
+                placeholder='e.g. Jane Doe'
+              />
+              <FormInput
+                name='email'
+                label='Email'
+                placeholder='e.g. janedoe@gmail.com'
+              />
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+              <FormDropdown
+                name='service'
+                label='Service'
+                values={serviceNames}
+                placeholder='Select a service'
+              />
               <div>
-                <Label>Service</Label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                </Select>
-              </div>
-              <div>
-                <Label>Rating</Label>
-                <div className='flex flex-row gap-2'>
+                <Label className='text-black text-lg'>Rating</Label>
+                <div className='group flex flex-row gap-2 mt-2'>
                   {Array.from({ length: 5 }).map((_, idx) => (
                     <Star
                       key={idx}
                       size={30}
-                      className='hover:fill-yellow-300'
+                      className='hover:fill-yellow-300 stroke-black'
                       strokeWidth={1}
                     />
                   ))}
                 </div>
               </div>
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
-              <div>
-                <Label>Review</Label>
-                <Textarea></Textarea>
-              </div>
-              <div>
-                <Label>Would you recommend me?</Label>
-                {/* Add radio group for yes or no here */}
-                <div className='flex gap-2'>
-                  <p>yes</p>
-                  <p>no</p>
-                </div>
-              </div>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+              <FormInput
+                name='review'
+                label='Review'
+                type='textarea'
+              />
+              {/* Add radio group for yes or no here */}
+              <FormRadioGroup
+                name='wouldRecommend'
+                label='Would you recommend my services?'
+              />
             </div>
             <Button type='submit'>Submit Review</Button>
           </section>
         </motion.form>
-      </Form>
+      </FormProvider>
     </>
   );
 };

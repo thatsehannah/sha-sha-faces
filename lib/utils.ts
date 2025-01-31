@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import services from '@/utils/services.json';
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
@@ -25,4 +26,8 @@ export const getStatusClasses = (status: string) => {
   };
 
   return statusClasses[status];
+};
+
+export const getServiceNames = () => {
+  return services.map((service) => service.name);
 };

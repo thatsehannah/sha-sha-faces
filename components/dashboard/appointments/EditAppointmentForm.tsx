@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import services from '@/utils/services.json';
 import times from '@/utils/appointmentTimes.json';
 import EditTextInput from '../components/EditTextInput';
 import EditDropdown from '../components/EditDropdown';
@@ -21,6 +20,7 @@ import { DialogDescription } from '@radix-ui/react-dialog';
 import { updateAppointment } from '@/utils/actions';
 import { useToast } from '@/hooks/use-toast';
 import { redirect } from 'next/navigation';
+import { getServiceNames } from '@/lib/utils';
 
 type EditAppointmentProps = {
   appointment: Appointment;
@@ -31,7 +31,7 @@ const EditAppointmentForm = ({ appointment }: EditAppointmentProps) => {
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const { name, email, phoneNumber, service, location, time, status, id } =
     appointment;
-  const serviceNames = services.map((service) => service.name);
+  const serviceNames = getServiceNames();
 
   const form = useForm<Appointment>({
     defaultValues: {

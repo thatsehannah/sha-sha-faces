@@ -13,7 +13,7 @@ export const reviewSchema = z.object({
     .email({ message: 'Invalid email address' })
     .nonempty('Your email is required'),
   service: z.string().nonempty('Service is not selected'),
-  starCount: z.number().nonnegative(),
+  starCount: z.number().min(1).max(5),
   comment: z
     .string()
     .min(10, { message: 'Your review is too short' })
