@@ -17,15 +17,8 @@ export const isDateWithinTwoDays = (date: Date) => {
   );
 };
 
-export const getStatusClasses = (status: string) => {
-  const statusClasses: Record<string, string> = {
-    Pending: 'text-orange-400',
-    Confirmed: 'text-blue-400',
-    Completed: 'text-green-400',
-    Canceled: 'text-red-400',
-  };
-
-  return statusClasses[status];
+export const getStatusClasses = () => {
+  return "data-[status='Pending']:text-orange-400 data-[status='Confirmed']:text-blue-400 data-[status='Completed']:text-green-400 data-[status='Canceled']:text-red-400";
 };
 
 export const getServiceNames = () => {

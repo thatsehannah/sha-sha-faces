@@ -78,7 +78,7 @@ export const columns: ColumnDef<Appointment>[] = [
       return (
         <div
           data-status={row.original.status}
-          className={getStatusClasses(row.original.status)}
+          className={getStatusClasses()}
         >
           {row.original.status}
         </div>
