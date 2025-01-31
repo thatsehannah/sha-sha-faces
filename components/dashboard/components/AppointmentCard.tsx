@@ -52,9 +52,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
                   <BadgeCheck className='stroke-muted-foreground' />
                   <p
                     data-status={appointment.status}
-                    className={`lg:text-[16px] font-medium ${getStatusClasses(
-                      appointment.status
-                    )}`}
+                    className={`lg:text-[16px] font-medium ${getStatusClasses()}`}
                   >
                     {appointment.status}
                   </p>

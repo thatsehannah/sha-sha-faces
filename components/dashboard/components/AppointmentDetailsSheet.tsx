@@ -24,9 +24,7 @@ const AppointmentDetail = ({ data, label }: AppointmentDetailProps) => {
       <p
         data-label={label}
         data-status={data}
-        className={`font-medium text-xl data-[label='email']:normal-case data-[label='instagram']:normal-case capitalize ${getStatusClasses(
-          data
-        )}`}
+        className={`font-medium text-xl data-[label='email']:normal-case data-[label='instagram']:normal-case capitalize ${getStatusClasses()}`}
       >
         {data ? data : '---'}
       </p>

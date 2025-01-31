@@ -20,9 +20,7 @@ const OverviewCard = ({ title, value, caption }: OverviewCardProps) => {
       <CardContent className='p-6 pt-0'>
         <p
           data-status={title}
-          className={`lg:text-3xl text-2xl font-bold ${getStatusClasses(
-            title
-          )}`}
+          className={`lg:text-3xl text-2xl font-bold ${getStatusClasses()}`}
         >
           {value}
         </p>
