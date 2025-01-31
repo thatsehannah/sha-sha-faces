@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getStatusClasses } from '@/lib/utils';
 import React from 'react';
 
 type OverviewCardProps = {
@@ -20,7 +19,7 @@ const OverviewCard = ({ title, value, caption }: OverviewCardProps) => {
       <CardContent className='p-6 pt-0'>
         <p
           data-status={title}
-          className={`lg:text-3xl text-2xl font-bold ${getStatusClasses()}`}
+          className="lg:text-3xl text-2xl font-bold data-[status='Pending']:text-orange-400 data-[status='Confirmed']:text-blue-400 data-[status='Completed']:text-green-400 data-[status='Canceled']:text-red-400"
         >
           {value}
         </p>

@@ -7,10 +7,10 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Appointment } from '@prisma/client';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import React, { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
-import { getStatusClasses, isDateWithinTwoDays } from '@/lib/utils';
+import { isDateWithinTwoDays } from '@/lib/utils';
 import Link from 'next/link';
 
 type AppointmentDetailProps = {
@@ -24,7 +24,7 @@ const AppointmentDetail = ({ data, label }: AppointmentDetailProps) => {
       <p
         data-label={label}
         data-status={data}
-        className={`font-medium text-xl data-[label='email']:normal-case data-[label='instagram']:normal-case capitalize ${getStatusClasses()}`}
+        className="font-medium text-xl data-[label='email']:normal-case data-[label='instagram']:normal-case capitalize data-[status='Pending']:text-orange-400 data-[status='Confirmed']:text-blue-400 data-[status='Completed']:text-green-400 data-[status='Canceled']:text-red-400"
       >
         {data ? data : '---'}
       </p>
@@ -42,7 +42,20 @@ const AppointmentDetailsSheet = ({
   appointment,
   children,
 }: AppointmentDetailsProps) => {
-  const isNew = isDateWithinTwoDays(appointment.createdAt);
+  const {
+    createdAt,
+    id,
+    name,
+    status,
+    service,
+    date,
+    time,
+    location,
+    email,
+    instagram,
+    discovery,
+  } = appointment;
+  const isNew = isDateWithinTwoDays(createdAt);
 
   return (
     <Sheet>
@@ -50,7 +63,7 @@ const AppointmentDetailsSheet = ({
       <SheetContent className='overflow-y-scroll'>
         <SheetHeader className=''>
           <SheetTitle className='text-3xl lg:text-4xl text-left'>
-            {appointment.name}&apos;s Appointment
+            {name}&apos;s Appointment
           </SheetTitle>
           <Separator />
         </SheetHeader>
@@ -58,7 +71,7 @@ const AppointmentDetailsSheet = ({
         <div className='flex flex-col gap-8 my-8'>
           <div className='flex gap-2'>
             <AppointmentDetail
-              data={format(appointment.createdAt, 'PPPP')}
+              data={format(createdAt, 'PPPP')}
               label='appointment created'
             />
             {isNew && (
@@ -68,35 +81,35 @@ const AppointmentDetailsSheet = ({
             )}
           </div>
           <AppointmentDetail
-            data={appointment.status}
+            data={status}
             label='status'
           />
           <AppointmentDetail
-            data={appointment.service}
+            data={service}
             label='service'
           />
           <AppointmentDetail
-            data={format(appointment.date, 'PPPP')}
+            data={format(parseISO(date), 'PPPP')}
             label='date'
           />
           <AppointmentDetail
-            data={appointment.time}
+            data={time}
             label='time of appointment'
           />
           <AppointmentDetail
-            data={appointment.location}
+            data={location}
             label='location'
           />
           <AppointmentDetail
-            data={appointment.email}
+            data={email}
             label='email'
           />
           <AppointmentDetail
-            data={appointment.instagram}
+            data={instagram}
             label='instagram'
           />
           <AppointmentDetail
-            data={appointment.discovery}
+            data={discovery}
             label='how client discovered me'
           />
         </div>
@@ -105,9 +118,7 @@ const AppointmentDetailsSheet = ({
           className='w-full mt-4 text-lg'
           asChild
         >
-          <Link href={`/admin/appointments/${appointment.id}`}>
-            Edit Appointment
-          </Link>
+          <Link href={`/admin/appointments/${id}`}>Edit Appointment</Link>
         </Button>
       </SheetContent>
     </Sheet>

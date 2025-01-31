@@ -4,15 +4,18 @@ import React from 'react';
 import ServiceIconSvg from '@/components/services/ServiceIconSvg';
 import { BadgeCheck, MapPin, User } from 'lucide-react';
 import AppointmentDetailsSheet from './AppointmentDetailsSheet';
-import { getStatusClasses, isDateWithinTwoDays } from '@/lib/utils';
+import { isDateWithinTwoDays } from '@/lib/utils';
+import { format, parseISO } from 'date-fns';
 
 type AppointmentCardProps = {
   appointment: Appointment;
 };
 
 const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
-  const serviceSvg = services.find((s) => s.name === appointment.service)!.svg;
-  const isNew = isDateWithinTwoDays(appointment.createdAt);
+  const { name, date, time, location, service, status, createdAt } =
+    appointment;
+  const serviceSvg = services.find((s) => s.name === service)!.svg;
+  const isNew = isDateWithinTwoDays(createdAt);
 
   return (
     <>
@@ -31,30 +34,30 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
               />
             </div>
             <div className='flex flex-col justify-between gap-8'>
-              <p className='font-bold text-xl'>
-                <span className='capitalize'>{appointment.service}</span> @{' '}
-                {appointment.time}
-              </p>
+              <div>
+                <p className='font-bold text-xl'>
+                  <span className='capitalize'>{service}</span> @ {time}
+                </p>
+                <p className='italic font-light'>
+                  {format(parseISO(date), 'PPPP')}
+                </p>
+              </div>
               <div className='flex gap-10 text-muted-foreground'>
                 <div className='flex flex-col justify-center'>
                   <User className='stroke-primary' />
-                  <p className='lg:text-[16px] font-medium'>
-                    {appointment.name}
-                  </p>
+                  <p className='lg:text-[16px] font-medium'>{name}</p>
                 </div>
                 <div className='flex flex-col justify-center'>
                   <MapPin className='stroke-secondary' />
-                  <p className='lg:text-[16px] font-medium'>
-                    {appointment.location}
-                  </p>
+                  <p className='lg:text-[16px] font-medium'>{location}</p>
                 </div>
                 <div className='flex flex-col justify-center'>
                   <BadgeCheck className='stroke-muted-foreground' />
                   <p
-                    data-status={appointment.status}
-                    className={`lg:text-[16px] font-medium ${getStatusClasses()}`}
+                    data-status={status}
+                    className="lg:text-[16px] font-medium data-[status='Pending']:text-orange-400 data-[status='Confirmed']:text-blue-400 data-[status='Completed']:text-green-400 data-[status='Canceled']:text-red-400"
                   >
-                    {appointment.status}
+                    {status}
                   </p>
                 </div>
               </div>

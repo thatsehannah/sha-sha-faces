@@ -17,10 +17,6 @@ export const isDateWithinTwoDays = (date: Date) => {
   );
 };
 
-export const getStatusClasses = () => {
-  return "data-[status='Pending']:text-orange-400 data-[status='Confirmed']:text-blue-400 data-[status='Completed']:text-green-400 data-[status='Canceled']:text-red-400";
-};
-
 export const getServiceNames = () => {
   return services.map((service) => service.name);
 };

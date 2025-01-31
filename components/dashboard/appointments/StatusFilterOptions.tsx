@@ -39,7 +39,7 @@ const StatusFilterOptions = () => {
   }, [filterParam]);
 
   return (
-    <div className='flex items-center'>
+    <div className='flex w-1/2 lg:w-32 items-center'>
       <Select
         value={filterValue}
         onValueChange={handleStatusFilter}

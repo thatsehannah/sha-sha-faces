@@ -47,7 +47,7 @@ const SearchFilter = () => {
         placeholder='Search by name or email'
         value={filterValue}
         onChange={(e) => setFilterValue(e.target.value)}
-        className='w-44 lg:w-52'
+        className='w-3/4 lg:w-64'
       />
       <Button onClick={handleSearchFilter}>Search</Button>
       <Button
