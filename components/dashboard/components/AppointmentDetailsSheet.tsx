@@ -33,7 +33,7 @@ const AppointmentDetail = ({ data, label }: AppointmentDetailProps) => {
   );
 };
 
-type AppointmentDetailsProps = {
+type AppointmentDetailsSheetProps = {
   appointment: Appointment;
   children: ReactNode;
 };
@@ -41,7 +41,7 @@ type AppointmentDetailsProps = {
 const AppointmentDetailsSheet = ({
   appointment,
   children,
-}: AppointmentDetailsProps) => {
+}: AppointmentDetailsSheetProps) => {
   const {
     createdAt,
     id,
