@@ -8,8 +8,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from '@/components/ui/select';
-import { EditAppointmentFormFields } from '@/utils/types';
-import { Appointment } from '@prisma/client';
+import { AppointmentWithService } from '@/utils/types';
 import { SelectValue } from '@radix-ui/react-select';
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
@@ -17,8 +16,8 @@ import { UseFormReturn } from 'react-hook-form';
 type EditDropdownProps = {
   label: string;
   values: string[];
-  name: EditAppointmentFormFields;
-  form: UseFormReturn<Appointment>;
+  name: keyof AppointmentWithService;
+  form: UseFormReturn<AppointmentWithService>;
 };
 
 const EditDropdown = ({ label, values, name, form }: EditDropdownProps) => {

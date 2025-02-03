@@ -3,7 +3,6 @@
 import React, { Suspense, useState } from 'react';
 import AppointmentGrid from './AppointmentGrid';
 import AppointmentTable from './AppointmentTable';
-import { Appointment } from '@prisma/client';
 import { Button } from '@/components/ui/button';
 import { LayoutGrid, Table } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
@@ -11,9 +10,10 @@ import Container from '@/components/global/Container';
 import StatusFilterOptions from '../appointments/StatusFilterOptions';
 import { useSearchParams } from 'next/navigation';
 import SearchFilter from '../appointments/SearchFilter';
+import { AppointmentWithService } from '@/utils/types';
 
 type AppointmentContainerProps = {
-  appointments: Appointment[];
+  appointments: AppointmentWithService[];
 };
 
 const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {

@@ -1,9 +1,10 @@
 import React from 'react';
 import ServiceIconSvg from './ServiceIconSvg';
-import { Banknote, Clock, Star } from 'lucide-react';
+import { Banknote, Clock } from 'lucide-react';
 import { Button } from '../ui/button';
 import Link from 'next/link';
-import { Service } from '@/utils/types';
+import { Service } from '@prisma/client';
+import { ServiceSvg } from '@/utils/types';
 
 type ServiceDetailsProps = {
   index: number;
@@ -11,7 +12,7 @@ type ServiceDetailsProps = {
 };
 
 const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
-  const { name, price, duration, description, popular, svg } = service;
+  const { name, price, duration, description, svgData } = service;
 
   const detailsBackground =
     index % 2 === 0 ? 'bg-gradient-to-br' : 'bg-gradient-to-tr';
@@ -21,7 +22,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
       <div className='lg:w-1/2 lg:h-[80vh] flex justify-center items-center'>
         <div className='hidden lg:flex relative w-full h-full justify-center items-center py-8 lg:py-0'>
           <ServiceIconSvg
-            svg={svg}
+            svg={svgData as ServiceSvg}
             className='fill-primary'
           />
         </div>
@@ -32,13 +33,13 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
         <div className='flex flex-col lg:p-12 p-8'>
           <div className='lg:hidden flex justify-center items-center mb-8'>
             <ServiceIconSvg
-              svg={svg}
+              svg={svgData as ServiceSvg}
               className='fill-primary'
             />
           </div>
           <div className='mb-6'>
             <p className='capitalize text-3xl lg:text-4xl font-bold'>{name}</p>
-            {popular && (
+            {/* {popular && (
               <div className='flex gap-2 mt-1'>
                 <Star
                   fill='gold'
@@ -46,12 +47,12 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
                 />
                 <p className='uppercase'>popular service</p>
               </div>
-            )}
+            )} */}
           </div>
           <div className='flex justify-between text-2xl mb-12'>
             <div className='flex gap-3 p-4 rounded-full bg-accent font-bold shadow-md'>
               <Clock />
-              <p className='text-xl'>{duration} hours</p>
+              <p className='text-xl'>{duration}</p>
             </div>
             <div className='flex gap-3 p-4 rounded-full bg-accent font-bold shadow-md'>
               <Banknote

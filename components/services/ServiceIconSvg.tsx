@@ -1,14 +1,10 @@
 import { cn } from '@/lib/utils';
+import { ServiceSvg } from '@/utils/types';
 import React from 'react';
 
 type ServiceIconSvgProps = {
   className?: string;
-  svg: {
-    pathData: string;
-    properties: {
-      [key: string]: string | undefined;
-    };
-  };
+  svg: ServiceSvg;
 };
 
 const ServiceIconSvg = ({ className, svg }: ServiceIconSvgProps) => {

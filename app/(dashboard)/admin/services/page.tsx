@@ -1,12 +1,14 @@
 import ServiceAccordion from '@/components/dashboard/services/ServiceAccordion';
 import Container from '@/components/global/Container';
 import { Separator } from '@/components/ui/separator';
-import services from '@/utils/services.json';
+import { fetchAllServices } from '@/utils/actions';
 import { SquarePlus } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
-const AdminServicesPage = () => {
+const AdminServicesPage = async () => {
+  const services = await fetchAllServices();
+
   return (
     <main>
       <Container className='py-20 w-screen lg:w-[80vw]'>

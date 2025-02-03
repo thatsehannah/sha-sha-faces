@@ -1,11 +1,12 @@
-'use client';
-
 import AppointmentForm from '@/components/contact/AppointmentForm';
 import Container from '@/components/global/Container';
 import SectionTitle from '@/components/global/SectionTitle';
+import { fetchServiceNames } from '@/utils/actions';
 import React, { Suspense } from 'react';
 
-const ContactPage = () => {
+const ContactPage = async () => {
+  const serviceData = await fetchServiceNames();
+
   return (
     <main className='relative'>
       <SectionTitle
@@ -14,7 +15,7 @@ const ContactPage = () => {
       />
       <Container className='py-20 flex flex-col justify-center items-center'>
         <Suspense>
-          <AppointmentForm />
+          <AppointmentForm serviceData={serviceData} />
         </Suspense>
       </Container>
     </main>

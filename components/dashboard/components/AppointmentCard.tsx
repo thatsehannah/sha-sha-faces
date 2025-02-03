@@ -1,20 +1,19 @@
-import { Appointment } from '@prisma/client';
-import services from '@/utils/services.json';
 import React from 'react';
 import ServiceIconSvg from '@/components/services/ServiceIconSvg';
 import { BadgeCheck, MapPin, User } from 'lucide-react';
 import AppointmentDetailsSheet from './AppointmentDetailsSheet';
 import { isDateWithinTwoDays } from '@/lib/utils';
 import { format, parseISO } from 'date-fns';
+import { AppointmentWithService, ServiceSvg } from '@/utils/types';
 
 type AppointmentCardProps = {
-  appointment: Appointment;
+  appointment: AppointmentWithService;
 };
 
 const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
-  const { name, date, time, location, service, status, createdAt } =
+  const { name, date, time, location, status, createdAt, service } =
     appointment;
-  const serviceSvg = services.find((s) => s.name === service)!.svg;
+
   const isNew = isDateWithinTwoDays(createdAt);
 
   return (
@@ -29,14 +28,14 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
           <div className='flex gap-6 h-full'>
             <div className='w-1/5 bg-secondary hidden xl:flex items-center justify-center p-4 rounded-md'>
               <ServiceIconSvg
-                svg={serviceSvg}
+                svg={service.svgData as ServiceSvg}
                 className='w-4 h-4 lg:w-16 lg:h-16'
               />
             </div>
             <div className='flex flex-col justify-between gap-8'>
               <div>
                 <p className='font-bold text-xl'>
-                  <span className='capitalize'>{service}</span> @ {time}
+                  <span className='capitalize'>{service.name}</span> @ {time}
                 </p>
                 <p className='italic font-light'>
                   {format(parseISO(date), 'PPPP')}

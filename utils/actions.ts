@@ -1,8 +1,8 @@
 'use server';
 
 import { validateAppointmentSchema } from './appointmentSchema';
-import { Appointment as NewAppointment } from './types';
-import { Appointment } from '@prisma/client';
+import { AppointmentWithService, Appointment as NewAppointment } from './types';
+import { Prisma } from '@prisma/client';
 import db from './db';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
@@ -20,6 +20,9 @@ export const createAppointmentAction = async (
     await db.appointment.create({
       data: {
         ...result,
+        service: {
+          connect: { name: result.service },
+        },
         date: result.date.split('T')[0],
         addtlDetails: result.addtlDetails ? result.addtlDetails : '',
       },
@@ -43,18 +46,28 @@ export const createAppointmentAction = async (
   }
 };
 
-export const fetchAllAppointments = async () => {
+export const fetchAllAppointments = async (): Promise<
+  AppointmentWithService[]
+> => {
   return await db.appointment.findMany({
     orderBy: {
       updatedAt: 'desc',
     },
+    include: {
+      service: true,
+    },
   });
 };
 
-export const fetchAppointmentById = async (id: string) => {
+export const fetchAppointmentById = async (
+  id: string
+): Promise<AppointmentWithService> => {
   const appointment = await db.appointment.findFirst({
     where: {
       id,
+    },
+    include: {
+      service: true,
     },
   });
 
@@ -65,9 +78,43 @@ export const fetchAppointmentById = async (id: string) => {
   return appointment;
 };
 
+export const fetchServiceSvgByName = async (name: string) => {
+  const svgData = await db.service.findFirst({
+    where: {
+      name,
+    },
+    select: {
+      svgData: true,
+    },
+  });
+
+  return svgData;
+};
+
+export const fetchServiceById = async (id: number) => {
+  const service = await db.service.findFirst({
+    where: {
+      id,
+    },
+  });
+
+  return service;
+};
+
+export const fetchServiceNames = async () => {
+  const serviceNames = await db.service.findMany({
+    select: {
+      name: true,
+      id: true,
+    },
+  });
+
+  return serviceNames;
+};
+
 export const updateAppointment = async (
   id: string,
-  updates: Partial<Appointment>
+  updates: Partial<Prisma.AppointmentUpdateInput>
 ): Promise<{
   message: string;
   title: string;
@@ -78,7 +125,7 @@ export const updateAppointment = async (
       where: {
         id,
       },
-      data: { ...updates },
+      data: updates,
     });
 
     revalidatePath('/admin');
@@ -97,6 +144,50 @@ export const updateAppointment = async (
   }
 };
 
+export const updateService = async (
+  id: number,
+  updates: Partial<Prisma.ServiceUpdateInput>
+): Promise<{
+  message: string;
+  title: string;
+  type: 'success' | 'destructive';
+}> => {
+  try {
+    await db.service.update({
+      where: {
+        id,
+      },
+      data: updates,
+    });
+
+    revalidatePath('/');
+    revalidatePath('/admin/services');
+    revalidatePath('/services');
+
+    return {
+      type: 'success',
+      title: 'Success! ✅',
+      message: 'Service updated 💋.',
+    };
+  } catch (error) {
+    return {
+      type: 'destructive',
+      title: 'Uh oh! ☹️',
+      message: error instanceof Error ? error.message : 'An error occurred.',
+    };
+  }
+};
+
 export const fetchAllServices = async () => {
   return db.service.findMany();
 };
+
+//TODO: configure this to work
+// export const fetchServiceWithAppointments = async (id: number) => {
+//   const serviceWithAppointments = await db.service.findUnique({
+//     where: { id },
+//     include: { Appointment: true },
+//   });
+
+//   return serviceWithAppointments;
+// };

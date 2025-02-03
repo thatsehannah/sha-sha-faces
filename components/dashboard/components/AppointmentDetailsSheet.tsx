@@ -6,12 +6,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { Appointment } from '@prisma/client';
 import { format, parseISO } from 'date-fns';
 import React, { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { isDateWithinTwoDays } from '@/lib/utils';
 import Link from 'next/link';
+import { AppointmentWithService } from '@/utils/types';
 
 type AppointmentDetailProps = {
   data: string;
@@ -34,7 +34,7 @@ const AppointmentDetail = ({ data, label }: AppointmentDetailProps) => {
 };
 
 type AppointmentDetailsSheetProps = {
-  appointment: Appointment;
+  appointment: AppointmentWithService;
   children: ReactNode;
 };
 
@@ -85,7 +85,7 @@ const AppointmentDetailsSheet = ({
             label='status'
           />
           <AppointmentDetail
-            data={service}
+            data={service.name}
             label='service'
           />
           <AppointmentDetail

@@ -14,7 +14,6 @@ datasource db {
   directUrl     = env("DIRECT_URL")
 }
 
-// TODO: Add instagram field
 model Appointment {
   id  String  @id @default(uuid())
   name String
@@ -22,29 +21,30 @@ model Appointment {
   phoneNumber String
   date String
   time String
-  service String
+  serviceId Int
+  service Service @relation(fields: [serviceId], references: [id])
   addtlDetails String
   location String
   discovery String
   isInstructionsAcknowledged Boolean
-  instagram String @default("")
+  instagram String
   status String @default("Pending")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Service {
-  id String @id @default(uuid())
-  name String
+  id Int @id @default(autoincrement())
+  name String @unique
   price Int
   isSale Boolean @default(false)
   salePrice Int @default(0)
   duration String
   description String
-  popular Boolean
-  svgUrl String
+  svgData Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Appointment Appointment[]
 }
 
 model Review {

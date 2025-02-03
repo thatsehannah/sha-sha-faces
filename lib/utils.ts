@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import services from '@/utils/services.json';
+// import { Service } from '@prisma/client';
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
@@ -17,6 +17,7 @@ export const isDateWithinTwoDays = (date: Date) => {
   );
 };
 
-export const getServiceNames = () => {
-  return services.map((service) => service.name);
+export const calculatePopularService = () => {
+  //TODO: get the number of appointments created for each service [{service: Service, appointmentCount: number}]
+  //sort by appointmentCount descending, then take the first two from the array, then you have you popular services
 };

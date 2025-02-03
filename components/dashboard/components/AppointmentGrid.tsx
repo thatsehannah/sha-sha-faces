@@ -1,9 +1,9 @@
-import { Appointment } from '@prisma/client';
 import React from 'react';
 import AppointmentCard from './AppointmentCard';
+import { AppointmentWithService } from '@/utils/types';
 
 type AppointmendGridProps = {
-  appointments: Appointment[];
+  appointments: AppointmentWithService[];
 };
 
 const AppointmentGrid = ({ appointments }: AppointmendGridProps) => {

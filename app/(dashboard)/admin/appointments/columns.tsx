@@ -5,14 +5,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Appointment } from '@prisma/client';
+import { AppointmentWithService } from '@/utils/types';
 import { ColumnDef } from '@tanstack/react-table';
 import { format, parseISO } from 'date-fns';
 import { MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
-export const columns: ColumnDef<Appointment>[] = [
+export const columns: ColumnDef<AppointmentWithService>[] = [
   {
     accessorKey: 'name',
     header: 'Name',
@@ -56,7 +56,7 @@ export const columns: ColumnDef<Appointment>[] = [
     accessorKey: 'service',
     header: 'Service',
     cell: ({ row }) => {
-      return <div className='capitalize'>{row.original.service}</div>;
+      return <div className='capitalize'>{row.original.service.name}</div>;
     },
   },
   {

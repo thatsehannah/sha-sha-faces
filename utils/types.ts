@@ -1,6 +1,5 @@
-import { Appointment as EditAppointment } from '@prisma/client';
+import { Appointment as EditAppointment, Prisma } from '@prisma/client';
 
-//TODO: Add instagram property
 export type Appointment = {
   name: string;
   email: string;
@@ -34,6 +33,13 @@ export type Service = {
   };
 };
 
+export type ServiceSvg = {
+  pathData: string;
+  properties: {
+    [key: string]: string | undefined;
+  };
+};
+
 export type Review = {
   reviewer: string;
   service: string;
@@ -42,3 +48,7 @@ export type Review = {
   comment: string;
   wouldRecommend: boolean;
 };
+
+export type AppointmentWithService = Prisma.AppointmentGetPayload<{
+  include: { service: true };
+}>;

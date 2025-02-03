@@ -1,10 +1,10 @@
 import { columns } from '@/app/(dashboard)/admin/appointments/columns';
-import { Appointment } from '@prisma/client';
 import React from 'react';
 import DataTable from './DataTable';
+import { AppointmentWithService } from '@/utils/types';
 
 type AppointmentTableProps = {
-  appointments: Appointment[];
+  appointments: AppointmentWithService[];
 };
 
 const AppointmentTable = ({ appointments }: AppointmentTableProps) => {

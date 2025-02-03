@@ -20,20 +20,24 @@ import { DialogDescription } from '@radix-ui/react-dialog';
 import { updateAppointment } from '@/utils/actions';
 import { useToast } from '@/hooks/use-toast';
 import { redirect } from 'next/navigation';
-import { getServiceNames } from '@/lib/utils';
+import { AppointmentWithService } from '@/utils/types';
 
 type EditAppointmentProps = {
-  appointment: Appointment;
+  appointment: AppointmentWithService;
+  partialServices: { id: number; name: string }[];
 };
 
-const EditAppointmentForm = ({ appointment }: EditAppointmentProps) => {
+const EditAppointmentForm = ({
+  appointment,
+  partialServices,
+}: EditAppointmentProps) => {
   const { toast } = useToast();
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const { name, email, phoneNumber, service, location, time, status, id } =
     appointment;
-  const serviceNames = getServiceNames();
+  const serviceNames = partialServices.map((s) => s.name);
 
-  const form = useForm<Appointment>({
+  const form = useForm<AppointmentWithService>({
     defaultValues: {
       name,
       email,

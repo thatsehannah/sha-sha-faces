@@ -4,9 +4,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Service } from '@/utils/types';
 import React from 'react';
 import ServiceDetailsContent from './ServiceDetailsContent';
+import { Service } from '@prisma/client';
 
 type ServiceAccordionProps = {
   service: Service;

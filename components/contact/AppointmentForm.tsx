@@ -18,11 +18,15 @@ import { useToast } from '@/hooks/use-toast';
 import InstructionsDrawer from './InstructionsDrawer';
 import { RotateCw } from 'lucide-react';
 import { Button } from '../ui/button';
-import { getServiceNames } from '@/lib/utils';
 
-const AppointmentForm = () => {
+type AppointmentFormProps = {
+  serviceData: { name: string; id: number }[];
+};
+
+const AppointmentForm = ({ serviceData }: AppointmentFormProps) => {
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
+  const serviceNames = serviceData.map((s) => s.name);
 
   const handleOpenDrawer = () => {
     setOpen(!open);
@@ -31,12 +35,11 @@ const AppointmentForm = () => {
   //getting service (via index) from query string
   const searchParams = useSearchParams();
   const paramValue = searchParams.has('a') && searchParams.get('a');
-  const serviceNames = getServiceNames();
 
   let defaultService: string = '';
   if (paramValue) {
     const idx = parseInt(paramValue);
-    defaultService = serviceNames[idx];
+    defaultService = serviceData.find((s) => s.id === idx)?.name || '';
   }
 
   const form = useForm<z.infer<typeof appointmentSchema>>({

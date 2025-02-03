@@ -13,23 +13,18 @@ import { Star } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Service } from '@prisma/client';
 
 type ServiceCardProps = {
-  idx: number;
-  service: {
-    name: string;
-    price: number;
-    duration: number;
-    description: string;
-  };
+  service: Service;
 };
 
-const ServicesCard = ({ idx, service }: ServiceCardProps) => {
+const ServicesCard = ({ service }: ServiceCardProps) => {
   return (
     <motion.article
       initial={{ opacity: 0, y: -100 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, delay: idx * 0.2 }}
+      transition={{ duration: 1, delay: service.id * 0.2 }}
       viewport={{ once: true, amount: 0.5 }}
       exit={{ opacity: 0, y: 100 }}
     >
@@ -44,9 +39,7 @@ const ServicesCard = ({ idx, service }: ServiceCardProps) => {
           </CardTitle>
           <CardDescription className='text-lg text-right'>
             <div className='flex justify-between'>
-              <p>
-                {service.duration} hour{service.duration === 1 ? '' : 's'}{' '}
-              </p>
+              <p>{service.duration}</p>
               <p>${service.price}</p>
             </div>
           </CardDescription>
@@ -59,7 +52,7 @@ const ServicesCard = ({ idx, service }: ServiceCardProps) => {
             className='bg-secondary text-md'
             asChild
           >
-            <Link href={`/contact?a=${idx}`}>Book Now</Link>
+            <Link href={`/contact?a=${service.id}`}>Book Now</Link>
           </Button>
         </CardFooter>
       </Card>
