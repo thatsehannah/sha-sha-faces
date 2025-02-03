@@ -125,17 +125,21 @@ export const updateAppointment = async (
   type: 'success' | 'destructive';
 }> => {
   try {
+    const { service, ...otherUpdates } = updates;
+
     await db.appointment.update({
       where: {
         id,
       },
       data: {
-        ...updates,
-        service: {
-          connect: {
-            name: updates.service,
+        ...otherUpdates,
+        ...(service && {
+          service: {
+            connect: {
+              name: updates.service,
+            },
           },
-        },
+        }),
       },
     });
 
