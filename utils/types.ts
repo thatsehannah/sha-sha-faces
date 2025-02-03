@@ -1,4 +1,4 @@
-import { Appointment as EditAppointment, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 export type Appointment = {
   name: string;
@@ -14,8 +14,18 @@ export type Appointment = {
   instagram: string;
 };
 
+export type EditAppointment = {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  service: string;
+  location: string;
+  time: string;
+  status: string;
+};
+
 export type AppointmentFormFields = keyof Appointment;
-export type EditAppointmentFormFields = keyof EditAppointment;
+
 export type ReviewFormFields = keyof Review;
 
 export type Service = {

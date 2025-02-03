@@ -12,12 +12,13 @@ import { Star } from 'lucide-react';
 import { Button } from '../ui/button';
 import FormInput from '../form/FormInput';
 import FormDropdown from '../form/FormDropdown';
-import { getServiceNames } from '@/lib/utils';
 import FormRadioGroup from '../form/FormRadioGroup';
 
-const ReviewForm = () => {
-  const serviceNames = getServiceNames();
+type ReviewFormProps = {
+  serviceNames: string[];
+};
 
+const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
   const form = useForm<z.infer<typeof reviewSchema>>({
     resolver: zodResolver(reviewSchema),
     defaultValues: {

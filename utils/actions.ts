@@ -1,7 +1,11 @@
 'use server';
 
 import { validateAppointmentSchema } from './appointmentSchema';
-import { AppointmentWithService, Appointment as NewAppointment } from './types';
+import {
+  AppointmentWithService,
+  EditAppointment,
+  Appointment as NewAppointment,
+} from './types';
 import { Prisma } from '@prisma/client';
 import db from './db';
 import { redirect } from 'next/navigation';
@@ -101,7 +105,7 @@ export const fetchServiceById = async (id: number) => {
   return service;
 };
 
-export const fetchServiceNames = async () => {
+export const fetchServiceInfo = async () => {
   const serviceNames = await db.service.findMany({
     select: {
       name: true,
@@ -114,7 +118,7 @@ export const fetchServiceNames = async () => {
 
 export const updateAppointment = async (
   id: string,
-  updates: Partial<Prisma.AppointmentUpdateInput>
+  updates: EditAppointment
 ): Promise<{
   message: string;
   title: string;
@@ -125,7 +129,14 @@ export const updateAppointment = async (
       where: {
         id,
       },
-      data: updates,
+      data: {
+        ...updates,
+        service: {
+          connect: {
+            name: updates.service,
+          },
+        },
+      },
     });
 
     revalidatePath('/admin');

@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import times from '@/utils/appointmentTimes.json';
 import EditTextInput from '../components/EditTextInput';
 import EditDropdown from '../components/EditDropdown';
-import { Appointment } from '@prisma/client';
 import { STATUSES } from '@/utils/constants';
 import { Button } from '@/components/ui/button';
 import {
@@ -20,40 +19,43 @@ import { DialogDescription } from '@radix-ui/react-dialog';
 import { updateAppointment } from '@/utils/actions';
 import { useToast } from '@/hooks/use-toast';
 import { redirect } from 'next/navigation';
-import { AppointmentWithService } from '@/utils/types';
+import { AppointmentWithService, EditAppointment } from '@/utils/types';
 
 type EditAppointmentProps = {
   appointment: AppointmentWithService;
-  partialServices: { id: number; name: string }[];
+  serviceInfo: { id: number; name: string }[];
 };
 
 const EditAppointmentForm = ({
   appointment,
-  partialServices,
+  serviceInfo,
 }: EditAppointmentProps) => {
   const { toast } = useToast();
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const { name, email, phoneNumber, service, location, time, status, id } =
     appointment;
-  const serviceNames = partialServices.map((s) => s.name);
+  const serviceNames = serviceInfo.map((s) => s.name);
 
-  const form = useForm<AppointmentWithService>({
+  const form = useForm<EditAppointment>({
     defaultValues: {
       name,
       email,
       phoneNumber,
-      service,
+      service: service.name,
       location,
       time,
       status,
     },
   });
 
-  const handleSubmit = async (values: Appointment) => {
+  const handleSubmit = async (values: EditAppointment) => {
     const dirtyFields = Object.keys(form.formState.dirtyFields);
     const updatedValues = Object.fromEntries(
-      dirtyFields.map((field) => [field, values[field as keyof Appointment]])
-    ) as Partial<Appointment>;
+      dirtyFields.map((field) => [
+        field,
+        values[field as keyof EditAppointment],
+      ])
+    ) as EditAppointment;
 
     const result = await updateAppointment(id, updatedValues);
 

@@ -8,16 +8,16 @@ import {
   SelectItem,
   SelectTrigger,
 } from '@/components/ui/select';
-import { AppointmentWithService } from '@/utils/types';
 import { SelectValue } from '@radix-ui/react-select';
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
+import { EditAppointment } from '@/utils/types';
 
 type EditDropdownProps = {
   label: string;
   values: string[];
-  name: keyof AppointmentWithService;
-  form: UseFormReturn<AppointmentWithService>;
+  name: keyof EditAppointment;
+  form: UseFormReturn<EditAppointment>;
 };
 
 const EditDropdown = ({ label, values, name, form }: EditDropdownProps) => {

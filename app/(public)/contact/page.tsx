@@ -1,11 +1,11 @@
 import AppointmentForm from '@/components/contact/AppointmentForm';
 import Container from '@/components/global/Container';
 import SectionTitle from '@/components/global/SectionTitle';
-import { fetchServiceNames } from '@/utils/actions';
+import { fetchServiceInfo } from '@/utils/actions';
 import React, { Suspense } from 'react';
 
 const ContactPage = async () => {
-  const serviceData = await fetchServiceNames();
+  const serviceData = await fetchServiceInfo();
 
   return (
     <main className='relative'>
