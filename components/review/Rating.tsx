@@ -63,7 +63,6 @@ const Rating = ({ name }: RatingProps) => {
   } = useFormContext();
 
   const selectedValue = watch(name);
-  console.log(selectedValue);
 
   return (
     <div className='mb-8'>

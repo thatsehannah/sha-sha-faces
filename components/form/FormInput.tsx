@@ -79,7 +79,7 @@ const FormInput = ({
             id={name}
             {...register(name)}
             placeholder={placeholder}
-            className='h-32 mt-2 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black shadow-none rounded-md text-xl md:text-2xl font-semibold'
+            className='h-32 mt-2 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black shadow-none rounded-md text-xl md:text-lg font-semibold'
           />
         )}
         {errors[name] && (

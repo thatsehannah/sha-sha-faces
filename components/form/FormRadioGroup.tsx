@@ -11,46 +11,59 @@ type FormRadioGroupProps = {
 
 const FormRadioGroup = ({ name, label }: FormRadioGroupProps) => {
   const {
-    register,
     setValue,
     watch,
     formState: { errors },
+    clearErrors,
   } = useFormContext();
   const fieldValue = watch(name);
-  const error = errors[name]?.message as string | undefined;
 
   return (
     <div className='mb-8'>
-      <Label className='text-lg text-black'>{label}</Label>
+      <div>
+        <Label
+          htmlFor={name}
+          className='text-black text-lg'
+        >
+          {label}
+        </Label>
+      </div>
       <RadioGroup
-        className='mt-2 space-y-2'
-        value={fieldValue} // Get the value from RHF's watch
-        onValueChange={(value) => setValue(name, value === 'true')}
+        className='flex gap-8 mt-2'
+        value={
+          fieldValue === true ? 'yes' : fieldValue === false ? 'no' : undefined
+        }
+        onValueChange={(value) => {
+          setValue(name, value === 'yes');
+          clearErrors(name);
+        }}
       >
-        <Label
-          htmlFor={`${name}-true`}
-          className='flex items-center space-x-2'
-        >
+        <div className='flex items-center gap-2'>
           <RadioGroupItem
-            id={`${name}-true`}
-            value='true'
-            {...register(name)}
+            value='yes'
+            id='yes'
           />
-          <span className='text-black'>Yes</span>
-        </Label>
-        <Label
-          htmlFor={`${name}-false`}
-          className='flex items-center space-x-2'
-        >
+          <Label
+            htmlFor='yes'
+            className='text-xl'
+          >
+            Yes
+          </Label>
+        </div>
+        <div className='flex items-center gap-2'>
           <RadioGroupItem
-            id={`${name}-false`}
-            value='false'
-            {...register(name)}
+            value='no'
+            id='no'
           />
-          <span className='text-black'>No</span>
-        </Label>
+          <Label
+            htmlFor='no'
+            className='text-xl'
+          >
+            No
+          </Label>
+        </div>
       </RadioGroup>
-      {error && <FormError>{error}</FormError>}
+      {errors[name] && <FormError>{errors[name].message as string}</FormError>}
     </div>
   );
 };

@@ -8,18 +8,18 @@ export const appointmentSchema = z.object({
     .max(50, {
       message: 'Name is too long, should be less than 50 characters.',
     })
-    .nonempty('Your name is required'),
+    .nonempty('Your name is required.'),
   email: z
     .string()
-    .email({ message: 'Invalid email address' })
-    .nonempty('Your email is required'),
+    .email({ message: 'Invalid email address.' })
+    .nonempty('Your email is required.'),
   phoneNumber: z
     .string()
-    .length(10, { message: 'Invalid phone number' })
-    .nonempty('Your phone number is required'),
+    .length(10, { message: 'Invalid phone number.' })
+    .nonempty('Your phone number is required.'),
   date: z
     .string()
-    .nonempty('Please choose a date')
+    .nonempty('Please choose a date.')
     .refine(
       (value) => {
         const date = new Date(value);
@@ -27,18 +27,18 @@ export const appointmentSchema = z.object({
       },
       {
         message:
-          'Date must be a valid ISO string (e.g., 2025-01-22T00:00:00.000Z)',
+          'Date must be a valid ISO string (e.g., 2025-01-22T00:00:00.000Z).',
       }
     ),
   time: z.string().nonempty('Please select a time'),
-  location: z.string().nonempty('Your desired location is required'),
-  service: z.string().nonempty('Service is not selected'),
-  discovery: z.string({ required_error: 'Please select a source' }),
+  location: z.string().nonempty('Your desired location is required.'),
+  service: z.string().nonempty('Service is not selected.'),
+  discovery: z.string({ required_error: 'Please select a source.' }),
   addtlDetails: z.string().optional(),
   isInstructionsAcknowledged: z.boolean().refine((val) => val === true, {
-    message: "Please acknowledge that you've read the booking instructions",
+    message: "Please acknowledge that you've read the booking instructions.",
   }),
-  instagram: z.string().nonempty('Provide your instagram username'),
+  instagram: z.string().nonempty('Provide your instagram username.'),
 });
 
 export const validateAppointmentSchema = (data: Appointment) => {
