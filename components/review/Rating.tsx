@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Angry, Frown, Laugh, Meh, Smile } from 'lucide-react';
 import { Label } from '../ui/label';
 import {
@@ -13,14 +13,42 @@ import { useFormContext } from 'react-hook-form';
 import FormError from '../form/FormError';
 
 const ratings = [
-  { value: 'very-unsatisfied', label: 'Very Unsatisifed', icon: Angry },
-  { value: 'unsatisfied', label: 'Unsatisfied', icon: Frown },
-  { value: 'neutral', label: 'Neutral', icon: Meh },
-  { value: 'satisfied', label: 'Satisfied', icon: Smile },
-  { value: 'very-satisfied', label: 'Very Satisfied', icon: Laugh },
-] as const;
-
-type RatingType = (typeof ratings)[number]['value'];
+  {
+    value: 'very-unsatisfied',
+    label: 'Very Unsatisifed',
+    icon: Angry,
+    hoverColor: 'hover:fill-red-600',
+    fillColor: 'fill-red-600',
+  },
+  {
+    value: 'unsatisfied',
+    label: 'Unsatisfied',
+    icon: Frown,
+    hoverColor: 'hover:fill-orange-500',
+    fillColor: 'fill-orange-500',
+  },
+  {
+    value: 'neutral',
+    label: 'Neutral',
+    icon: Meh,
+    hoverColor: 'hover:fill-yellow-500',
+    fillColor: 'fill-yellow-500',
+  },
+  {
+    value: 'satisfied',
+    label: 'Satisfied',
+    icon: Smile,
+    hoverColor: 'hover:fill-green-500',
+    fillColor: 'fill-green-500',
+  },
+  {
+    value: 'very-satisfied',
+    label: 'Very Satisfied',
+    icon: Laugh,
+    hoverColor: 'hover:fill-emerald-600',
+    fillColor: 'fill-emerald-600',
+  },
+];
 
 type RatingProps = {
   name: string;
@@ -29,42 +57,13 @@ type RatingProps = {
 const Rating = ({ name }: RatingProps) => {
   const {
     setValue,
+    watch,
     formState: { errors },
     clearErrors,
   } = useFormContext();
 
-  const [selectedValues, setSelectedValues] = useState<
-    Record<string, RatingType | undefined>
-  >({}); // Store selected values
-
-  const handleIconClick = (ratingValue: RatingType) => {
-    setValue(name, ratingValue);
-    clearErrors(name);
-
-    // Update selectedValues state:
-    setSelectedValues({ ...selectedValues, [name]: ratingValue });
-  };
-
-  const isIconFilled = (ratingValue: RatingType) => {
-    return selectedValues[name] === ratingValue;
-  };
-
-  const getIconFillColor = (ratingValue: RatingType): string => {
-    switch (ratingValue) {
-      case 'very-unsatisfied':
-        return 'fill-red-600';
-      case 'unsatisfied':
-        return 'fill-orange-500';
-      case 'neutral':
-        return 'fill-yellow-500';
-      case 'satisfied':
-        return 'fill-green-500';
-      case 'very-satisfied':
-        return 'fill-emerald-600';
-      default: // Important: Add a default case
-        return 'fill-gray-400'; // Or your default color
-    }
-  };
+  const selectedValue = watch(name);
+  console.log(selectedValue);
 
   return (
     <div className='mb-8'>
@@ -76,18 +75,21 @@ const Rating = ({ name }: RatingProps) => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <rating.icon
-                    data-value={rating.value}
                     className={`h-12 w-12 stroke-black stroke-1 ${
-                      isIconFilled(rating.value)
-                        ? getIconFillColor(rating.value)
-                        : 'fill-gray-400'
-                    } data-[value="very-unsatisfied"]:hover:fill-red-600 data-[value="unsatisfied"]:hover:fill-orange-500 data-[value="neutral"]:hover:fill-yellow-500 data-[value="satisfied"]:hover:fill-green-500 data-[value="very-satisfied"]:hover:fill-emerald-600 data-[selected=true]:fill-current`}
-                    onClick={() => handleIconClick(rating.value)}
+                      rating.hoverColor
+                    } ${
+                      selectedValue === rating.value
+                        ? rating.fillColor
+                        : 'fill-transparent'
+                    }`}
+                    onClick={() => {
+                      setValue(name, rating.value);
+                      clearErrors(name);
+                    }}
                   />
                 </TooltipTrigger>
                 <TooltipContent
-                  data-value={rating.value}
-                  className='data-[value="very-unsatisfied"]:bg-red-600 data-[value="unsatisfied"]:bg-orange-500 data-[value="neutral"]:bg-yellow-500 data-[value="satisfied"]:bg-green-500 data-[value="very-satisfied"]:bg-emerald-600'
+                  className={`${rating.fillColor.replace('fill-', 'bg-')}`}
                 >
                   <p className='capitalize text-[1rem] font-medium'>
                     {rating.label}

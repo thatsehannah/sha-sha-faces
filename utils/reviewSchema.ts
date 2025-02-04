@@ -12,13 +12,13 @@ export const reviewSchema = z.object({
     .string()
     .email({ message: 'Invalid email address' })
     .nonempty('Your email is required'),
-  service: z.string().nonempty('Service is not selected'),
-  rating: z.string().nonempty('Please select a rating'),
+  service: z.string().nonempty('Service is not selected.'),
+  rating: z.string().nonempty('Please select a rating.'),
   comment: z
     .string()
-    .min(10, { message: 'Your review is too short' })
-    .max(400, { message: 'Your review is too long' })
-    .nonempty('Your review is required'),
+    .nonempty('Your review is required.')
+    .min(10, { message: 'Your review is too short.' })
+    .max(400, { message: 'Your review is too long.' }),
   wouldRecommend: z.boolean(),
 });
 
