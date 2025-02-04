@@ -5,11 +5,13 @@ import {
   AppointmentWithService,
   EditAppointment,
   Appointment as NewAppointment,
+  Review,
 } from './types';
 import { Prisma } from '@prisma/client';
 import db from './db';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import { validateReviewSchema } from './reviewSchema';
 
 export const createAppointmentAction = async (
   formData: NewAppointment
@@ -40,6 +42,42 @@ export const createAppointmentAction = async (
       title: 'Success! ✅',
       message:
         'Appointment request sent! I will get back with you to confirm the details shortly.',
+    };
+  } catch (error) {
+    return {
+      type: 'destructive',
+      title: 'Uh oh! ☹️',
+      message: error instanceof Error ? error.message : 'An error occurred.',
+    };
+  }
+};
+
+export const createReviewAction = async (
+  formData: Review
+): Promise<{
+  message: string;
+  title: string;
+  type: 'success' | 'destructive';
+}> => {
+  try {
+    const result = validateReviewSchema(formData);
+
+    await db.review.create({
+      data: {
+        ...result,
+        service: {
+          connect: { name: result.service },
+        },
+      },
+    });
+
+    revalidatePath('/');
+    revalidatePath('/admin/info');
+
+    return {
+      type: 'success',
+      title: 'Success! ✅',
+      message: `Thank you for your review ${formData.reviewer}. Hope to see you again soon!`,
     };
   } catch (error) {
     return {

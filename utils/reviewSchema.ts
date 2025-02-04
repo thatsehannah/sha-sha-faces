@@ -22,7 +22,7 @@ export const reviewSchema = z.object({
   wouldRecommend: z.boolean(),
 });
 
-export const validateAppointmentSchema = (data: Review) => {
+export const validateReviewSchema = (data: Review) => {
   const result = reviewSchema.safeParse(data);
 
   if (!result.success) {
