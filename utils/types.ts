@@ -54,7 +54,7 @@ export type Review = {
   reviewer: string;
   service: string;
   email: string;
-  starCount: number;
+  rating: string;
   comment: string;
   wouldRecommend: boolean;
 };

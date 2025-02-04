@@ -52,7 +52,7 @@ model Review {
   id String @id @default(uuid())
   serviceId Int
   service Service @relation(fields: [serviceId], references: [id])
-  starCount Int
+  rating String
   reviewer String
   email String
   comment String

@@ -7,12 +7,11 @@ import React from 'react';
 import { z } from 'zod';
 import { motion } from 'framer-motion';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Label } from '../ui/label';
-import { Star } from 'lucide-react';
 import { Button } from '../ui/button';
 import FormInput from '../form/FormInput';
 import FormDropdown from '../form/FormDropdown';
 import FormRadioGroup from '../form/FormRadioGroup';
+import Rating from './Rating';
 
 type ReviewFormProps = {
   serviceNames: string[];
@@ -25,9 +24,9 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
       reviewer: '',
       email: '',
       comment: '',
-      wouldRecommend: false,
+      wouldRecommend: undefined,
       service: '',
-      starCount: 5,
+      rating: '',
     },
   });
 
@@ -47,9 +46,9 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
           onSubmit={form.handleSubmit(handleOnSubmit)}
         >
           <section className='bg-gradient-to-bl from-soft-pink to-secondary rounded-md p-8 lg:px-20 lg:py-8 drop-shadow-2xl'>
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-8'>
               <FormInput
-                name='name'
+                name='reviewer'
                 label='Name'
                 placeholder='e.g. Jane Doe'
               />
@@ -59,34 +58,21 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
                 placeholder='e.g. janedoe@gmail.com'
               />
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-8'>
               <FormDropdown
                 name='service'
                 label='Service'
                 values={serviceNames}
                 placeholder='Select a service'
               />
-              <div>
-                <Label className='text-black text-lg'>Rating</Label>
-                <div className='group flex flex-row gap-2 mt-2'>
-                  {Array.from({ length: 5 }).map((_, idx) => (
-                    <Star
-                      key={idx}
-                      size={30}
-                      className='hover:fill-yellow-300 stroke-black'
-                      strokeWidth={1}
-                    />
-                  ))}
-                </div>
-              </div>
+              <Rating name='rating' />
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-8'>
               <FormInput
-                name='review'
+                name='comment'
                 label='Review'
                 type='textarea'
               />
-              {/* Add radio group for yes or no here */}
               <FormRadioGroup
                 name='wouldRecommend'
                 label='Would you recommend my services?'
