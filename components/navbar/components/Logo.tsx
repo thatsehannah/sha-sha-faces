@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React from 'react';
-import logo from '../../../public/logo/logo-color-2.svg';
 import Image from 'next/image';
 
 const Logo = () => {
@@ -8,7 +7,7 @@ const Logo = () => {
     <Link href='/'>
       <Image
         priority
-        src={logo}
+        src='/branding/logo-color-2.svg'
         alt='logo'
         width={64}
         height={64}

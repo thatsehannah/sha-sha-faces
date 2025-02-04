@@ -28,7 +28,7 @@ const Hero = () => {
             className='block lg:hidden w-full lg:h-[26rem] h-[30rem] mb-8 rounded-xl object-contain xl:object-cover'
           />
           <Image
-            src='/logo/logo-color-2.svg'
+            src='/branding/logo-color-2.svg'
             priority
             alt='logo'
             width={400}

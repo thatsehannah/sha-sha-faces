@@ -64,12 +64,13 @@ const About = () => {
             className='mt-4 bg-secondary'
             asChild
           >
-            <a
+            <Link
               href='https://www.instagram.com/wownaisha'
               target='_blank'
+              rel='noopener noreferrer'
             >
               <Instagram stroke='black' />
-            </a>
+            </Link>
           </Button>
           <Button
             size='lg'

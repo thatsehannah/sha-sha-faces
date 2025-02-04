@@ -1,6 +1,8 @@
 import Container from '@/components/global/Container';
+import SvgInstagram from '@/components/global/Instagram';
 import { parisienne } from '@/lib/fonts';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const AboutPage = () => {
@@ -9,7 +11,7 @@ const AboutPage = () => {
       <Container className='flex flex-col xl:flex-row items-center py-20 gap-8'>
         <div className='xl:w-1/2 xl:h-full'>
           <Image
-            src='/images/theartist2.jpg'
+            src='/images/theartist2.png'
             alt='naisha'
             width={500}
             height={500}
@@ -51,6 +53,61 @@ const AboutPage = () => {
           </p>
         </div>
       </Container>
+      <div className='flex lg:flex-row flex-col-reverse items-center justify-center bg-gradient-to-r from-periwinkle to-background p-8'>
+        <div className='flex flex-col'>
+          <p className={`text-center mb-8 text-5xl font-black`}>
+            Follow Me On Instagram!
+          </p>
+
+          <div className='lg:mb-32 mb-16 flex flex-col lg:flex-row lg:justify-around gap-8'>
+            <div className='flex gap-4 items-center'>
+              <div className=' lg:p-6 p-3 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10'>
+                <SvgInstagram className='h-16 w-16' />
+              </div>
+              <div className='rounded-xl lg:p-6 p-3 -ml-8 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_background]'>
+                <Link
+                  href='https://www.instagram.com/wownaisha'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <p className='text-3xl font-bold text-foreground'>
+                    @wownaisha
+                  </p>
+                </Link>
+              </div>
+            </div>
+            <div className='flex gap-4 items-center'>
+              <div className=' lg:p-6 p-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10'>
+                <SvgInstagram className='h-16 w-16' />
+              </div>
+              <div className='rounded-lg lg:p-6 p-3 -ml-8 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_background]'>
+                <Link
+                  href='https://www.instagram.com/shashafaces'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <p className='text-3xl font-bold text-foreground'>
+                    @shashafaces
+                  </p>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <p className='text-3xl font-medium'>
+            Stay up to date on my latest posts, announcements, and much more!
+          </p>
+          <p>Dont forget to tag me in your posts.</p>
+        </div>
+        <div className='lg:-mt-40 -mt-32'>
+          <Image
+            src='/branding/instagram.png'
+            priority
+            alt='instagram on iphone'
+            width={500}
+            height={500}
+          />
+        </div>
+      </div>
     </main>
   );
 };

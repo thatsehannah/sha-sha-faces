@@ -8,9 +8,9 @@ type ContainerProps = {
 
 const Container = ({ className, children }: ContainerProps) => {
   return (
-    <main className={cn('mx-auto max-w-6xl xl:max-w-7xl px-8', className)}>
+    <div className={cn('mx-auto max-w-6xl xl:max-w-7xl px-8', className)}>
       {children}
-    </main>
+    </div>
   );
 };
 
