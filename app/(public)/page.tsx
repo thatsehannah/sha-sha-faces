@@ -4,7 +4,7 @@ import Portfolio from '@/components/home/Portfolio';
 import SectionBreaker from '@/components/home/SectionBreaker';
 import Services from '@/components/home/Services';
 import Shop from '@/components/home/Shop';
-import Testimonials from '@/components/home/Testimonials';
+import Reviews from '@/components/home/Reviews';
 
 const Home = () => {
   return (
@@ -12,7 +12,7 @@ const Home = () => {
       <Hero />
       <SectionBreaker />
       <About />
-      <Testimonials />
+      <Reviews />
       <Portfolio />
       <Services />
       <Shop />

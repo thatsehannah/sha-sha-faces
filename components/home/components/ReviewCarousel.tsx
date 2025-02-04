@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import testimonials from '@/utils/testimonials.json';
+import reviews from '@/utils/reviews.json';
 import {
   Carousel,
   CarouselContent,
@@ -12,10 +12,10 @@ import { Quote } from 'lucide-react';
 import Container from '@/components/global/Container';
 import Autoplay from 'embla-carousel-autoplay';
 
-const TestimonyCarousel = () => {
+const ReviewCarousel = () => {
   const plugin = useRef(Autoplay({ delay: 6000, stopOnInteraction: true }));
 
-  const emphasizeWords = (testimonial: string) => {
+  const emphasizeWords = (review: string) => {
     const emphasisWords = [
       'love',
       'loved',
@@ -26,21 +26,21 @@ const TestimonyCarousel = () => {
     ];
 
     const regex = new RegExp(`\\b(${emphasisWords.join('|')})\\b`, 'i');
-    const matched = testimonial.match(regex);
+    const matched = review.match(regex);
 
     if (matched) {
       const foundWord = matched[0];
       const splitIdx = matched.index;
 
       return {
-        before: testimonial.slice(0, splitIdx),
+        before: review.slice(0, splitIdx),
         emphasizedWord: foundWord,
-        after: testimonial.slice(splitIdx! + foundWord.length),
+        after: review.slice(splitIdx! + foundWord.length),
       };
     }
 
     return {
-      before: testimonial,
+      before: review,
       emphasizeWord: null,
       after: '',
     };
@@ -54,9 +54,9 @@ const TestimonyCarousel = () => {
         onMouseLeave={() => plugin.current.play(false)}
       >
         <CarouselContent>
-          {testimonials.map((item, idx) => {
+          {reviews.map((item, idx) => {
             const { before, emphasizedWord, after } = emphasizeWords(
-              item.testimony
+              item.comment
             );
 
             return (
@@ -100,4 +100,4 @@ const TestimonyCarousel = () => {
   );
 };
 
-export default TestimonyCarousel;
+export default ReviewCarousel;

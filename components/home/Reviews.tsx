@@ -1,13 +1,13 @@
 import React from 'react';
 import Container from '../global/Container';
-import TestimonyCarousel from './components/TestimonyCarousel';
+import ReviewCarousel from './components/ReviewCarousel';
 import SectionTitle from '../global/SectionTitle';
 import Link from 'next/link';
 
-const Testimonies = () => {
+const Reviews = () => {
   return (
     <section
-      id='testimonials'
+      id='reviews'
       className='bg-gradient-to-tl from-background to-secondary relative'
     >
       <SectionTitle
@@ -15,7 +15,7 @@ const Testimonies = () => {
         alignment='left'
       />
       <Container className='flex flex-col justify-center items-center py-24'>
-        <TestimonyCarousel />
+        <ReviewCarousel />
         <div className='w-full text-xl text-right mt-4'>
           <p>
             Want to leave a review?{' '}
@@ -35,4 +35,4 @@ const Testimonies = () => {
   );
 };
 
-export default Testimonies;
+export default Reviews;
