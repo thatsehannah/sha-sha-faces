@@ -1,9 +1,12 @@
+'use client';
+
 import Container from '@/components/global/Container';
 import SvgInstagram from '@/components/global/Instagram';
 import { parisienne } from '@/lib/fonts';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const AboutPage = () => {
   return (
@@ -53,52 +56,64 @@ const AboutPage = () => {
           </p>
         </div>
       </Container>
-      <div className='flex lg:flex-row flex-col-reverse items-center justify-center bg-gradient-to-r from-periwinkle to-background p-8'>
+      <div className='flex lg:flex-row flex-col-reverse items-center justify-center bg-periwinkle/80 p-8'>
         <div className='flex flex-col'>
-          <p className={`text-center mb-8 text-5xl font-black`}>
+          <p
+            className={`text-center mb-8 lg:text-5xl text-4xl font-black text-black`}
+          >
             Follow Me On Instagram!
           </p>
 
           <div className='lg:mb-32 mb-16 flex flex-col lg:flex-row lg:justify-around gap-8'>
-            <div className='flex gap-4 items-center'>
-              <div className=' lg:p-6 p-3 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10'>
-                <SvgInstagram className='h-16 w-16' />
+            <div className='flex gap-4 items-center justify-center'>
+              <div className='p-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10'>
+                <SvgInstagram className='lg:h-16 h-12 lg:w-16 w-12' />
               </div>
-              <div className='rounded-xl lg:p-6 p-3 -ml-8 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_background]'>
+              <div className='rounded-xl px-7 py-3 lg:-ml-8 -ml-5 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF]'>
                 <Link
                   href='https://www.instagram.com/wownaisha'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  <p className='text-3xl font-bold text-foreground'>
+                  <p className='lg:text-3xl text-2xl font-bold text-black'>
                     @wownaisha
                   </p>
                 </Link>
               </div>
             </div>
-            <div className='flex gap-4 items-center'>
-              <div className=' lg:p-6 p-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10'>
-                <SvgInstagram className='h-16 w-16' />
+            <div className='flex gap-4 items-center justify-center'>
+              <div className='p-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10'>
+                <SvgInstagram className='lg:h-16 h-12 lg:w-16 w-12' />
               </div>
-              <div className='rounded-lg lg:p-6 p-3 -ml-8 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_background]'>
+              <div className='rounded-xl px-7 py-3 lg:-ml-8 -ml-5 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF]'>
                 <Link
                   href='https://www.instagram.com/shashafaces'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  <p className='text-3xl font-bold text-foreground'>
+                  <p className='lg:text-3xl text-2xl font-bold text-black'>
                     @shashafaces
                   </p>
                 </Link>
               </div>
             </div>
           </div>
-          <p className='text-3xl font-medium'>
+          <p className='text-3xl font-medium text-black mb-2'>
             Stay up to date on my latest posts, announcements, and much more!
           </p>
-          <p>Dont forget to tag me in your posts.</p>
+          <p className='text-black font-light text-lg'>
+            Don&apos;t forget to tag me in your posts.
+          </p>
         </div>
-        <div className='lg:-mt-40 -mt-32'>
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: false, amount: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: 'easeOut' }}
+          className='xl:-mt-40 -mt-28'
+        >
           <Image
             src='/branding/instagram.png'
             priority
@@ -106,7 +121,7 @@ const AboutPage = () => {
             width={500}
             height={500}
           />
-        </div>
+        </motion.div>
       </div>
     </main>
   );

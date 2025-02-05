@@ -27,7 +27,7 @@ const AdminSidebar = () => {
       <SidebarHeader className='bg-slate-100 border-b-2 dark:bg-slate-800 mb-4'>
         <Link href='/'>
           <Image
-            src='/logo/logo-color-2.svg'
+            src='/branding/logo-color-2.svg'
             priority
             alt='logo'
             width={400}
