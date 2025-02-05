@@ -69,7 +69,7 @@ const AboutPage = () => {
               <div className='p-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10'>
                 <SvgInstagram className='lg:h-16 h-12 lg:w-16 w-12' />
               </div>
-              <div className='rounded-xl px-7 py-3 lg:-ml-8 -ml-5 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF]'>
+              <div className='rounded-xl lg:p-6 p-3 lg:-ml-8 -ml-5 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF]'>
                 <Link
                   href='https://www.instagram.com/wownaisha'
                   target='_blank'
@@ -85,7 +85,7 @@ const AboutPage = () => {
               <div className='p-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10'>
                 <SvgInstagram className='lg:h-16 h-12 lg:w-16 w-12' />
               </div>
-              <div className='rounded-xl px-7 py-3 lg:-ml-8 -ml-5 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF]'>
+              <div className='rounded-xl lg:p-6 p-3 lg:-ml-8 -ml-5 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF]'>
                 <Link
                   href='https://www.instagram.com/shashafaces'
                   target='_blank'
