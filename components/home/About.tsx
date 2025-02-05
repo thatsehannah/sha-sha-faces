@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { Button } from '../ui/button';
 import SectionTitle from '../global/SectionTitle';
 import Link from 'next/link';
-import { Instagram } from 'lucide-react';
+import SvgInstagram from '../global/Instagram';
 
 const About = () => {
   return (
@@ -69,7 +69,7 @@ const About = () => {
               target='_blank'
               rel='noopener noreferrer'
             >
-              <Instagram stroke='black' />
+              <SvgInstagram stroke='black' />
             </Link>
           </Button>
           <Button
