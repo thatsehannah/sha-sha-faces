@@ -45,7 +45,7 @@ const FormRadioGroup = ({ name, label }: FormRadioGroupProps) => {
           />
           <Label
             htmlFor='yes'
-            className='text-xl'
+            className='text-xl text-black'
           >
             Yes
           </Label>
@@ -57,7 +57,7 @@ const FormRadioGroup = ({ name, label }: FormRadioGroupProps) => {
           />
           <Label
             htmlFor='no'
-            className='text-xl'
+            className='text-xl text-black'
           >
             No
           </Label>
