@@ -12,6 +12,9 @@ import db from './db';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { validateReviewSchema } from './reviewSchema';
+import sgMail from '@sendgrid/mail';
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
 export const createAppointmentAction = async (
   formData: NewAppointment
@@ -33,6 +36,28 @@ export const createAppointmentAction = async (
         addtlDetails: result.addtlDetails ? result.addtlDetails : '',
       },
     });
+
+    // const adminMessage = {
+    //   to: 'echannah631@gmail.com',
+    //   from: 'echannah631@gmail.com',
+    //   subject: 'New Appointment Request',
+    //   text: `New appointment request from ${result.name}:\n\nService: ${
+    //     result.service
+    //   }\nDate: ${result.date}\nDetails: ${
+    //     result.addtlDetails || 'No additional details provided.'
+    //   }`,
+    //   html: `<p>New appointment request from <strong>${
+    //     result.name
+    //   }</strong>:</p><ul><li><strong>Service:</strong> ${
+    //     result.service
+    //   }</li><li><strong>Date:</strong> ${
+    //     result.date
+    //   }</li><li><strong>Details:</strong> ${
+    //     result.addtlDetails || 'No additional details provided.'
+    //   }</li></ul>`,
+    // };
+
+    // await Promise.all([sgMail.send(adminMessage)]);
 
     revalidatePath('/admin');
     revalidatePath('/admin/appointments');
