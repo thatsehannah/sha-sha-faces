@@ -46,7 +46,7 @@ const chartConfig = {
 
 const VisitorChart = () => {
   return (
-    <Card>
+    <Card className='mt-12'>
       <CardHeader>
         <CardTitle>Website Views</CardTitle>
         <CardDescription>January - December 2025</CardDescription>

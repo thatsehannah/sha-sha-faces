@@ -77,42 +77,6 @@ export const createAppointmentAction = async (
   }
 };
 
-export const createReviewAction = async (
-  formData: Review
-): Promise<{
-  message: string;
-  title: string;
-  type: 'success' | 'destructive';
-}> => {
-  try {
-    const result = validateReviewSchema(formData);
-
-    await db.review.create({
-      data: {
-        ...result,
-        service: {
-          connect: { name: result.service },
-        },
-      },
-    });
-
-    revalidatePath('/');
-    revalidatePath('/admin/info');
-
-    return {
-      type: 'success',
-      title: 'Success! ✅',
-      message: `Thank you for your review ${formData.reviewer}. Hope to see you again soon!`,
-    };
-  } catch (error) {
-    return {
-      type: 'destructive',
-      title: 'Uh oh! ☹️',
-      message: error instanceof Error ? error.message : 'An error occurred.',
-    };
-  }
-};
-
 export const fetchAllAppointments = async (): Promise<
   AppointmentWithService[]
 > => {
@@ -143,29 +107,6 @@ export const fetchAppointmentById = async (
   }
 
   return appointment;
-};
-
-export const fetchServiceSvgByName = async (name: string) => {
-  const svgData = await db.service.findFirst({
-    where: {
-      name,
-    },
-    select: {
-      svgData: true,
-    },
-  });
-
-  return svgData;
-};
-
-export const fetchServiceById = async (id: number) => {
-  const service = await db.service.findFirst({
-    where: {
-      id,
-    },
-  });
-
-  return service;
 };
 
 export const fetchServiceInfo = async () => {
@@ -260,12 +201,46 @@ export const fetchAllServices = async () => {
   return db.service.findMany();
 };
 
-//TODO: configure this to work
-// export const fetchServiceWithAppointments = async (id: number) => {
-//   const serviceWithAppointments = await db.service.findUnique({
-//     where: { id },
-//     include: { Appointment: true },
-//   });
+export const fetchServiceWithAppointments = async () => {
+  const serviceWithAppointments = await db.service.findMany({
+    include: { Appointment: true },
+  });
 
-//   return serviceWithAppointments;
-// };
+  return serviceWithAppointments;
+};
+
+export const createReviewAction = async (
+  formData: Review
+): Promise<{
+  message: string;
+  title: string;
+  type: 'success' | 'destructive';
+}> => {
+  try {
+    const result = validateReviewSchema(formData);
+
+    await db.review.create({
+      data: {
+        ...result,
+        service: {
+          connect: { name: result.service },
+        },
+      },
+    });
+
+    revalidatePath('/');
+    revalidatePath('/admin/info');
+
+    return {
+      type: 'success',
+      title: 'Success! ✅',
+      message: `Thank you for your review ${formData.reviewer}. Hope to see you again soon!`,
+    };
+  } catch (error) {
+    return {
+      type: 'destructive',
+      title: 'Uh oh! ☹️',
+      message: error instanceof Error ? error.message : 'An error occurred.',
+    };
+  }
+};

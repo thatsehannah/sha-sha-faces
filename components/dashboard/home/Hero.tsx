@@ -1,6 +1,5 @@
 import React from 'react';
 import { format } from 'date-fns';
-import Overview from './Overview';
 
 const Hero = () => {
   const currentHour = new Date().getHours();
@@ -24,9 +23,6 @@ const Hero = () => {
         <p className='text-xl lg:text-2xl font-light'>
           {format(new Date(), 'PPPP')}
         </p>
-      </div>
-      <div>
-        <Overview />
       </div>
     </section>
   );
