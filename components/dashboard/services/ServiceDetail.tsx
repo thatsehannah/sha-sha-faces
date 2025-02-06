@@ -1,6 +1,8 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
+import { updateService } from '@/utils/actions';
 import { Edit } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -11,6 +13,7 @@ type ServiceDetailProps = {
 };
 
 const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
+  const { toast } = useToast();
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(data);
   const textareaRef = useRef(null);
@@ -20,12 +23,16 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
     element.style.height = element.scrollHeight + 'px';
   };
 
-  // const handleSave = async () => {
-  //   switch (label) {
-  //     case 'price':
-  //       updateService;
-  //   }
-  // };
+  const handleSave = async () => {
+    const updates = { [label]: text };
+    const result = await updateService(id, updates);
+
+    toast({
+      variant: result.type,
+      title: result.title,
+      description: result.message,
+    });
+  };
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -53,9 +60,10 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
           className='flex gap-2 data-[disabled="true"]:invisible'
         >
           <Button
-            className='bg-secondary '
+            className='bg-primary '
             onClick={() => {
               setIsEditing(false);
+              handleSave();
             }}
             disabled={text === '' || text === data}
           >
