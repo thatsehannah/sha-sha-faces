@@ -1,6 +1,6 @@
 import {
   fetchAllAppointments,
-  fetchServiceWithAppointments,
+  // fetchServiceWithAppointments,
 } from '@/utils/actions';
 import React from 'react';
 import AppointmentCard from '../components/AppointmentCard';
@@ -23,9 +23,9 @@ const Overview = async () => {
     (appt) => appt.date === today && appt.status === 'Confirmed'
   );
 
-  const services = await fetchServiceWithAppointments();
-  const servicesWithAppts = services.filter((s) => s.Appointment.length > 0);
-  console.log(typeof servicesWithAppts);
+  // TODO: feed this data to pie chart
+  // const services = await fetchServiceWithAppointments();
+  // const data = services.filter((s) => s.Appointment.length > 0);
 
   return (
     <section>
