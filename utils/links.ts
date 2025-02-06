@@ -3,7 +3,7 @@ import {
   EyeClosed,
   Home,
   Info,
-  ShoppingBasket,
+  // ShoppingBasket,
 } from 'lucide-react';
 
 export const links = [
@@ -41,11 +41,11 @@ export const tabs = [
     url: '/admin/info',
     icon: Info,
   },
-  {
-    title: 'Orders',
-    url: '/admin/orders',
-    icon: ShoppingBasket,
-  },
+  // {
+  //   title: 'Orders',
+  //   url: '/admin/orders',
+  //   icon: ShoppingBasket,
+  // },
   {
     title: 'My Services',
     url: '/admin/services',
