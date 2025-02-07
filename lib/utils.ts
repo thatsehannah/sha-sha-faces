@@ -1,4 +1,3 @@
-import { ServiceWithAppointments } from '@/utils/types';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 // import { Service } from '@prisma/client';
@@ -23,27 +22,28 @@ export const calculatePopularService = () => {
   //sort by appointmentCount descending, then take the first two from the array, then you have you popular services
 };
 
-const blah = (date: string) => {
-  const dateMonth = date.split('-')[1];
-  const result = parseInt(dateMonth);
+// const blah = (date: string) => {
+//   const dateMonth = date.split('-')[1];
+//   const result = parseInt(dateMonth);
 
-  return result;
-};
+//   return result;
+// };
 
-export const getServicesRequestedForCurrentMonth = (
-  services: ServiceWithAppointments
-) => {
-  const currentMonth = new Date().getMonth() + 1;
+//TODO: figure out this logic
+// export const getServicesRequestedForCurrentMonth = (
+//   services: ServiceWithAppointments
+// ) => {
+//   const currentMonth = new Date().getMonth() + 1;
 
-  const servicesForMonth: any[] = [];
+//   const servicesForMonth: any[] = [];
 
-  services.forEach((service) => {
-    service.Appointment.forEach((appt) => {
-      if (blah(appt.date) === currentMonth) {
-        servicesForMonth.push(service);
-      }
-    });
-  });
+//   services.forEach((service) => {
+//     service.Appointment.forEach((appt) => {
+//       if (blah(appt.date) === currentMonth) {
+//         servicesForMonth.push(service);
+//       }
+//     });
+//   });
 
-  return servicesForMonth;
-};
+//   return servicesForMonth;
+// };

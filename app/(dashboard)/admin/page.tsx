@@ -20,7 +20,7 @@ const AdminHomePage = async () => {
         <Hero />
         <Overview
           allAppointments={allAppointments}
-          services={services}
+          allServices={services}
         />
         <VisitorChart />
       </Container>

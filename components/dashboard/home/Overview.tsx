@@ -8,10 +8,10 @@ import ServicesPieChart from './ServicesPieChart';
 
 type OverviewProps = {
   allAppointments: AppointmentWithService[];
-  services: ServiceWithAppointments;
+  allServices: ServiceWithAppointments;
 };
 
-const Overview = ({ allAppointments, services }: OverviewProps) => {
+const Overview = ({ allAppointments, allServices }: OverviewProps) => {
   //for resolving hydration issues with pie chart
   // https://nextjs.org/docs/messages/react-hydration-error#solution-1-using-useeffect-to-run-on-the-client-only
   const [isClient, setIsClient] = useState(false);
@@ -31,8 +31,7 @@ const Overview = ({ allAppointments, services }: OverviewProps) => {
     (appt) => appt.date === today && appt.status === 'Confirmed'
   );
 
-  const data = services.filter((s) => s.Appointment.length > 0);
-
+  const data = allServices.filter((s) => s.Appointment.length > 0);
   const chartData = data.map((service) => ({
     service: service.name,
     total: service.Appointment.length,
