@@ -3,13 +3,25 @@ import Hero from '@/components/dashboard/home/Hero';
 import Overview from '@/components/dashboard/home/Overview';
 import Container from '@/components/global/Container';
 import React from 'react';
+import {
+  fetchAllAppointments,
+  fetchServiceWithAppointments,
+} from '@/utils/actions';
 
-const AdminHomePage = () => {
+const AdminHomePage = async () => {
+  const allAppointments = await fetchAllAppointments();
+
+  //TODO: tweak this to only retrieve services from the current month
+  const services = await fetchServiceWithAppointments();
+
   return (
     <main>
       <Container className='py-20'>
         <Hero />
-        <Overview />
+        <Overview
+          allAppointments={allAppointments}
+          services={services}
+        />
         <VisitorChart />
       </Container>
     </main>

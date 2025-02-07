@@ -62,3 +62,7 @@ export type Review = {
 export type AppointmentWithService = Prisma.AppointmentGetPayload<{
   include: { service: true };
 }>;
+
+export type ServiceWithAppointments = Prisma.ServiceGetPayload<{
+  include: { Appointment: true };
+}>[];

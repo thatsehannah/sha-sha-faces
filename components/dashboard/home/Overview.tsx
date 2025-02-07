@@ -1,13 +1,21 @@
-import {
-  fetchAllAppointments,
-  // fetchServiceWithAppointments,
-} from '@/utils/actions';
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import AppointmentCard from '../components/AppointmentCard';
 import OverviewCard from '../components/OverviewCard';
+import { AppointmentWithService, ServiceWithAppointments } from '@/utils/types';
+import ServicesPieChart from './ServicesPieChart';
 
-const Overview = async () => {
-  const allAppointments = await fetchAllAppointments();
+type OverviewProps = {
+  allAppointments: AppointmentWithService[];
+  services: ServiceWithAppointments;
+};
+
+const Overview = ({ allAppointments, services }: OverviewProps) => {
+  //for resolving hydration issues with pie chart
+  // https://nextjs.org/docs/messages/react-hydration-error#solution-1-using-useeffect-to-run-on-the-client-only
+  const [isClient, setIsClient] = useState(false);
+
   const pendingAppointmentCount = allAppointments.filter(
     (appt) => appt.status === 'Pending'
   ).length;
@@ -23,9 +31,16 @@ const Overview = async () => {
     (appt) => appt.date === today && appt.status === 'Confirmed'
   );
 
-  // TODO: feed this data to pie chart
-  // const services = await fetchServiceWithAppointments();
-  // const data = services.filter((s) => s.Appointment.length > 0);
+  const data = services.filter((s) => s.Appointment.length > 0);
+
+  const chartData = data.map((service) => ({
+    service: service.name,
+    total: service.Appointment.length,
+  }));
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <section>
@@ -44,7 +59,7 @@ const Overview = async () => {
           ))
         )}
       </div>
-      <div className='mb-12 bg-slate-100 p-12 rounded-lg'>
+      <div className='mb-12 bg-muted p-12 rounded-lg'>
         <p className='text-2xl font-medium mb-8'>Appointment Overview</p>
         <div className='grid grid-cols-2 lg:grid-cols-3 items-center justify-center gap-4 lg:gap-x-12 lg:gap-y-8 '>
           <OverviewCard
@@ -62,10 +77,13 @@ const Overview = async () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-12 bg-slate-100 p-12 rounded-lg gap-4'>
-        <div className='col-span-8 bg-green-200'>
-          Total Services Pie Chart (This Month)
-        </div>
+      <div className='grid grid-cols-12 bg-muted p-12 rounded-lg gap-4'>
+        {isClient && (
+          <div className='col-span-8 flex justify-center items-center'>
+            <ServicesPieChart data={chartData} />
+          </div>
+        )}
+
         <div className='col-span-4 bg-blue-200'>Recent Appointments</div>
       </div>
     </section>
