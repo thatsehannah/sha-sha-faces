@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { Cell, Label, Pie, PieChart, Tooltip } from 'recharts';
 
@@ -35,13 +34,10 @@ const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
   };
 
   const dataArr = Array.from(data);
-  const totalServices = new Set(dataArr.map((s) => s.service)).size;
-
   const onPieEnter = (index: number) => {
     setActiveIndex(index);
   };
 
-  const currentMonth = format(new Date(), 'MMMM');
   const currentYear = new Date().getFullYear();
 
   useEffect(() => {
@@ -53,11 +49,9 @@ const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
     <Card>
       <CardHeader className='pb-0'>
         <CardTitle className='text-2xl font-medium'>
-          Services Requested
+          Popular Services Requested
         </CardTitle>
-        <CardDescription>
-          {currentMonth} {currentYear}
-        </CardDescription>
+        <CardDescription>Totals</CardDescription>
       </CardHeader>
       <CardContent className='flex-1 pb-0'>
         <PieChart
@@ -95,14 +89,7 @@ const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
                         y={viewBox.cy}
                         className='fill-foreground text-3xl font-bold'
                       >
-                        {totalServices.toLocaleString()}
-                      </tspan>
-                      <tspan
-                        x={viewBox.cx}
-                        y={(viewBox.cy || 0) + 24}
-                        className='fill-muted-foreground'
-                      >
-                        Services
+                        {currentYear}
                       </tspan>
                     </text>
                   );
@@ -116,7 +103,7 @@ const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
       <CardFooter className='justify-center'>
         <div>
           <p className='text-muted-foreground'>
-            Showing total services requested for {currentMonth}
+            Showing popular services requested
           </p>
         </div>
       </CardFooter>

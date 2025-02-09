@@ -5,6 +5,8 @@ import AppointmentCard from '../components/AppointmentCard';
 import OverviewCard from '../components/OverviewCard';
 import { AppointmentWithService, ServiceWithAppointments } from '@/utils/types';
 import ServicesPieChart from './ServicesPieChart';
+import RecentAppointmentDetail from './RecentAppointmentDetail';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 type OverviewProps = {
   allAppointments: AppointmentWithService[];
@@ -29,6 +31,9 @@ const Overview = ({ allAppointments, allServices }: OverviewProps) => {
   const today = new Date().toISOString().split('T')[0];
   const todayAppointments = allAppointments.filter(
     (appt) => appt.date === today && appt.status === 'Confirmed'
+  );
+  const recentAppointments = allAppointments.filter(
+    (appt) => appt.status === 'Completed'
   );
 
   const data = allServices.filter((s) => s.Appointment.length > 0);
@@ -83,7 +88,23 @@ const Overview = ({ allAppointments, allServices }: OverviewProps) => {
           </div>
         )}
 
-        <div className='col-span-4 bg-blue-200'>Recent Appointments</div>
+        <div className='col-span-4 '>
+          <Card className='h-full'>
+            <CardHeader className='pb-0'>
+              <CardTitle className='text-2xl font-medium'>
+                Recent Appointments
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {recentAppointments.map((appt) => (
+                <RecentAppointmentDetail
+                  key={appt.id}
+                  appointment={appt}
+                />
+              ))}
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   );

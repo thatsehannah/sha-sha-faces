@@ -34,6 +34,7 @@ const EditAppointmentForm = ({
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const { name, email, phoneNumber, service, location, time, status, id } =
     appointment;
+
   const serviceNames = serviceInfo.map((s) => s.name);
 
   const form = useForm<EditAppointment>({
@@ -45,6 +46,7 @@ const EditAppointmentForm = ({
       location,
       time,
       status,
+      // completedOn: new Date().toISOString(),
     },
   });
 
@@ -113,6 +115,13 @@ const EditAppointmentForm = ({
                 values={STATUSES}
                 form={form}
               />
+              {/* TODO: figure out how to get current value of status */}
+              {/* {status === 'Completed' && (
+                <FormDatePicker
+                  label='completed on'
+                  name='completedOn'
+                />
+              )} */}
             </div>
             <Separator className='block lg:hidden' />
             <div className='flex justify-center lg:justify-end mt-8'>
