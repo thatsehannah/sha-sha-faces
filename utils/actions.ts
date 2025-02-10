@@ -32,7 +32,6 @@ export const createAppointmentAction = async (
         service: {
           connect: { name: result.service },
         },
-        date: result.date.split('T')[0],
         addtlDetails: result.addtlDetails ? result.addtlDetails : '',
       },
     });

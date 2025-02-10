@@ -20,6 +20,8 @@ import { updateAppointment } from '@/utils/actions';
 import { useToast } from '@/hooks/use-toast';
 import { redirect } from 'next/navigation';
 import { AppointmentWithService, EditAppointment } from '@/utils/types';
+import EditDatePicker from '../components/EditDatePicker';
+import { format, parseISO } from 'date-fns';
 
 type EditAppointmentProps = {
   appointment: AppointmentWithService;
@@ -32,8 +34,17 @@ const EditAppointmentForm = ({
 }: EditAppointmentProps) => {
   const { toast } = useToast();
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
-  const { name, email, phoneNumber, service, location, time, status, id } =
-    appointment;
+  const {
+    name,
+    email,
+    phoneNumber,
+    service,
+    location,
+    time,
+    status,
+    id,
+    date,
+  } = appointment;
 
   const serviceNames = serviceInfo.map((s) => s.name);
 
@@ -46,9 +57,12 @@ const EditAppointmentForm = ({
       location,
       time,
       status,
-      // completedOn: new Date().toISOString(),
+      completedOn: new Date().toISOString().split('T')[0],
+      date,
     },
   });
+
+  const statusValue = form.watch('status');
 
   const handleSubmit = async (values: EditAppointment) => {
     const dirtyFields = Object.keys(form.formState.dirtyFields);
@@ -98,10 +112,10 @@ const EditAppointmentForm = ({
                 values={serviceNames}
                 form={form}
               />
-              <EditTextInput
-                label='location'
-                name='location'
-                disabled={false}
+              <EditDatePicker
+                label='date'
+                name='date'
+                defaultValue={format(parseISO(date), 'PPPP')}
               />
               <EditDropdown
                 label='time'
@@ -109,19 +123,23 @@ const EditAppointmentForm = ({
                 values={times}
                 form={form}
               />
+              <EditTextInput
+                label='location'
+                name='location'
+                disabled={false}
+              />
               <EditDropdown
                 label='status'
                 name='status'
                 values={STATUSES}
                 form={form}
               />
-              {/* TODO: figure out how to get current value of status */}
-              {/* {status === 'Completed' && (
-                <FormDatePicker
+              {statusValue === 'Completed' ? (
+                <EditDatePicker
                   label='completed on'
                   name='completedOn'
                 />
-              )} */}
+              ) : null}
             </div>
             <Separator className='block lg:hidden' />
             <div className='flex justify-center lg:justify-end mt-8'>

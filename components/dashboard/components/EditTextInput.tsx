@@ -31,7 +31,7 @@ const EditTextInput = ({
           id={label}
           {...register(name)}
           disabled={disabled}
-          className='font-medium lg:text-[1rem] border-x-0 border-t-0 rounded-none shadow-none'
+          className='mt-2 font-medium lg:text-[1rem] border-x-0 border-t-0 rounded-none shadow-none'
         />
       </div>
     </div>

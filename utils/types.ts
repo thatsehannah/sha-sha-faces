@@ -22,6 +22,8 @@ export type EditAppointment = {
   location: string;
   time: string;
   status: string;
+  completedOn: string;
+  date: string;
 };
 
 export type AppointmentFormFields = keyof Appointment;
