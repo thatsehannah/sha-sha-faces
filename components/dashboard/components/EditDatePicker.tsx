@@ -23,8 +23,6 @@ const EditDatePicker = ({ label, name, defaultValue }: EditDatePickerProps) => {
   const { setValue, watch } = useFormContext();
 
   const dateValue = watch(name);
-  console.log(defaultValue);
-  console.log(dateValue);
 
   return (
     <div className='mb-8'>

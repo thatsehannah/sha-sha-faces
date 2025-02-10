@@ -43,6 +43,7 @@ const EditAppointmentForm = ({
     status,
     id,
     date,
+    completedOn,
   } = appointment;
 
   const serviceNames = serviceInfo.map((s) => s.name);
@@ -56,7 +57,7 @@ const EditAppointmentForm = ({
       location,
       time,
       status,
-      completedOn: new Date().toLocaleDateString(),
+      completedOn: completedOn ? completedOn : new Date().toLocaleDateString(),
       date,
     },
   });
