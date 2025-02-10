@@ -1,7 +1,6 @@
 'use client';
 
 import Container from '@/components/global/Container';
-import SvgInstagram from '@/components/global/Instagram';
 import { parisienne } from '@/lib/fonts';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -64,38 +63,28 @@ const AboutPage = () => {
             Follow Me On Instagram!
           </p>
 
-          <div className='lg:mb-32 mb-16 flex flex-col lg:flex-row lg:justify-around gap-8'>
-            <div className='flex gap-4 items-center justify-center'>
-              <div className='p-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10'>
-                <SvgInstagram className='lg:h-16 h-12 lg:w-16 w-12' />
-              </div>
-              <div className='rounded-xl lg:p-6 p-3 lg:-ml-8 -ml-5 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF]'>
-                <Link
-                  href='https://www.instagram.com/wownaisha'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <p className='lg:text-3xl text-2xl font-bold text-black'>
-                    @wownaisha
-                  </p>
-                </Link>
-              </div>
+          <div className='lg:mb-32 mb-16 flex flex-row lg:justify-around gap-8'>
+            <div className='rounded-xl lg:p-6 p-3 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF] border-2 border-black hover:cursor-pointer'>
+              <Link
+                href='https://www.instagram.com/wownaisha'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <p className='lg:text-3xl text-2xl font-bold text-black'>
+                  @wownaisha
+                </p>
+              </Link>
             </div>
-            <div className='flex gap-4 items-center justify-center'>
-              <div className='p-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10'>
-                <SvgInstagram className='lg:h-16 h-12 lg:w-16 w-12' />
-              </div>
-              <div className='rounded-xl lg:p-6 p-3 lg:-ml-8 -ml-5 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF]'>
-                <Link
-                  href='https://www.instagram.com/shashafaces'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <p className='lg:text-3xl text-2xl font-bold text-black'>
-                    @shashafaces
-                  </p>
-                </Link>
-              </div>
+            <div className='rounded-xl lg:p-6 p-3 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF] border-2 border-black hover:cursor-pointer'>
+              <Link
+                href='https://www.instagram.com/shashafaces'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <p className='lg:text-3xl text-2xl font-bold text-black'>
+                  @shashafaces
+                </p>
+              </Link>
             </div>
           </div>
           <p className='text-3xl font-medium text-black mb-2'>
@@ -120,6 +109,7 @@ const AboutPage = () => {
             alt='instagram on iphone'
             width={500}
             height={500}
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           />
         </motion.div>
       </div>
