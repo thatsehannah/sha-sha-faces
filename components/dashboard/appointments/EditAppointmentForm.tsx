@@ -21,7 +21,6 @@ import { useToast } from '@/hooks/use-toast';
 import { redirect } from 'next/navigation';
 import { AppointmentWithService, EditAppointment } from '@/utils/types';
 import EditDatePicker from '../components/EditDatePicker';
-import { format, parseISO } from 'date-fns';
 
 type EditAppointmentProps = {
   appointment: AppointmentWithService;
@@ -57,7 +56,7 @@ const EditAppointmentForm = ({
       location,
       time,
       status,
-      completedOn: new Date().toISOString().split('T')[0],
+      completedOn: new Date().toLocaleDateString(),
       date,
     },
   });
@@ -115,7 +114,7 @@ const EditAppointmentForm = ({
               <EditDatePicker
                 label='date'
                 name='date'
-                defaultValue={format(parseISO(date), 'PPPP')}
+                defaultValue={date}
               />
               <EditDropdown
                 label='time'

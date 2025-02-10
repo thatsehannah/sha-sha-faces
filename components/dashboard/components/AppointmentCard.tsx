@@ -3,7 +3,7 @@ import ServiceIconSvg from '@/components/services/ServiceIconSvg';
 import { BadgeCheck, MapPin, User } from 'lucide-react';
 import AppointmentDetailsSheet from './AppointmentDetailsSheet';
 import { isDateWithinTwoDays } from '@/lib/utils';
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import { AppointmentWithService, ServiceSvg } from '@/utils/types';
 
 type AppointmentCardProps = {
@@ -37,9 +37,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
                 <p className='font-bold text-xl'>
                   <span className='capitalize'>{service.name}</span> @ {time}
                 </p>
-                <p className='italic font-light'>
-                  {format(parseISO(date), 'PPPP')}
-                </p>
+                <p className='italic font-light'>{format(date, 'PPPP')}</p>
               </div>
               <div className='flex gap-10 text-muted-foreground'>
                 <div className='flex flex-col justify-center'>

@@ -23,11 +23,10 @@ export const appointmentSchema = z.object({
     .refine(
       (value) => {
         const date = new Date(value);
-        return !isNaN(date.getTime()) && value === date.toISOString();
+        return !isNaN(date.getTime()) && value === date.toLocaleDateString();
       },
       {
-        message:
-          'Date must be a valid ISO string (e.g., 2025-01-22T00:00:00.000Z).',
+        message: 'Date must be a valid locale date string (e.g., 1/22/2025).',
       }
     ),
   time: z.string().nonempty('Please select a time'),

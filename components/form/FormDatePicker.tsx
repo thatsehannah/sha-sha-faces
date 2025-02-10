@@ -74,7 +74,7 @@ const FormDatePicker = ({ name, label }: FormDatePickerProps) => {
             mode='single'
             selected={dateValue ? new Date(dateValue) : undefined}
             onSelect={(date) => {
-              setValue(name, date?.toISOString());
+              setValue(name, date?.toLocaleDateString());
               clearErrors(name);
               setIsPopoverOpen(false);
             }}

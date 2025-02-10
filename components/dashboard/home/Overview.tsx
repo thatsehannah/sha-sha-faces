@@ -28,7 +28,9 @@ const Overview = ({ allAppointments, allServices }: OverviewProps) => {
     (appt) => appt.status === 'Completed'
   ).length;
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toLocaleDateString();
+  console.log(today);
+
   const todayAppointments = allAppointments.filter(
     (appt) => appt.date === today && appt.status === 'Confirmed'
   );

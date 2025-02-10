@@ -6,7 +6,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import React, { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { isDateWithinTwoDays } from '@/lib/utils';
@@ -89,7 +89,7 @@ const AppointmentDetailsSheet = ({
             label='service'
           />
           <AppointmentDetail
-            data={format(parseISO(date), 'PPPP')}
+            data={format(date, 'PPPP')}
             label='date'
           />
           <AppointmentDetail

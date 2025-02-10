@@ -8,7 +8,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -23,6 +23,8 @@ const EditDatePicker = ({ label, name, defaultValue }: EditDatePickerProps) => {
   const { setValue, watch } = useFormContext();
 
   const dateValue = watch(name);
+  console.log(defaultValue);
+  console.log(dateValue);
 
   return (
     <div className='mb-8'>
@@ -36,11 +38,8 @@ const EditDatePicker = ({ label, name, defaultValue }: EditDatePickerProps) => {
             <Input
               id={name}
               placeholder='Select a date'
-              value={dateValue ? format(parseISO(dateValue), 'PPPP') : ''}
-              onChange={(e) => {
-                const value = e.target.value;
-                setValue(name, value);
-              }}
+              value={dateValue ? format(dateValue, 'PPPP') : ''}
+              readOnly
               className='mt-2 font-medium lg:text-[1rem] border-x-0 border-t-0 rounded-none shadow-none'
             />
           </div>
@@ -58,8 +57,7 @@ const EditDatePicker = ({ label, name, defaultValue }: EditDatePickerProps) => {
             mode='single'
             selected={dateValue ? new Date(dateValue) : undefined}
             onSelect={(date) => {
-              const formattedDate = date?.toISOString();
-              setValue(name, formattedDate, {
+              setValue(name, date?.toLocaleDateString(), {
                 shouldDirty: defaultValue !== date,
               });
 

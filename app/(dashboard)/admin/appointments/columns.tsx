@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { AppointmentWithService } from '@/utils/types';
 import { ColumnDef } from '@tanstack/react-table';
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import { MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
@@ -43,7 +43,7 @@ export const columns: ColumnDef<AppointmentWithService>[] = [
     accessorKey: 'date',
     header: 'Date',
     cell: ({ row }) => {
-      const formattedDate = format(parseISO(row.original.date), 'PPPP');
+      const formattedDate = format(row.original.date, 'PPPP');
 
       return <div>{formattedDate}</div>;
     },
