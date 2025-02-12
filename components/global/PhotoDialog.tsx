@@ -1,14 +1,12 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogTitle } from '../ui/dialog';
 import Image from 'next/image';
+import { GalleryPhoto } from '@prisma/client';
 
 type GalleryDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  photo: {
-    url: string;
-    alt: string;
-  };
+  photo: GalleryPhoto;
 };
 
 const PhotoDialog = ({ open, onOpenChange, photo }: GalleryDialogProps) => {

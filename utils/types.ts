@@ -52,6 +52,12 @@ export type ServiceSvg = {
   };
 };
 
+export type GalleryImage = {
+  name: string;
+  url: string;
+  alt: string;
+};
+
 export type Review = {
   reviewer: string;
   service: string;

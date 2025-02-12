@@ -1,9 +1,11 @@
 import React from 'react';
-import glamPhotos from '@/utils/glamPhotos.json';
 import SectionTitle from '@/components/global/SectionTitle';
 import ImageGrid from '@/components/gallery/ImageGrid';
+import { fetchGlamPhotos } from '@/utils/actions';
 
-const GlamGallery = () => {
+const GlamGallery = async () => {
+  const glamPhotos = await fetchGlamPhotos();
+
   return (
     <div className='relative py-20'>
       <SectionTitle

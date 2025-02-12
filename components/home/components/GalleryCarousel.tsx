@@ -10,22 +10,17 @@ import {
 } from '../../ui/carousel';
 import Image from 'next/image';
 import GalleryDialog from '../../global/PhotoDialog';
+import { GalleryPhoto } from '@prisma/client';
 
 type PortfolioCarouselProps = {
-  photos: {
-    url: string;
-    alt: string;
-  }[];
+  photos: GalleryPhoto[];
 };
 
 const GalleryCarousel = ({ photos }: PortfolioCarouselProps) => {
-  const [selectedPhoto, setSelectedPhoto] = useState<{
-    url: string;
-    alt: string;
-  }>();
+  const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto>();
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
-  const handlePhotoClick = (photo: { url: string; alt: string }) => {
+  const handlePhotoClick = (photo: GalleryPhoto) => {
     setSelectedPhoto(photo);
     setIsDialogOpen(true);
   };

@@ -1,9 +1,11 @@
 import ImageGrid from '@/components/gallery/ImageGrid';
 import SectionTitle from '@/components/global/SectionTitle';
-import bridalPhotos from '@/utils/bridalPhotos.json';
+import { fetchBridalPhotos } from '@/utils/actions';
 import React from 'react';
 
-const BridalGallery = () => {
+const BridalGallery = async () => {
+  const bridalPhotos = await fetchBridalPhotos();
+
   return (
     <div className='relative py-20'>
       <SectionTitle

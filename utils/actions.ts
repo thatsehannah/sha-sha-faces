@@ -243,3 +243,37 @@ export const createReviewAction = async (
     };
   }
 };
+
+export const fetchAllPhotos = async () => {
+  return db.galleryPhoto.findMany();
+};
+
+export const fetchFeaturedPhotos = async () => {
+  const featuredPhotos = db.galleryPhoto.findMany({
+    where: {
+      isFeatured: true,
+    },
+  });
+
+  return featuredPhotos;
+};
+
+export const fetchBridalPhotos = async () => {
+  const bridalPhotos = db.galleryPhoto.findMany({
+    where: {
+      category: 'bridal',
+    },
+  });
+
+  return bridalPhotos;
+};
+
+export const fetchGlamPhotos = async () => {
+  const glamPhotos = db.galleryPhoto.findMany({
+    where: {
+      category: 'glam',
+    },
+  });
+
+  return glamPhotos;
+};

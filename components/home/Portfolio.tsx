@@ -4,10 +4,10 @@ import SectionTitle from '../global/SectionTitle';
 import GalleryCarousel from './components/GalleryCarousel';
 import { Button } from '../ui/button';
 import Link from 'next/link';
-import photos from '@/utils/glamPhotos.json';
+import { fetchFeaturedPhotos } from '@/utils/actions';
 
-const Portfolio = () => {
-  const featuredPhotos = photos.slice(0, 5);
+const Portfolio = async () => {
+  const featuredPhotos = await fetchFeaturedPhotos();
 
   return (
     <section

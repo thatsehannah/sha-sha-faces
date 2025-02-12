@@ -5,23 +5,18 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Container from '../global/Container';
 import GalleryDialog from '../global/PhotoDialog';
+import { GalleryPhoto } from '@prisma/client';
 
 type ImageGridProps = {
-  photos: {
-    url: string;
-    alt: string;
-  }[];
+  photos: GalleryPhoto[];
 };
 
 const ImageGrid = ({ photos }: ImageGridProps) => {
-  const [selectedPhoto, setSelectedPhoto] = useState<{
-    url: string;
-    alt: string;
-  }>();
+  const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto>();
 
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
-  const handlePhotoClick = (photo: { url: string; alt: string }) => {
+  const handlePhotoClick = (photo: GalleryPhoto) => {
     setSelectedPhoto(photo);
     setIsDialogOpen(true);
   };
