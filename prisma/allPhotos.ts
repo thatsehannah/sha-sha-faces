@@ -79,7 +79,7 @@ export const allPhotos = [
     isFeatured: false,
   },
   {
-    url: `https://${project}.supabase.co/storage/v1/object/public/gallery/bridalbridal/photo0.jpeg`,
+    url: `https://${project}.supabase.co/storage/v1/object/public/gallery/bridal/photo0.jpeg`,
     alt: 'bridal photo 0',
     category: 'bridal',
     isShown: true,

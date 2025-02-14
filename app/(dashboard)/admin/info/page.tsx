@@ -1,7 +1,24 @@
+import ManageAvailabilityCard from '@/components/dashboard/info/ManageAvailabilityCard';
+import ManageGalleryCard from '@/components/dashboard/info/ManageGalleryCard';
+import Container from '@/components/global/Container';
+import { fetchAllPhotos } from '@/utils/actions';
 import React from 'react';
 
-const AdminInfoPage = () => {
-  return <div>AdminInfoPage</div>;
+const AdminInfoPage = async () => {
+  const photos = await fetchAllPhotos();
+
+  return (
+    <main>
+      <Container className='py-20 w-screen lg:w-[80vw] flex flex-col'>
+        <div className='bg-muted'>
+          <ManageAvailabilityCard />
+        </div>
+        <div className='bg-muted'>
+          <ManageGalleryCard photos={photos} />
+        </div>
+      </Container>
+    </main>
+  );
 };
 
 export default AdminInfoPage;

@@ -16,6 +16,10 @@ import sgMail from '@sendgrid/mail';
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
+const revalidatePaths = (paths: string[]) => {
+  paths.forEach((path) => revalidatePath(path));
+};
+
 export const createAppointmentAction = async (
   formData: NewAppointment
 ): Promise<{
@@ -178,9 +182,7 @@ export const updateService = async (
       data: updates,
     });
 
-    revalidatePath('/');
-    revalidatePath('/admin/services');
-    revalidatePath('/services');
+    revalidatePaths(['/', '/admin/services', '/services']);
 
     return {
       type: 'success',
@@ -245,7 +247,11 @@ export const createReviewAction = async (
 };
 
 export const fetchAllPhotos = async () => {
-  return db.galleryPhoto.findMany();
+  return db.galleryPhoto.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
 };
 
 export const fetchFeaturedPhotos = async () => {
@@ -276,4 +282,26 @@ export const fetchGlamPhotos = async () => {
   });
 
   return glamPhotos;
+};
+
+export const updateGalleryPhotoVisibility = async (
+  id: string,
+  key: string,
+  value: boolean
+) => {
+  try {
+    const update = { [key]: value };
+    console.log('Update:', update);
+
+    await db.galleryPhoto.update({
+      where: {
+        id,
+      },
+      data: update,
+    });
+
+    revalidatePaths(['/gallery', '/', '/admin/info']);
+  } catch (error) {
+    console.log(error);
+  }
 };
