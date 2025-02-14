@@ -56,7 +56,7 @@ const ImageGrid = ({ photos }: ImageGridProps) => {
                   width={500}
                   height={500}
                   sizes='100vw'
-                  className='rounded-md object-cover aspect-square mb-4 hover:cursor-pointer'
+                  className='rounded-md object-cover aspect-square mb-4 hover:scale-110 hover:cursor-pointer transition-all ease-in-out'
                   onClick={() => handlePhotoClick(img)}
                   priority
                 />
