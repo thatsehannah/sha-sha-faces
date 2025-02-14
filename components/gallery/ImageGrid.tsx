@@ -36,11 +36,12 @@ const ImageGrid = ({ photos }: ImageGridProps) => {
 
   return (
     <>
-      <Container className='columns-2 lg:columns-5'>
+      <Container className=''>
         <motion.div
           variants={gridVariants}
           initial='hidden'
           animate='visible'
+          className='grid grid-cols-3 xl:grid-cols-5 gap-4'
         >
           {photos.map((img, idx) => {
             return (
@@ -55,7 +56,7 @@ const ImageGrid = ({ photos }: ImageGridProps) => {
                   width={500}
                   height={500}
                   sizes='100vw'
-                  className='rounded-md object-cover mb-4 hover:cursor-pointer'
+                  className='rounded-md object-cover aspect-square mb-4 hover:cursor-pointer'
                   onClick={() => handlePhotoClick(img)}
                   priority
                 />

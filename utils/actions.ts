@@ -268,6 +268,10 @@ export const fetchBridalPhotos = async () => {
   const bridalPhotos = db.galleryPhoto.findMany({
     where: {
       category: 'bridal',
+      isShown: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
     },
   });
 
@@ -278,6 +282,10 @@ export const fetchGlamPhotos = async () => {
   const glamPhotos = db.galleryPhoto.findMany({
     where: {
       category: 'glam',
+      isShown: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
     },
   });
 
