@@ -74,3 +74,9 @@ export type AppointmentWithService = Prisma.AppointmentGetPayload<{
 export type ServiceWithAppointments = Prisma.ServiceGetPayload<{
   include: { Appointment: true };
 }>[];
+
+export type NewPhoto = {
+  isFeatured: boolean;
+  isShown: boolean;
+  category: string;
+};
