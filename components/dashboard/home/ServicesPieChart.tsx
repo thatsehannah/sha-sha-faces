@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Card,
@@ -7,9 +7,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import React, { useEffect, useState } from 'react';
-import { Cell, Label, Pie, PieChart, Tooltip } from 'recharts';
+} from "@/components/ui/card";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+} from "@/components/ui/chart";
+import React from "react";
+import { Pie, PieChart } from "recharts";
 
 type ServicesPieChartProps = {
   data: {
@@ -19,86 +25,59 @@ type ServicesPieChartProps = {
 };
 
 const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const [chartColors, setChartColors] = useState<string[]>([]);
-
-  const getChartColors = (count: number) => {
-    const colors = [];
-
-    for (let i = 1; i <= count; i++) {
-      const color = `--chart-${i}`;
-      colors.push(color);
-    }
-
-    return colors;
-  };
+  const chartConfig = {
+    "bridal party": {
+      label: "Bridal Party",
+    },
+    "full glam makeup application": {
+      label: "Full Glam",
+    },
+    "virtual one on one makeup lesson": {
+      label: "Virtual 1/1 Lesson",
+    },
+    "daily set rate": {
+      label: "Daily Set Rate",
+    },
+    "one on one makeup lesson": {
+      label: "1/1 Lesson",
+    },
+    "bridal consultation": {
+      label: "Bridal Consult",
+    },
+    "bridal makeup": {
+      label: "Bridal Makeup",
+    },
+    "house call/travel fee": {
+      label: "House Call/Travel",
+    },
+  } satisfies ChartConfig;
 
   const dataArr = Array.from(data);
-  const onPieEnter = (index: number) => {
-    setActiveIndex(index);
-  };
-
-  const currentYear = new Date().getFullYear();
-
-  useEffect(() => {
-    const colors = getChartColors(data.length);
-    setChartColors(colors);
-  }, [data.length]);
 
   return (
-    <Card>
-      <CardHeader className='pb-0'>
+    <Card className='flex flex-col'>
+      <CardHeader>
         <CardTitle className='text-2xl font-medium'>
           Popular Services Requested
         </CardTitle>
         <CardDescription>Totals</CardDescription>
       </CardHeader>
-      <CardContent className='flex-1 pb-0'>
-        <PieChart
-          width={600}
-          height={400}
+      <CardContent>
+        <ChartContainer
+          config={chartConfig}
+          className='mx-auto max-h-[450px]'
         >
-          <Pie
-            activeIndex={activeIndex}
-            data={Array.from(data)}
-            dataKey='total'
-            nameKey='service'
-            innerRadius={70}
-            onMouseEnter={onPieEnter}
-            strokeWidth={5}
-            style={{ cursor: 'pointer', outline: 'none' }}
-          >
-            {dataArr.map((_, idx) => (
-              <Cell
-                key={`cell-${idx}`}
-                fill={`hsl(var(${chartColors[idx % chartColors.length]}))`}
-              />
-            ))}
-            <Label
-              content={({ viewBox }) => {
-                if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
-                  return (
-                    <text
-                      x={viewBox.cx}
-                      y={viewBox.cy}
-                      textAnchor='middle'
-                      dominantBaseline='middle'
-                    >
-                      <tspan
-                        x={viewBox.cx}
-                        y={viewBox.cy}
-                        className='fill-foreground text-3xl font-bold'
-                      >
-                        {currentYear}
-                      </tspan>
-                    </text>
-                  );
-                }
-              }}
+          <PieChart>
+            <Pie
+              data={dataArr}
+              dataKey='total'
             />
-          </Pie>
-          <Tooltip />
-        </PieChart>
+            <ChartLegend
+              content={<ChartLegendContent nameKey='service' />}
+              className='-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center text-sm'
+            />
+          </PieChart>
+        </ChartContainer>
       </CardContent>
       <CardFooter className='justify-center'>
         <div>
