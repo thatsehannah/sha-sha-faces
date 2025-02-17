@@ -11,25 +11,53 @@ import {
   SelectTrigger,
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { useToast } from '@/hooks/use-toast';
+import { uploadPhoto } from '@/lib/supabase';
+import { createNewGalleryPhoto } from '@/utils/actions';
 import { NewPhoto } from '@/utils/types';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 import React, { ChangeEvent, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 const UploadPhotoForm = () => {
-  const [newPhotos, setNewPhotos] = useState<File[]>([]);
+  const { toast } = useToast();
+  const [newPhoto, setNewPhoto] = useState<File>();
 
-  const form = useForm<NewPhoto[]>();
+  const form = useForm<NewPhoto>({
+    defaultValues: {
+      isFeatured: false,
+      isShown: false,
+      category: '',
+    },
+  });
 
   const handlePhotoChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const selectedPhotos = Array.from(e.target.files);
-      setNewPhotos((prevState) => [...prevState, ...selectedPhotos]);
+      const photo = e.target.files[0];
+      setNewPhoto(photo);
     }
   };
 
-  const handleFormSubmit = (photos: NewPhoto[]) => {
-    console.log(photos);
+  const handleFormSubmit = async (photo: NewPhoto) => {
+    const rawPhoto = newPhoto as File;
+    const newPhotoUrl = await uploadPhoto(rawPhoto, photo.category);
+
+    const newGalleryPhoto: NewPhoto = {
+      ...photo,
+      url: newPhotoUrl,
+      alt: `${photo.category} photo`,
+    };
+
+    const result = await createNewGalleryPhoto(newGalleryPhoto);
+
+    toast({
+      variant: result.type,
+      title: result.title,
+      description: result.message,
+    });
+
+    redirect('/admin/info');
   };
 
   return (
@@ -42,87 +70,88 @@ const UploadPhotoForm = () => {
               type='file'
               className='w-auto'
               accept='image/*'
-              multiple
               onChange={handlePhotoChange}
             />
           </div>
           <div className='grid grid-cols-1 xl:grid-cols-2 gap-12 xl:gap-8'>
-            {newPhotos.map((photo, idx) => {
-              const photoUrl = URL.createObjectURL(photo);
-
-              return (
-                <div
-                  key={idx}
-                  className='flex gap-4'
-                >
-                  <Image
-                    src={photoUrl}
-                    alt={`new photo ${idx + 1}`}
-                    height={200}
-                    width={200}
-                    className='object-cover aspect-square rounded-md'
-                  />
-                  <div className='grid grid-cols-1 w-full gap-2'>
-                    <div className='flex flex-col gap-1'>
-                      <Label
-                        className='text-[1rem]'
-                        htmlFor='isFeatured'
-                      >
-                        Featured Photo
-                      </Label>
-                      <Switch
-                        id='isFeatured'
-                        onCheckedChange={(value) => console.log(value)}
-                      />
-                    </div>
-                    <div className='flex flex-col gap-1'>
-                      <Label
-                        className='text-[1rem]'
-                        htmlFor='isShown'
-                      >
-                        Show in Gallery
-                      </Label>
-                      <Switch
-                        id='isShown'
-                        onCheckedChange={(value) => console.log(value)}
-                      />
-                    </div>
-                    <div className='flex flex-col gap-1 w-3/4'>
-                      <Label
-                        className='text-[1rem]'
-                        htmlFor='category'
-                      >
-                        Category
-                      </Label>
-                      <Select>
-                        <SelectTrigger className='text-[1rem]'>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem
-                            className='text-[1rem]'
-                            value='bridal'
-                          >
-                            Bridal
-                          </SelectItem>
-                          <SelectItem
-                            className='text-[1rem]'
-                            value='glam'
-                          >
-                            Glam
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+            {newPhoto && (
+              <div className='flex gap-4'>
+                <Image
+                  src={URL.createObjectURL(newPhoto)}
+                  alt='new photo'
+                  height={200}
+                  width={200}
+                  className='object-cover aspect-square rounded-md'
+                />
+                <div className='grid grid-cols-1 w-full gap-2'>
+                  <div className='flex flex-col gap-1'>
+                    <Label
+                      className='text-[1rem]'
+                      htmlFor='isFeatured'
+                    >
+                      Featured Photo
+                    </Label>
+                    <Switch
+                      id='isFeatured'
+                      onCheckedChange={(value) =>
+                        form.setValue('isFeatured', value)
+                      }
+                    />
+                  </div>
+                  <div className='flex flex-col gap-1'>
+                    <Label
+                      className='text-[1rem]'
+                      htmlFor='isShown'
+                    >
+                      Show in Gallery
+                    </Label>
+                    <Switch
+                      id='isShown'
+                      onCheckedChange={(value) =>
+                        form.setValue('isShown', value)
+                      }
+                    />
+                  </div>
+                  <div className='flex flex-col gap-1 w-3/4'>
+                    <Label
+                      className='text-[1rem]'
+                      htmlFor='category'
+                    >
+                      Category
+                    </Label>
+                    <Select
+                      onValueChange={(value) =>
+                        form.setValue('category', value)
+                      }
+                    >
+                      <SelectTrigger className='text-[1rem]'>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem
+                          className='text-[1rem]'
+                          value='bridal'
+                        >
+                          Bridal
+                        </SelectItem>
+                        <SelectItem
+                          className='text-[1rem]'
+                          value='glam'
+                        >
+                          Glam
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            )}
           </div>
           <div className='w-full flex justify-end'>
             <Button
               type='submit'
               className='text-lg'
+              disabled={newPhoto === undefined || form.formState.isSubmitting}
             >
               Add
             </Button>

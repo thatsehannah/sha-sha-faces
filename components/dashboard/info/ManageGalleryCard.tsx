@@ -47,6 +47,7 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
         </CardHeader>
         <CardContent>
           <div className='grid grid-cols-1 xl:grid-cols-2 gap-4'>
+            {/* TODO: add pagination and/or filter */}
             {photos.map((photo) => (
               <div
                 className='flex justify-center xl:justify-start gap-4'
@@ -81,6 +82,7 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
                         }
                       />
                     </div>
+                    {/* TODO: Add category dropdown */}
                   </div>
                 </div>
               </div>

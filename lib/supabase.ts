@@ -4,19 +4,18 @@ const bucket = 'gallery';
 
 //TODO: create upload and delete image functions
 const supabase = createClient(
-  process.env.SUPABASE_URL as string,
-  process.env.SUPABASE_KEY as string
+  process.env.NEXT_PUBLIC_SUPABASE_URL as string,
+  process.env.NEXT_PUBLIC_SUPABASE_KEY as string
 );
 
 export const uploadPhoto = async (photo: File, category: string) => {
-  const timestamp = Date.now();
-  const newName = `${timestamp}-${photo.name}`;
-  const { data } = await supabase.storage
+  const { error } = await supabase.storage
     .from(bucket)
-    .upload(`${category}/${newName}`, photo, { cacheControl: '3600' });
+    .upload(`${category}/${photo.name}`, photo, { cacheControl: '3600' });
 
-  if (!data) throw new Error('Photo upload failed');
+  if (error) throw new Error(error.message);
 
   //returning the public url after the image upload to the bucket so that we can save it in the database
-  return supabase.storage.from(bucket).getPublicUrl(newName).data.publicUrl;
+  return supabase.storage.from(bucket).getPublicUrl(`${category}/${photo.name}`)
+    .data.publicUrl;
 };

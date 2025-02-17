@@ -26,10 +26,6 @@ export type EditAppointment = {
   date: string;
 };
 
-export type AppointmentFormFields = keyof Appointment;
-
-export type ReviewFormFields = keyof Review;
-
 export type Service = {
   name: string;
   price: number;
@@ -50,12 +46,6 @@ export type ServiceSvg = {
   properties: {
     [key: string]: string | undefined;
   };
-};
-
-export type GalleryImage = {
-  name: string;
-  url: string;
-  alt: string;
 };
 
 export type Review = {
@@ -79,4 +69,6 @@ export type NewPhoto = {
   isFeatured: boolean;
   isShown: boolean;
   category: string;
+  url: string;
+  alt: string;
 };

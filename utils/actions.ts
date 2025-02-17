@@ -5,6 +5,7 @@ import {
   AppointmentWithService,
   EditAppointment,
   Appointment as NewAppointment,
+  NewPhoto,
   Review,
 } from './types';
 import { Prisma } from '@prisma/client';
@@ -311,5 +312,38 @@ export const updateGalleryPhotoVisibility = async (
     revalidatePaths(['/gallery', '/', '/admin/info']);
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const createNewGalleryPhoto = async (
+  photo: NewPhoto
+): Promise<{
+  message: string;
+  title: string;
+  type: 'success' | 'destructive';
+}> => {
+  try {
+    await db.galleryPhoto.create({
+      data: {
+        url: photo.url,
+        isFeatured: photo.isFeatured,
+        isShown: photo.isShown,
+        category: photo.category,
+        alt: photo.alt,
+      },
+    });
+    revalidatePaths(['/', '/gallery', '/admin/info']);
+
+    return {
+      type: 'success',
+      title: 'Success! ✅',
+      message: 'Photo uploaded',
+    };
+  } catch (error) {
+    return {
+      type: 'destructive',
+      title: 'Uh oh! ☹️',
+      message: error instanceof Error ? error.message : 'An error occurred.',
+    };
   }
 };
