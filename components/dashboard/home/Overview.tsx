@@ -54,10 +54,10 @@ const Overview = ({ allAppointments, allServices }: OverviewProps) => {
 
   return (
     <section>
-      <div className='mb-24 w-[100vw] lg:w-auto'>
+      <div className='mb-24 w-full'>
         <p className='font-normal text-2xl mb-6'>Your day at a glance:</p>
         {todayAppointments.length === 0 ? (
-          <p className='text-center font-medium text-foreground text-xl tracking-wide bg-gradient-to-r from-background via-secondary to-background rounded-md p-4'>
+          <p className='text-center font-medium text-black text-xl tracking-wide bg-secondary rounded-md p-4'>
             No appointments today.
           </p>
         ) : (
@@ -69,7 +69,7 @@ const Overview = ({ allAppointments, allServices }: OverviewProps) => {
           ))
         )}
       </div>
-      <div className='mb-12 bg-muted p-12 rounded-lg w-[100vw] lg:w-auto'>
+      <div className='mb-12 bg-muted p-12 rounded-lg w-full'>
         <p className='text-2xl font-medium mb-8'>Appointment Overview</p>
         <div className='grid grid-cols-1 lg:grid-cols-2 items-center justify-center gap-4 lg:gap-x-12 lg:gap-y-8 '>
           <OverviewCard
@@ -91,9 +91,9 @@ const Overview = ({ allAppointments, allServices }: OverviewProps) => {
         </div>
       </div>
 
-      <div className='flex gap-8 lg:flex-row flex-col bg-muted p-12 rounded-lg'>
+      <div className='flex gap-8 lg:flex-row flex-col bg-muted p-12 rounded-lg w-full'>
         {isClient && (
-          <div>
+          <div className='xl:w-3/4 w-full'>
             <ServicesPieChart data={chartData} />
           </div>
         )}

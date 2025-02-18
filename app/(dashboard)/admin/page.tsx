@@ -1,12 +1,11 @@
-import VisitorChart from '@/components/dashboard/home/VisitorChart';
-import Hero from '@/components/dashboard/home/Hero';
-import Overview from '@/components/dashboard/home/Overview';
-import Container from '@/components/global/Container';
-import React from 'react';
+import Hero from "@/components/dashboard/home/Hero";
+import Overview from "@/components/dashboard/home/Overview";
+import Container from "@/components/global/Container";
+import React from "react";
 import {
   fetchAllAppointments,
   fetchServiceWithAppointments,
-} from '@/utils/actions';
+} from "@/utils/actions";
 
 const AdminHomePage = async () => {
   const allAppointments = await fetchAllAppointments();
@@ -16,13 +15,12 @@ const AdminHomePage = async () => {
 
   return (
     <main>
-      <Container className='py-20'>
+      <Container className='py-20 w-screen lg:w-[80vw]'>
         <Hero />
         <Overview
           allAppointments={allAppointments}
           allServices={services}
         />
-        <VisitorChart />
       </Container>
     </main>
   );

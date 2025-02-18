@@ -55,7 +55,7 @@ const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
   const dataArr = Array.from(data);
 
   return (
-    <Card className='flex flex-col'>
+    <Card className='flex flex-col w-full'>
       <CardHeader>
         <CardTitle className='text-2xl font-medium'>
           Popular Services Requested
