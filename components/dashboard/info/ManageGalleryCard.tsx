@@ -1,16 +1,26 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
-import { Switch } from '@/components/ui/switch';
-import { updateGalleryPhotoVisibility } from '@/utils/actions';
-import { GalleryPhoto } from '@prisma/client';
-import Image from 'next/image';
-import React from 'react';
-import { useDebouncedCallback } from 'use-debounce';
-import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import {
+  updateGalleryPhotoCategory,
+  updateGalleryPhotoVisibility,
+} from "@/utils/actions";
+import { GalleryPhoto } from "@prisma/client";
+import Image from "next/image";
+import React from "react";
+import { useDebouncedCallback } from "use-debounce";
+import Link from "next/link";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type ManageGalleryCardProps = {
   photos: GalleryPhoto[];
@@ -19,14 +29,21 @@ type ManageGalleryCardProps = {
 const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
   const handleIsFeaturedSwitch = useDebouncedCallback(
     async (id: string, value: boolean) => {
-      await updateGalleryPhotoVisibility(id, 'isFeatured', value);
+      await updateGalleryPhotoVisibility(id, "isFeatured", value);
     },
     3000
   );
 
   const handleIsShownSwitch = useDebouncedCallback(
     async (id: string, value: boolean) => {
-      await updateGalleryPhotoVisibility(id, 'isShown', value);
+      await updateGalleryPhotoVisibility(id, "isShown", value);
+    },
+    3000
+  );
+
+  const handleCategoryChange = useDebouncedCallback(
+    async (id: string, value: string) => {
+      await updateGalleryPhotoCategory(id, value);
     },
     3000
   );
@@ -46,11 +63,11 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
           <Separator />
         </CardHeader>
         <CardContent>
-          <div className='grid grid-cols-1 xl:grid-cols-2 gap-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-y-8'>
             {/* TODO: add pagination and/or filter */}
             {photos.map((photo) => (
               <div
-                className='flex justify-center xl:justify-start gap-4'
+                className='flex justify-center lg:justify-start gap-4'
                 key={photo.id}
               >
                 <Image
@@ -60,29 +77,61 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
                   width={200}
                   height={200}
                 />
-                <div>
-                  <div className='flex flex-col gap-6'>
-                    <div className='flex flex-col gap-1'>
-                      <Label htmlFor='isFeatured'>Featured Photo</Label>
-                      <Switch
-                        id='isFeatured'
-                        defaultChecked={photo.isFeatured}
-                        onCheckedChange={(value) =>
-                          handleIsFeaturedSwitch(photo.id, value)
-                        }
-                      />
-                    </div>
-                    <div className='flex flex-col gap-1'>
-                      <Label htmlFor='isShown'>Show in Gallery</Label>
-                      <Switch
-                        id='isShown'
-                        defaultChecked={photo.isShown}
-                        onCheckedChange={(value) =>
-                          handleIsShownSwitch(photo.id, value)
-                        }
-                      />
-                    </div>
-                    {/* TODO: Add category dropdown */}
+                <div className='flex flex-col gap-6 w-full'>
+                  <div className='flex flex-col gap-1'>
+                    <Label htmlFor='isFeatured'>Featured Photo</Label>
+                    <Switch
+                      id='isFeatured'
+                      defaultChecked={photo.isFeatured}
+                      onCheckedChange={(value) =>
+                        handleIsFeaturedSwitch(photo.id, value)
+                      }
+                    />
+                  </div>
+                  <div className='flex flex-col gap-1'>
+                    <Label htmlFor='isShown'>Show in Gallery</Label>
+                    <Switch
+                      id='isShown'
+                      defaultChecked={photo.isShown}
+                      onCheckedChange={(value) =>
+                        handleIsShownSwitch(photo.id, value)
+                      }
+                    />
+                  </div>
+                  <div className='flex flex-col gap-1 w-3/4'>
+                    <Label
+                      className='text-[1rem]'
+                      htmlFor='category'
+                    >
+                      Category
+                    </Label>
+                    <Select
+                      defaultValue={photo.category}
+                      onValueChange={(value) =>
+                        handleCategoryChange(photo.id, value)
+                      }
+                    >
+                      <SelectTrigger
+                        id='category'
+                        className='text-[1rem] data-[placeholder]:text-gray-500 dark:data-[placeholder]:text-gray-700 data-[placeholder]:font-extralight'
+                      >
+                        <SelectValue placeholder='Select a category' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem
+                          className='text-[1rem]'
+                          value='bridal'
+                        >
+                          Bridal
+                        </SelectItem>
+                        <SelectItem
+                          className='text-[1rem]'
+                          value='glam'
+                        >
+                          Glam
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
               </div>

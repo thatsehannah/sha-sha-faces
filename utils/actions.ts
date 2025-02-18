@@ -1,19 +1,19 @@
-'use server';
+"use server";
 
-import { validateAppointmentSchema } from './appointmentSchema';
+import { validateAppointmentSchema } from "./appointmentSchema";
 import {
   AppointmentWithService,
   EditAppointment,
   Appointment as NewAppointment,
   NewPhoto,
   Review,
-} from './types';
-import { Prisma } from '@prisma/client';
-import db from './db';
-import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
-import { validateReviewSchema } from './reviewSchema';
-import sgMail from '@sendgrid/mail';
+} from "./types";
+import { Prisma } from "@prisma/client";
+import db from "./db";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import { validateReviewSchema } from "./reviewSchema";
+import sgMail from "@sendgrid/mail";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
@@ -26,7 +26,7 @@ export const createAppointmentAction = async (
 ): Promise<{
   message: string;
   title: string;
-  type: 'success' | 'destructive';
+  type: "success" | "destructive";
 }> => {
   try {
     const result = validateAppointmentSchema(formData);
@@ -37,7 +37,7 @@ export const createAppointmentAction = async (
         service: {
           connect: { name: result.service },
         },
-        addtlDetails: result.addtlDetails ? result.addtlDetails : '',
+        addtlDetails: result.addtlDetails ? result.addtlDetails : "",
       },
     });
 
@@ -63,20 +63,20 @@ export const createAppointmentAction = async (
 
     // await Promise.all([sgMail.send(adminMessage)]);
 
-    revalidatePath('/admin');
-    revalidatePath('/admin/appointments');
+    revalidatePath("/admin");
+    revalidatePath("/admin/appointments");
 
     return {
-      type: 'success',
-      title: 'Success! ✅',
+      type: "success",
+      title: "Success! ✅",
       message:
-        'Appointment request sent! I will get back with you to confirm the details shortly.',
+        "Appointment request sent! I will get back with you to confirm the details shortly.",
     };
   } catch (error) {
     return {
-      type: 'destructive',
-      title: 'Uh oh! ☹️',
-      message: error instanceof Error ? error.message : 'An error occurred.',
+      type: "destructive",
+      title: "Uh oh! ☹️",
+      message: error instanceof Error ? error.message : "An error occurred.",
     };
   }
 };
@@ -86,7 +86,7 @@ export const fetchAllAppointments = async (): Promise<
 > => {
   return await db.appointment.findMany({
     orderBy: {
-      updatedAt: 'desc',
+      updatedAt: "desc",
     },
     include: {
       service: true,
@@ -107,7 +107,7 @@ export const fetchAppointmentById = async (
   });
 
   if (!appointment) {
-    redirect('/admin/appointments');
+    redirect("/admin/appointments");
   }
 
   return appointment;
@@ -130,7 +130,7 @@ export const updateAppointment = async (
 ): Promise<{
   message: string;
   title: string;
-  type: 'success' | 'destructive';
+  type: "success" | "destructive";
 }> => {
   try {
     const { service, ...otherUpdates } = updates;
@@ -151,18 +151,18 @@ export const updateAppointment = async (
       },
     });
 
-    revalidatePath('/admin');
-    revalidatePath('/admin/appointments');
+    revalidatePath("/admin");
+    revalidatePath("/admin/appointments");
     return {
-      type: 'success',
-      title: 'Success! ✅',
-      message: 'Appointment updated 💋.',
+      type: "success",
+      title: "Success! ✅",
+      message: "Appointment updated 💋.",
     };
   } catch (error) {
     return {
-      type: 'destructive',
-      title: 'Uh oh! ☹️',
-      message: error instanceof Error ? error.message : 'An error occurred.',
+      type: "destructive",
+      title: "Uh oh! ☹️",
+      message: error instanceof Error ? error.message : "An error occurred.",
     };
   }
 };
@@ -173,7 +173,7 @@ export const updateService = async (
 ): Promise<{
   message: string;
   title: string;
-  type: 'success' | 'destructive';
+  type: "success" | "destructive";
 }> => {
   try {
     await db.service.update({
@@ -183,18 +183,18 @@ export const updateService = async (
       data: updates,
     });
 
-    revalidatePaths(['/', '/admin/services', '/services']);
+    revalidatePaths(["/", "/admin/services", "/services"]);
 
     return {
-      type: 'success',
-      title: 'Success! ✅',
-      message: 'Service updated 💋.',
+      type: "success",
+      title: "Success! ✅",
+      message: "Service updated 💋.",
     };
   } catch (error) {
     return {
-      type: 'destructive',
-      title: 'Uh oh! ☹️',
-      message: error instanceof Error ? error.message : 'An error occurred.',
+      type: "destructive",
+      title: "Uh oh! ☹️",
+      message: error instanceof Error ? error.message : "An error occurred.",
     };
   }
 };
@@ -216,7 +216,7 @@ export const createReviewAction = async (
 ): Promise<{
   message: string;
   title: string;
-  type: 'success' | 'destructive';
+  type: "success" | "destructive";
 }> => {
   try {
     const result = validateReviewSchema(formData);
@@ -230,19 +230,19 @@ export const createReviewAction = async (
       },
     });
 
-    revalidatePath('/');
-    revalidatePath('/admin/info');
+    revalidatePath("/");
+    revalidatePath("/admin/info");
 
     return {
-      type: 'success',
-      title: 'Success! ✅',
+      type: "success",
+      title: "Success! ✅",
       message: `Thank you for your review ${formData.reviewer}. Hope to see you again soon!`,
     };
   } catch (error) {
     return {
-      type: 'destructive',
-      title: 'Uh oh! ☹️',
-      message: error instanceof Error ? error.message : 'An error occurred.',
+      type: "destructive",
+      title: "Uh oh! ☹️",
+      message: error instanceof Error ? error.message : "An error occurred.",
     };
   }
 };
@@ -250,7 +250,7 @@ export const createReviewAction = async (
 export const fetchAllPhotos = async () => {
   return db.galleryPhoto.findMany({
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
   });
 };
@@ -268,11 +268,11 @@ export const fetchFeaturedPhotos = async () => {
 export const fetchBridalPhotos = async () => {
   const bridalPhotos = db.galleryPhoto.findMany({
     where: {
-      category: 'bridal',
+      category: "bridal",
       isShown: true,
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
   });
 
@@ -282,11 +282,11 @@ export const fetchBridalPhotos = async () => {
 export const fetchGlamPhotos = async () => {
   const glamPhotos = db.galleryPhoto.findMany({
     where: {
-      category: 'glam',
+      category: "glam",
       isShown: true,
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
   });
 
@@ -300,7 +300,6 @@ export const updateGalleryPhotoVisibility = async (
 ) => {
   try {
     const update = { [key]: value };
-    console.log('Update:', update);
 
     await db.galleryPhoto.update({
       where: {
@@ -309,7 +308,27 @@ export const updateGalleryPhotoVisibility = async (
       data: update,
     });
 
-    revalidatePaths(['/gallery', '/', '/admin/info']);
+    revalidatePaths(["/gallery", "/", "/admin/info"]);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateGalleryPhotoCategory = async (
+  id: string,
+  category: string
+) => {
+  try {
+    await db.galleryPhoto.update({
+      where: {
+        id,
+      },
+      data: {
+        category,
+      },
+    });
+
+    revalidatePaths(["/gallery", "/", "/admin/info"]);
   } catch (error) {
     console.log(error);
   }
@@ -320,7 +339,7 @@ export const createNewGalleryPhoto = async (
 ): Promise<{
   message: string;
   title: string;
-  type: 'success' | 'destructive';
+  type: "success" | "destructive";
 }> => {
   try {
     await db.galleryPhoto.create({
@@ -332,18 +351,18 @@ export const createNewGalleryPhoto = async (
         alt: photo.alt,
       },
     });
-    revalidatePaths(['/', '/gallery', '/admin/info']);
+    revalidatePaths(["/", "/gallery", "/admin/info"]);
 
     return {
-      type: 'success',
-      title: 'Success! ✅',
-      message: 'Photo uploaded',
+      type: "success",
+      title: "Success! ✅",
+      message: "Photo uploaded",
     };
   } catch (error) {
     return {
-      type: 'destructive',
-      title: 'Uh oh! ☹️',
-      message: error instanceof Error ? error.message : 'An error occurred.',
+      type: "destructive",
+      title: "Uh oh! ☹️",
+      message: error instanceof Error ? error.message : "An error occurred.",
     };
   }
 };
