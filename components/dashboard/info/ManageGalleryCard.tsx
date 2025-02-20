@@ -21,12 +21,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
 
 type ManageGalleryCardProps = {
   photos: GalleryPhoto[];
 };
 
 const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
+  const { toast } = useToast();
+
+  const showToast = (message: string) => {
+    toast({
+      variant: "success",
+      description: message,
+    });
+  };
+
   const handleIsFeaturedSwitch = useDebouncedCallback(
     async (id: string, value: boolean) => {
       await updateGalleryPhotoVisibility(id, "isFeatured", value);
@@ -79,37 +89,40 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
                 />
                 <div className='flex flex-col gap-6 w-full'>
                   <div className='flex flex-col gap-1'>
-                    <Label htmlFor='isFeatured'>Featured Photo</Label>
+                    <Label htmlFor={`isFeatured-${photo.id}`}>
+                      Featured Photo
+                    </Label>
+
                     <Switch
                       id='isFeatured'
                       defaultChecked={photo.isFeatured}
-                      onCheckedChange={(value) =>
-                        handleIsFeaturedSwitch(photo.id, value)
-                      }
+                      onCheckedChange={(value) => {
+                        showToast("Featured visibility saved.");
+                        handleIsFeaturedSwitch(photo.id, value);
+                      }}
                     />
                   </div>
                   <div className='flex flex-col gap-1'>
                     <Label htmlFor='isShown'>Show in Gallery</Label>
+
                     <Switch
                       id='isShown'
                       defaultChecked={photo.isShown}
-                      onCheckedChange={(value) =>
-                        handleIsShownSwitch(photo.id, value)
-                      }
+                      onCheckedChange={(value) => {
+                        showToast("Gallery visibility saved.");
+                        handleIsShownSwitch(photo.id, value);
+                      }}
                     />
                   </div>
                   <div className='flex flex-col gap-1 w-3/4'>
-                    <Label
-                      className='text-[1rem]'
-                      htmlFor='category'
-                    >
-                      Category
-                    </Label>
+                    <Label htmlFor='category'>Category</Label>
+
                     <Select
                       defaultValue={photo.category}
-                      onValueChange={(value) =>
-                        handleCategoryChange(photo.id, value)
-                      }
+                      onValueChange={(value) => {
+                        showToast("Category change saved.");
+                        handleCategoryChange(photo.id, value);
+                      }}
                     >
                       <SelectTrigger
                         id='category'
