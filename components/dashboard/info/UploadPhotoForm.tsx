@@ -1,24 +1,27 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectValue,
   SelectTrigger,
-} from '@/components/ui/select';
-import { Switch } from '@/components/ui/switch';
-import { useToast } from '@/hooks/use-toast';
-import { uploadPhoto } from '@/lib/supabase';
-import { createNewGalleryPhoto } from '@/utils/actions';
-import { NewPhoto } from '@/utils/types';
-import Image from 'next/image';
-import { redirect } from 'next/navigation';
-import React, { ChangeEvent, useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+} from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { useToast } from "@/hooks/use-toast";
+import { uploadPhoto } from "@/lib/supabase";
+import {
+  createNewGalleryPhoto,
+  fetchGalleryCategoryLength,
+} from "@/utils/actions";
+import { NewPhoto } from "@/utils/types";
+import Image from "next/image";
+import { redirect } from "next/navigation";
+import React, { ChangeEvent, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 
 const UploadPhotoForm = () => {
   const { toast } = useToast();
@@ -28,7 +31,7 @@ const UploadPhotoForm = () => {
     defaultValues: {
       isFeatured: false,
       isShown: false,
-      category: '',
+      category: "",
     },
   });
 
@@ -41,12 +44,13 @@ const UploadPhotoForm = () => {
 
   const handleFormSubmit = async (photo: NewPhoto) => {
     const rawPhoto = newPhoto as File;
-    const newPhotoUrl = await uploadPhoto(rawPhoto, photo.category);
+    const newPhotoUrl = await uploadPhoto(rawPhoto);
+    const categoryLength = await fetchGalleryCategoryLength(photo.category);
 
     const newGalleryPhoto: NewPhoto = {
       ...photo,
       url: newPhotoUrl,
-      alt: `${photo.category} photo`,
+      alt: `${photo.category} photo ${categoryLength}`,
     };
 
     const result = await createNewGalleryPhoto(newGalleryPhoto);
@@ -57,7 +61,7 @@ const UploadPhotoForm = () => {
       description: result.message,
     });
 
-    redirect('/admin/info');
+    redirect("/admin/info");
   };
 
   return (
@@ -94,7 +98,7 @@ const UploadPhotoForm = () => {
                     <Switch
                       id='isFeatured'
                       onCheckedChange={(value) =>
-                        form.setValue('isFeatured', value)
+                        form.setValue("isFeatured", value)
                       }
                     />
                   </div>
@@ -108,7 +112,7 @@ const UploadPhotoForm = () => {
                     <Switch
                       id='isShown'
                       onCheckedChange={(value) =>
-                        form.setValue('isShown', value)
+                        form.setValue("isShown", value)
                       }
                     />
                   </div>
@@ -121,11 +125,11 @@ const UploadPhotoForm = () => {
                     </Label>
                     <Select
                       onValueChange={(value) =>
-                        form.setValue('category', value)
+                        form.setValue("category", value)
                       }
                     >
                       <SelectTrigger className='text-[1rem]'>
-                        <SelectValue />
+                        <SelectValue placeholder='Select a category' />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem

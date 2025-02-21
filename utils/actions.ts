@@ -249,7 +249,7 @@ export const createReviewAction = async (
 };
 
 export const fetchAllPhotos = async () => {
-  return db.galleryPhoto.findMany({
+  return await db.galleryPhoto.findMany({
     orderBy: {
       createdAt: "desc",
     },
@@ -257,7 +257,7 @@ export const fetchAllPhotos = async () => {
 };
 
 export const fetchFeaturedPhotos = async () => {
-  const featuredPhotos = db.galleryPhoto.findMany({
+  const featuredPhotos = await db.galleryPhoto.findMany({
     where: {
       isFeatured: true,
     },
@@ -267,7 +267,7 @@ export const fetchFeaturedPhotos = async () => {
 };
 
 export const fetchBridalPhotos = async () => {
-  const bridalPhotos = db.galleryPhoto.findMany({
+  const bridalPhotos = await db.galleryPhoto.findMany({
     where: {
       category: "bridal",
       isShown: true,
@@ -281,7 +281,7 @@ export const fetchBridalPhotos = async () => {
 };
 
 export const fetchGlamPhotos = async () => {
-  const glamPhotos = db.galleryPhoto.findMany({
+  const glamPhotos = await db.galleryPhoto.findMany({
     where: {
       category: "glam",
       isShown: true,
@@ -292,6 +292,16 @@ export const fetchGlamPhotos = async () => {
   });
 
   return glamPhotos;
+};
+
+export const fetchGalleryCategoryLength = async (category: string) => {
+  const categoryPhotos = await db.galleryPhoto.findMany({
+    where: {
+      category,
+    },
+  });
+
+  return categoryPhotos.length;
 };
 
 export const updateGalleryPhotoVisibility = async (
