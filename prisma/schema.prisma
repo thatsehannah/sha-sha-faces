@@ -73,3 +73,22 @@ model GalleryPhoto {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model WeeklyAvailability {
+  day String @id
+  isAvailable Boolean
+  from String
+  to String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SpecificUnavailability {
+  id String @id @default(uuid())
+  dateFrom String
+  dateTo String
+  timeFrom String
+  timeTo String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

@@ -10,7 +10,6 @@ import {
 const AdminHomePage = async () => {
   const allAppointments = await fetchAllAppointments();
 
-  //TODO: tweak this to only retrieve services from the current month
   const services = await fetchServiceWithAppointments();
 
   return (

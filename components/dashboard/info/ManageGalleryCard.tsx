@@ -108,7 +108,7 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
                 <div className='relative hover:scale-110 hover:cursor-pointer transition-all ease-in-out'>
                   <div className='absolute -top-2 -right-2 hover:scale-125 hover:cursor-pointer transition-all ease-in-out'>
                     <CircleX
-                      fill='white'
+                      fill='background'
                       onClick={() => {
                         setPhotoToDelete(photo);
                         setOpenDialog(true);
