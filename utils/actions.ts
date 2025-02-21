@@ -8,12 +8,13 @@ import {
   NewPhoto,
   Review,
 } from "./types";
-import { Prisma } from "@prisma/client";
+import { GalleryPhoto, Prisma } from "@prisma/client";
 import db from "./db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { validateReviewSchema } from "./reviewSchema";
 import sgMail from "@sendgrid/mail";
+import { deletePhotoFromBucket } from "@/lib/supabase";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
@@ -363,6 +364,37 @@ export const createNewGalleryPhoto = async (
       type: "destructive",
       title: "Uh oh! ☹️",
       message: error instanceof Error ? error.message : "An error occurred.",
+    };
+  }
+};
+
+export const deleteGalleryPhoto = async (
+  photo: GalleryPhoto
+): Promise<{
+  message: string;
+  title: string;
+  type: "success" | "destructive";
+}> => {
+  try {
+    const deletedPhoto = await db.galleryPhoto.delete({
+      where: {
+        id: photo.id,
+      },
+    });
+
+    deletePhotoFromBucket(deletedPhoto);
+
+    revalidatePaths(["/", "/gallery", "/admin/info"]);
+
+    return { type: "success", title: "Success ✅", message: "Photo removed" };
+  } catch (error) {
+    return {
+      type: "destructive",
+      title: "Uh oh ☹️",
+      message:
+        error instanceof Error
+          ? error.message
+          : "An error occurred when deleting the photo",
     };
   }
 };

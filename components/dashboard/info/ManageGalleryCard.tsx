@@ -6,12 +6,13 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import {
+  deleteGalleryPhoto,
   updateGalleryPhotoCategory,
   updateGalleryPhotoVisibility,
 } from "@/utils/actions";
 import { GalleryPhoto } from "@prisma/client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";
 import {
@@ -22,12 +23,24 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { CircleX } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 type ManageGalleryCardProps = {
   photos: GalleryPhoto[];
 };
 
 const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [photoToDelete, setPhotoToDelete] = useState<GalleryPhoto>();
+
   const { toast } = useToast();
 
   const showToast = (message: string) => {
@@ -58,6 +71,18 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
     3000
   );
 
+  const handleDeletePhoto = async (photo: GalleryPhoto) => {
+    const result = await deleteGalleryPhoto(photo);
+
+    toast({
+      variant: result.type,
+      title: result.title,
+      description: result.message,
+    });
+
+    setOpenDialog(false);
+  };
+
   return (
     <>
       <Card>
@@ -80,13 +105,24 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
                 className='flex justify-center lg:justify-start gap-4'
                 key={photo.id}
               >
-                <Image
-                  src={photo.url}
-                  alt={photo.alt}
-                  className='object-cover aspect-square hover:scale-110 hover:cursor-pointer transition-all ease-in-out rounded-md'
-                  width={200}
-                  height={200}
-                />
+                <div className='relative hover:scale-110 hover:cursor-pointer transition-all ease-in-out'>
+                  <div className='absolute -top-2 -right-2 hover:scale-125 hover:cursor-pointer transition-all ease-in-out'>
+                    <CircleX
+                      fill='white'
+                      onClick={() => {
+                        setPhotoToDelete(photo);
+                        setOpenDialog(true);
+                      }}
+                    />
+                  </div>
+                  <Image
+                    src={photo.url}
+                    alt={photo.alt}
+                    className='object-cover aspect-square rounded-md'
+                    width={300}
+                    height={300}
+                  />
+                </div>
                 <div className='flex flex-col gap-6 w-full'>
                   <div className='flex flex-col gap-1'>
                     <Label htmlFor={`isFeatured-${photo.id}`}>
@@ -152,6 +188,32 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
           </div>
         </CardContent>
       </Card>
+      <Dialog
+        open={openDialog}
+        onOpenChange={setOpenDialog}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              Are you sure you want to delete this photo?
+            </DialogTitle>
+          </DialogHeader>
+          <DialogDescription>
+            This will remove the photo from your gallery.
+          </DialogDescription>
+          <DialogFooter>
+            <Button
+              variant='outline'
+              onClick={() => setOpenDialog(false)}
+            >
+              Cancel
+            </Button>
+            <Button onClick={() => handleDeletePhoto(photoToDelete!)}>
+              Confirm
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
