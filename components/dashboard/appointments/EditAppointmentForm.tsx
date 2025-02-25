@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import times from '@/utils/appointmentTimes.json';
-import EditTextInput from '../components/EditTextInput';
-import EditDropdown from '../components/EditDropdown';
-import { STATUSES } from '@/utils/constants';
-import { Button } from '@/components/ui/button';
+import React, { useState } from "react";
+import EditTextInput from "../components/EditTextInput";
+import EditDropdown from "../components/EditDropdown";
+import { STATUSES } from "@/utils/constants";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Separator } from '@/components/ui/separator';
-import { FormProvider, useForm } from 'react-hook-form';
-import { DialogDescription } from '@radix-ui/react-dialog';
-import { updateAppointment } from '@/utils/actions';
-import { useToast } from '@/hooks/use-toast';
-import { redirect } from 'next/navigation';
-import { AppointmentWithService, EditAppointment } from '@/utils/types';
-import EditDatePicker from '../components/EditDatePicker';
+} from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
+import { FormProvider, useForm } from "react-hook-form";
+import { DialogDescription } from "@radix-ui/react-dialog";
+import { updateAppointment } from "@/utils/actions";
+import { useToast } from "@/hooks/use-toast";
+import { redirect } from "next/navigation";
+import { AppointmentWithService, EditAppointment } from "@/utils/types";
+import EditDatePicker from "../components/EditDatePicker";
+import { getAvailabilityTimeOptions } from "@/lib/utils";
 
 type EditAppointmentProps = {
   appointment: AppointmentWithService;
@@ -62,7 +62,7 @@ const EditAppointmentForm = ({
     },
   });
 
-  const statusValue = form.watch('status');
+  const statusValue = form.watch("status");
 
   const handleSubmit = async (values: EditAppointment) => {
     const dirtyFields = Object.keys(form.formState.dirtyFields);
@@ -82,7 +82,7 @@ const EditAppointmentForm = ({
     });
 
     setOpenConfirmDialog(false);
-    redirect('/admin/appointments');
+    redirect("/admin/appointments");
   };
 
   return (
@@ -120,7 +120,7 @@ const EditAppointmentForm = ({
               <EditDropdown
                 label='time'
                 name='time'
-                values={times}
+                values={getAvailabilityTimeOptions()}
                 form={form}
               />
               <EditTextInput
@@ -134,7 +134,7 @@ const EditAppointmentForm = ({
                 values={STATUSES}
                 form={form}
               />
-              {statusValue === 'Completed' ? (
+              {statusValue === "Completed" ? (
                 <EditDatePicker
                   label='completed on'
                   name='completedOn'

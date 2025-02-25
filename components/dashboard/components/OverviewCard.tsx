@@ -11,7 +11,7 @@ const OverviewCard = ({ title, value, caption }: OverviewCardProps) => {
   return (
     <Card
       data-status={title}
-      className="w-42 lg:w-72 data-[status='Pending']:bg-orange-400 data-[status='Confirmed']:bg-blue-400 data-[status='Completed']:bg-green-400 data-[status='Canceled']:bg-red-400 text-black"
+      className="w-42 lg:w-72 data-[status='Pending']:bg-orange-200 data-[status='Confirmed']:bg-blue-200 data-[status='Completed']:bg-green-200 data-[status='Canceled']:bg-red-200 text-black"
     >
       <CardHeader className='p-4 pb-1'>
         <CardTitle className={`capitalize text-[1rem] lg:text-lg font-light`}>
