@@ -3,6 +3,7 @@
 import { validateAppointmentSchema } from "./appointmentSchema";
 import {
   AppointmentWithService,
+  Availability,
   EditAppointment,
   Appointment as NewAppointment,
   NewPhoto,
@@ -65,8 +66,7 @@ export const createAppointmentAction = async (
 
     // await Promise.all([sgMail.send(adminMessage)]);
 
-    revalidatePath("/admin");
-    revalidatePath("/admin/appointments");
+    revalidatePaths(["/admin", "/admin/appointments"]);
 
     return {
       type: "success",
@@ -418,4 +418,63 @@ export const fetchWeeklyAvailability = async () => {
   }
 
   return availability;
+};
+
+export const submitWeeklyAvailability = async (
+  submittedAvailability: Availability[]
+): Promise<{
+  message: string;
+  title: string;
+  type: "success" | "destructive";
+}> => {
+  try {
+    submittedAvailability.forEach(async (submittedDay) => {
+      const existingDayAvailability = await db.weeklyAvailability.findFirst({
+        where: {
+          day: submittedDay.day,
+        },
+      });
+
+      console.log(!!existingDayAvailability);
+
+      // had a hard time understanding this, but !! converts the var into a boolean
+      if (!!existingDayAvailability) {
+        console.log("Updating", submittedDay.day);
+        await db.weeklyAvailability.update({
+          where: {
+            day: submittedDay.day,
+          },
+          data: {
+            isAvailable: submittedDay.isAvailable,
+            from: submittedDay.from,
+            to: submittedDay.to,
+          },
+        });
+      } else {
+        console.log("Creating", submittedDay.day);
+        await db.weeklyAvailability.create({
+          data: {
+            day: submittedDay.day,
+            from: submittedDay.from,
+            to: submittedDay.to,
+            isAvailable: submittedDay.isAvailable,
+          },
+        });
+      }
+    });
+
+    revalidatePaths(["/contact", "/admin/info"]);
+
+    return {
+      type: "success",
+      title: "Success! ✅",
+      message: "Your availability has been updated!",
+    };
+  } catch (error) {
+    return {
+      type: "destructive",
+      title: "Uh oh! ☹️",
+      message: error instanceof Error ? error.message : "An error occurred.",
+    };
+  }
 };

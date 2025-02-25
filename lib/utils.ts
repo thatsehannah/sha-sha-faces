@@ -20,11 +20,11 @@ export const isDateWithinTwoDays = (date: Date) => {
 
 export const defaultAvailibility: Availability[] = [
   { day: "sunday", isAvailable: false, from: "", to: "" },
-  { day: "monday", isAvailable: false, from: "", to: "" },
-  { day: "tuesday", isAvailable: false, from: "", to: "" },
-  { day: "wednesday", isAvailable: false, from: "", to: "" },
-  { day: "thursday", isAvailable: false, from: "", to: "" },
-  { day: "friday", isAvailable: false, from: "", to: "" },
+  { day: "monday", isAvailable: true, from: "9:00 AM", to: "5:00 PM" },
+  { day: "tuesday", isAvailable: true, from: "9:00 AM", to: "5:00 PM" },
+  { day: "wednesday", isAvailable: true, from: "9:00 AM", to: "5:00 PM" },
+  { day: "thursday", isAvailable: true, from: "9:00 AM", to: "5:00 PM" },
+  { day: "friday", isAvailable: true, from: "9:00 AM", to: "5:00 PM" },
   { day: "saturday", isAvailable: false, from: "", to: "" },
 ];
 

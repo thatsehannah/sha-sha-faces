@@ -9,8 +9,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
 import { getAvailabilityTimeOptions } from "@/lib/utils";
+import { submitWeeklyAvailability } from "@/utils/actions";
 import { Availability } from "@/utils/types";
+import { RotateCw } from "lucide-react";
 import React, { useMemo } from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 
@@ -23,6 +26,8 @@ type AvailabilityFormData = {
 };
 
 const AvailabilityForm = ({ availability }: AvailabilityFormProps) => {
+  const { toast } = useToast();
+
   const form = useForm({
     defaultValues: {
       availabilities: availability,
@@ -34,14 +39,26 @@ const AvailabilityForm = ({ availability }: AvailabilityFormProps) => {
     []
   );
 
-  const { watch, setValue, handleSubmit } = form;
+  const {
+    watch,
+    setValue,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = form;
+
   const { fields } = useFieldArray({
     control: form.control,
     name: "availabilities",
   });
 
   const handleFormSubmit = async ({ availabilities }: AvailabilityFormData) => {
-    console.log(availabilities);
+    const result = await submitWeeklyAvailability(availabilities);
+
+    toast({
+      title: result.title,
+      variant: result.type,
+      description: result.message,
+    });
   };
 
   return (
@@ -139,10 +156,18 @@ const AvailabilityForm = ({ availability }: AvailabilityFormProps) => {
           </div>
           <div className='mt-6 flex justify-end'>
             <Button
+              disabled={isSubmitting}
               size='lg'
               type='submit'
             >
-              Submit
+              {isSubmitting ? (
+                <>
+                  <RotateCw className='mr-2 h-4 w-4 animate-spin' />
+                  Submitting...
+                </>
+              ) : (
+                <>Submit</>
+              )}
             </Button>
           </div>
         </form>
