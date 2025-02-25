@@ -1,31 +1,44 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { appointmentSchema } from '@/utils/appointmentSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import times from '@/utils/appointmentTimes.json';
-import discoveries from '@/utils/discoveries.json';
-import { useSearchParams } from 'next/navigation';
-import { motion } from 'framer-motion';
-import FormInput from '../form/FormInput';
-import FormDropdown from '../form/FormDropdown';
-import FormDatePicker from '../form/FormDatePicker';
-import { Appointment } from '@/utils/types';
-import { createAppointmentAction } from '@/utils/actions';
-import { useToast } from '@/hooks/use-toast';
-import InstructionsDrawer from './InstructionsDrawer';
-import { RotateCw } from 'lucide-react';
-import { Button } from '../ui/button';
+import React, { useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { z } from "zod";
+import { appointmentSchema } from "@/utils/appointmentSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import discoveries from "@/utils/discoveries.json";
+import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
+import FormInput from "../form/FormInput";
+import FormDropdown from "../form/FormDropdown";
+import FormDatePicker from "../form/FormDatePicker";
+import { Appointment, Availability } from "@/utils/types";
+import {
+  createAppointmentAction,
+  fetchAvailabilityForDay,
+} from "@/utils/actions";
+import { useToast } from "@/hooks/use-toast";
+import InstructionsDrawer from "./InstructionsDrawer";
+import { RotateCw } from "lucide-react";
+import { Button } from "../ui/button";
+import { format } from "date-fns";
+import { getAvailabilityTimeOptions } from "@/lib/utils";
 
 type AppointmentFormProps = {
   serviceData: { name: string; id: number }[];
+  weeklyAvailability: Availability[];
 };
 
-const AppointmentForm = ({ serviceData }: AppointmentFormProps) => {
+const AppointmentForm = ({
+  serviceData,
+  weeklyAvailability,
+}: AppointmentFormProps) => {
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
+
+  const [availableTimes, setAvailableTimes] = useState(
+    getAvailabilityTimeOptions()
+  );
+
   const serviceNames = serviceData.map((s) => s.name);
 
   const handleOpenDrawer = () => {
@@ -34,27 +47,27 @@ const AppointmentForm = ({ serviceData }: AppointmentFormProps) => {
 
   //getting service (via index) from query string
   const searchParams = useSearchParams();
-  const paramValue = searchParams.has('a') && searchParams.get('a');
+  const paramValue = searchParams.has("a") && searchParams.get("a");
 
-  let defaultService: string = '';
+  let defaultService: string = "";
   if (paramValue) {
     const idx = parseInt(paramValue);
-    defaultService = serviceData.find((s) => s.id === idx)?.name || '';
+    defaultService = serviceData.find((s) => s.id === idx)?.name || "";
   }
 
   const form = useForm<z.infer<typeof appointmentSchema>>({
     resolver: zodResolver(appointmentSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      phoneNumber: '',
-      date: '',
-      time: '',
+      name: "",
+      email: "",
+      phoneNumber: "",
+      date: "",
+      time: "",
       service: defaultService,
-      addtlDetails: '',
-      location: '',
+      addtlDetails: "",
+      location: "",
       isInstructionsAcknowledged: false,
-      instagram: '',
+      instagram: "",
     },
   });
 
@@ -70,6 +83,43 @@ const AppointmentForm = ({ serviceData }: AppointmentFormProps) => {
     form.reset();
   };
 
+  const selectedDate = form.watch("date");
+
+  useEffect(() => {
+    let isFormMounted = true;
+
+    const getAvailabiltyForSelectedDate = async () => {
+      const allAvailableTimes = getAvailabilityTimeOptions();
+
+      if (selectedDate) {
+        //TODO: get selected date and remove already reserved appointment times from list (if applicable)
+
+        const dayOfSelectedDate = format(
+          new Date(selectedDate),
+          "EEEE"
+        ).toLowerCase();
+
+        const availability = await fetchAvailabilityForDay(dayOfSelectedDate);
+        console.log(availability);
+
+        const idxFrom = allAvailableTimes.indexOf(availability!.from);
+        const idxTo = allAvailableTimes.indexOf(availability!.to);
+        const availableTimes = allAvailableTimes.slice(idxFrom, idxTo + 1);
+        console.log(availableTimes);
+
+        if (isFormMounted) {
+          setAvailableTimes(availableTimes);
+        }
+      }
+    };
+
+    getAvailabiltyForSelectedDate();
+
+    return () => {
+      isFormMounted = false;
+    };
+  }, [selectedDate]);
+
   return (
     <>
       <FormProvider {...form}>
@@ -84,13 +134,13 @@ const AppointmentForm = ({ serviceData }: AppointmentFormProps) => {
         >
           <section className='flex flex-col items-center gap-5 lg:gap-3 mb-20'>
             <p className='text-xl lg:text-2xl font-light'>
-              Please review{' '}
+              Please review{" "}
               <span
                 className='text-primary font-bold hover:cursor-pointer underline'
                 onClick={handleOpenDrawer}
               >
                 instructions
-              </span>{' '}
+              </span>{" "}
               prior to booking to ensure a smooth experience.
             </p>
             <div className='flex items-center space-x-2'>
@@ -153,6 +203,7 @@ const AppointmentForm = ({ serviceData }: AppointmentFormProps) => {
               <FormDatePicker
                 name='date'
                 label='Date'
+                availability={weeklyAvailability}
               />
 
               {/* time */}
@@ -160,7 +211,7 @@ const AppointmentForm = ({ serviceData }: AppointmentFormProps) => {
                 name='time'
                 label='Time'
                 placeholder='Select a time'
-                values={times}
+                values={availableTimes}
               />
 
               {/* location */}

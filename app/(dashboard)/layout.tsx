@@ -1,9 +1,14 @@
-import AdminSidebar from '@/components/dashboard/components/AdminSidebar';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-import React, { ReactNode } from 'react';
-import '../globals.css';
-import Providers from '../providers';
-import { inter } from '@/lib/fonts';
+import AdminSidebar from "@/components/dashboard/components/AdminSidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import React, { ReactNode } from "react";
+import "../globals.css";
+import Providers from "../providers";
+import { inter } from "@/lib/fonts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Admin - Sha Sha Faces",
+};
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (

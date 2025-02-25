@@ -1,21 +1,23 @@
-'use client';
+"use client";
 
-import { Calendar } from '@/components/ui/calendar';
-import { Popover, PopoverTrigger } from '@/components/ui/popover';
-import { PopoverContent } from '@radix-ui/react-popover';
-import React, { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
-import { Input } from '@/components/ui/input';
-import { format } from 'date-fns';
-import { Label } from '../ui/label';
-import FormError from './FormError';
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
+import { PopoverContent } from "@radix-ui/react-popover";
+import React, { useState } from "react";
+import { useFormContext } from "react-hook-form";
+import { Input } from "@/components/ui/input";
+import { format } from "date-fns";
+import { Label } from "../ui/label";
+import FormError from "./FormError";
+import { Availability } from "@/utils/types";
 
 type FormDatePickerProps = {
   name: string;
   label: string;
+  availability: Availability[];
 };
 
-const FormDatePicker = ({ name, label }: FormDatePickerProps) => {
+const FormDatePicker = ({ name, label, availability }: FormDatePickerProps) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const {
     setValue,
@@ -26,15 +28,18 @@ const FormDatePicker = ({ name, label }: FormDatePickerProps) => {
 
   const dateValue = watch(name);
 
-  //test, will not be final product
   const getUnavailableDates = (date: Date) => {
-    const unavailableDates = [
-      new Date(2025, 0, 20),
-      new Date(2025, 1, 14),
-      new Date(2025, 1, 20),
-    ];
+    const unavailableDays = availability
+      .filter((slot) => slot.isAvailable === false)
+      .map((filteredSlot) => filteredSlot.day);
 
-    return unavailableDates.some((d) => d.getTime() === date.getTime());
+    if (unavailableDays.length > 0) {
+      const dayOfWeek = format(date, "EEEE").toLowerCase();
+
+      return unavailableDays.some((d) => d === dayOfWeek);
+    }
+
+    return false;
   };
 
   return (
@@ -49,7 +54,7 @@ const FormDatePicker = ({ name, label }: FormDatePickerProps) => {
             <Input
               id={name}
               placeholder='Select a date'
-              value={dateValue ? format(new Date(dateValue), 'PPPP') : ''}
+              value={dateValue ? format(new Date(dateValue), "PPPP") : ""}
               onChange={(e) => {
                 const value = e.target.value;
                 setValue(name, value);
@@ -68,8 +73,8 @@ const FormDatePicker = ({ name, label }: FormDatePickerProps) => {
           <Calendar
             className='bg-background rounded-md'
             classNames={{
-              caption_label: 'text-lg',
-              day_disabled: 'line-through',
+              caption_label: "text-lg",
+              day_disabled: "line-through",
             }}
             mode='single'
             selected={dateValue ? new Date(dateValue) : undefined}

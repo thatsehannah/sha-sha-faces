@@ -420,6 +420,16 @@ export const fetchWeeklyAvailability = async () => {
   return availability;
 };
 
+export const fetchAvailabilityForDay = async (day: string) => {
+  const availability = await db.weeklyAvailability.findUnique({
+    where: {
+      day,
+    },
+  });
+
+  return availability;
+};
+
 export const submitWeeklyAvailability = async (
   submittedAvailability: Availability[]
 ): Promise<{
@@ -438,6 +448,7 @@ export const submitWeeklyAvailability = async (
       console.log(!!existingDayAvailability);
 
       // had a hard time understanding this, but !! converts the var into a boolean
+      // (!!var means "if true")
       if (!!existingDayAvailability) {
         console.log("Updating", submittedDay.day);
         await db.weeklyAvailability.update({
