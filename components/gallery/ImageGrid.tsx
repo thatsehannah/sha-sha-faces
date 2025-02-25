@@ -1,11 +1,13 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import Container from '../global/Container';
-import GalleryDialog from '../global/PhotoDialog';
-import { GalleryPhoto } from '@prisma/client';
+import Image from "next/image";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import Container from "../global/Container";
+import GalleryDialog from "../global/PhotoDialog";
+import { GalleryPhoto } from "@prisma/client";
+import Breadcrumbs from "../global/Breadcrumbs";
+import { usePathname } from "next/navigation";
 
 type ImageGridProps = {
   photos: GalleryPhoto[];
@@ -13,8 +15,8 @@ type ImageGridProps = {
 
 const ImageGrid = ({ photos }: ImageGridProps) => {
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto>();
-
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const currentPage = usePathname().split("/")[2];
 
   const handlePhotoClick = (photo: GalleryPhoto) => {
     setSelectedPhoto(photo);
@@ -34,9 +36,18 @@ const ImageGrid = ({ photos }: ImageGridProps) => {
     visible: { opacity: 1, y: 0 },
   };
 
+  const pagesForBreadcrumbs: { link: string; label: string }[] = [
+    { link: "/", label: "Home" },
+    { link: "/gallery", label: "Gallery" },
+  ];
+
   return (
     <>
-      <Container className=''>
+      <Container>
+        <Breadcrumbs
+          pages={pagesForBreadcrumbs}
+          currentPage={currentPage}
+        />
         <motion.div
           variants={gridVariants}
           initial='hidden'
