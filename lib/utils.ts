@@ -1,5 +1,6 @@
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { Availability } from "@/utils/types";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 // import { Service } from '@prisma/client';
 
 export const cn = (...inputs: ClassValue[]) => {
@@ -17,6 +18,52 @@ export const isDateWithinTwoDays = (date: Date) => {
   );
 };
 
+export const defaultAvailibility: Availability[] = [
+  { day: "sunday", isAvailable: false, from: "", to: "" },
+  { day: "monday", isAvailable: false, from: "", to: "" },
+  { day: "tuesday", isAvailable: false, from: "", to: "" },
+  { day: "wednesday", isAvailable: false, from: "", to: "" },
+  { day: "thursday", isAvailable: false, from: "", to: "" },
+  { day: "friday", isAvailable: false, from: "", to: "" },
+  { day: "saturday", isAvailable: false, from: "", to: "" },
+];
+
+export const getAvailabilityTimeOptions = () => {
+  const times: string[] = [];
+
+  //morning times
+  for (let i = 12; i <= 23; i++) {
+    if (i === 12) {
+      times.push(`${i}:00 AM`);
+      for (let j = 15; j < 60; j += 15) {
+        times.push(`${i}:${j} AM`);
+      }
+    } else {
+      times.push(`${i - 12}:00 AM`);
+      for (let j = 15; j < 60; j += 15) {
+        times.push(`${i - 12}:${j} AM`);
+      }
+    }
+  }
+
+  // evening times
+  for (let i = 12; i <= 23; i++) {
+    if (i === 12) {
+      times.push(`${i}:00 PM`);
+      for (let j = 15; j < 60; j += 15) {
+        times.push(`${i}:${j} PM`);
+      }
+    } else {
+      times.push(`${i - 12}:00 PM`);
+      for (let j = 15; j < 60; j += 15) {
+        times.push(`${i - 12}:${j} PM`);
+      }
+    }
+  }
+
+  return times;
+};
+
 export const calculatePopularService = () => {
   //TODO: get the number of appointments created for each service [{service: Service, appointmentCount: number}]
   //sort by appointmentCount descending, then take the first two from the array, then you have you popular services
@@ -27,23 +74,4 @@ export const calculatePopularService = () => {
 //   const result = parseInt(dateMonth);
 
 //   return result;
-// };
-
-//TODO: figure out this logic
-// export const getServicesRequestedForCurrentMonth = (
-//   services: ServiceWithAppointments
-// ) => {
-//   const currentMonth = new Date().getMonth() + 1;
-
-//   const servicesForMonth: any[] = [];
-
-//   services.forEach((service) => {
-//     service.Appointment.forEach((appt) => {
-//       if (blah(appt.date) === currentMonth) {
-//         servicesForMonth.push(service);
-//       }
-//     });
-//   });
-
-//   return servicesForMonth;
 // };

@@ -2,18 +2,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 import AvailabilityForm from "./AvailabilityForm";
+import { Availability } from "@/utils/types";
 
-// const DAYS_OF_WEEK = [
-//   "Sunday",
-//   "Monday",
-//   "Tuesday",
-//   "Wednesday",
-//   "Thursday",
-//   "Friday",
-//   "Saturday",
-// ];
+type ManageAvailabilityCardProps = {
+  availability: Availability[];
+};
 
-const ManageAvailabilityCard = () => {
+const ManageAvailabilityCard = ({
+  availability,
+}: ManageAvailabilityCardProps) => {
   return (
     <>
       <Card>
@@ -26,7 +23,7 @@ const ManageAvailabilityCard = () => {
           <Separator />
         </CardHeader>
         <CardContent>
-          <AvailabilityForm />
+          <AvailabilityForm availability={availability} />
         </CardContent>
       </Card>
     </>

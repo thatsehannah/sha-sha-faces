@@ -15,6 +15,7 @@ import { revalidatePath } from "next/cache";
 import { validateReviewSchema } from "./reviewSchema";
 import sgMail from "@sendgrid/mail";
 import { deletePhotoFromBucket } from "@/lib/supabase";
+import { defaultAvailibility } from "@/lib/utils";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
@@ -407,4 +408,14 @@ export const deleteGalleryPhoto = async (
           : "An error occurred when deleting the photo",
     };
   }
+};
+
+export const fetchWeeklyAvailability = async () => {
+  const availability = await db.weeklyAvailability.findMany();
+
+  if (availability.length === 0) {
+    return defaultAvailibility;
+  }
+
+  return availability;
 };

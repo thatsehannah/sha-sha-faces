@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from "@prisma/client";
 
 export type Appointment = {
   name: string;
@@ -71,4 +71,11 @@ export type NewPhoto = {
   category: string;
   url: string;
   alt: string;
+};
+
+export type Availability = {
+  day: string;
+  isAvailable: boolean;
+  from: string;
+  to: string;
 };
