@@ -1,13 +1,13 @@
-import React from 'react';
-import Container from '../global/Container';
-import ServicesCard from './components/ServicesCard';
-import SectionTitle from '../global/SectionTitle';
-import { Button } from '../ui/button';
-import Link from 'next/link';
-import { fetchAllServices } from '@/utils/actions';
+import React from "react";
+import Container from "../global/Container";
+import ServicesCard from "./components/ServicesCard";
+import SectionTitle from "../global/SectionTitle";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { fetchPopularServices } from "@/utils/actions";
 
 const Services = async () => {
-  const popularServices = await fetchAllServices();
+  const popularServices = await fetchPopularServices();
 
   return (
     <section

@@ -93,15 +93,3 @@ export const blockOffAvailbilityTimeOptions = async (
 
   return modifiedAvailableTimes;
 };
-
-export const calculatePopularService = () => {
-  //TODO: get the number of appointments created for each service [{service: Service, appointmentCount: number}]
-  //sort by appointmentCount descending, then take the first two from the array, then you have you popular services
-};
-
-// const blah = (date: string) => {
-//   const dateMonth = date.split('-')[1];
-//   const result = parseInt(dateMonth);
-
-//   return result;
-// };

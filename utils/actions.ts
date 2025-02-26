@@ -234,6 +234,22 @@ export const fetchServiceWithAppointments = async () => {
   return serviceWithAppointments;
 };
 
+export const fetchPopularServices = async () => {
+  const serviceWithAppointments = await db.service.findMany({
+    include: { Appointment: true },
+  });
+
+  const popularServices = serviceWithAppointments.filter(
+    (service) => service.Appointment.length > 0
+  );
+
+  if (popularServices.length > 3) {
+    return serviceWithAppointments.slice(0, 3);
+  }
+
+  return popularServices.slice(0, 3);
+};
+
 export const createReviewAction = async (
   formData: Review
 ): Promise<{
