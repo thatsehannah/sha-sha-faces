@@ -1,3 +1,4 @@
+import { fetchAppointmentsByDate } from "@/utils/actions";
 import { Availability } from "@/utils/types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -62,6 +63,35 @@ export const getAvailabilityTimeOptions = () => {
   }
 
   return times;
+};
+
+// adds a unique identifier to subsequent times based on already reserved appointment time for selected date (e.g. if client selects a day where a full glam appointment (2 hrs) is already made for 12:00pm, times from 12:00pm to 3:00pm will be appended with a 'd' so it can be easily identified & disabled in the appointment form time dropdown)
+export const blockOffAvailbilityTimeOptions = async (
+  selectedDate: string,
+  availableTimes: string[]
+) => {
+  const modifiedAvailableTimes = availableTimes;
+  const appointments = await fetchAppointmentsByDate(selectedDate);
+
+  appointments.forEach((appointment) => {
+    const appointmentTime = appointment.time;
+    const indexOfAppointmentTime =
+      modifiedAvailableTimes.indexOf(appointmentTime);
+    const appointmentExpectedDuration = parseInt(
+      appointment.service.duration.split("")[0]
+    );
+
+    //multiplying by 4 since availableTimes are in 15 minute increments + adding 4 to give extra hour between completed appointment
+    const numOfIndiciesToBlockOff =
+      indexOfAppointmentTime + appointmentExpectedDuration * 4 + 4;
+
+    //multiplying by 4 since availableTimes are in 15 minute increments
+    for (let i = indexOfAppointmentTime; i <= numOfIndiciesToBlockOff; i++) {
+      modifiedAvailableTimes[i] += "d";
+    }
+  });
+
+  return modifiedAvailableTimes;
 };
 
 export const calculatePopularService = () => {

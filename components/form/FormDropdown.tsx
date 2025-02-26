@@ -4,11 +4,11 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import React from 'react';
-import { useFormContext } from 'react-hook-form';
-import { Label } from '../ui/label';
-import FormError from './FormError';
+} from "@/components/ui/select";
+import React from "react";
+import { useFormContext } from "react-hook-form";
+import { Label } from "../ui/label";
+import FormError from "./FormError";
 
 type FormDropwdownProps = {
   name: string;
@@ -54,15 +54,29 @@ const FormDropdown = ({
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent className='capitalize text-lg'>
-            {values.map((value, idx) => (
-              <SelectItem
-                value={value}
-                key={idx}
-                className='capitalize text-lg font-medium'
-              >
-                {value}
-              </SelectItem>
-            ))}
+            {values.map((value, idx) => {
+              let isDisabled = false;
+
+              if (value.includes(":") && value.endsWith("d")) {
+                console.log("contains the d");
+
+                isDisabled = true;
+                value = value.replace("d", "");
+              }
+
+              return (
+                <SelectItem
+                  value={value}
+                  key={idx}
+                  disabled={isDisabled}
+                  className={`capitalize text-lg font-medium ${
+                    isDisabled && "line-through"
+                  }`}
+                >
+                  {value}
+                </SelectItem>
+              );
+            })}
           </SelectContent>
         </Select>
         {errors[name] && (

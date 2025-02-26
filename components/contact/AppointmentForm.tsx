@@ -21,7 +21,10 @@ import InstructionsDrawer from "./InstructionsDrawer";
 import { RotateCw } from "lucide-react";
 import { Button } from "../ui/button";
 import { format } from "date-fns";
-import { getAvailabilityTimeOptions } from "@/lib/utils";
+import {
+  blockOffAvailbilityTimeOptions,
+  getAvailabilityTimeOptions,
+} from "@/lib/utils";
 
 type AppointmentFormProps = {
   serviceData: { name: string; id: number }[];
@@ -92,7 +95,7 @@ const AppointmentForm = ({
       const allAvailableTimes = getAvailabilityTimeOptions();
 
       if (selectedDate) {
-        //TODO: get selected date and remove already reserved appointment times from list (if applicable)
+        console.log(selectedDate);
 
         const dayOfSelectedDate = format(
           new Date(selectedDate),
@@ -100,15 +103,19 @@ const AppointmentForm = ({
         ).toLowerCase();
 
         const availability = await fetchAvailabilityForDay(dayOfSelectedDate);
-        console.log(availability);
+        // console.log(availability);
 
         const idxFrom = allAvailableTimes.indexOf(availability!.from);
         const idxTo = allAvailableTimes.indexOf(availability!.to);
         const availableTimes = allAvailableTimes.slice(idxFrom, idxTo + 1);
-        console.log(availableTimes);
+
+        const modifiedAvailableTimes = await blockOffAvailbilityTimeOptions(
+          selectedDate,
+          availableTimes
+        );
 
         if (isFormMounted) {
-          setAvailableTimes(availableTimes);
+          setAvailableTimes(modifiedAvailableTimes);
         }
       }
     };

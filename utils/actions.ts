@@ -115,6 +115,19 @@ export const fetchAppointmentById = async (
   return appointment;
 };
 
+export const fetchAppointmentsByDate = async (date: string) => {
+  const appointments = await db.appointment.findMany({
+    where: {
+      date,
+    },
+    include: {
+      service: true,
+    },
+  });
+
+  return appointments;
+};
+
 export const fetchServiceInfo = async () => {
   const serviceNames = await db.service.findMany({
     select: {
