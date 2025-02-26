@@ -119,6 +119,14 @@ export const fetchAppointmentsByDate = async (date: string) => {
   const appointments = await db.appointment.findMany({
     where: {
       date,
+      OR: [
+        {
+          status: "Confirmed",
+        },
+        {
+          status: "Pending",
+        },
+      ],
     },
     include: {
       service: true,
