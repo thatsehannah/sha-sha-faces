@@ -239,11 +239,13 @@ export const fetchPopularServices = async () => {
     include: { Appointment: true },
   });
 
-  const popularServices = serviceWithAppointments.filter(
-    (service) => service.Appointment.length > 0
-  );
+  const popularServices = serviceWithAppointments
+    .filter((service) => service.Appointment.length > 0)
+    .sort((a, b) => {
+      return b.Appointment.length - a.Appointment.length;
+    });
 
-  if (popularServices.length > 3) {
+  if (popularServices.length < 3) {
     return serviceWithAppointments.slice(0, 3);
   }
 
@@ -482,12 +484,9 @@ export const submitWeeklyAvailability = async (
         },
       });
 
-      console.log(!!existingDayAvailability);
-
       // had a hard time understanding this, but !! converts the var into a boolean
       // (!!var means "if true")
       if (!!existingDayAvailability) {
-        console.log("Updating", submittedDay.day);
         await db.weeklyAvailability.update({
           where: {
             day: submittedDay.day,
@@ -499,7 +498,6 @@ export const submitWeeklyAvailability = async (
           },
         });
       } else {
-        console.log("Creating", submittedDay.day);
         await db.weeklyAvailability.create({
           data: {
             day: submittedDay.day,

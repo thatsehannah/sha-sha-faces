@@ -95,15 +95,12 @@ const AppointmentForm = ({
       const allAvailableTimes = getAvailabilityTimeOptions();
 
       if (selectedDate) {
-        console.log(selectedDate);
-
         const dayOfSelectedDate = format(
           new Date(selectedDate),
           "EEEE"
         ).toLowerCase();
 
         const availability = await fetchAvailabilityForDay(dayOfSelectedDate);
-        // console.log(availability);
 
         const idxFrom = allAvailableTimes.indexOf(availability!.from);
         const idxTo = allAvailableTimes.indexOf(availability!.to);

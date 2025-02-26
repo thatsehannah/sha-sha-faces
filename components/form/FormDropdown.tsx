@@ -58,8 +58,6 @@ const FormDropdown = ({
               let isDisabled = false;
 
               if (value.includes(":") && value.endsWith("d")) {
-                console.log("contains the d");
-
                 isDisabled = true;
                 value = value.replace("d", "");
               }
