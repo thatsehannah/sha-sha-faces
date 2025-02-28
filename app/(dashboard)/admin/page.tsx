@@ -3,14 +3,17 @@ import Container from "@/components/global/Container";
 import React from "react";
 import {
   fetchAllAppointments,
+  fetchAllReviews,
   fetchServiceWithAppointments,
 } from "@/utils/actions";
 import BusinessStats from "@/components/dashboard/home/BusinessStats";
 import AppointmentOverview from "@/components/dashboard/home/AppointmentOverview";
+import ReviewDetail from "@/components/dashboard/home/ReviewDetail";
 
 const AdminHomePage = async () => {
   const appointments = await fetchAllAppointments();
   const services = await fetchServiceWithAppointments();
+  const reviews = await fetchAllReviews();
 
   return (
     <main>
@@ -21,6 +24,7 @@ const AdminHomePage = async () => {
           services={services}
           appointments={appointments}
         />
+        <ReviewDetail reviews={reviews} />
       </Container>
     </main>
   );

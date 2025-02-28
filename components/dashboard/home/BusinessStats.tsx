@@ -33,7 +33,7 @@ const BusinessStats = ({ appointments, services }: BusinessStatsProps) => {
 
   return (
     <section>
-      <div className='bg-muted p-12 rounded-lg w-full'>
+      <div className='mb-12 bg-muted p-12 rounded-lg w-full'>
         <p className='text-2xl font-medium mb-8'>Business Stats</p>
         <div className='flex gap-8 lg:flex-row flex-col '>
           {isClient && (

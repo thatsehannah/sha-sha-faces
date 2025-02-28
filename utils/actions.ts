@@ -8,6 +8,7 @@ import {
   Appointment as NewAppointment,
   NewPhoto,
   Review,
+  ReviewWithService,
 } from "./types";
 import { GalleryPhoto, Prisma } from "@prisma/client";
 import db from "./db";
@@ -286,6 +287,14 @@ export const createReviewAction = async (
       message: error instanceof Error ? error.message : "An error occurred.",
     };
   }
+};
+
+export const fetchAllReviews = async (): Promise<ReviewWithService> => {
+  const reviews = await db.review.findMany({
+    include: { service: true },
+  });
+
+  return reviews;
 };
 
 export const fetchAllPhotos = async () => {
