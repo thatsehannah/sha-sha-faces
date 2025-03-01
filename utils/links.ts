@@ -4,41 +4,43 @@ import {
   Home,
   Info,
   // ShoppingBasket,
-} from 'lucide-react';
+} from "lucide-react";
 
-export const links = [
+export const publicLinks = [
   {
-    label: 'about',
-    path: '/about',
+    label: "about",
+    path: "/about",
   },
   {
-    label: 'gallery',
-    path: '/gallery',
+    label: "gallery",
+    path: "/gallery",
   },
   {
-    label: 'services',
-    path: '/services',
+    label: "services",
+    path: "/services",
   },
   {
-    label: 'contact',
-    path: '/contact',
+    label: "contact",
+    path: "/contact",
   },
 ];
 
+export const adminLinks = [...publicLinks, { label: "admin", path: "/admin" }];
+
 export const tabs = [
   {
-    title: 'Home',
-    url: '/admin',
+    title: "Home",
+    url: "/admin",
     icon: Home,
   },
   {
-    title: 'Appointments',
-    url: '/admin/appointments',
+    title: "Appointments",
+    url: "/admin/appointments",
     icon: CalendarDays,
   },
   {
-    title: 'My Information',
-    url: '/admin/info',
+    title: "My Information",
+    url: "/admin/info",
     icon: Info,
   },
   // {
@@ -47,8 +49,8 @@ export const tabs = [
   //   icon: ShoppingBasket,
   // },
   {
-    title: 'My Services',
-    url: '/admin/services',
+    title: "My Services",
+    url: "/admin/services",
     icon: EyeClosed,
   },
 ];

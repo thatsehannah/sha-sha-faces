@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -13,11 +13,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '../../ui/sidebar';
-import { tabs } from '@/utils/links';
-import Link from 'next/link';
-import Image from 'next/image';
-import DarkModeButton from '@/components/global/DarkModeButton';
+} from "../../ui/sidebar";
+import { tabs } from "@/utils/links";
+import Link from "next/link";
+import Image from "next/image";
+import DarkModeButton from "@/components/global/DarkModeButton";
+import SignOutButton from "./SignOutButton";
 
 const AdminSidebar = () => {
   const { setOpenMobile } = useSidebar();
@@ -60,6 +61,7 @@ const AdminSidebar = () => {
                 </SidebarMenuItem>
               ))}
               <DarkModeButton />
+              <SignOutButton />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

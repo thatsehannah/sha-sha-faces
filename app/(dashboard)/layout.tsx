@@ -5,6 +5,7 @@ import "../globals.css";
 import Providers from "../providers";
 import { inter } from "@/lib/fonts";
 import { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Admin - Sha Sha Faces",
@@ -12,23 +13,28 @@ export const metadata: Metadata = {
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang='en'
-      suppressHydrationWarning
+    <ClerkProvider
+      afterSignOutUrl='/'
+      appearance={{ elements: { footer: "hidden" } }}
     >
-      <body className={`${inter.className}`}>
-        <Providers>
-          <SidebarProvider>
-            <AdminSidebar />
-            <div className='relative'>
-              <div className='absolute top-1 left-1'>
-                <SidebarTrigger />
+      <html
+        lang='en'
+        suppressHydrationWarning
+      >
+        <body className={`${inter.className}`}>
+          <Providers>
+            <SidebarProvider>
+              <AdminSidebar />
+              <div className='relative'>
+                <div className='absolute top-1 left-1'>
+                  <SidebarTrigger />
+                </div>
+                {children}
               </div>
-              {children}
-            </div>
-          </SidebarProvider>
-        </Providers>
-      </body>
-    </html>
+            </SidebarProvider>
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

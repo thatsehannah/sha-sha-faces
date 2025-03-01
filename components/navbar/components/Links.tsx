@@ -1,8 +1,7 @@
-import React from 'react';
-import Container from '@/components/global/Container';
-import { links } from '@/utils/links';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import React from "react";
+import Container from "@/components/global/Container";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const LinkButton = ({ link }: { link: { label: string; path: string } }) => {
   return (
@@ -20,7 +19,14 @@ const LinkButton = ({ link }: { link: { label: string; path: string } }) => {
   );
 };
 
-const Links = () => {
+type LinksProps = {
+  links: {
+    label: string;
+    path: string;
+  }[];
+};
+
+const Links = ({ links }: LinksProps) => {
   return (
     <Container className='hidden lg:flex items-start gap-1 lg:gap-4'>
       {links.map((link, idx) => (

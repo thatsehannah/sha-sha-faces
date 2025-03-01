@@ -1,17 +1,20 @@
-import React from 'react';
+import React from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Menu } from 'lucide-react';
-import { links } from '@/utils/links';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+} from "@/components/ui/dropdown-menu";
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
-const MobileLinks = () => {
+type MobileLinksProps = {
+  links: { label: string; path: string }[];
+};
+
+const MobileLinks = ({ links }: MobileLinksProps) => {
   return (
     <div className='lg:hidden'>
       <DropdownMenu>
