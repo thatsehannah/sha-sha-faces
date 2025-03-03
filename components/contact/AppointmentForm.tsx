@@ -176,7 +176,6 @@ const AppointmentForm = ({
                 placeholder='e.g. janedoe@domain.com'
               />
 
-              {/* TODO: Add instagram field */}
               <FormInput
                 name='instagram'
                 label='Instagram Username'

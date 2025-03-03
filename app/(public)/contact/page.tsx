@@ -6,7 +6,6 @@ import React, { Suspense } from "react";
 
 const ContactPage = async () => {
   const serviceData = await fetchServiceInfo();
-  //todo: fetch availability & pass to AppointmentForm via props
   const weeklyAvailability = await fetchWeeklyAvailability();
 
   return (

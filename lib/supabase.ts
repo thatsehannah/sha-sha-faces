@@ -3,7 +3,6 @@ import { createClient } from "@supabase/supabase-js";
 
 const bucket = "gallery";
 
-//TODO: create upload and delete image functions
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
   process.env.NEXT_PUBLIC_SUPABASE_KEY as string
