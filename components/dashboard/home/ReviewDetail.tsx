@@ -1,5 +1,6 @@
 "use client";
 
+import EmptyResults from "@/components/global/EmptyResults";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { RATING_OPTIONS } from "@/utils/constants";
@@ -51,7 +52,7 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
           {/* Review Window */}
           <div className='flex-1 xl:w-3/4 w-full bg-background p-4 h-[50rem]'>
             {reviewsToShow.length === 0 ? (
-              <p className='text-center'>No reviews quite yet.</p>
+              <EmptyResults text='No reviews quite yet.' />
             ) : (
               <ScrollArea className='h-[50rem] w-full'>
                 {reviewsToShow.map((review, idx) => {

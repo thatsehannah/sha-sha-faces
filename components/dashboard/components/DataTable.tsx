@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -6,15 +6,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   useReactTable,
-} from '@tanstack/react-table';
-import React from 'react';
+} from "@tanstack/react-table";
+import React from "react";
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
@@ -64,7 +64,7 @@ const DataTable = <TData, TValue>({
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}
-                data-state={row.getIsSelected() && 'selected'}
+                data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell
@@ -82,7 +82,7 @@ const DataTable = <TData, TValue>({
                 colSpan={columns.length}
                 className='h-24 text-center'
               >
-                No results.
+                Nothing to see here.
               </TableCell>
             </TableRow>
           )}
@@ -90,7 +90,7 @@ const DataTable = <TData, TValue>({
       </Table>
       <div className='flex items-center justify-end space-x-2 p-4'>
         <div className='mr-4'>
-          Showing {table.getRowModel().rows.length.toLocaleString()} of{' '}
+          Showing {table.getRowModel().rows.length.toLocaleString()} of{" "}
           {table.getRowCount().toLocaleString()} Appointments
         </div>
         <Button

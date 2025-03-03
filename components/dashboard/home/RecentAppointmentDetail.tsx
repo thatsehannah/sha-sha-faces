@@ -1,6 +1,6 @@
-import { AppointmentWithService } from '@/utils/types';
-import { format } from 'date-fns';
-import React from 'react';
+import { AppointmentWithService } from "@/utils/types";
+import { format } from "date-fns";
+import React from "react";
 
 type RecentAppointmentDetailProps = {
   appointment: AppointmentWithService;
@@ -13,7 +13,7 @@ const RecentAppointmentDetail = ({
     <div className='my-8'>
       <p className='capitalize font-bold'>{appointment.service.name}</p>
       <p>{appointment.name}</p>
-      <p className='italic'>{format(appointment.date, 'PPPP')}</p>
+      <p className='italic'>{format(appointment.date, "PPPP")}</p>
     </div>
   );
 };
