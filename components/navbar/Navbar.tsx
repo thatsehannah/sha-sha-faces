@@ -4,7 +4,6 @@ import Links from "./components/Links";
 import { Button } from "../ui/button";
 import MobileLinks from "./components/MobileLinks";
 import Container from "../global/Container";
-import DarkModeButton from "../global/DarkModeButton";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { adminLinks, publicLinks } from "@/utils/links";
 
@@ -19,7 +18,6 @@ const Navbar = () => {
         <SignedIn>
           <Links links={adminLinks} />
         </SignedIn>
-        <DarkModeButton />
         <Button className='hidden lg:block bg-primary hover:bg-secondary'>
           Book Now
         </Button>

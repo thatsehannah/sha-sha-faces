@@ -17,7 +17,6 @@ import {
 import { tabs } from "@/utils/links";
 import Link from "next/link";
 import Image from "next/image";
-import DarkModeButton from "@/components/global/DarkModeButton";
 import SignOutButton from "./SignOutButton";
 
 const AdminSidebar = () => {
@@ -60,7 +59,6 @@ const AdminSidebar = () => {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              <DarkModeButton />
               <SignOutButton />
             </SidebarMenu>
           </SidebarGroupContent>
