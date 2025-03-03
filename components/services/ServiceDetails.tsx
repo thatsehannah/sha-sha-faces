@@ -1,10 +1,13 @@
-import React from 'react';
-import ServiceIconSvg from './ServiceIconSvg';
-import { Banknote, Clock } from 'lucide-react';
-import { Button } from '../ui/button';
-import Link from 'next/link';
-import { Service } from '@prisma/client';
-import { ServiceSvg } from '@/utils/types';
+"use client";
+
+import React from "react";
+import ServiceIconSvg from "./ServiceIconSvg";
+import { Banknote, Clock } from "lucide-react";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { Service } from "@prisma/client";
+import { ServiceSvg } from "@/utils/types";
+import { motion } from "framer-motion";
 
 type ServiceDetailsProps = {
   index: number;
@@ -15,17 +18,31 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
   const { name, price, duration, description, svgData } = service;
 
   const detailsBackground =
-    index % 2 === 0 ? 'bg-gradient-to-br' : 'bg-gradient-to-tr';
+    index % 2 === 0 ? "bg-gradient-to-br" : "bg-gradient-to-tr";
 
   return (
-    <article className='flex lg:flex-row flex-col lg:even:flex-row-reverse mb-16 lg:mb-0 last:mb-8 lg:gap-0 shadow-lg lg:shadow-none'>
+    <motion.article
+      initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1, delay: 0.3 }}
+      viewport={{ once: true, amount: 0.3 }}
+      exit={{ opacity: 0, x: 100 }}
+      className='flex lg:flex-row flex-col lg:even:flex-row-reverse mb-16 lg:mb-0 last:mb-8 lg:gap-0 shadow-lg lg:shadow-none'
+    >
       <div className='lg:w-1/2 lg:h-[80vh] flex justify-center items-center'>
-        <div className='hidden lg:flex relative w-full h-full justify-center items-center py-8 lg:py-0'>
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          viewport={{ once: true, amount: 0.5 }}
+          exit={{ opacity: 0, y: 100 }}
+          className='hidden lg:flex relative w-full h-full justify-center items-center py-8 lg:py-0'
+        >
           <ServiceIconSvg
             svg={svgData as ServiceSvg}
             className='fill-primary'
           />
-        </div>
+        </motion.div>
       </div>
       <div
         className={`lg:w-1/2 lg:h-[80vh] flex bg-fixed ${detailsBackground} rounded-lg xl:rounded-none from-tertiary via-accent to-tertiary`}
@@ -72,7 +89,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
           </Button>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 };
 
