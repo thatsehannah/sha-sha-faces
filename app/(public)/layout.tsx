@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import Navbar from "@/components/navbar/Navbar";
-import { afacadFlux } from "@/lib/fonts";
+import { merriweather, lora, cormorant } from "@/lib/fonts";
 import Providers from "../providers";
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -24,7 +24,7 @@ export default function RootLayout({
         lang='en'
         suppressHydrationWarning
       >
-        <body className={`${afacadFlux.className} antialiased`}>
+        <body className={`${cormorant.className} antialiased`}>
           <Providers>
             <Navbar />
             {children}

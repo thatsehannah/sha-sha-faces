@@ -11,7 +11,7 @@ const LinkButton = ({ link }: { link: { label: string; path: string } }) => {
     >
       <Link
         href={link.path}
-        className='text-lg capitalize hover:scale-105 hover:bg-primary transition-all'
+        className='text-lg capitalize hover:scale-105 hover:bg-primary hover:text-primary-foreground transition-all'
       >
         {link.label}
       </Link>

@@ -12,8 +12,8 @@ export const publicLinks = [
     path: "/about",
   },
   {
-    label: "gallery",
-    path: "/gallery",
+    label: "portfolio",
+    path: "/portfolio",
   },
   {
     label: "services",

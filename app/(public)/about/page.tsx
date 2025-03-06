@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Container from '@/components/global/Container';
-import { parisienne } from '@/lib/fonts';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { motion } from 'framer-motion';
+import Container from "@/components/global/Container";
+import { parisienne } from "@/lib/fonts";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { motion } from "framer-motion";
 
 const AboutPage = () => {
   return (
@@ -23,7 +23,7 @@ const AboutPage = () => {
         </div>
         <div className='xl:w-1/2 xl:h-full flex flex-col justify-center items-center gap-8 text-xl font-light'>
           <p>
-            <span className='text-4xl font-bold text-primary'>
+            <span className='text-4xl font-bold'>
               Hey! I’m <span className={parisienne.className}>Naisha</span>
             </span>
             , your go-to makeup artist based in sunny Los Angeles (but my
@@ -34,10 +34,10 @@ const AboutPage = () => {
             “Who did your makeup?” (Spoiler: it’s me).
           </p>
           <p>
-            I prioritize working with diverse skin tones and enhancing{' '}
+            I prioritize working with diverse skin tones and enhancing{" "}
             <span className={`text-[23px] ${parisienne.className}`}>
               natural beauty.
-            </span>{' '}
+            </span>{" "}
             While bridal makeup is one of my specialties, I’m also venturing
             into the editorial world, blending art and beauty in fresh, creative
             ways—because why not explore a little drama? So, whether you’re
@@ -48,14 +48,14 @@ const AboutPage = () => {
             When I’m not making people feel their most beautiful, you can find
             me perfecting that glow that says “I woke up like this” (but we all
             know it takes a village), keeping things fun, fresh, and most
-            importantly—flawless.{' '}
+            importantly—flawless.{" "}
             <span className={`text-[23px] ${parisienne.className}`}>
               Let’s glam it up!
             </span>
           </p>
         </div>
       </Container>
-      <div className='flex lg:flex-row flex-col-reverse items-center justify-center bg-periwinkle/80 p-8'>
+      <div className='flex lg:flex-row flex-col-reverse items-center justify-center bg-primary p-8'>
         <div className='flex flex-col'>
           <p
             className={`text-center mb-8 lg:text-5xl text-4xl font-black text-black`}
@@ -100,7 +100,7 @@ const AboutPage = () => {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: false, amount: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
           className='xl:-mt-40 -mt-28'
         >
           <Image

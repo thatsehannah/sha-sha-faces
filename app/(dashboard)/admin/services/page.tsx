@@ -1,10 +1,10 @@
-import ServiceAccordion from '@/components/dashboard/services/ServiceAccordion';
-import Container from '@/components/global/Container';
-import { Separator } from '@/components/ui/separator';
-import { fetchAllServices } from '@/utils/actions';
-import { SquarePlus } from 'lucide-react';
-import Link from 'next/link';
-import React from 'react';
+import ServiceAccordion from "@/components/dashboard/services/ServiceAccordion";
+import Container from "@/components/global/Container";
+import { Separator } from "@/components/ui/separator";
+import { fetchAllServices } from "@/utils/actions";
+import { SquarePlus } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
 const AdminServicesPage = async () => {
   const services = await fetchAllServices();
@@ -18,7 +18,7 @@ const AdminServicesPage = async () => {
             href='#'
             className='hover:scale-110 transition-all'
           >
-            <SquarePlus className='fill-secondary w-10 h-10 stroke-1' />
+            <SquarePlus className='fill-primary w-10 h-10 stroke-1' />
           </Link>
         </div>
         <Separator />

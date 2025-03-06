@@ -27,8 +27,7 @@ const Hero = ({ appointments }: HeroProps) => {
     <section>
       <div className='mb-16 flex flex-col justify-center gap-4'>
         <p className='text-[2rem] lg:text-5xl capitalize'>
-          Good {timeOfDay},{" "}
-          <span className='font-extrabold text-primary'>Naisha</span>.
+          Good {timeOfDay}, <span className='font-extrabold'>Naisha</span>.
         </p>
         <p className='text-xl lg:text-2xl font-light'>
           {format(new Date(), "PPPP")}
@@ -37,7 +36,7 @@ const Hero = ({ appointments }: HeroProps) => {
       <div className='mb-24 w-full'>
         <p className='font-medium text-2xl mb-6'>Your day at a glance:</p>
         {todayAppointments.length === 0 ? (
-          <p className='text-center font-normal text-black text-xl tracking-wide bg-secondary rounded-md p-4'>
+          <p className='text-center font-normal text-black text-xl tracking-wide bg-periwinkle rounded-md p-4'>
             No appointments today.
           </p>
         ) : (

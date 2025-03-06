@@ -10,9 +10,9 @@
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 0 40% 73%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 180 40% 73%;
+    --primary: 240 100% 97%;
+    --primary-foreground: 240 10% 3.9%;
+    --secondary: 10 0% 100%;
     --secondary-foreground: 240 5.9% 10%;
     --tertiary: 30 40% 68%;
     --tertiary-foreground: 0 0% 100%;
@@ -38,7 +38,7 @@
     --chart-10: 340 75% 55%;
     --dusty-rose: 0 40% 73%;
     --soft-pink: 0 39% 87%;
-    --periwinkle: 240 100% 90%;
+    --periwinkle: 240 100% 97%;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -56,10 +56,10 @@
     --card-foreground: 0 0% 95%;
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 95%;
-    --primary: 0 40% 73%;
-    --primary-foreground: 20 14.3% 4.1%;
-    --secondary: 180 40% 63%;
-    --secondary-foreground: 0 0% 98%;
+    --primary: 0 0% 2%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 0 0% 2%;
     --tertiary: 30 40% 68%;
     --tertiary-foreground: 0 0% 0%;
     --muted: 0 0% 15%;
@@ -103,8 +103,6 @@
     @apply bg-background text-foreground;
   }
 }
-
-
 
 @layer base {
   * {

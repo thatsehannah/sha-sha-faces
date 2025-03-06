@@ -1,10 +1,10 @@
-import React from 'react';
-import Container from '../global/Container';
-import SectionTitle from '../global/SectionTitle';
-import GalleryCarousel from './components/GalleryCarousel';
-import { Button } from '../ui/button';
-import Link from 'next/link';
-import { fetchFeaturedPhotos } from '@/utils/actions';
+import React from "react";
+import Container from "../global/Container";
+import SectionTitle from "../global/SectionTitle";
+import GalleryCarousel from "./components/GalleryCarousel";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { fetchFeaturedPhotos } from "@/utils/actions";
 
 const Portfolio = async () => {
   const featuredPhotos = await fetchFeaturedPhotos();
@@ -25,7 +25,7 @@ const Portfolio = async () => {
           size='lg'
           className='bg-primary text-lg'
         >
-          <Link href='/gallery'>View More of My Work</Link>
+          <Link href='/portfolio'>View More of My Work</Link>
         </Button>
       </Container>
     </section>

@@ -27,7 +27,7 @@ const AdminSidebar = () => {
       <SidebarHeader className='bg-slate-100 border-b-2 dark:bg-slate-800 mb-4'>
         <Link href='/'>
           <Image
-            src='/branding/logo-color-2.svg'
+            src='/branding/logo-black.svg'
             priority
             alt='logo'
             width={400}
@@ -46,7 +46,7 @@ const AdminSidebar = () => {
               {tabs.map((tab) => (
                 <SidebarMenuItem key={tab.title}>
                   <SidebarMenuButton
-                    className='hover:bg-secondary p-5 transition-all duration-300'
+                    className='hover:bg-gray-400 p-5 transition-all duration-300'
                     asChild
                   >
                     <Link

@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { reviewSchema } from '@/utils/reviewSchema';
-import { Review } from '@/utils/types';
-import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
-import { z } from 'zod';
-import { motion } from 'framer-motion';
-import { FormProvider, useForm } from 'react-hook-form';
-import { Button } from '../ui/button';
-import FormInput from '../form/FormInput';
-import FormDropdown from '../form/FormDropdown';
-import FormRadioGroup from '../form/FormRadioGroup';
-import Rating from './Rating';
-import { RotateCw } from 'lucide-react';
-import { createReviewAction } from '@/utils/actions';
-import { useToast } from '@/hooks/use-toast';
+import { reviewSchema } from "@/utils/reviewSchema";
+import { Review } from "@/utils/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
+import { z } from "zod";
+import { motion } from "framer-motion";
+import { FormProvider, useForm } from "react-hook-form";
+import { Button } from "../ui/button";
+import FormInput from "../form/FormInput";
+import FormDropdown from "../form/FormDropdown";
+import FormRadioGroup from "../form/FormRadioGroup";
+import Rating from "./Rating";
+import { RotateCw } from "lucide-react";
+import { createReviewAction } from "@/utils/actions";
+import { useToast } from "@/hooks/use-toast";
 
 type ReviewFormProps = {
   serviceNames: string[];
@@ -26,12 +26,12 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
   const form = useForm<z.infer<typeof reviewSchema>>({
     resolver: zodResolver(reviewSchema),
     defaultValues: {
-      reviewer: '',
-      email: '',
-      comment: '',
+      reviewer: "",
+      email: "",
+      comment: "",
       wouldRecommend: undefined,
-      service: '',
-      rating: '',
+      service: "",
+      rating: "",
     },
   });
 
@@ -58,7 +58,7 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
           className='w-full'
           onSubmit={form.handleSubmit(handleOnSubmit)}
         >
-          <section className='bg-gradient-to-bl from-soft-pink to-secondary rounded-md p-8 lg:px-20 lg:py-8 drop-shadow-2xl'>
+          <section className='bg-gradient-to-r from-background to-primary rounded-md p-8 lg:px-20 lg:py-8 drop-shadow-2xl'>
             <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-8'>
               <FormInput
                 name='reviewer'

@@ -1,31 +1,31 @@
-'use client';
+"use client";
 
-import React, { useRef } from 'react';
-import reviews from '@/utils/reviews.json';
+import React, { useRef } from "react";
+import reviews from "@/utils/reviews.json";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from '@/components/ui/carousel';
-import { Card, CardContent } from '@/components/ui/card';
-import { Quote } from 'lucide-react';
-import Container from '@/components/global/Container';
-import Autoplay from 'embla-carousel-autoplay';
+} from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
+import { Quote } from "lucide-react";
+import Container from "@/components/global/Container";
+import Autoplay from "embla-carousel-autoplay";
 
 const ReviewCarousel = () => {
   const plugin = useRef(Autoplay({ delay: 6000, stopOnInteraction: true }));
 
   const emphasizeWords = (review: string) => {
     const emphasisWords = [
-      'love',
-      'loved',
-      'great',
-      'professional',
-      'happy',
-      'looking good',
+      "love",
+      "loved",
+      "great",
+      "professional",
+      "happy",
+      "looking good",
     ];
 
-    const regex = new RegExp(`\\b(${emphasisWords.join('|')})\\b`, 'i');
+    const regex = new RegExp(`\\b(${emphasisWords.join("|")})\\b`, "i");
     const matched = review.match(regex);
 
     if (matched) {
@@ -42,7 +42,7 @@ const ReviewCarousel = () => {
     return {
       before: review,
       emphasizeWord: null,
-      after: '',
+      after: "",
     };
   };
 
@@ -61,32 +61,22 @@ const ReviewCarousel = () => {
 
             return (
               <CarouselItem key={idx}>
-                <Card>
+                <Card className='bg-secondary shadow-inner border border-primary-foreground'>
                   <CardContent className='flex flex-col justify-center items-center p-8 gap-5'>
-                    {/* <div className='flex flex-row gap-4'>
-                      {Array.from({ length: item.starCount }).map((_, idx) => (
-                        <Star
-                          key={idx}
-                          size={40}
-                          fill='gold'
-                          strokeWidth={0}
-                        />
-                      ))}
-                    </div> */}
                     <Quote
-                      fill='black'
+                      fill='white'
                       size={30}
                     />
-                    <p className='text-xl lg:text-2xl normal-case'>
-                      {before}{' '}
+                    <p className='text-xl lg:text-2xl normal-case text-secondary-foreground'>
+                      {before}{" "}
                       {emphasizedWord && (
-                        <span className='text-primary tracking-wide font-black uppercase text-2xl lg:text-3xl'>
+                        <span className='text-secondary-foreground tracking-wide font-black uppercase text-2xl lg:text-3xl'>
                           {emphasizedWord}
                         </span>
-                      )}{' '}
+                      )}{" "}
                       {after}
                     </p>
-                    <p className='text-2xl font-bold shrink-2'>
+                    <p className='text-2xl font-bold shrink-2 text-secondary-foreground'>
                       -- {item.reviewer}
                     </p>
                   </CardContent>

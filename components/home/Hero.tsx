@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '../ui/button';
-import Link from 'next/link';
-import Image from 'next/image';
-import { parisienne } from '@/lib/fonts';
-import Container from '../global/Container';
+import React from "react";
+import { motion } from "framer-motion";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import { parisienne } from "@/lib/fonts";
+import Container from "../global/Container";
 
 const Hero = () => {
   return (
-    <section className='h-full bg-gradient-to-tl from-primary to-background py-12'>
+    <section className='h-full bg-gradient-to-r from-primary to-background py-12'>
       <Container className='grid grid-cols-1 lg:grid-cols-2 lg:gap-24 justify-center items-center'>
         <motion.div
           initial={{ opacity: 0, x: 75 }}
@@ -28,7 +28,7 @@ const Hero = () => {
             className='block lg:hidden w-full lg:h-[26rem] h-[30rem] mb-8 rounded-xl object-contain xl:object-cover'
           />
           <Image
-            src='/branding/logo-color-2.svg'
+            src='/branding/logo-black.svg'
             priority
             alt='logo'
             width={400}

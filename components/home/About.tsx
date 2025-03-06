@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import Container from '../global/Container';
-import Image from 'next/image';
-import { Button } from '../ui/button';
-import SectionTitle from '../global/SectionTitle';
-import Link from 'next/link';
-import SvgInstagram from '../global/Instagram';
+import React from "react";
+import { motion } from "framer-motion";
+import Container from "../global/Container";
+import Image from "next/image";
+import { Button } from "../ui/button";
+import SectionTitle from "../global/SectionTitle";
+import Link from "next/link";
+import SvgInstagram from "../global/Instagram";
 
 const About = () => {
   return (
@@ -26,7 +26,7 @@ const About = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: false, amount: 0.3 }}
           exit={{ opacity: 0, y: -100 }}
-          className='hidden lg:block -z-10 top-28 left-8 w-[20rem] h-[26rem] bg-soft-pink absolute rounded-md'
+          className='hidden lg:block -z-10 top-28 left-8 w-[20rem] h-[26rem] bg-periwinkle absolute rounded-md'
         />
         <motion.div
           initial={{ opacity: 0, y: -100 }}
@@ -47,7 +47,7 @@ const About = () => {
         </motion.div>
         <div className='flex flex-col mx-auto'>
           <p className='text-4xl lg:text-5xl font-semibold mb-6'>
-            Meet Naisha{' '}
+            Meet Naisha{" "}
             <span className='text-muted-foreground text-lg text-center'>
               (she/her/hers)
             </span>

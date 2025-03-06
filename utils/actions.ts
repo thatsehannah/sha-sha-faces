@@ -368,7 +368,7 @@ export const updateGalleryPhotoVisibility = async (
       data: update,
     });
 
-    revalidatePaths(["/gallery", "/", "/admin/info"]);
+    revalidatePaths(["/portfolio", "/", "/admin/info"]);
   } catch (error) {
     console.log(error);
   }
@@ -388,7 +388,7 @@ export const updateGalleryPhotoCategory = async (
       },
     });
 
-    revalidatePaths(["/gallery", "/", "/admin/info"]);
+    revalidatePaths(["/portfolio", "/", "/admin/info"]);
   } catch (error) {
     console.log(error);
   }
@@ -411,7 +411,7 @@ export const createNewGalleryPhoto = async (
         alt: photo.alt,
       },
     });
-    revalidatePaths(["/", "/gallery", "/admin/info"]);
+    revalidatePaths(["/", "/portfolio", "/admin/info"]);
 
     return {
       type: "success",
@@ -443,7 +443,7 @@ export const deleteGalleryPhoto = async (
 
     deletePhotoFromBucket(deletedPhoto);
 
-    revalidatePaths(["/", "/gallery", "/admin/info"]);
+    revalidatePaths(["/", "/portfolio", "/admin/info"]);
 
     return { type: "success", title: "Success ✅", message: "Photo removed" };
   } catch (error) {

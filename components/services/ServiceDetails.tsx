@@ -40,7 +40,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
         >
           <ServiceIconSvg
             svg={svgData as ServiceSvg}
-            className='fill-primary'
+            className='fill-black'
           />
         </motion.div>
       </div>
@@ -51,20 +51,11 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
           <div className='lg:hidden flex justify-center items-center mb-8'>
             <ServiceIconSvg
               svg={svgData as ServiceSvg}
-              className='fill-primary'
+              className='fill-black'
             />
           </div>
           <div className='mb-6'>
             <p className='capitalize text-3xl lg:text-4xl font-bold'>{name}</p>
-            {/* {popular && (
-              <div className='flex gap-2 mt-1'>
-                <Star
-                  fill='gold'
-                  strokeWidth={0}
-                />
-                <p className='uppercase'>popular service</p>
-              </div>
-            )} */}
           </div>
           <div className='flex justify-between text-2xl mb-12'>
             <div className='flex gap-3 p-4 rounded-full bg-accent font-bold shadow-md'>
@@ -82,7 +73,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
 
           <p className='text-2xl font-light mb-12'>{description}</p>
           <Button
-            className='mt-auto capitalize text-xl bg-secondary'
+            className='mt-auto capitalize text-xl bg-secondary text-secondary-foreground hover:text-primary-foreground'
             asChild
           >
             <Link href={`/contact?a=${index}`}>book a time</Link>

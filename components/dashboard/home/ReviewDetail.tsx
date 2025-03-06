@@ -27,7 +27,7 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
         <p className='text-muted-foreground mt-2'>
           {reviewsLength} review{reviewsLength === 1 ? "" : "s"}
         </p>
-        <Separator className='my-6 bg-secondary' />
+        <Separator className='my-6 bg-primary' />
         <div className='flex xl:flex-row flex-col'>
           {/* Review Sidebar */}
           <aside className='xl:flex xl:flex-col grid grid-cols-2 xl:gap-6 gap-2 xl:w-1/4 w-full xl:rounded-l-lg rounded-none'>
@@ -35,8 +35,8 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
               return (
                 <div
                   key={idx}
-                  className={`flex items-center xl:gap-3 gap-1 whitespace-nowrap rounded-md xl:text-lg text-sm transition-colors disabled:opacity-50 hover:text-accent-foreground h-9 xl:p-8 p-4  hover:cursor-pointer hover:bg-primary xl:mb-0 mb-4 ${
-                    activeRating === rating.value && "bg-primary"
+                  className={`flex items-center xl:gap-3 gap-1 whitespace-nowrap rounded-md xl:text-lg text-sm transition-colors disabled:opacity-50 hover:text-secondary h-9 xl:p-8 p-4  hover:cursor-pointer hover:bg-gray-500 xl:mb-0 mb-4 ${
+                    activeRating === rating.value && "bg-gray-300"
                   }`}
                   onClick={() => setActiveRating(rating.value)}
                 >

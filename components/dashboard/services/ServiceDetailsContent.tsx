@@ -1,6 +1,6 @@
-import React from 'react';
-import ServiceDetail from './ServiceDetail';
-import { Service } from '@prisma/client';
+import React from "react";
+import ServiceDetail from "./ServiceDetail";
+import { Service } from "@prisma/client";
 
 type ServiceDetailsContentProps = {
   service: Service;
@@ -8,7 +8,7 @@ type ServiceDetailsContentProps = {
 
 const ServiceDetailsContent = ({ service }: ServiceDetailsContentProps) => {
   return (
-    <div className='flex flex-col justify-between bg-secondary p-3 rounded-md'>
+    <div className='flex flex-col justify-between bg-primary p-3 rounded-md'>
       <ServiceDetail
         id={service.id}
         data={service.description}

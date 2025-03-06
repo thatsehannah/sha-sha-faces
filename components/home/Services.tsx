@@ -12,7 +12,7 @@ const Services = async () => {
   return (
     <section
       id='services'
-      className='relative bg-gradient-to-tr from-background to-primary'
+      className='relative bg-gradient-to-l from-primary to-background'
     >
       <SectionTitle
         title='popular services'
@@ -32,7 +32,7 @@ const Services = async () => {
         <Button
           asChild
           size='lg'
-          className='bg-primary text-lg'
+          className='bg-secondary text-secondary-foreground text-lg'
         >
           <Link href='/services'>View All Services</Link>
         </Button>

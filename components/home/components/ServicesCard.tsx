@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,12 +8,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Star } from 'lucide-react';
-import Link from 'next/link';
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Service } from '@prisma/client';
+} from "@/components/ui/card";
+import { Star } from "lucide-react";
+import Link from "next/link";
+import React from "react";
+import { motion } from "framer-motion";
+import { Service } from "@prisma/client";
 
 type ServiceCardProps = {
   service: Service;
@@ -49,7 +49,7 @@ const ServicesCard = ({ service }: ServiceCardProps) => {
         </CardContent>
         <CardFooter className=''>
           <Button
-            className='bg-secondary text-md'
+            className='bg-primary text-primary-foreground text-md'
             asChild
           >
             <Link href={`/contact?a=${service.id}`}>Book Now</Link>

@@ -38,7 +38,7 @@ const ImageGrid = ({ photos }: ImageGridProps) => {
 
   const pagesForBreadcrumbs: { link: string; label: string }[] = [
     { link: "/", label: "Home" },
-    { link: "/gallery", label: "Gallery" },
+    { link: "/portfolio", label: "Portfolio" },
   ];
 
   return (

@@ -20,7 +20,7 @@ const Navbar = () => {
           <Links links={adminLinks} />
         </SignedIn>
         <Button
-          className='hidden lg:block bg-primary hover:bg-secondary'
+          className='hidden lg:block bg-primary'
           asChild
         >
           <Link href='/contact'>Book Now </Link>

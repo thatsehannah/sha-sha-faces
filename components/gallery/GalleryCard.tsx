@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 const GalleryCard = ({ title }: { title: string }) => {
   return (
     <article className='group relative'>
-      <Link href={`/gallery/${title}`}>
+      <Link href={`/portfolio/${title}`}>
         <div className='flex justify-center items-center h-[18rem] lg:h-screen transform group-hover:shadow-xl group-hover:scale-105 transition-transform duration-300'>
           <Image
             priority
@@ -15,7 +15,7 @@ const GalleryCard = ({ title }: { title: string }) => {
             fill
             sizes='(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw'
           />
-          <p className='text-center capitalize z-10 text-5xl text-white bg-primary font-semibold p-4 rounded-md'>
+          <p className='text-center capitalize z-10 text-5xl text-primary-foreground bg-primary font-semibold p-4 rounded-md'>
             {title}
           </p>
         </div>

@@ -1,13 +1,13 @@
-import Link from 'next/link';
-import React from 'react';
-import Image from 'next/image';
+import Link from "next/link";
+import React from "react";
+import Image from "next/image";
 
 const Logo = () => {
   return (
     <Link href='/'>
       <Image
         priority
-        src='/branding/logo-color-2.svg'
+        src='/branding/logo-black.svg'
         alt='logo'
         width={64}
         height={64}

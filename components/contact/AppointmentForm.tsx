@@ -140,7 +140,7 @@ const AppointmentForm = ({
             <p className='text-xl lg:text-2xl font-light'>
               Please review{" "}
               <span
-                className='text-primary font-bold hover:cursor-pointer underline'
+                className='font-bold hover:cursor-pointer underline'
                 onClick={handleOpenDrawer}
               >
                 instructions
@@ -156,7 +156,7 @@ const AppointmentForm = ({
               />
             </div>
           </section>
-          <section className='bg-gradient-to-bl from-soft-pink to-secondary rounded-md p-8 lg:px-20 lg:py-8 drop-shadow-2xl'>
+          <section className='bg-gradient-to-r from-background to-primary rounded-md p-8 lg:px-20 lg:py-8 shadow-2xl'>
             <div className='mb-20'>
               <p className='text-3xl lg:text-4xl text-black font-bold mb-6'>
                 Contact Information
