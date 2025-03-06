@@ -6,6 +6,7 @@ import MobileLinks from "./components/MobileLinks";
 import Container from "../global/Container";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { adminLinks, publicLinks } from "@/utils/links";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -18,8 +19,11 @@ const Navbar = () => {
         <SignedIn>
           <Links links={adminLinks} />
         </SignedIn>
-        <Button className='hidden lg:block bg-primary hover:bg-secondary'>
-          Book Now
+        <Button
+          className='hidden lg:block bg-primary hover:bg-secondary'
+          asChild
+        >
+          <Link href='/contact'>Book Now </Link>
         </Button>
         <SignedOut>
           <MobileLinks links={publicLinks} />

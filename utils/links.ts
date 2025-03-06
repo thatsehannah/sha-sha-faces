@@ -20,8 +20,8 @@ export const publicLinks = [
     path: "/services",
   },
   {
-    label: "contact",
-    path: "/contact",
+    label: "shop",
+    path: "/#shop",
   },
 ];
 

@@ -40,7 +40,7 @@ const MobileLinks = ({ links }: MobileLinksProps) => {
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
             <Button className='w-full'>
-              <Link href='#'>Book Now</Link>
+              <Link href='/contact'>Book Now</Link>
             </Button>
           </DropdownMenuItem>
         </DropdownMenuContent>

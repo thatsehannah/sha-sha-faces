@@ -1,9 +1,12 @@
-import React from 'react';
-import SectionTitle from '../global/SectionTitle';
+import React from "react";
+import SectionTitle from "../global/SectionTitle";
 
 const Shop = () => {
   return (
-    <section className='relative h-[105vh]'>
+    <section
+      id='shop'
+      className='relative h-[105vh]'
+    >
       <SectionTitle
         title='shop'
         alignment='right'
