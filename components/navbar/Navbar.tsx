@@ -7,6 +7,7 @@ import Container from "../global/Container";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { adminLinks, publicLinks } from "@/utils/links";
 import Link from "next/link";
+import DarkModeButton from "../global/DarkModeButton";
 
 const Navbar = () => {
   return (
@@ -19,6 +20,7 @@ const Navbar = () => {
         <SignedIn>
           <Links links={adminLinks} />
         </SignedIn>
+        <DarkModeButton />
         <Button
           className='hidden lg:flex bg-primary text-center text-lg'
           asChild

@@ -48,7 +48,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
           <div className='lg:hidden flex justify-center items-center mb-8'>
             <ServiceIconSvg
               svg={svgData as ServiceSvg}
-              className='fill-primary dark:fill-secondary'
+              className='fill-primary'
             />
           </div>
           <div className='mb-6'>

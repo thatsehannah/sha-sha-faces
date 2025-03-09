@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import SvgInstagram from "../global/Instagram";
-import RightSectionTitle from "../global/RightSectionTitle";
+import { RightSectionTitle } from "../global/SectionTitles";
 
 const About = () => {
   return (
@@ -15,7 +15,11 @@ const About = () => {
       id='about'
       className='relative'
     >
-      <RightSectionTitle title='About Me' />
+      <RightSectionTitle
+        title='About Me'
+        textClasses='dark:text-tertiary'
+        barClasses='dark:bg-primary-foreground'
+      />
       <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 relative py-20'>
         <motion.div
           initial={{ opacity: 0, y: 100 }}

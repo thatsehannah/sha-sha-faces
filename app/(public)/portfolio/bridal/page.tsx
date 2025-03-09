@@ -1,5 +1,5 @@
 import ImageGrid from "@/components/gallery/ImageGrid";
-import LeftSectionTitle from "@/components/global/LeftSectionTitle";
+import { LeftSectionTitle } from "@/components/global/SectionTitles";
 import { fetchBridalPhotos } from "@/utils/actions";
 import React from "react";
 

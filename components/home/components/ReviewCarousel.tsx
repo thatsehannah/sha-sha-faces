@@ -64,8 +64,8 @@ const ReviewCarousel = () => {
                 <Card className='bg-secondary shadow-inner border border-primary-foreground'>
                   <CardContent className='flex flex-col justify-center items-center p-8 gap-5'>
                     <Quote
-                      fill='white'
                       size={30}
+                      className='fill-black stroke-black'
                     />
                     <p className='text-xl lg:text-2xl normal-case text-secondary-foreground'>
                       {before}{" "}

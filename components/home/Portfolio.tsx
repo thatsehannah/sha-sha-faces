@@ -4,7 +4,7 @@ import GalleryCarousel from "./components/GalleryCarousel";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { fetchFeaturedPhotos } from "@/utils/actions";
-import LeftSectionTitle from "../global/LeftSectionTitle";
+import { RightSectionTitle } from "../global/SectionTitles";
 
 const Portfolio = async () => {
   const featuredPhotos = await fetchFeaturedPhotos();
@@ -14,7 +14,11 @@ const Portfolio = async () => {
       id='portfolio'
       className='relative'
     >
-      <LeftSectionTitle title='portfolio' />
+      <RightSectionTitle
+        title='portfolio'
+        textClasses='dark:text-tertiary'
+        barClasses='dark:bg-tertiary'
+      />
       <Container className='flex flex-col justify-center items-center py-24 gap-16'>
         <GalleryCarousel photos={featuredPhotos} />
         <Button

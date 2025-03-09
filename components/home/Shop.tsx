@@ -1,5 +1,5 @@
 import React from "react";
-import LeftSectionTitle from "../global/LeftSectionTitle";
+import { RightSectionTitle } from "../global/SectionTitles";
 
 const Shop = () => {
   return (
@@ -7,9 +7,10 @@ const Shop = () => {
       id='shop'
       className='relative h-[105vh]'
     >
-      <LeftSectionTitle
+      <RightSectionTitle
         title='shop'
-        className='text-primary-foreground'
+        textClasses='text-tertiary'
+        barClasses='bg-tertiary'
       />
       <div className='py-20 flex flex-col justify-center items-center m-auto bg-shop-gif bg-no-repeat bg-cover bg-origin-padding bg-top w-full h-full mx-0 px-0 dark:bg-black dark:bg-blend-overlay dark:bg-opacity-40'>
         <div className='p-4 lg:p-8 rounded-lg bg-black/30 backdrop-blur-lg shadow-none lg:shadow-2xl'>

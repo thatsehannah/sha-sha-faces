@@ -1,7 +1,7 @@
 import React from "react";
 import ImageGrid from "@/components/gallery/ImageGrid";
 import { fetchGlamPhotos } from "@/utils/actions";
-import RightSectionTitle from "@/components/global/RightSectionTitle";
+import { RightSectionTitle } from "@/components/global/SectionTitles";
 
 const GlamGallery = async () => {
   const glamPhotos = await fetchGlamPhotos();

@@ -4,7 +4,7 @@ import ServicesCard from "./components/ServicesCard";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { fetchPopularServices } from "@/utils/actions";
-import RightSectionTitle from "../global/RightSectionTitle";
+import { LeftSectionTitle } from "../global/SectionTitles";
 
 const Services = async () => {
   const popularServices = await fetchPopularServices();
@@ -14,9 +14,10 @@ const Services = async () => {
       id='services'
       className='relative bg-gradient-to-l from-primary to-background'
     >
-      <RightSectionTitle
+      <LeftSectionTitle
         title='popular services'
-        className='text-primary-foreground'
+        textClasses='dark:text-tertiary'
+        barClasses='dark:bg-tertiary'
       />
       <Container className='py-20 flex flex-col justify-center items-center gap-12'>
         <div className='grid grid-cols-1 lg:grid-cols-3 justify-between gap-y-8 gap-x-4'>

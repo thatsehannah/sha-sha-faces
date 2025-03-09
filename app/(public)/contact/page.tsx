@@ -1,6 +1,6 @@
 import AppointmentForm from "@/components/contact/AppointmentForm";
 import Container from "@/components/global/Container";
-import LeftSectionTitle from "@/components/global/LeftSectionTitle";
+import { LeftSectionTitle } from "@/components/global/SectionTitles";
 import { fetchServiceInfo, fetchWeeklyAvailability } from "@/utils/actions";
 import React, { Suspense } from "react";
 
