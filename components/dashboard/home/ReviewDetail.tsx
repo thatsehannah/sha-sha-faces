@@ -35,8 +35,9 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
               return (
                 <div
                   key={idx}
-                  className={`flex items-center xl:gap-3 gap-1 whitespace-nowrap rounded-md xl:text-lg text-sm transition-colors disabled:opacity-50 hover:text-secondary h-9 xl:p-8 p-4  hover:cursor-pointer hover:bg-gray-500 xl:mb-0 mb-4 ${
-                    activeRating === rating.value && "bg-gray-300"
+                  className={`flex items-center xl:gap-3 gap-1 whitespace-nowrap rounded-md xl:text-lg text-sm transition-colors disabled:opacity-50 hover:text-secondary-foreground h-9 xl:p-8 p-4 hover:cursor-pointer hover:bg-secondary xl:mb-0 mb-4 ${
+                    activeRating === rating.value &&
+                    "bg-secondary text-secondary-foreground"
                   }`}
                   onClick={() => setActiveRating(rating.value)}
                 >
@@ -58,7 +59,7 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
                 {reviewsToShow.map((review, idx) => {
                   return (
                     <div key={idx}>
-                      <div className='mb-8 bg-muted p-6 rounded-md'>
+                      <div className='mb-8 bg-muted p-6 rounded-md border'>
                         <div className='font-bold text-xl mb-4'>
                           {review.reviewer}
                         </div>

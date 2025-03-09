@@ -18,6 +18,7 @@ import { tabs } from "@/utils/links";
 import Link from "next/link";
 import Image from "next/image";
 import SignOutButton from "./SignOutButton";
+import DarkModeButton from "@/components/global/DarkModeButton";
 
 const AdminSidebar = () => {
   const { setOpenMobile } = useSidebar();
@@ -27,7 +28,7 @@ const AdminSidebar = () => {
       <SidebarHeader className='bg-slate-100 border-b-2 dark:bg-slate-800 mb-4'>
         <Link href='/'>
           <Image
-            src='/branding/logo-black.svg'
+            src='/branding/logo-color.svg'
             priority
             alt='logo'
             width={400}
@@ -46,7 +47,7 @@ const AdminSidebar = () => {
               {tabs.map((tab) => (
                 <SidebarMenuItem key={tab.title}>
                   <SidebarMenuButton
-                    className='hover:bg-gray-400 p-5 transition-all duration-300'
+                    className='hover:bg-secondary hover:text-secondary-foreground p-5 transition-all duration-300'
                     asChild
                   >
                     <Link
@@ -59,7 +60,12 @@ const AdminSidebar = () => {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              <SignOutButton />
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <SignOutButton />{" "}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <DarkModeButton />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

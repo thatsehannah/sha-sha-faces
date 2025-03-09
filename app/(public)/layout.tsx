@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import Navbar from "@/components/navbar/Navbar";
-import { merriweather, lora, cormorant } from "@/lib/fonts";
+import { cormorant } from "@/lib/fonts";
 import Providers from "../providers";
 import { ClerkProvider } from "@clerk/nextjs";
 

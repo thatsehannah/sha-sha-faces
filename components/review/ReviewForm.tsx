@@ -58,7 +58,7 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
           className='w-full'
           onSubmit={form.handleSubmit(handleOnSubmit)}
         >
-          <section className='bg-gradient-to-r from-background to-primary rounded-md p-8 lg:px-20 lg:py-8 drop-shadow-2xl'>
+          <section className='bg-secondary rounded-md p-8 lg:px-20 lg:py-8 drop-shadow-2xl'>
             <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-8'>
               <FormInput
                 name='reviewer'

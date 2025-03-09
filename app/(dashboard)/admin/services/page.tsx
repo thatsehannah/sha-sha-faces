@@ -18,7 +18,7 @@ const AdminServicesPage = async () => {
             href='#'
             className='hover:scale-110 transition-all'
           >
-            <SquarePlus className='fill-primary w-10 h-10 stroke-1' />
+            <SquarePlus className='fill-secondary w-10 h-10 stroke-1' />
           </Link>
         </div>
         <Separator />

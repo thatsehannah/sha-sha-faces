@@ -19,14 +19,14 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
   return (
     <>
       <AppointmentDetailsSheet appointment={appointment}>
-        <div className='w-full shadow-lg rounded-lg p-6 mb-8 bg-muted dark:bg-sidebar hover:cursor-pointer hover:-translate-y-4 hover:scale-105 transition-all duration-300 relative'>
+        <div className='w-full shadow-lg rounded-lg p-6 mb-8 bg-sidebar hover:cursor-pointer hover:-translate-y-4 hover:scale-105 transition-all duration-300 relative border'>
           {isNew && (
             <div className='absolute top-2 right-2 bg-lime-200 p-1 rounded-md text-black text-[12px] font-medium'>
               New
             </div>
           )}
           <div className='flex gap-6 h-full'>
-            <div className='w-1/5 hidden xl:flex items-center justify-center p-4 rounded-md bg-primary border border-black'>
+            <div className='w-1/5 hidden xl:flex items-center justify-center p-4 rounded-md bg-secondary border border-black'>
               <ServiceIconSvg
                 svg={service.svgData as ServiceSvg}
                 className='w-4 h-4 lg:w-16 lg:h-16'
@@ -44,13 +44,13 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
               <div className='flex gap-10 text-muted-foreground'>
                 <div className='flex flex-col justify-center'>
                   <User className='stroke-muted-foreground' />
-                  <p className='lg:text-[16px] font-medium text-primary-foreground'>
+                  <p className='lg:text-[16px] font-medium text-tertiary-foreground dark:text-secondary'>
                     {name}
                   </p>
                 </div>
                 <div className='flex flex-col justify-center'>
                   <MapPin className='stroke-muted-foreground' />
-                  <p className='lg:text-[16px] font-medium text-primary-foreground'>
+                  <p className='lg:text-[16px] font-medium text-tertiary-foreground dark:text-secondary'>
                     {location}
                   </p>
                 </div>

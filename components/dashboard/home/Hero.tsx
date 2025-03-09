@@ -36,7 +36,8 @@ const Hero = ({ appointments }: HeroProps) => {
       <div className='mb-24 w-full'>
         <p className='font-medium text-2xl mb-6'>Your day at a glance:</p>
         {todayAppointments.length === 0 ? (
-          <p className='text-center font-normal text-black text-xl tracking-wide bg-periwinkle rounded-md p-4'>
+          // TODO: Change this background color
+          <p className='text-center font-normal text-black text-xl tracking-wide bg-primary text-primary-foreground rounded-md p-4'>
             No appointments today.
           </p>
         ) : (

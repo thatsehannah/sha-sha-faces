@@ -1,7 +1,7 @@
-import PortfolioCard from '@/components/gallery/GalleryCard';
-import Container from '@/components/global/Container';
-import SectionTitle from '@/components/global/SectionTitle';
-import React from 'react';
+import PortfolioCard from "@/components/gallery/GalleryCard";
+import Container from "@/components/global/Container";
+import SectionTitle from "@/components/global/LeftSectionTitle";
+import React from "react";
 
 const GalleryPage = () => {
   return (

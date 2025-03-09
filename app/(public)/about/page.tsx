@@ -23,8 +23,13 @@ const AboutPage = () => {
         </div>
         <div className='xl:w-1/2 xl:h-full flex flex-col justify-center items-center gap-8 text-xl font-light'>
           <p>
-            <span className='text-4xl font-bold'>
-              Hey! I’m <span className={parisienne.className}>Naisha</span>
+            <span className='text-3xl font-bold'>
+              Hey! I’m{" "}
+              <span
+                className={`${parisienne.className} text-secondary text-5xl`}
+              >
+                Naisha
+              </span>
             </span>
             , your go-to makeup artist based in sunny Los Angeles (but my
             brushes are always ready for an adventure—whether it’s domestic or
@@ -35,7 +40,7 @@ const AboutPage = () => {
           </p>
           <p>
             I prioritize working with diverse skin tones and enhancing{" "}
-            <span className={`text-[23px] ${parisienne.className}`}>
+            <span className={`text-2xl ${parisienne.className}`}>
               natural beauty.
             </span>{" "}
             While bridal makeup is one of my specialties, I’m also venturing
@@ -49,48 +54,42 @@ const AboutPage = () => {
             me perfecting that glow that says “I woke up like this” (but we all
             know it takes a village), keeping things fun, fresh, and most
             importantly—flawless.{" "}
-            <span className={`text-[23px] ${parisienne.className}`}>
+            <span className={`text-2xl ${parisienne.className}`}>
               Let’s glam it up!
             </span>
           </p>
         </div>
       </Container>
-      <div className='flex lg:flex-row flex-col-reverse items-center justify-center bg-primary p-8'>
+      <div className='flex lg:flex-row flex-col-reverse items-center justify-center bg-tertiary text-tertiary-foreground p-8'>
         <div className='flex flex-col'>
-          <p
-            className={`text-center mb-8 lg:text-5xl text-4xl font-black text-black`}
-          >
+          <p className={`text-center mb-8 lg:text-5xl text-4xl font-black`}>
             Follow Me On Instagram!
           </p>
 
           <div className='lg:mb-32 mb-16 flex flex-row lg:justify-around gap-8'>
-            <div className='rounded-xl lg:p-6 p-3 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF] border-2 border-black hover:cursor-pointer'>
+            <div className='rounded-xl lg:p-6 p-3 transition-all duration-300 ease-in-out hover:text-primary-foreground hover:shadow-[inset_240px_0_0_0_#432f1f] border-2 border-tertiary-foreground hover:cursor-pointer'>
               <Link
                 href='https://www.instagram.com/wownaisha'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <p className='lg:text-3xl text-2xl font-bold text-black'>
-                  @wownaisha
-                </p>
+                <p className='lg:text-3xl text-2xl font-bold'>@wownaisha</p>
               </Link>
             </div>
-            <div className='rounded-xl lg:p-6 p-3 transition-all duration-300 ease-in-out hover:text-white hover:shadow-[inset_240px_0_0_0_#7070FF] border-2 border-black hover:cursor-pointer'>
+            <div className='rounded-xl lg:p-6 p-3 transition-all duration-300 ease-in-out hover:text-primary-foreground hover:shadow-[inset_240px_0_0_0_#432f1f] border-2 border-tertiary-foreground hover:cursor-pointer'>
               <Link
                 href='https://www.instagram.com/shashafaces'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <p className='lg:text-3xl text-2xl font-bold text-black'>
-                  @shashafaces
-                </p>
+                <p className='lg:text-3xl text-2xl font-bold'>@shashafaces</p>
               </Link>
             </div>
           </div>
-          <p className='text-3xl font-medium text-black mb-2'>
+          <p className='text-3xl font-medium mb-2'>
             Stay up to date on my latest posts, announcements, and much more!
           </p>
-          <p className='text-black font-light text-lg'>
+          <p className='font-light text-lg'>
             Don&apos;t forget to tag me in your posts.
           </p>
         </div>

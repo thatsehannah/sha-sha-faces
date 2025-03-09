@@ -1,6 +1,6 @@
 import AppointmentForm from "@/components/contact/AppointmentForm";
 import Container from "@/components/global/Container";
-import SectionTitle from "@/components/global/SectionTitle";
+import SectionTitle from "@/components/global/LeftSectionTitle";
 import { fetchServiceInfo, fetchWeeklyAvailability } from "@/utils/actions";
 import React, { Suspense } from "react";
 
@@ -11,7 +11,7 @@ const ContactPage = async () => {
   return (
     <main className='relative'>
       <SectionTitle
-        title='booking form'
+        title='booking an appointment'
         alignment='left'
       />
       <Container className='py-20 flex flex-col justify-center items-center'>

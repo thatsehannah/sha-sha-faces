@@ -1,28 +1,28 @@
-'use client';
+"use client";
 
-import React, { Suspense, useState } from 'react';
-import AppointmentGrid from './AppointmentGrid';
-import AppointmentTable from './AppointmentTable';
-import { Button } from '@/components/ui/button';
-import { LayoutGrid, Table } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
-import Container from '@/components/global/Container';
-import StatusFilterOptions from '../appointments/StatusFilterOptions';
-import { useSearchParams } from 'next/navigation';
-import SearchFilter from '../appointments/SearchFilter';
-import { AppointmentWithService } from '@/utils/types';
+import React, { Suspense, useState } from "react";
+import AppointmentGrid from "./AppointmentGrid";
+import AppointmentTable from "./AppointmentTable";
+import { Button } from "@/components/ui/button";
+import { LayoutGrid, Table } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import Container from "@/components/global/Container";
+import StatusFilterOptions from "../appointments/StatusFilterOptions";
+import { useSearchParams } from "next/navigation";
+import SearchFilter from "../appointments/SearchFilter";
+import { AppointmentWithService } from "@/utils/types";
 
 type AppointmentContainerProps = {
   appointments: AppointmentWithService[];
 };
 
 const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
-  const [view, setView] = useState<'grid' | 'table'>('grid');
+  const [view, setView] = useState<"grid" | "table">("grid");
   const searchParams = useSearchParams();
   const statusParamValue =
-    searchParams.has('status') && searchParams.get('status');
+    searchParams.has("status") && searchParams.get("status");
   const searchParamValue =
-    searchParams.has('search') && searchParams.get('search');
+    searchParams.has("search") && searchParams.get("search");
 
   if (statusParamValue) {
     appointments = appointments.filter(
@@ -48,18 +48,24 @@ const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
             size='icon'
             data-display={view}
             className="data-[display='grid']:bg-primary"
-            onClick={() => setView('grid')}
+            onClick={() => setView("grid")}
           >
-            <LayoutGrid />
+            <LayoutGrid
+              data-display={view}
+              className="data-[display='grid']:stroke-primary-foreground"
+            />
           </Button>
           <Button
             variant='outline'
             size='icon'
             data-display={view}
             className="data-[display='table']:bg-primary"
-            onClick={() => setView('table')}
+            onClick={() => setView("table")}
           >
-            <Table />
+            <Table
+              data-display={view}
+              className="data-[display='table']:stroke-primary-foreground"
+            />
           </Button>
         </div>
       </div>
@@ -70,7 +76,7 @@ const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
           <SearchFilter />
         </Suspense>
       </div>
-      {view === 'grid' ? (
+      {view === "grid" ? (
         <AppointmentGrid appointments={appointments} />
       ) : (
         <AppointmentTable appointments={appointments} />

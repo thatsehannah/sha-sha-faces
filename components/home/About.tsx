@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Container from "../global/Container";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import SectionTitle from "../global/SectionTitle";
+import SectionTitle from "../global/LeftSectionTitle";
 import Link from "next/link";
 import SvgInstagram from "../global/Instagram";
 
@@ -26,7 +26,7 @@ const About = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: false, amount: 0.3 }}
           exit={{ opacity: 0, y: -100 }}
-          className='hidden lg:block -z-10 top-28 left-8 w-[20rem] h-[26rem] bg-periwinkle absolute rounded-md'
+          className='hidden lg:block -z-10 top-28 left-8 w-[20rem] h-[26rem] bg-secondary absolute rounded-md'
         />
         <motion.div
           initial={{ opacity: 0, y: -100 }}

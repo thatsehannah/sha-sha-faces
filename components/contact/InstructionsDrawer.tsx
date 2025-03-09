@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Drawer,
   DrawerClose,
@@ -6,9 +6,9 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from '../ui/drawer';
-import { Button } from '../ui/button';
-import Container from '../global/Container';
+} from "../ui/drawer";
+import { Button } from "../ui/button";
+import Container from "../global/Container";
 
 type InstructionsDrawerProps = {
   open: boolean;
@@ -34,13 +34,13 @@ const InstructionsDrawer = ({
           <div className='flex flex-col gap-8 text-xl font-light'>
             <p>
               Once your appointment is booked, prepare to receive a personal
-              text{' '}
+              text{" "}
               <span className='uppercase text-primary font-bold'>
                 requesting a non-refundable
-              </span>{' '}
+              </span>{" "}
               deposit to secure your appointment. This will go towards your
               service. If a deposit is not received with 3 hours from time of
-              request, the appointment will be{' '}
+              request, the appointment will be{" "}
               <span className='text-red-500 font-bold tracking-wider'>
                 cancelled
               </span>
@@ -48,17 +48,17 @@ const InstructionsDrawer = ({
               area).
             </p>
             <p>
-              Appointments booked with less than 2 hours notice will incur a{' '}
+              Appointments booked with less than 2 hours notice will incur a{" "}
               <span className='text-primary font-bold'>$60</span> fee.
             </p>
             <p>
               Appointments before 8am and after 9pm are considered an early/late
-              call and will incur a{' '}
+              call and will incur a{" "}
               <span className='text-primary font-bold'>$15</span> fee.
             </p>
             <p>
-              Please{' '}
-              <span className='uppercase font-black tracking-wider'>no</span>{' '}
+              Please{" "}
+              <span className='uppercase font-black tracking-wider'>no</span>{" "}
               extra guests.
             </p>
             <p>
@@ -69,7 +69,7 @@ const InstructionsDrawer = ({
           <DrawerFooter>
             <DrawerClose asChild>
               <Button
-                variant='secondary'
+                variant='default'
                 className='text-xl'
               >
                 Confirm

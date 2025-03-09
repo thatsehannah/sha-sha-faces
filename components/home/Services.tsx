@@ -1,10 +1,10 @@
 import React from "react";
 import Container from "../global/Container";
 import ServicesCard from "./components/ServicesCard";
-import SectionTitle from "../global/SectionTitle";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { fetchPopularServices } from "@/utils/actions";
+import RightSectionTitle from "../global/RightSectionTitle";
 
 const Services = async () => {
   const popularServices = await fetchPopularServices();
@@ -14,9 +14,9 @@ const Services = async () => {
       id='services'
       className='relative bg-gradient-to-l from-primary to-background'
     >
-      <SectionTitle
+      <RightSectionTitle
         title='popular services'
-        alignment='right'
+        className='text-primary-foreground'
       />
       <Container className='py-20 flex flex-col justify-center items-center gap-12'>
         <div className='grid grid-cols-1 lg:grid-cols-3 justify-between gap-y-8 gap-x-4'>
@@ -32,7 +32,7 @@ const Services = async () => {
         <Button
           asChild
           size='lg'
-          className='bg-secondary text-secondary-foreground text-lg'
+          className='bg-primary text-primary-foreground text-lg'
         >
           <Link href='/services'>View All Services</Link>
         </Button>

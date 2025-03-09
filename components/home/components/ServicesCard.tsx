@@ -28,28 +28,29 @@ const ServicesCard = ({ service }: ServiceCardProps) => {
       viewport={{ once: true, amount: 0.5 }}
       exit={{ opacity: 0, y: 100 }}
     >
-      <Card className='flex flex-col justify-between h-full'>
+      <Card className='flex flex-col justify-between h-full bg-tertiary'>
         <CardHeader>
-          <CardTitle className='capitalize flex justify-between text-2xl text-left font-semibold'>
+          <CardTitle className='capitalize flex justify-between text-2xl text-left font-semibold text-black'>
             {service.name}
             <Star
+              className='stroke-primary'
               fill='gold'
-              strokeWidth={0}
+              strokeWidth={0.5}
             />
           </CardTitle>
-          <CardDescription className='text-lg text-right'>
+          <CardDescription className='text-lg text-right text-muted-foreground'>
             <div className='flex justify-between'>
               <p>{service.duration}</p>
               <p>${service.price}</p>
             </div>
           </CardDescription>
         </CardHeader>
-        <CardContent className='font-light'>
+        <CardContent className='font-light text-lg text-black'>
           <div className='h-full'>{service.description}</div>
         </CardContent>
         <CardFooter className=''>
           <Button
-            className='bg-primary text-primary-foreground text-md'
+            className='bg-secondary text-secondary-foreground text-md'
             asChild
           >
             <Link href={`/contact?a=${service.id}`}>Book Now</Link>

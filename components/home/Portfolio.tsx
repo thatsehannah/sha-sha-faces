@@ -1,10 +1,10 @@
 import React from "react";
 import Container from "../global/Container";
-import SectionTitle from "../global/SectionTitle";
 import GalleryCarousel from "./components/GalleryCarousel";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { fetchFeaturedPhotos } from "@/utils/actions";
+import LeftSectionTitle from "../global/LeftSectionTitle";
 
 const Portfolio = async () => {
   const featuredPhotos = await fetchFeaturedPhotos();
@@ -14,10 +14,7 @@ const Portfolio = async () => {
       id='portfolio'
       className='relative'
     >
-      <SectionTitle
-        title='portfolio'
-        alignment='right'
-      />
+      <LeftSectionTitle title='portfolio' />
       <Container className='flex flex-col justify-center items-center py-24 gap-16'>
         <GalleryCarousel photos={featuredPhotos} />
         <Button

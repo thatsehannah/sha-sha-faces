@@ -156,7 +156,7 @@ const AppointmentForm = ({
               />
             </div>
           </section>
-          <section className='bg-gradient-to-r from-background to-primary rounded-md p-8 lg:px-20 lg:py-8 shadow-2xl'>
+          <section className='bg-secondary rounded-md p-8 lg:px-20 lg:py-8 shadow-2xl'>
             <div className='mb-20'>
               <p className='text-3xl lg:text-4xl text-black font-bold mb-6'>
                 Contact Information

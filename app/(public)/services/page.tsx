@@ -1,18 +1,15 @@
-import React from 'react';
-import ServiceDetails from '@/components/services/ServiceDetails';
-import Container from '@/components/global/Container';
-import SectionTitle from '@/components/global/SectionTitle';
-import { fetchAllServices } from '@/utils/actions';
+import React from "react";
+import ServiceDetails from "@/components/services/ServiceDetails";
+import Container from "@/components/global/Container";
+import { fetchAllServices } from "@/utils/actions";
+import RightSectionTitle from "@/components/global/RightSectionTitle";
 
 const ServicesPage = async () => {
   const services = await fetchAllServices();
 
   return (
     <main className='relative'>
-      <SectionTitle
-        title='services'
-        alignment='right'
-      />
+      <RightSectionTitle title='services' />
       <Container className='py-20'>
         {services.map((service, idx) => (
           <ServiceDetails

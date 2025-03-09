@@ -71,22 +71,30 @@ export const blockOffAvailbilityTimeOptions = async (
   availableTimes: string[]
 ) => {
   const modifiedAvailableTimes = availableTimes;
+  console.log(modifiedAvailableTimes);
+
   const appointments = await fetchAppointmentsByDate(selectedDate);
 
   appointments.forEach((appointment) => {
     const appointmentTime = appointment.time;
     const indexOfAppointmentTime =
       modifiedAvailableTimes.indexOf(appointmentTime);
+    console.log(indexOfAppointmentTime);
+
     const appointmentExpectedDuration = parseInt(
       appointment.service.duration.split("")[0]
     );
 
+    // TODO: fix appending "d" to times that aren't in the availableTime array
     //multiplying by 4 since availableTimes are in 15 minute increments + adding 4 to give extra hour between completed appointment
-    const numOfIndiciesToBlockOff =
+    let indexOfLastBlockedOffTime =
       indexOfAppointmentTime + appointmentExpectedDuration * 4 + 4;
 
-    //multiplying by 4 since availableTimes are in 15 minute increments
-    for (let i = indexOfAppointmentTime; i <= numOfIndiciesToBlockOff; i++) {
+    if (indexOfLastBlockedOffTime > availableTimes.length - 1) {
+      indexOfLastBlockedOffTime = availableTimes.length - 1;
+    }
+
+    for (let i = indexOfAppointmentTime; i <= indexOfLastBlockedOffTime; i++) {
       modifiedAvailableTimes[i] += "d";
     }
   });

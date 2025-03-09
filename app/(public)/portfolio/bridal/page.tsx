@@ -1,7 +1,7 @@
-import ImageGrid from '@/components/gallery/ImageGrid';
-import SectionTitle from '@/components/global/SectionTitle';
-import { fetchBridalPhotos } from '@/utils/actions';
-import React from 'react';
+import ImageGrid from "@/components/gallery/ImageGrid";
+import SectionTitle from "@/components/global/LeftSectionTitle";
+import { fetchBridalPhotos } from "@/utils/actions";
+import React from "react";
 
 const BridalGallery = async () => {
   const bridalPhotos = await fetchBridalPhotos();
