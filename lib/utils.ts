@@ -85,7 +85,6 @@ export const blockOffAvailbilityTimeOptions = async (
       appointment.service.duration.split("")[0]
     );
 
-    // TODO: fix appending "d" to times that aren't in the availableTime array
     //multiplying by 4 since availableTimes are in 15 minute increments + adding 4 to give extra hour between completed appointment
     let indexOfLastBlockedOffTime =
       indexOfAppointmentTime + appointmentExpectedDuration * 4 + 4;

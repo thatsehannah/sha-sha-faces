@@ -1,5 +1,5 @@
 import Container from "@/components/global/Container";
-import SectionTitle from "@/components/global/LeftSectionTitle";
+import LeftSectionTitle from "@/components/global/LeftSectionTitle";
 import ReviewForm from "@/components/review/ReviewForm";
 import { fetchServiceInfo } from "@/utils/actions";
 import React from "react";
@@ -10,10 +10,7 @@ const ReviewPage = async () => {
 
   return (
     <main className='relative'>
-      <SectionTitle
-        title='leave a review'
-        alignment='left'
-      />
+      <LeftSectionTitle title='leave a review' />
       <Container className='py-20'>
         <p className='mb-8 text-4xl font-bold'>
           I&#39;d Love to Hear From You!

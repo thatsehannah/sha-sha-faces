@@ -18,13 +18,13 @@ import { tabs } from "@/utils/links";
 import Link from "next/link";
 import Image from "next/image";
 import SignOutButton from "./SignOutButton";
-import DarkModeButton from "@/components/global/DarkModeButton";
+// import DarkModeButton from "@/components/global/DarkModeButton";
 
 const AdminSidebar = () => {
   const { setOpenMobile } = useSidebar();
 
   return (
-    <Sidebar collapsible='icon'>
+    <Sidebar collapsible='offcanvas'>
       <SidebarHeader className='bg-slate-100 border-b-2 dark:bg-slate-800 mb-4'>
         <Link href='/'>
           <Image
@@ -60,19 +60,16 @@ const AdminSidebar = () => {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <SignOutButton />{" "}
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <DarkModeButton />
+              {/* <DarkModeButton /> */}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
         <SidebarGroup />
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarFooter>
+        <SignOutButton />
+      </SidebarFooter>
     </Sidebar>
   );
 };

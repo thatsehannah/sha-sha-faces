@@ -1,15 +1,12 @@
 import PortfolioCard from "@/components/gallery/GalleryCard";
 import Container from "@/components/global/Container";
-import SectionTitle from "@/components/global/LeftSectionTitle";
+import LeftSectionTitle from "@/components/global/LeftSectionTitle";
 import React from "react";
 
 const GalleryPage = () => {
   return (
     <div className='relative py-20'>
-      <SectionTitle
-        title='gallery'
-        alignment='left'
-      />
+      <LeftSectionTitle title='gallery' />
       <Container className='flex flex-col lg:flex-row gap-8'>
         <div className='lg:w-1/2 lg:h-screen'>
           <PortfolioCard title='glam' />

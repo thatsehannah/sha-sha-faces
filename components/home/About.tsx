@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import Container from "../global/Container";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import SectionTitle from "../global/LeftSectionTitle";
 import Link from "next/link";
 import SvgInstagram from "../global/Instagram";
+import RightSectionTitle from "../global/RightSectionTitle";
 
 const About = () => {
   return (
@@ -15,10 +15,7 @@ const About = () => {
       id='about'
       className='relative'
     >
-      <SectionTitle
-        title='About Me'
-        alignment='right'
-      />
+      <RightSectionTitle title='About Me' />
       <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 relative py-20'>
         <motion.div
           initial={{ opacity: 0, y: 100 }}
