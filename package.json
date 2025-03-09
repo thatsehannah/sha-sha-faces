@@ -2,7 +2,7 @@
   "name": "sha-sha-faces",
   "version": "0.1.0",
   "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seedPhotos.ts"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seedService.ts"
   },
   "private": true,
   "scripts": {

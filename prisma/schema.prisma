@@ -57,6 +57,7 @@ model Review {
   reviewer String
   email String
   comment String
+  score Int
   wouldRecommend Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

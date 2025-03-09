@@ -100,3 +100,18 @@ export const blockOffAvailbilityTimeOptions = async (
 
   return modifiedAvailableTimes;
 };
+
+export const calculateReviewScore = (rating: string) => {
+  switch (rating) {
+    case "very-satisfied":
+      return 5;
+    case "satisfied":
+      return 4;
+    case "neutral":
+      return 3;
+    case "unsatisfied":
+      return 2;
+    default:
+      return 1;
+  }
+};

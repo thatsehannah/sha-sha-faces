@@ -17,7 +17,7 @@ import { revalidatePath } from "next/cache";
 import { validateReviewSchema } from "./reviewSchema";
 import sgMail from "@sendgrid/mail";
 import { deletePhotoFromBucket } from "@/lib/supabase";
-import { defaultAvailibility } from "@/lib/utils";
+import { calculateReviewScore, defaultAvailibility } from "@/lib/utils";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
@@ -262,10 +262,12 @@ export const createReviewAction = async (
 }> => {
   try {
     const result = validateReviewSchema(formData);
+    const score = calculateReviewScore(result.rating);
 
     await db.review.create({
       data: {
         ...result,
+        score,
         service: {
           connect: { name: result.service },
         },
