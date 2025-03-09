@@ -23,6 +23,10 @@ export const publicLinks = [
     label: "shop",
     path: "/#shop",
   },
+  {
+    label: "reviews",
+    path: "/reviews",
+  },
 ];
 
 export const adminLinks = [...publicLinks, { label: "admin", path: "/admin" }];

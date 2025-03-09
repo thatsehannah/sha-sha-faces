@@ -22,7 +22,7 @@ const Reviews = () => {
             Want to leave a review?{" "}
             <span>
               <Link
-                href='/review'
+                href='/reviews/new'
                 className='text-primary font-bold'
               >
                 Click here

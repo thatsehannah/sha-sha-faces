@@ -4,13 +4,17 @@ import ReviewForm from "@/components/review/ReviewForm";
 import { fetchServiceInfo } from "@/utils/actions";
 import React from "react";
 
-const ReviewPage = async () => {
+const NewReviewPage = async () => {
   const serviceNamesId = await fetchServiceInfo();
   const serviceNames = serviceNamesId.map((s) => s.name);
 
   return (
     <main className='relative'>
-      <LeftSectionTitle title='leave a review' />
+      <LeftSectionTitle
+        title='leave a review'
+        textClasses='dark:text-tertiary'
+        barClasses='dark:bg-tertiary'
+      />
       <Container className='py-20'>
         <p className='mb-8 text-4xl font-bold'>
           I&#39;d Love to Hear From You!
@@ -31,4 +35,4 @@ const ReviewPage = async () => {
   );
 };
 
-export default ReviewPage;
+export default NewReviewPage;
