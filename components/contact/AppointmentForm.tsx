@@ -71,6 +71,7 @@ const AppointmentForm = ({
       location: "",
       isInstructionsAcknowledged: false,
       instagram: "",
+      requiresTravel: false,
     },
   });
 
@@ -218,11 +219,20 @@ const AppointmentForm = ({
               />
 
               {/* location */}
-              <FormInput
-                name='location'
-                label='Location'
-                placeholder='e.g. Los Angeles, CA'
-              />
+              <div className='flex flex-col gap-2'>
+                <FormInput
+                  name='location'
+                  label='Location'
+                  placeholder='e.g. Los Angeles, CA'
+                />
+                <div className='-mt-6'>
+                  <FormInput
+                    name='requiresTravel'
+                    label='I need you to travel to me'
+                    type='checkbox'
+                  />
+                </div>
+              </div>
             </div>
             <div className='mb-20'>
               <p className='text-3xl lg:text-4xl text-black font-bold mb-4'>

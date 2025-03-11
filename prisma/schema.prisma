@@ -30,6 +30,7 @@ model Appointment {
   instagram String
   status String @default("Pending")
   completedOn String?
+  requiresTravel Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

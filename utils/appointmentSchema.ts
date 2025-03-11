@@ -37,6 +37,7 @@ export const appointmentSchema = z.object({
     message: "Please acknowledge that you've read the booking instructions.",
   }),
   instagram: z.string().nonempty("Provide your instagram username."),
+  requiresTravel: z.boolean(),
 });
 
 export const validateAppointmentSchema = (data: Appointment) => {

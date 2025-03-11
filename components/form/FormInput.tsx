@@ -1,15 +1,15 @@
-import { Input } from '@/components/ui/input';
-import React from 'react';
-import { useFormContext } from 'react-hook-form';
-import { Label } from '../ui/label';
-import { Textarea } from '../ui/textarea';
-import { Checkbox } from '../ui/checkbox';
-import FormError from './FormError';
+import { Input } from "@/components/ui/input";
+import React from "react";
+import { useFormContext } from "react-hook-form";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
+import { Checkbox } from "../ui/checkbox";
+import FormError from "./FormError";
 
 type FormInputProps = {
   name: string;
   label: string;
-  type?: 'input' | 'textarea' | 'checkbox';
+  type?: "input" | "textarea" | "checkbox";
   placeholder?: string;
 };
 
@@ -17,7 +17,7 @@ const FormInput = ({
   name,
   label,
   placeholder,
-  type = 'input',
+  type = "input",
 }: FormInputProps) => {
   const {
     register,
@@ -27,12 +27,12 @@ const FormInput = ({
     formState: { errors },
   } = useFormContext();
 
-  if (type === 'checkbox') {
+  if (type === "checkbox") {
     const checked = watch(name);
 
     return (
-      <div className='flex flex-col justify-center items-center'>
-        <div className='flex justify-center items-center gap-2'>
+      <div className='flex flex-col justify-center'>
+        <div className='flex items-center gap-2'>
           <Checkbox
             id={name}
             checked={checked}
@@ -66,7 +66,7 @@ const FormInput = ({
         </Label>
       </div>
       <div>
-        {type === 'input' && (
+        {type === "input" && (
           <Input
             id={name}
             {...register(name)}
@@ -74,7 +74,7 @@ const FormInput = ({
             className='h-12 mt-2 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black border-x-0 border-t-0 shadow-none rounded-none text-xl md:text-2xl font-semibold'
           />
         )}
-        {type === 'textarea' && (
+        {type === "textarea" && (
           <Textarea
             id={name}
             {...register(name)}
