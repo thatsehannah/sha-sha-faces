@@ -4,6 +4,9 @@
   - You are about to drop the `GalleryPhoto` table. If the table is not empty, all the data it contains will be lost.
 
 */
+-- DropTable
+DROP TABLE "GalleryPhoto";
+
 -- AlterTable
 ALTER TABLE "Appointment" ADD COLUMN     "requiresTravel" BOOLEAN NOT NULL DEFAULT false;
 
