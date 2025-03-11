@@ -1,6 +1,6 @@
 import React from "react";
 import ServiceIconSvg from "@/components/services/ServiceIconSvg";
-import { BadgeCheck, MapPin, User } from "lucide-react";
+import { BadgeCheck, Car, MapPin, User } from "lucide-react";
 import AppointmentDetailsSheet from "./AppointmentDetailsSheet";
 import { isDateWithinTwoDays } from "@/lib/utils";
 import { format } from "date-fns";
@@ -11,8 +11,16 @@ type AppointmentCardProps = {
 };
 
 const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
-  const { name, date, time, location, status, createdAt, service } =
-    appointment;
+  const {
+    name,
+    date,
+    time,
+    location,
+    status,
+    createdAt,
+    service,
+    requiresTravel,
+  } = appointment;
 
   const isNew = isDateWithinTwoDays(createdAt);
 
@@ -49,7 +57,12 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
                   </p>
                 </div>
                 <div className='flex flex-col justify-center'>
-                  <MapPin className='stroke-muted-foreground' />
+                  <div className='flex gap-3'>
+                    <MapPin className='stroke-muted-foreground' />
+                    {requiresTravel && (
+                      <Car className='stroke-muted-foreground' />
+                    )}
+                  </div>
                   <p className='lg:text-[16px] font-medium text-tertiary-foreground dark:text-secondary'>
                     {location}
                   </p>

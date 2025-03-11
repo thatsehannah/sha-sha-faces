@@ -1,32 +1,39 @@
-import { Separator } from '@/components/ui/separator';
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet';
-import { format } from 'date-fns';
-import React, { ReactNode } from 'react';
-import { Button } from '@/components/ui/button';
-import { isDateWithinTwoDays } from '@/lib/utils';
-import Link from 'next/link';
-import { AppointmentWithService } from '@/utils/types';
+} from "@/components/ui/sheet";
+import { format } from "date-fns";
+import React, { ReactNode } from "react";
+import { Button } from "@/components/ui/button";
+import { isDateWithinTwoDays } from "@/lib/utils";
+import Link from "next/link";
+import { AppointmentWithService } from "@/utils/types";
 
 type AppointmentDetailProps = {
   data: string;
+  dataLabel?: string;
   label: string;
 };
 
-const AppointmentDetail = ({ data, label }: AppointmentDetailProps) => {
+const AppointmentDetail = ({
+  data,
+  label,
+  dataLabel,
+}: AppointmentDetailProps) => {
+  console.log(label);
+
   return (
     <div className='flex flex-col gap-1'>
       <p
-        data-label={label}
+        data-label={dataLabel}
         data-status={data}
-        className="font-medium text-xl data-[label='email']:normal-case data-[label='instagram']:normal-case capitalize data-[status='Pending']:text-orange-400 data-[status='Confirmed']:text-blue-400 data-[status='Completed']:text-green-400 data-[status='Canceled']:text-red-400"
+        className="font-medium text-xl capitalize data-[label='addtDetails']:normal-case data-[label='email']:normal-case data-[label='instagram']:normal-case data-[status='Pending']:text-orange-400 data-[status='Confirmed']:text-blue-400 data-[status='Completed']:text-green-400 data-[status='Canceled']:text-red-400"
       >
-        {data ? data : '---'}
+        {data ? data : "---"}
       </p>
       <p className='font-light text-[1rem] capitalize'>{label}</p>
     </div>
@@ -54,6 +61,8 @@ const AppointmentDetailsSheet = ({
     email,
     instagram,
     discovery,
+    requiresTravel,
+    addtlDetails,
   } = appointment;
   const isNew = isDateWithinTwoDays(createdAt);
 
@@ -71,7 +80,7 @@ const AppointmentDetailsSheet = ({
         <div className='flex flex-col gap-8 my-8'>
           <div className='flex gap-2'>
             <AppointmentDetail
-              data={format(createdAt, 'PPPP')}
+              data={format(createdAt, "PPPP")}
               label='appointment created'
             />
             {isNew && (
@@ -89,7 +98,7 @@ const AppointmentDetailsSheet = ({
             label='service'
           />
           <AppointmentDetail
-            data={format(date, 'PPPP')}
+            data={format(date, "PPPP")}
             label='date'
           />
           <AppointmentDetail
@@ -101,16 +110,27 @@ const AppointmentDetailsSheet = ({
             label='location'
           />
           <AppointmentDetail
+            data={requiresTravel ? "Yes" : "No"}
+            label='requires travel'
+          />
+          <AppointmentDetail
             data={email}
             label='email'
+            dataLabel='email'
           />
           <AppointmentDetail
             data={instagram}
             label='instagram'
+            dataLabel='instagram'
           />
           <AppointmentDetail
             data={discovery}
             label='how client discovered me'
+          />
+          <AppointmentDetail
+            data={addtlDetails}
+            label='additional details'
+            dataLabel='addtDetails'
           />
         </div>
         <Separator />

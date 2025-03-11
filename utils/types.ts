@@ -12,6 +12,7 @@ export type Appointment = {
   discovery: string;
   isInstructionsAcknowledged: boolean;
   instagram: string;
+  requiresTravel: boolean;
 };
 
 export type EditAppointment = {
