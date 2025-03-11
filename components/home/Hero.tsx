@@ -10,7 +10,7 @@ import Container from "../global/Container";
 
 const Hero = () => {
   return (
-    <section className='h-full bg-gradient-to-br from-primary to-tertiary py-12'>
+    <section className='h-full bg-primary py-12'>
       <Container className='grid grid-cols-1 lg:grid-cols-2 lg:gap-24 justify-center items-center'>
         <motion.div
           initial={{ opacity: 0, x: 75 }}
