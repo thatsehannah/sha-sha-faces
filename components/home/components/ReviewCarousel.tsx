@@ -6,6 +6,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote } from "lucide-react";
@@ -85,6 +87,8 @@ const ReviewCarousel = () => {
             );
           })}
         </CarouselContent>
+        <CarouselPrevious className='hover:bg-secondary lg:flex hidden' />
+        <CarouselNext className='hover:bg-secondary lg:flex hidden' />
       </Carousel>
     </Container>
   );
