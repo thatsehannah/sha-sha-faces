@@ -1,9 +1,9 @@
 import React from "react";
-import ImageGrid from "@/components/gallery/ImageGrid";
+import ImageGrid from "@/components/portfolio/ImageGrid";
 import { fetchGlamPhotos } from "@/utils/actions";
 import { RightSectionTitle } from "@/components/global/SectionTitles";
 
-const GlamGallery = async () => {
+const GlamPortfolio = async () => {
   const glamPhotos = await fetchGlamPhotos();
 
   return (
@@ -14,4 +14,4 @@ const GlamGallery = async () => {
   );
 };
 
-export default GlamGallery;
+export default GlamPortfolio;

@@ -4,21 +4,21 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Container from "../global/Container";
-import GalleryDialog from "../global/PhotoDialog";
-import { GalleryPhoto } from "@prisma/client";
+import PhotoDialog from "../global/PhotoDialog";
+import { PortfolioPhoto } from "@prisma/client";
 import Breadcrumbs from "../global/Breadcrumbs";
 import { usePathname } from "next/navigation";
 
 type ImageGridProps = {
-  photos: GalleryPhoto[];
+  photos: PortfolioPhoto[];
 };
 
 const ImageGrid = ({ photos }: ImageGridProps) => {
-  const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto>();
+  const [selectedPhoto, setSelectedPhoto] = useState<PortfolioPhoto>();
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const currentPage = usePathname().split("/")[2];
 
-  const handlePhotoClick = (photo: GalleryPhoto) => {
+  const handlePhotoClick = (photo: PortfolioPhoto) => {
     setSelectedPhoto(photo);
     setIsDialogOpen(true);
   };
@@ -78,7 +78,7 @@ const ImageGrid = ({ photos }: ImageGridProps) => {
       </Container>
 
       {selectedPhoto && (
-        <GalleryDialog
+        <PhotoDialog
           open={isDialogOpen}
           onOpenChange={setIsDialogOpen}
           photo={selectedPhoto}

@@ -1,9 +1,9 @@
-import ImageGrid from "@/components/gallery/ImageGrid";
+import ImageGrid from "@/components/portfolio/ImageGrid";
 import { LeftSectionTitle } from "@/components/global/SectionTitles";
 import { fetchBridalPhotos } from "@/utils/actions";
 import React from "react";
 
-const BridalGallery = async () => {
+const BridalPortfolio = async () => {
   const bridalPhotos = await fetchBridalPhotos();
 
   return (
@@ -13,4 +13,4 @@ const BridalGallery = async () => {
     </div>
   );
 };
-export default BridalGallery;
+export default BridalPortfolio;

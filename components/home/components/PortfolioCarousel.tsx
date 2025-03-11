@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '../../ui/carousel';
-import Image from 'next/image';
-import GalleryDialog from '../../global/PhotoDialog';
-import { GalleryPhoto } from '@prisma/client';
+} from "../../ui/carousel";
+import Image from "next/image";
+import PhotoDialog from "../../global/PhotoDialog";
+import { PortfolioPhoto } from "@prisma/client";
 
 type PortfolioCarouselProps = {
-  photos: GalleryPhoto[];
+  photos: PortfolioPhoto[];
 };
 
-const GalleryCarousel = ({ photos }: PortfolioCarouselProps) => {
-  const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto>();
+const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
+  const [selectedPhoto, setSelectedPhoto] = useState<PortfolioPhoto>();
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
-  const handlePhotoClick = (photo: GalleryPhoto) => {
+  const handlePhotoClick = (photo: PortfolioPhoto) => {
     setSelectedPhoto(photo);
     setIsDialogOpen(true);
   };
@@ -58,7 +58,7 @@ const GalleryCarousel = ({ photos }: PortfolioCarouselProps) => {
       </Carousel>
 
       {selectedPhoto && (
-        <GalleryDialog
+        <PhotoDialog
           open={isDialogOpen}
           onOpenChange={setIsDialogOpen}
           photo={selectedPhoto}
@@ -68,4 +68,4 @@ const GalleryCarousel = ({ photos }: PortfolioCarouselProps) => {
   );
 };
 
-export default GalleryCarousel;
+export default PortfolioCarousel;

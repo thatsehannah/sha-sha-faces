@@ -1,5 +1,5 @@
 import ManageAvailabilityCard from "@/components/dashboard/info/ManageAvailabilityCard";
-import ManageGalleryCard from "@/components/dashboard/info/ManageGalleryCard";
+import ManagePortfolioCard from "@/components/dashboard/info/ManagePortfolioCard";
 import Container from "@/components/global/Container";
 import { Separator } from "@/components/ui/separator";
 import { fetchAllPhotos, fetchWeeklyAvailability } from "@/utils/actions";
@@ -18,7 +18,7 @@ const AdminInfoPage = async () => {
           <ManageAvailabilityCard availability={availability} />
         </div>
         <div>
-          <ManageGalleryCard photos={photos} />
+          <ManagePortfolioCard photos={photos} />
         </div>
       </Container>
     </main>

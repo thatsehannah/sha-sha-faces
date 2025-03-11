@@ -6,11 +6,11 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import {
-  deleteGalleryPhoto,
-  updateGalleryPhotoCategory,
-  updateGalleryPhotoVisibility,
+  deletePortfolioPhoto,
+  updatePortfolioPhotoCategory,
+  updatePortfolioPhotoVisibility,
 } from "@/utils/actions";
-import { GalleryPhoto } from "@prisma/client";
+import { PortfolioPhoto } from "@prisma/client";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -33,13 +33,13 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-type ManageGalleryCardProps = {
-  photos: GalleryPhoto[];
+type ManagePortfolioCardProps = {
+  photos: PortfolioPhoto[];
 };
 
-const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
+const ManagePortfolioCard = ({ photos }: ManagePortfolioCardProps) => {
   const [openDialog, setOpenDialog] = useState(false);
-  const [photoToDelete, setPhotoToDelete] = useState<GalleryPhoto>();
+  const [photoToDelete, setPhotoToDelete] = useState<PortfolioPhoto>();
 
   const { toast } = useToast();
 
@@ -52,27 +52,27 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
 
   const handleIsFeaturedSwitch = useDebouncedCallback(
     async (id: string, value: boolean) => {
-      await updateGalleryPhotoVisibility(id, "isFeatured", value);
+      await updatePortfolioPhotoVisibility(id, "isFeatured", value);
     },
     3000
   );
 
   const handleIsShownSwitch = useDebouncedCallback(
     async (id: string, value: boolean) => {
-      await updateGalleryPhotoVisibility(id, "isShown", value);
+      await updatePortfolioPhotoVisibility(id, "isShown", value);
     },
     3000
   );
 
   const handleCategoryChange = useDebouncedCallback(
     async (id: string, value: string) => {
-      await updateGalleryPhotoCategory(id, value);
+      await updatePortfolioPhotoCategory(id, value);
     },
     3000
   );
 
-  const handleDeletePhoto = async (photo: GalleryPhoto) => {
-    const result = await deleteGalleryPhoto(photo);
+  const handleDeletePhoto = async (photo: PortfolioPhoto) => {
+    const result = await deletePortfolioPhoto(photo);
 
     toast({
       variant: result.type,
@@ -92,7 +92,7 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
               Manage Photos
             </CardTitle>
             <Button asChild>
-              <Link href='/admin/info/add-photo'>Add Photo to Gallery</Link>
+              <Link href='/admin/info/add-photo'>Add Photo to Portfolio</Link>
             </Button>
           </div>
           <Separator />
@@ -139,13 +139,13 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
                     />
                   </div>
                   <div className='flex flex-col gap-1'>
-                    <Label htmlFor='isShown'>Show in Gallery</Label>
+                    <Label htmlFor='isShown'>Show in Portfolio</Label>
 
                     <Switch
                       id='isShown'
                       defaultChecked={photo.isShown}
                       onCheckedChange={(value) => {
-                        showToast("Gallery visibility saved.");
+                        showToast("Porfolio visibility saved.");
                         handleIsShownSwitch(photo.id, value);
                       }}
                     />
@@ -199,7 +199,7 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
             </DialogTitle>
           </DialogHeader>
           <DialogDescription>
-            This will remove the photo from your gallery.
+            This will remove the photo from your portfolio.
           </DialogDescription>
           <DialogFooter>
             <Button
@@ -218,4 +218,4 @@ const ManageGalleryCard = ({ photos }: ManageGalleryCardProps) => {
   );
 };
 
-export default ManageGalleryCard;
+export default ManagePortfolioCard;

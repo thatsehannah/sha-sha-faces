@@ -1,7 +1,7 @@
-import { GalleryPhoto } from "@prisma/client";
+import { PortfolioPhoto } from "@prisma/client";
 import { createClient } from "@supabase/supabase-js";
 
-const bucket = "gallery";
+const bucket = "portfolio";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
@@ -19,7 +19,7 @@ export const uploadPhoto = async (photo: File) => {
   return supabase.storage.from(bucket).getPublicUrl(photo.name).data.publicUrl;
 };
 
-export const deletePhotoFromBucket = (photo: GalleryPhoto) => {
+export const deletePhotoFromBucket = (photo: PortfolioPhoto) => {
   const imageName = photo.url.split("/").pop();
 
   if (imageName) {

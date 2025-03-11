@@ -10,7 +10,7 @@ import {
   Review,
   ReviewWithService,
 } from "./types";
-import { GalleryPhoto, Prisma } from "@prisma/client";
+import { PortfolioPhoto, Prisma } from "@prisma/client";
 import db from "./db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -300,7 +300,7 @@ export const fetchAllReviews = async (): Promise<ReviewWithService> => {
 };
 
 export const fetchAllPhotos = async () => {
-  return await db.galleryPhoto.findMany({
+  return await db.portfolioPhoto.findMany({
     orderBy: {
       createdAt: "desc",
     },
@@ -308,7 +308,7 @@ export const fetchAllPhotos = async () => {
 };
 
 export const fetchFeaturedPhotos = async () => {
-  const featuredPhotos = await db.galleryPhoto.findMany({
+  const featuredPhotos = await db.portfolioPhoto.findMany({
     where: {
       isFeatured: true,
     },
@@ -318,7 +318,7 @@ export const fetchFeaturedPhotos = async () => {
 };
 
 export const fetchBridalPhotos = async () => {
-  const bridalPhotos = await db.galleryPhoto.findMany({
+  const bridalPhotos = await db.portfolioPhoto.findMany({
     where: {
       category: "bridal",
       isShown: true,
@@ -332,7 +332,7 @@ export const fetchBridalPhotos = async () => {
 };
 
 export const fetchGlamPhotos = async () => {
-  const glamPhotos = await db.galleryPhoto.findMany({
+  const glamPhotos = await db.portfolioPhoto.findMany({
     where: {
       category: "glam",
       isShown: true,
@@ -345,8 +345,8 @@ export const fetchGlamPhotos = async () => {
   return glamPhotos;
 };
 
-export const fetchGalleryCategoryLength = async (category: string) => {
-  const categoryPhotos = await db.galleryPhoto.findMany({
+export const fetchPortfolioCategoryLength = async (category: string) => {
+  const categoryPhotos = await db.portfolioPhoto.findMany({
     where: {
       category,
     },
@@ -355,7 +355,7 @@ export const fetchGalleryCategoryLength = async (category: string) => {
   return categoryPhotos.length;
 };
 
-export const updateGalleryPhotoVisibility = async (
+export const updatePortfolioPhotoVisibility = async (
   id: string,
   key: string,
   value: boolean
@@ -363,7 +363,7 @@ export const updateGalleryPhotoVisibility = async (
   try {
     const update = { [key]: value };
 
-    await db.galleryPhoto.update({
+    await db.portfolioPhoto.update({
       where: {
         id,
       },
@@ -376,12 +376,12 @@ export const updateGalleryPhotoVisibility = async (
   }
 };
 
-export const updateGalleryPhotoCategory = async (
+export const updatePortfolioPhotoCategory = async (
   id: string,
   category: string
 ) => {
   try {
-    await db.galleryPhoto.update({
+    await db.portfolioPhoto.update({
       where: {
         id,
       },
@@ -396,7 +396,7 @@ export const updateGalleryPhotoCategory = async (
   }
 };
 
-export const createNewGalleryPhoto = async (
+export const createNewPortfolioPhoto = async (
   photo: NewPhoto
 ): Promise<{
   message: string;
@@ -404,7 +404,7 @@ export const createNewGalleryPhoto = async (
   type: "success" | "destructive";
 }> => {
   try {
-    await db.galleryPhoto.create({
+    await db.portfolioPhoto.create({
       data: {
         url: photo.url,
         isFeatured: photo.isFeatured,
@@ -429,15 +429,15 @@ export const createNewGalleryPhoto = async (
   }
 };
 
-export const deleteGalleryPhoto = async (
-  photo: GalleryPhoto
+export const deletePortfolioPhoto = async (
+  photo: PortfolioPhoto
 ): Promise<{
   message: string;
   title: string;
   type: "success" | "destructive";
 }> => {
   try {
-    const deletedPhoto = await db.galleryPhoto.delete({
+    const deletedPhoto = await db.portfolioPhoto.delete({
       where: {
         id: photo.id,
       },

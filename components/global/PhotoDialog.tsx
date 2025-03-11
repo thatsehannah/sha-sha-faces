@@ -1,15 +1,15 @@
-import React from 'react';
-import { Dialog, DialogContent, DialogTitle } from '../ui/dialog';
-import Image from 'next/image';
-import { GalleryPhoto } from '@prisma/client';
+import React from "react";
+import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
+import Image from "next/image";
+import { PortfolioPhoto } from "@prisma/client";
 
-type GalleryDialogProps = {
+type PhotoDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  photo: GalleryPhoto;
+  photo: PortfolioPhoto;
 };
 
-const PhotoDialog = ({ open, onOpenChange, photo }: GalleryDialogProps) => {
+const PhotoDialog = ({ open, onOpenChange, photo }: PhotoDialogProps) => {
   return (
     <Dialog
       open={open}

@@ -63,7 +63,7 @@ model Review {
   updatedAt DateTime @updatedAt
 }
 
-model GalleryPhoto {
+model PortfolioPhoto {
   id String @id @default(uuid())
   isShown Boolean
   category String

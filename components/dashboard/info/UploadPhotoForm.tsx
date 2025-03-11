@@ -14,8 +14,8 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { uploadPhoto } from "@/lib/supabase";
 import {
-  createNewGalleryPhoto,
-  fetchGalleryCategoryLength,
+  createNewPortfolioPhoto,
+  fetchPortfolioCategoryLength,
 } from "@/utils/actions";
 import { NewPhoto } from "@/utils/types";
 import Image from "next/image";
@@ -45,15 +45,15 @@ const UploadPhotoForm = () => {
   const handleFormSubmit = async (photo: NewPhoto) => {
     const rawPhoto = newPhoto as File;
     const newPhotoUrl = await uploadPhoto(rawPhoto);
-    const categoryLength = await fetchGalleryCategoryLength(photo.category);
+    const categoryLength = await fetchPortfolioCategoryLength(photo.category);
 
-    const newGalleryPhoto: NewPhoto = {
+    const newPortfolioPhoto: NewPhoto = {
       ...photo,
       url: newPhotoUrl,
       alt: `${photo.category} photo ${categoryLength}`,
     };
 
-    const result = await createNewGalleryPhoto(newGalleryPhoto);
+    const result = await createNewPortfolioPhoto(newPortfolioPhoto);
 
     toast({
       variant: result.type,
@@ -107,7 +107,7 @@ const UploadPhotoForm = () => {
                       className='text-[1rem]'
                       htmlFor='isShown'
                     >
-                      Show in Gallery
+                      Show in Portfolio
                     </Label>
                     <Switch
                       id='isShown'

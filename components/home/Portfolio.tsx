@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "../global/Container";
-import GalleryCarousel from "./components/GalleryCarousel";
+import PortfolioCarousel from "./components/PortfolioCarousel";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { fetchFeaturedPhotos } from "@/utils/actions";
@@ -20,7 +20,7 @@ const Portfolio = async () => {
         barClasses='dark:bg-tertiary'
       />
       <Container className='flex flex-col justify-center items-center py-24 gap-16'>
-        <GalleryCarousel photos={featuredPhotos} />
+        <PortfolioCarousel photos={featuredPhotos} />
         <Button
           asChild
           size='lg'

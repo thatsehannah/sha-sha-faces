@@ -1,9 +1,9 @@
-import PortfolioCard from "@/components/gallery/GalleryCard";
+import PortfolioCard from "@/components/portfolio/PortfolioCard";
 import Container from "@/components/global/Container";
 import { LeftSectionTitle } from "@/components/global/SectionTitles";
 import React from "react";
 
-const GalleryPage = () => {
+const PortfolioPage = () => {
   return (
     <div className='relative py-20'>
       <LeftSectionTitle
@@ -23,4 +23,4 @@ const GalleryPage = () => {
   );
 };
 
-export default GalleryPage;
+export default PortfolioPage;
