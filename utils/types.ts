@@ -68,7 +68,7 @@ export type ServiceWithAppointments = Prisma.ServiceGetPayload<{
 
 export type ReviewWithService = Prisma.ReviewGetPayload<{
   include: { service: true };
-}>[];
+}>;
 
 export type NewPhoto = {
   isFeatured: boolean;

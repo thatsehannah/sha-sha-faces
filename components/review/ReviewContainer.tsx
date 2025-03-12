@@ -1,6 +1,5 @@
 "use client";
 
-import { Review } from "@prisma/client";
 import React from "react";
 import Container from "../global/Container";
 import { Button } from "../ui/button";
@@ -8,12 +7,15 @@ import Link from "next/link";
 import { Pencil } from "lucide-react";
 import ReviewCard from "./ReviewCard";
 import EmptyResults from "../global/EmptyResults";
+import { ReviewWithService } from "@/utils/types";
 
 type ReviewContainerProps = {
-  reviews: Review[];
+  reviews: ReviewWithService[];
 };
 
 const ReviewContainer = ({ reviews }: ReviewContainerProps) => {
+  console.log(typeof reviews[0]);
+
   return (
     <Container className='py-20'>
       <div className='flex justify-between'>

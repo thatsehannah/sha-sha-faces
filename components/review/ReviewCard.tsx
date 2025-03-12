@@ -1,11 +1,12 @@
 import { RATING_OPTIONS } from "@/utils/constants";
-import { Review } from "@prisma/client";
-import { Ban, SquareCheck } from "lucide-react";
+import { ThumbsDown, ThumbsUp } from "lucide-react";
 import React from "react";
 import { formatDistance } from "date-fns";
+import { ReviewWithService, ServiceSvg } from "@/utils/types";
+import ServiceIconSvg from "../services/ServiceIconSvg";
 
 type ReviewCardProps = {
-  review: Review;
+  review: ReviewWithService;
 };
 
 const ReviewCard = ({ review }: ReviewCardProps) => {
@@ -19,11 +20,15 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
 
   return (
     <div className='group odd:bg-secondary dark:odd:text-secondary-foreground even:bg-muted border border-primary p-3 rounded-lg'>
-      <div className='mb-6'>
+      <div className='mb-8'>
         <p className='text-2xl font-bold'>{review.reviewer}</p>
-        <p className='text-gray-700 dark:text-white group-odd:text-gray-700 dark:group-odd:text-muted'>
-          {timeAgo}
-        </p>
+        <div className='flex items-center gap-2 mt-2'>
+          <ServiceIconSvg
+            svg={review.service.svgData as ServiceSvg}
+            className='w-10 h-10 lg:w-8 lg:h-8 fill-primary dark:group-even:fill-primary-foreground'
+          />
+          <p className='capitalize text-lg'>{review.service.name}</p>
+        </div>
       </div>
       <div className='flex mb-4 justify-between'>
         <div className='flex items-center gap-1'>
@@ -34,17 +39,25 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         </div>
         <div className='flex items-center gap-1'>
           {review.wouldRecommend ? (
-            <SquareCheck className='fill-green-500 stroke-black stroke-1' />
+            <>
+              <ThumbsUp className='fill-primary stroke-black stroke-1' />
+              <p className='font-semibold'>Would recommend</p>
+            </>
           ) : (
-            <Ban className='fill-red-600 stroke-black stroke-1' />
+            <>
+              <ThumbsDown className='fill-primary stroke-black stroke-1' />
+              <p className='font-semibold'>Not for me</p>
+            </>
           )}
-          <p className='font-semibold'>
-            {review.wouldRecommend ? "Would recommend" : "Not for me"}
-          </p>
         </div>
       </div>
-      <div>
+      <div className='mb-4'>
         <p className='font-light'>{review.comment}</p>
+      </div>
+      <div className='flex justify-end'>
+        <p className='text-gray-700 dark:text-white group-odd:text-gray-700 dark:group-odd:text-muted text-sm'>
+          {timeAgo}
+        </p>
       </div>
     </div>
   );

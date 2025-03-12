@@ -1,14 +1,19 @@
 "use client";
 
 import EmptyResults from "@/components/global/EmptyResults";
+import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import { useToast } from "@/hooks/use-toast";
+import { updateReviewVisibility } from "@/utils/actions";
 import { RATING_OPTIONS } from "@/utils/constants";
 import { ReviewWithService } from "@/utils/types";
 import React, { useState } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
 type ReviewDetail = {
-  reviews: ReviewWithService;
+  reviews: ReviewWithService[];
 };
 
 const ReviewDetail = ({ reviews }: ReviewDetail) => {
@@ -19,6 +24,22 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
     (review) => review.rating === activeRating
   );
   const reviewsLength = reviews.length;
+
+  const { toast } = useToast();
+
+  const showToast = (message: string) => {
+    toast({
+      variant: "success",
+      description: message,
+    });
+  };
+
+  const handleReviewVisibility = useDebouncedCallback(
+    async (id: string, value: boolean) => {
+      await updateReviewVisibility(id, value);
+    },
+    2000
+  );
 
   return (
     <section>
@@ -58,10 +79,26 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
               <ScrollArea className='h-[50rem] w-full'>
                 {reviewsToShow.map((review, idx) => {
                   return (
-                    <div key={idx}>
+                    <div
+                      key={idx}
+                      className='relative transition-all ease-in-out'
+                    >
                       <div className='mb-8 bg-muted p-6 rounded-md border'>
-                        <div className='font-bold text-xl mb-4'>
-                          {review.reviewer}
+                        <div className='flex justify-between items-start'>
+                          <p className='font-bold text-xl mb-4'>
+                            {review.reviewer}
+                          </p>
+                          <div className='flex gap-2 items-center'>
+                            <Label htmlFor='isShown'>Display review</Label>
+                            <Switch
+                              id='isShown'
+                              defaultChecked={review.isShown}
+                              onCheckedChange={(value) => {
+                                showToast("Review visibility updated!");
+                                handleReviewVisibility(review.id, value);
+                              }}
+                            />
+                          </div>
                         </div>
                         <div className='flex flex-col xl:flex-row xl:justify-between gap-1 mb-4'>
                           <div>

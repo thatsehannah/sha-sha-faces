@@ -1,10 +1,10 @@
 import { LeftSectionTitle } from "@/components/global/SectionTitles";
 import ReviewContainer from "@/components/review/ReviewContainer";
-import { fetchAllReviews } from "@/utils/actions";
+import { fetchViewableReviews } from "@/utils/actions";
 import React from "react";
 
 const ReviewsPage = async () => {
-  const reviews = await fetchAllReviews();
+  const reviews = await fetchViewableReviews();
 
   return (
     <main className='relative'>

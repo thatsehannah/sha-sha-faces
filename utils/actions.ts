@@ -8,7 +8,6 @@ import {
   Appointment as NewAppointment,
   NewPhoto,
   Review,
-  ReviewWithService,
 } from "./types";
 import { PortfolioPhoto, Prisma } from "@prisma/client";
 import db from "./db";
@@ -263,11 +262,13 @@ export const createReviewAction = async (
   try {
     const result = validateReviewSchema(formData);
     const score = calculateReviewScore(result.rating);
+    const isShown = score >= 3;
 
     await db.review.create({
       data: {
         ...result,
         score,
+        isShown,
         service: {
           connect: { name: result.service },
         },
@@ -291,12 +292,44 @@ export const createReviewAction = async (
   }
 };
 
-export const fetchAllReviews = async (): Promise<ReviewWithService> => {
+export const fetchAllReviews = async () => {
   const reviews = await db.review.findMany({
     include: { service: true },
+    orderBy: { createdAt: "desc" },
   });
 
   return reviews;
+};
+
+export const fetchViewableReviews = async () => {
+  const reviews = await db.review.findMany({
+    include: { service: true },
+    where: {
+      isShown: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return reviews;
+};
+
+export const updateReviewVisibility = async (id: string, value: boolean) => {
+  try {
+    await db.review.update({
+      where: {
+        id,
+      },
+      data: {
+        isShown: value,
+      },
+    });
+
+    revalidatePaths(["/admin", "/reviews"]);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const fetchAllPhotos = async () => {
