@@ -2,6 +2,16 @@ import { Angry, Frown, Laugh, Meh, Smile } from "lucide-react";
 
 export const STATUSES = ["Pending", "Confirmed", "Completed", "Canceled"];
 
+export const DISCOVERIES = [
+  "google",
+  "social media",
+  "word of mouth",
+  "friend or family",
+  "referral",
+  "website",
+  "other",
+];
+
 export const RATING_OPTIONS = [
   {
     value: "very-unsatisfied",

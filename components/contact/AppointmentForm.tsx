@@ -5,7 +5,6 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { appointmentSchema } from "@/utils/appointmentSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import discoveries from "@/utils/discoveries.json";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import FormInput from "../form/FormInput";
@@ -25,6 +24,7 @@ import {
   blockOffAvailbilityTimeOptions,
   getAvailabilityTimeOptions,
 } from "@/lib/utils";
+import { DISCOVERIES } from "@/utils/constants";
 
 type AppointmentFormProps = {
   serviceData: { name: string; id: number }[];
@@ -244,7 +244,7 @@ const AppointmentForm = ({
                 name='discovery'
                 label='How did you hear about us?'
                 placeholder='Select a source'
-                values={discoveries}
+                values={DISCOVERIES}
               />
 
               {/* custom requests */}
