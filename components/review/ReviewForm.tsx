@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { FormProvider, useForm } from "react-hook-form";
+import { FieldErrors, FormProvider, useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import FormInput from "../form/FormInput";
 import FormDropdown from "../form/FormDropdown";
@@ -36,15 +36,39 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
   });
 
   const handleOnSubmit = async (values: Review) => {
-    const result = await createReviewAction(values);
+    try {
+      const resultMessage = await createReviewAction(values);
 
+      toast({
+        variant: "success",
+        title: "Success ✅",
+        description: resultMessage,
+      });
+
+      form.reset();
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh ☹️",
+        description:
+          error instanceof Error ? error.message : "An error occurred ",
+      });
+    }
+  };
+
+  const onInvalid = (errors: FieldErrors<Review>) => {
     toast({
-      variant: result.type,
-      title: result.title,
-      description: result.message,
+      variant: "destructive",
+      title: "Uh oh ☹️",
+      description:
+        "There are errors in your form. Please fix them before submitting.",
     });
 
-    form.reset();
+    const firstError = Object.keys(errors)[0];
+    const errorElement = document.querySelector(`[name="${firstError}"`);
+    if (errorElement) {
+      errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   };
 
   return (
@@ -56,7 +80,7 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 2 }}
           className='w-full'
-          onSubmit={form.handleSubmit(handleOnSubmit)}
+          onSubmit={form.handleSubmit(handleOnSubmit, onInvalid)}
         >
           <section className='bg-secondary rounded-md p-8 lg:px-20 lg:py-8 drop-shadow-2xl'>
             <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-8'>

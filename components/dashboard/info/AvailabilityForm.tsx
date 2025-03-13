@@ -52,13 +52,22 @@ const AvailabilityForm = ({ availability }: AvailabilityFormProps) => {
   });
 
   const handleFormSubmit = async ({ availabilities }: AvailabilityFormData) => {
-    const result = await submitWeeklyAvailability(availabilities);
+    try {
+      const resultMessage = await submitWeeklyAvailability(availabilities);
 
-    toast({
-      title: result.title,
-      variant: result.type,
-      description: result.message,
-    });
+      toast({
+        variant: "success",
+        title: "Success ✅",
+        description: resultMessage,
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh ☹️",
+        description:
+          error instanceof Error ? error.message : "An error occurred ",
+      });
+    }
   };
 
   return (

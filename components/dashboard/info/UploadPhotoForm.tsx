@@ -43,25 +43,34 @@ const UploadPhotoForm = () => {
   };
 
   const handleFormSubmit = async (photo: NewPhoto) => {
-    const rawPhoto = newPhoto as File;
-    const newPhotoUrl = await uploadPhoto(rawPhoto);
-    const categoryLength = await fetchPortfolioCategoryLength(photo.category);
+    try {
+      const rawPhoto = newPhoto as File;
+      const newPhotoUrl = await uploadPhoto(rawPhoto);
+      const categoryLength = await fetchPortfolioCategoryLength(photo.category);
 
-    const newPortfolioPhoto: NewPhoto = {
-      ...photo,
-      url: newPhotoUrl,
-      alt: `${photo.category} photo ${categoryLength}`,
-    };
+      const newPortfolioPhoto: NewPhoto = {
+        ...photo,
+        url: newPhotoUrl,
+        alt: `${photo.category} photo ${categoryLength}`,
+      };
 
-    const result = await createNewPortfolioPhoto(newPortfolioPhoto);
+      const resultMessage = await createNewPortfolioPhoto(newPortfolioPhoto);
 
-    toast({
-      variant: result.type,
-      title: result.title,
-      description: result.message,
-    });
+      toast({
+        variant: "success",
+        title: "Success ✅",
+        description: resultMessage,
+      });
 
-    redirect("/admin/info");
+      redirect("/admin/info");
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh ☹️",
+        description:
+          error instanceof Error ? error.message : "An error occurred ",
+      });
+    }
   };
 
   return (

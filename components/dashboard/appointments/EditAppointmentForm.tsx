@@ -13,7 +13,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { FormProvider, useForm } from "react-hook-form";
+import { FieldErrors, FormProvider, useForm } from "react-hook-form";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { updateAppointment } from "@/utils/actions";
 import { useToast } from "@/hooks/use-toast";
@@ -65,31 +65,55 @@ const EditAppointmentForm = ({
   const statusValue = form.watch("status");
 
   const handleSubmit = async (values: EditAppointment) => {
-    const dirtyFields = Object.keys(form.formState.dirtyFields);
-    const updatedValues = Object.fromEntries(
-      dirtyFields.map((field) => [
-        field,
-        values[field as keyof EditAppointment],
-      ])
-    ) as EditAppointment;
+    try {
+      const dirtyFields = Object.keys(form.formState.dirtyFields);
+      const updatedValues = Object.fromEntries(
+        dirtyFields.map((field) => [
+          field,
+          values[field as keyof EditAppointment],
+        ])
+      ) as EditAppointment;
 
-    const result = await updateAppointment(id, updatedValues);
+      const resultMessage = await updateAppointment(id, updatedValues);
 
+      toast({
+        variant: "success",
+        title: "Success ✅",
+        description: resultMessage,
+      });
+
+      setOpenConfirmDialog(false);
+      redirect("/admin/appointments");
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh ☹️",
+        description:
+          error instanceof Error ? error.message : "An error occurred ",
+      });
+    }
+  };
+
+  const onInvalid = (errors: FieldErrors<EditAppointment>) => {
     toast({
-      variant: result.type,
-      title: result.title,
-      description: result.message,
+      variant: "destructive",
+      title: "Uh oh ☹️",
+      description:
+        "There are errors in your form. Please fix them before submitting.",
     });
 
-    setOpenConfirmDialog(false);
-    redirect("/admin/appointments");
+    const firstError = Object.keys(errors)[0];
+    const errorElement = document.querySelector(`[name="${firstError}"`);
+    if (errorElement) {
+      errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   };
 
   return (
     <>
       <FormProvider {...form}>
         <form
-          onSubmit={form.handleSubmit(handleSubmit)}
+          onSubmit={form.handleSubmit(handleSubmit, onInvalid)}
           id='editAppointmentForm'
         >
           <div>

@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
-import { updateService } from '@/utils/actions';
-import { Edit } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { updateService } from "@/utils/actions";
+import { Edit } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 
 type ServiceDetailProps = {
   id: number;
   data: string;
-  label: 'price' | 'duration' | 'description';
+  label: "price" | "duration" | "description";
 };
 
 const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
@@ -19,19 +19,29 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
   const textareaRef = useRef(null);
 
   const autoGrow = (element: HTMLTextAreaElement) => {
-    element.style.height = '5px';
-    element.style.height = element.scrollHeight + 'px';
+    element.style.height = "5px";
+    element.style.height = element.scrollHeight + "px";
   };
 
   const handleSave = async () => {
-    const updates = { [label]: text };
-    const result = await updateService(id, updates);
+    try {
+      const updates = { [label]: text };
 
-    toast({
-      variant: result.type,
-      title: result.title,
-      description: result.message,
-    });
+      const resultMessage = await updateService(id, updates);
+
+      toast({
+        variant: "success",
+        title: "Success ✅",
+        description: resultMessage,
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh ☹️",
+        description:
+          error instanceof Error ? error.message : "An error occurred ",
+      });
+    }
   };
 
   useEffect(() => {
@@ -65,7 +75,7 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
               setIsEditing(false);
               handleSave();
             }}
-            disabled={text === '' || text === data}
+            disabled={text === "" || text === data}
           >
             Save
           </Button>

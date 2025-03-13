@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FieldErrors, FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
-import { appointmentSchema } from "@/utils/appointmentSchema";
+import {
+  appointmentSchema,
+  validateAppointmentSchema,
+} from "@/utils/appointmentSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
@@ -75,18 +78,44 @@ const AppointmentForm = ({
     },
   });
 
-  const onSubmit = async (values: Appointment) => {
-    //TODO: Move form validation out of action to here
+  const onSubmit = async (data: Appointment) => {
+    try {
+      console.log("what's happening...");
 
-    const result = await createAppointmentAction(values);
+      const validatedData = validateAppointmentSchema(data);
 
+      const resultMessage = await createAppointmentAction(validatedData);
+
+      toast({
+        variant: "success",
+        title: "Success! ✅",
+        description: resultMessage,
+      });
+
+      form.reset();
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh ☹️",
+        description:
+          error instanceof Error ? error.message : "An error occurred ",
+      });
+    }
+  };
+
+  const onInvalid = (errors: FieldErrors<Appointment>) => {
     toast({
-      variant: result.type,
-      title: result.title,
-      description: result.message,
+      variant: "destructive",
+      title: "Uh oh ☹️",
+      description:
+        "There are errors in your form. Please fix them before submitting.",
     });
 
-    form.reset();
+    const firstError = Object.keys(errors)[0];
+    const errorElement = document.querySelector(`[name="${firstError}"`);
+    if (errorElement) {
+      errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   };
 
   const selectedDate = form.watch("date");
@@ -137,7 +166,7 @@ const AppointmentForm = ({
           transition={{ duration: 2 }}
           className='w-full lg:w-[65vw]'
           id='createAppointmentForm'
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(onSubmit, onInvalid)}
         >
           <section className='flex flex-col items-center gap-5 lg:gap-3 mb-20'>
             <p className='text-xl lg:text-2xl font-light'>

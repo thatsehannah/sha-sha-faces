@@ -72,15 +72,24 @@ const ManagePortfolioCard = ({ photos }: ManagePortfolioCardProps) => {
   );
 
   const handleDeletePhoto = async (photo: PortfolioPhoto) => {
-    const result = await deletePortfolioPhoto(photo);
+    try {
+      const resultMessage = await deletePortfolioPhoto(photo);
 
-    toast({
-      variant: result.type,
-      title: result.title,
-      description: result.message,
-    });
+      toast({
+        variant: "success",
+        title: "Success ✅",
+        description: resultMessage,
+      });
 
-    setOpenDialog(false);
+      setOpenDialog(false);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh ☹️",
+        description:
+          error instanceof Error ? error.message : "An error occurred ",
+      });
+    }
   };
 
   return (

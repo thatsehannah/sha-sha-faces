@@ -6,7 +6,7 @@ import {
 } from "@/utils/newServiceSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FieldErrors, FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import SimpleFormInput from "./form/SimpleFormInput";
 import { Button } from "@/components/ui/button";
@@ -50,24 +50,44 @@ const NewServiceForm = () => {
         svgData: FALLBACK_SERVICE_SVG,
       };
 
-      const result = await createNewService(newService);
+      const resultMessage = await createNewService(newService);
 
       toast({
-        variant: result.type,
-        title: result.title,
-        description: result.message,
+        variant: "success",
+        title: "Success! ✅",
+        description: resultMessage,
       });
 
       form.reset();
     } catch (error) {
-      console.log(error);
+      toast({
+        variant: "destructive",
+        title: "Uh oh ☹️",
+        description:
+          error instanceof Error ? error.message : "An error occurred ",
+      });
+    }
+  };
+
+  const onInvalid = (errors: FieldErrors<FormNewService>) => {
+    toast({
+      variant: "destructive",
+      title: "Uh oh ☹️",
+      description:
+        "There are errors in your form. Please fix them before submitting.",
+    });
+
+    const firstError = Object.keys(errors)[0];
+    const errorElement = document.querySelector(`[name="${firstError}"`);
+    if (errorElement) {
+      errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
 
   return (
     <>
       <FormProvider {...form}>
-        <form onSubmit={handleSubmit(handleCreateService)}>
+        <form onSubmit={handleSubmit(handleCreateService, onInvalid)}>
           <section className='flex flex-col gap-8 my-8'>
             <div className='grid grid-cols-2 lg:flex lg:flex-row gap-8 lg:justify-between'>
               <SimpleFormInput

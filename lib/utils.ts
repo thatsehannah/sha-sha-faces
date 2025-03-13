@@ -71,7 +71,6 @@ export const blockOffAvailbilityTimeOptions = async (
   availableTimes: string[]
 ) => {
   const modifiedAvailableTimes = availableTimes;
-  console.log(modifiedAvailableTimes);
 
   const appointments = await fetchAppointmentsByDate(selectedDate);
 
@@ -79,7 +78,6 @@ export const blockOffAvailbilityTimeOptions = async (
     const appointmentTime = appointment.time;
     const indexOfAppointmentTime =
       modifiedAvailableTimes.indexOf(appointmentTime);
-    console.log(indexOfAppointmentTime);
 
     const appointmentExpectedDuration = parseInt(
       appointment.service.duration.split("")[0]

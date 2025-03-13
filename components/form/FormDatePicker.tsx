@@ -53,6 +53,7 @@ const FormDatePicker = ({ name, label, availability }: FormDatePickerProps) => {
           <div>
             <Input
               id={name}
+              name={name}
               placeholder='Select a date'
               value={dateValue ? format(new Date(dateValue), "PPPP") : ""}
               onChange={(e) => {

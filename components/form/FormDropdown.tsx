@@ -44,6 +44,7 @@ const FormDropdown = ({
       </div>
       <div>
         <Select
+          name={name}
           onValueChange={(value) => {
             setValue(name, value);
             clearErrors(name);

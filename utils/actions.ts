@@ -1,6 +1,5 @@
 "use server";
 
-import { validateAppointmentSchema } from "./appointmentSchema";
 import {
   AppointmentWithService,
   Availability,
@@ -25,26 +24,16 @@ const revalidatePaths = (paths: string[]) => {
   paths.forEach((path) => revalidatePath(path));
 };
 
-//TODO: Create a type for return object:{message: string;title: string;type: "success" | "destructive";}
-
 //TODO: Move validateAppointmentSchema to AppointmentForm page
-export const createAppointmentAction = async (
-  formData: NewAppointment
-): Promise<{
-  message: string;
-  title: string;
-  type: "success" | "destructive";
-}> => {
+export const createAppointmentAction = async (formData: NewAppointment) => {
   try {
-    const result = validateAppointmentSchema(formData);
-
     await db.appointment.create({
       data: {
-        ...result,
+        ...formData,
         service: {
-          connect: { name: result.service },
+          connect: { name: formData.service },
         },
-        addtlDetails: result.addtlDetails ? result.addtlDetails : "",
+        addtlDetails: formData.addtlDetails ? formData.addtlDetails : "",
       },
     });
 
@@ -72,18 +61,13 @@ export const createAppointmentAction = async (
 
     revalidatePaths(["/admin", "/admin/appointments"]);
 
-    return {
-      type: "success",
-      title: "Success! ✅",
-      message:
-        "Appointment request sent! I will get back with you to confirm the details shortly.",
-    };
+    return "Appointment request sent! I will get back with you to confirm the details shortly.";
   } catch (error) {
-    return {
-      type: "destructive",
-      title: "Uh oh! ☹️",
-      message: error instanceof Error ? error.message : "An error occurred.",
-    };
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred creating your appointment."
+    );
   }
 };
 
@@ -154,11 +138,7 @@ export const fetchServiceInfo = async () => {
 export const updateAppointment = async (
   id: string,
   updates: EditAppointment
-): Promise<{
-  message: string;
-  title: string;
-  type: "success" | "destructive";
-}> => {
+) => {
   try {
     const { service, ...otherUpdates } = updates;
 
@@ -178,29 +158,19 @@ export const updateAppointment = async (
       },
     });
 
-    revalidatePath("/admin");
-    revalidatePath("/admin/appointments");
-    return {
-      type: "success",
-      title: "Success! ✅",
-      message: "Appointment updated 💋.",
-    };
+    revalidatePaths(["/admin", "/admin/appointments"]);
+
+    return "Appointment updated 💋.";
   } catch (error) {
-    return {
-      type: "destructive",
-      title: "Uh oh! ☹️",
-      message: error instanceof Error ? error.message : "An error occurred.",
-    };
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred updating this appointment."
+    );
   }
 };
 
-export const createNewService = async (
-  newService: NewService
-): Promise<{
-  message: string;
-  title: string;
-  type: "success" | "destructive";
-}> => {
+export const createNewService = async (newService: NewService) => {
   try {
     await db.service.create({
       data: newService,
@@ -208,28 +178,20 @@ export const createNewService = async (
 
     revalidatePaths(["/", "/services", "/admin/services"]);
 
-    return {
-      type: "success",
-      title: "Success! ✅",
-      message: "New service created 💋.",
-    };
+    return "New service created 💋.";
   } catch (error) {
-    return {
-      type: "destructive",
-      title: "Uh oh! ☹️",
-      message: error instanceof Error ? error.message : "An error occurred.",
-    };
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred saving your service."
+    );
   }
 };
 
 export const updateService = async (
   id: number,
   updates: Partial<Prisma.ServiceUpdateInput>
-): Promise<{
-  message: string;
-  title: string;
-  type: "success" | "destructive";
-}> => {
+) => {
   try {
     await db.service.update({
       where: {
@@ -240,17 +202,13 @@ export const updateService = async (
 
     revalidatePaths(["/", "/admin/services", "/services"]);
 
-    return {
-      type: "success",
-      title: "Success! ✅",
-      message: "Service updated 💋.",
-    };
+    return "Service updated 💋.";
   } catch (error) {
-    return {
-      type: "destructive",
-      title: "Uh oh! ☹️",
-      message: error instanceof Error ? error.message : "An error occurred.",
-    };
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred updating your service."
+    );
   }
 };
 
@@ -284,13 +242,7 @@ export const fetchPopularServices = async () => {
   return popularServices.slice(0, 3);
 };
 
-export const createReviewAction = async (
-  formData: Review
-): Promise<{
-  message: string;
-  title: string;
-  type: "success" | "destructive";
-}> => {
+export const createReviewAction = async (formData: Review) => {
   try {
     const result = validateReviewSchema(formData);
     const score = calculateReviewScore(result.rating);
@@ -307,20 +259,15 @@ export const createReviewAction = async (
       },
     });
 
-    revalidatePath("/");
-    revalidatePath("/admin/info");
+    revalidatePaths(["/", "/admin/info"]);
 
-    return {
-      type: "success",
-      title: "Success! ✅",
-      message: `Thank you for your review ${formData.reviewer}. Hope to see you again soon!`,
-    };
+    return `Thank you for your review ${formData.reviewer}. Hope to see you again soon!`;
   } catch (error) {
-    return {
-      type: "destructive",
-      title: "Uh oh! ☹️",
-      message: error instanceof Error ? error.message : "An error occurred.",
-    };
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred while saving your review."
+    );
   }
 };
 
@@ -461,13 +408,7 @@ export const updatePortfolioPhotoCategory = async (
   }
 };
 
-export const createNewPortfolioPhoto = async (
-  photo: NewPhoto
-): Promise<{
-  message: string;
-  title: string;
-  type: "success" | "destructive";
-}> => {
+export const createNewPortfolioPhoto = async (photo: NewPhoto) => {
   try {
     await db.portfolioPhoto.create({
       data: {
@@ -480,27 +421,17 @@ export const createNewPortfolioPhoto = async (
     });
     revalidatePaths(["/", "/portfolio", "/admin/info"]);
 
-    return {
-      type: "success",
-      title: "Success! ✅",
-      message: "Photo uploaded",
-    };
+    return "Photo uploaded";
   } catch (error) {
-    return {
-      type: "destructive",
-      title: "Uh oh! ☹️",
-      message: error instanceof Error ? error.message : "An error occurred.",
-    };
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred while uploading your photo."
+    );
   }
 };
 
-export const deletePortfolioPhoto = async (
-  photo: PortfolioPhoto
-): Promise<{
-  message: string;
-  title: string;
-  type: "success" | "destructive";
-}> => {
+export const deletePortfolioPhoto = async (photo: PortfolioPhoto) => {
   try {
     const deletedPhoto = await db.portfolioPhoto.delete({
       where: {
@@ -512,16 +443,13 @@ export const deletePortfolioPhoto = async (
 
     revalidatePaths(["/", "/portfolio", "/admin/info"]);
 
-    return { type: "success", title: "Success ✅", message: "Photo removed" };
+    return "Photo deleted from portfolio";
   } catch (error) {
-    return {
-      type: "destructive",
-      title: "Uh oh ☹️",
-      message:
-        error instanceof Error
-          ? error.message
-          : "An error occurred when deleting the photo",
-    };
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred while deleting your photo."
+    );
   }
 };
 
@@ -547,11 +475,7 @@ export const fetchAvailabilityForDay = async (day: string) => {
 
 export const submitWeeklyAvailability = async (
   submittedAvailability: Availability[]
-): Promise<{
-  message: string;
-  title: string;
-  type: "success" | "destructive";
-}> => {
+) => {
   try {
     submittedAvailability.forEach(async (submittedDay) => {
       const existingDayAvailability = await db.weeklyAvailability.findFirst({
@@ -587,16 +511,12 @@ export const submitWeeklyAvailability = async (
 
     revalidatePaths(["/contact", "/admin/info"]);
 
-    return {
-      type: "success",
-      title: "Success! ✅",
-      message: "Your availability has been updated!",
-    };
+    return "Your availability has been updated!";
   } catch (error) {
-    return {
-      type: "destructive",
-      title: "Uh oh! ☹️",
-      message: error instanceof Error ? error.message : "An error occurred.",
-    };
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred while updating your availability."
+    );
   }
 };
