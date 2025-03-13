@@ -1,8 +1,9 @@
 import {
   CalendarDays,
-  EyeClosed,
   Home,
   Info,
+  Library,
+  NotepadText,
   // ShoppingBasket,
 } from "lucide-react";
 
@@ -55,6 +56,11 @@ export const tabs = [
   {
     title: "My Services",
     url: "/admin/services",
-    icon: EyeClosed,
+    icon: Library,
+  },
+  {
+    title: "Booking Instructions",
+    url: "/admin/manage-booking-inst",
+    icon: NotepadText,
   },
 ];

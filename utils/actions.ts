@@ -520,3 +520,19 @@ export const submitWeeklyAvailability = async (
     );
   }
 };
+
+export const fetchBookingInstructions = async () => {
+  try {
+    const instructions = await db.bookingInstructions.findMany();
+
+    if (instructions) return instructions;
+
+    return [];
+  } catch (error) {
+    console.log(
+      error instanceof Error
+        ? error.message
+        : "An error occurred fetching booking instructions"
+    );
+  }
+};
