@@ -76,6 +76,8 @@ const AppointmentForm = ({
   });
 
   const onSubmit = async (values: Appointment) => {
+    //TODO: Move form validation out of action to here
+
     const result = await createAppointmentAction(values);
 
     toast({

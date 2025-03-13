@@ -101,3 +101,5 @@ model BookingInstructions {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// TODO: Create an svg bank table

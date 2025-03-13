@@ -7,6 +7,7 @@ import {
   EditAppointment,
   Appointment as NewAppointment,
   NewPhoto,
+  NewService,
   Review,
 } from "./types";
 import { PortfolioPhoto, Prisma } from "@prisma/client";
@@ -24,6 +25,9 @@ const revalidatePaths = (paths: string[]) => {
   paths.forEach((path) => revalidatePath(path));
 };
 
+//TODO: Create a type for return object:{message: string;title: string;type: "success" | "destructive";}
+
+//TODO: Move validateAppointmentSchema to AppointmentForm page
 export const createAppointmentAction = async (
   formData: NewAppointment
 ): Promise<{
@@ -180,6 +184,34 @@ export const updateAppointment = async (
       type: "success",
       title: "Success! ✅",
       message: "Appointment updated 💋.",
+    };
+  } catch (error) {
+    return {
+      type: "destructive",
+      title: "Uh oh! ☹️",
+      message: error instanceof Error ? error.message : "An error occurred.",
+    };
+  }
+};
+
+export const createNewService = async (
+  newService: NewService
+): Promise<{
+  message: string;
+  title: string;
+  type: "success" | "destructive";
+}> => {
+  try {
+    await db.service.create({
+      data: newService,
+    });
+
+    revalidatePaths(["/", "/services", "/admin/services"]);
+
+    return {
+      type: "success",
+      title: "Success! ✅",
+      message: "New service created 💋.",
     };
   } catch (error) {
     return {

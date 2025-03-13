@@ -27,21 +27,6 @@ export type EditAppointment = {
   date: string;
 };
 
-export type Service = {
-  name: string;
-  price: number;
-  duration: number;
-  description: string;
-  popular: boolean;
-  svg: {
-    // svgs from uxwing.com
-    pathData: string;
-    properties: {
-      [key: string]: string | undefined;
-    };
-  };
-};
-
 export type ServiceSvg = {
   pathData: string;
   properties: {
@@ -83,4 +68,27 @@ export type Availability = {
   isAvailable: boolean;
   from: string;
   to: string;
+};
+
+export type NewService = {
+  name: string;
+  price: number;
+  duration: string;
+  description: string;
+  svgData: {
+    // svgs from uxwing.com
+    pathData: string;
+    properties: {
+      [key: string]: string | undefined;
+    };
+  };
+};
+
+export type FormNewService = {
+  name: string;
+  price: string;
+  durationHours: string;
+  durationMinutes: string;
+  description: string;
+  svgData?: JSON;
 };
