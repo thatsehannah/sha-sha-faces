@@ -8,7 +8,11 @@ const BridalPortfolio = async () => {
 
   return (
     <div className='relative py-20'>
-      <LeftSectionTitle title='bridal photos' />
+      <LeftSectionTitle
+        title='bridal photos'
+        textClasses='dark:text-tertiary'
+        barClasses='dark:bg-tertiary'
+      />
       <ImageGrid photos={bridalPhotos} />
     </div>
   );

@@ -51,7 +51,7 @@ const BookingInstructionsContent = ({
         ))}
       </div>
       {isAddingNewRule && (
-        <div className='flex flex-col gap-2 mb-4'>
+        <div className='flex flex-col gap-2 my-12'>
           <Label
             htmlFor='newRule'
             className='text-xl mr-6 font-extrabold underline'
@@ -68,7 +68,8 @@ const BookingInstructionsContent = ({
             className='flex gap-2 data-[disabled="true"]:invisible'
           >
             <Button
-              className='bg-secondary text-secondary-foreground'
+              variant='secondary'
+              className='text-secondary-foreground'
               onClick={() => {
                 setIsAddingNewRule(false);
                 saveNewRule();
@@ -79,7 +80,7 @@ const BookingInstructionsContent = ({
             </Button>
             <Button
               variant='outline'
-              className='bg-transparent text-black'
+              className='dark:text-tertiary'
               onClick={() => {
                 setIsAddingNewRule(false);
                 setNewRule("");
@@ -90,7 +91,7 @@ const BookingInstructionsContent = ({
           </div>
         </div>
       )}
-      <div>
+      <div className='mt-10'>
         <Button
           className='w-auto data-[disabled="true"]:invisible'
           data-disabled={isAddingNewRule}

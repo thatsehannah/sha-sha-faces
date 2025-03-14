@@ -116,7 +116,7 @@ const BookingInstructionsDetail = ({
         </Button>
         <Button
           variant='outline'
-          className='bg-transparent text-black'
+          className='dark:text-tertiary'
           onClick={() => {
             setIsEditing(false);
             setText(rule);

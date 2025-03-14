@@ -44,7 +44,8 @@ const FormInput = ({
           />
           <Label
             htmlFor={name}
-            className='text-lg text-foreground'
+            data-name={name}
+            className='text-lg text-foreground data-[name="requiresTravel"]:text-black'
           >
             {label}
           </Label>

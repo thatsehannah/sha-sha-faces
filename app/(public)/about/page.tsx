@@ -66,7 +66,7 @@ const AboutPage = () => {
             Follow Me On Instagram!
           </p>
 
-          <div className='lg:mb-32 mb-16 flex flex-row lg:justify-around gap-8'>
+          <div className='lg:mb-32 mb-16 flex flex-row lg:justify-around justify-center gap-8'>
             <div className='rounded-xl lg:p-6 p-3 transition-all duration-300 ease-in-out hover:text-primary-foreground hover:shadow-[inset_240px_0_0_0_#432f1f] border-2 border-tertiary-foreground hover:cursor-pointer'>
               <Link
                 href='https://www.instagram.com/wownaisha'
