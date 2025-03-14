@@ -18,11 +18,11 @@ const ContactPage = async () => {
   return (
     <main className='relative'>
       <LeftSectionTitle
-        title='book an appointment'
+        title='booking form'
         textClasses='dark:text-tertiary'
         barClasses='dark:bg-tertiary'
       />
-      <Container className='py-20 flex flex-col justify-center items-center'>
+      <Container className='py-20 flex flex-col justify-center items-center '>
         <Suspense>
           <AppointmentForm
             serviceData={serviceData}

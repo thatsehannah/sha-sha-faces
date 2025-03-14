@@ -18,6 +18,7 @@ import { tabs } from "@/utils/links";
 import Link from "next/link";
 import Image from "next/image";
 import SignOutButton from "./SignOutButton";
+import DarkModeButton from "@/components/global/DarkModeButton";
 // import DarkModeButton from "@/components/global/DarkModeButton";
 
 const AdminSidebar = () => {
@@ -68,6 +69,7 @@ const AdminSidebar = () => {
         <SidebarGroup />
       </SidebarContent>
       <SidebarFooter>
+        {process.env.NODE_ENV === "development" && <DarkModeButton />}
         <SignOutButton />
       </SidebarFooter>
     </Sidebar>

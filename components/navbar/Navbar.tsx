@@ -20,7 +20,7 @@ const Navbar = () => {
         <SignedIn>
           <Links links={adminLinks} />
         </SignedIn>
-        <DarkModeButton />
+        {process.env.NODE_ENV === "development" && <DarkModeButton />}
         <Button
           className='hidden lg:flex bg-primary text-center text-lg'
           asChild
