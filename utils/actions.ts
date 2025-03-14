@@ -541,6 +541,26 @@ export const fetchBookingInstructions = async () => {
   }
 };
 
+export const createBookingInstruction = async (rule: string) => {
+  try {
+    await db.bookingInstructions.create({
+      data: {
+        rule,
+      },
+    });
+
+    revalidatePaths(["/admin/manage-booking-inst", "/contact"]);
+
+    return "Created rule for booking instructions.";
+  } catch (error) {
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred while updating your availability."
+    );
+  }
+};
+
 export const saveBookingInstruction = async (
   id: string,
   updatedRule: string

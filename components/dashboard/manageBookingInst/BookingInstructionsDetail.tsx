@@ -75,21 +75,23 @@ const BookingInstructionsDetail = ({
       <div className='flex items-center gap-3'>
         <Label
           htmlFor={id.toString()}
-          className='text-xl mr-6 font-bold'
+          className='text-xl mr-6 font-medium'
         >
           {label}
         </Label>{" "}
         <Button
           size='icon'
+          className='bg-blue-500 hover:bg-blue-500/90'
           onClick={() => setIsEditing(true)}
         >
-          <Pencil />
+          <Pencil className='dark:stroke-black' />
         </Button>
         <Button
           size='icon'
+          className='bg-red-500 hover:bg-red-500/90'
           onClick={() => setOpenConfirmDialog(true)}
         >
-          <Trash />
+          <Trash className='dark:stroke-black' />
         </Button>
       </div>
       <Textarea
