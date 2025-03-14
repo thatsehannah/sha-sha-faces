@@ -282,7 +282,7 @@ const AppointmentForm = ({
               <FormInput
                 name='addtlDetails'
                 label='Comments'
-                placeholder='Add any information you would like for me to know prior to your appointment.'
+                placeholder='Provide your skin type, look inspirations, and any allergies I should be aware of'
                 type='textarea'
               />
             </div>
