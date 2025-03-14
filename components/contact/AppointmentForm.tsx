@@ -32,11 +32,13 @@ import { DISCOVERIES } from "@/utils/constants";
 type AppointmentFormProps = {
   serviceData: { name: string; id: number }[];
   weeklyAvailability: Availability[];
+  bookingInstructions: string[];
 };
 
 const AppointmentForm = ({
   serviceData,
   weeklyAvailability,
+  bookingInstructions,
 }: AppointmentFormProps) => {
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
@@ -307,6 +309,7 @@ const AppointmentForm = ({
       <InstructionsDrawer
         open={open}
         onOpenChange={handleOpenDrawer}
+        bookingInstructions={bookingInstructions}
       />
     </>
   );
