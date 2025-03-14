@@ -1,4 +1,4 @@
-import BookingInstructionsContainer from "@/components/dashboard/manageBookingInst/BookingInstructionsContainer";
+import BookingInstructionsContent from "@/components/dashboard/manageBookingInst/BookingInstructionsContent";
 import Container from "@/components/global/Container";
 import { Separator } from "@/components/ui/separator";
 import { fetchBookingInstructions } from "@/utils/actions";
@@ -21,7 +21,7 @@ const AdminManageBookingInstructions = async () => {
       <Container className='py-20 w-screen lg:w-[80vw]'>
         <p className='text-5xl font-normal mb-4'>Manage Booking Instructions</p>
         <Separator />
-        <BookingInstructionsContainer instructions={instructions} />
+        <BookingInstructionsContent instructions={instructions} />
       </Container>
     </main>
   );

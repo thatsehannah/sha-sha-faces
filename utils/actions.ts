@@ -439,7 +439,7 @@ export const deletePortfolioPhoto = async (photo: PortfolioPhoto) => {
       },
     });
 
-    deletePhotoFromBucket(deletedPhoto);
+    deletePhotoFromBucket(deletedPhoto.url);
 
     revalidatePaths(["/", "/portfolio", "/admin/info"]);
 
@@ -523,7 +523,11 @@ export const submitWeeklyAvailability = async (
 
 export const fetchBookingInstructions = async () => {
   try {
-    const instructions = await db.bookingInstructions.findMany();
+    const instructions = await db.bookingInstructions.findMany({
+      orderBy: {
+        createdAt: "asc",
+      },
+    });
 
     if (instructions) return instructions;
 
@@ -533,6 +537,48 @@ export const fetchBookingInstructions = async () => {
       error instanceof Error
         ? error.message
         : "An error occurred fetching booking instructions"
+    );
+  }
+};
+
+export const saveBookingInstruction = async (
+  id: string,
+  updatedRule: string
+) => {
+  try {
+    await db.bookingInstructions.update({
+      where: {
+        id,
+      },
+      data: {
+        rule: updatedRule,
+      },
+    });
+
+    revalidatePaths(["/admin/manage-booking-inst", "/contact"]);
+
+    return "Updated rule for booking instructions.";
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteBookingInstruction = async (id: string) => {
+  try {
+    await db.bookingInstructions.delete({
+      where: {
+        id,
+      },
+    });
+
+    revalidatePaths(["/admin/manage-booking-inst", "/contact"]);
+
+    return "Deleted rule from booking instructions.";
+  } catch (error) {
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred while updating your availability."
     );
   }
 };
