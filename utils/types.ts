@@ -92,3 +92,8 @@ export type FormNewService = {
   description: string;
   svgData?: JSON;
 };
+
+export type Faq = {
+  question: string;
+  answer: string;
+};

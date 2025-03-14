@@ -82,8 +82,6 @@ const AppointmentForm = ({
 
   const onSubmit = async (data: Appointment) => {
     try {
-      console.log("what's happening...");
-
       const validatedData = validateAppointmentSchema(data);
 
       const resultMessage = await createAppointmentAction(validatedData);
@@ -166,7 +164,7 @@ const AppointmentForm = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 2 }}
-          className='w-full lg:w-[65vw]'
+          className='w-full'
           id='createAppointmentForm'
           onSubmit={form.handleSubmit(onSubmit, onInvalid)}
         >
