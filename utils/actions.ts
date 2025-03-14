@@ -18,13 +18,38 @@ import sgMail from "@sendgrid/mail";
 import { deletePhotoFromBucket } from "@/lib/supabase";
 import { calculateReviewScore, defaultAvailibility } from "@/lib/utils";
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
-
 const revalidatePaths = (paths: string[]) => {
   paths.forEach((path) => revalidatePath(path));
 };
 
-//TODO: Move validateAppointmentSchema to AppointmentForm page
+export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
+
+  const adminMessage = {
+    to: "echannah631@gmail.com",
+    from: "echannah631@gmail.com",
+    subject: "New Appointment Request",
+    text: `New appointment request from ${newAppt.name}:\n\nService: ${
+      newAppt.service
+    }\nDate: ${newAppt.date}\nDetails: ${
+      newAppt.addtlDetails || "No additional details provided."
+    }`,
+    html: `<p>New appointment request from <strong>${
+      newAppt.name
+    }</strong>:</p><ul><li><strong>Service:</strong> ${
+      newAppt.service
+    }</li><li><strong>Date:</strong> ${
+      newAppt.date
+    }</li><li><strong>Details:</strong> ${
+      newAppt.addtlDetails || "No additional details provided."
+    }</li></ul>`,
+  };
+
+  await sgMail.send(adminMessage);
+
+  console.log("Email sent successfully");
+};
+
 export const createAppointmentAction = async (formData: NewAppointment) => {
   try {
     await db.appointment.create({
@@ -37,27 +62,7 @@ export const createAppointmentAction = async (formData: NewAppointment) => {
       },
     });
 
-    // const adminMessage = {
-    //   to: 'echannah631@gmail.com',
-    //   from: 'echannah631@gmail.com',
-    //   subject: 'New Appointment Request',
-    //   text: `New appointment request from ${result.name}:\n\nService: ${
-    //     result.service
-    //   }\nDate: ${result.date}\nDetails: ${
-    //     result.addtlDetails || 'No additional details provided.'
-    //   }`,
-    //   html: `<p>New appointment request from <strong>${
-    //     result.name
-    //   }</strong>:</p><ul><li><strong>Service:</strong> ${
-    //     result.service
-    //   }</li><li><strong>Date:</strong> ${
-    //     result.date
-    //   }</li><li><strong>Details:</strong> ${
-    //     result.addtlDetails || 'No additional details provided.'
-    //   }</li></ul>`,
-    // };
-
-    // await Promise.all([sgMail.send(adminMessage)]);
+    await sendNewAppointmentEmail(formData);
 
     revalidatePaths(["/admin", "/admin/appointments"]);
 

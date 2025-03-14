@@ -2,7 +2,6 @@ import { fetchAppointmentsByDate } from "@/utils/actions";
 import { Availability } from "@/utils/types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-// import { Service } from '@prisma/client';
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
