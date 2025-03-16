@@ -26,8 +26,8 @@ export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
   const adminMessage = {
-    to: "echannah631@gmail.com",
-    from: "no-reply@shashafaces.com",
+    to: "no-reply@shashafaces.com",
+    from: "echannah631@gmail.com",
     subject: "New Appointment Request",
     text: `New appointment request from ${newAppt.name}:\n\nService: ${
       newAppt.service
