@@ -27,7 +27,7 @@ export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
 
   const adminMessage = {
     to: "echannah631@gmail.com",
-    from: "echannah631@gmail.com",
+    from: "no-reply@shashafaces.com",
     subject: "New Appointment Request",
     text: `New appointment request from ${newAppt.name}:\n\nService: ${
       newAppt.service
@@ -43,9 +43,15 @@ export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
     }</li><li><strong>Details:</strong> ${
       newAppt.addtlDetails || "No additional details provided."
     }</li></ul>`,
+    mail_settings: {
+      sandbox_mode: {
+        enable: process.env.NODE_ENV !== "production",
+      },
+    },
   };
 
-  await sgMail.send(adminMessage);
+  const response = await sgMail.send(adminMessage);
+  console.log(response);
 
   console.log("Email sent successfully");
 };
