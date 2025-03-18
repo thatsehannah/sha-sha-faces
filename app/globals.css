@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 /* primary hex code: #432f1f */
-/* secondary hex code:  */
+/* secondary hex code: #dbc5b3*/
+/* tertiary hex code: 	#f2eae3 */
 
 @layer base {
   :root {

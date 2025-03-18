@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 
 export type Appointment = {
+  id?: string;
   name: string;
   email: string;
   phoneNumber: string;

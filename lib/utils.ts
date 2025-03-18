@@ -1,6 +1,8 @@
+import NewAppointmentEmail from "@/components/emails/NewAppointmentEmail";
 import { fetchAppointmentsByDate } from "@/utils/actions";
-import { Availability } from "@/utils/types";
+import { Availability, Appointment as NewAppointment } from "@/utils/types";
 import { clsx, type ClassValue } from "clsx";
+import { CreateEmailOptions, Resend } from "resend";
 import { twMerge } from "tailwind-merge";
 
 export const cn = (...inputs: ClassValue[]) => {
@@ -110,5 +112,33 @@ export const calculateReviewScore = (rating: string) => {
       return 2;
     default:
       return 1;
+  }
+};
+
+export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
+  const resend = new Resend(process.env.RESEND_API_KEY as string);
+  const senderEmail = process.env.SENDER_EMAIL as string;
+  // const businessEmail = process.env.BUSINESS_EMAIL as string;
+  const project = process.env.NEXT_PUBLIC_SUPABASE_PROJECT as string;
+
+  const adminMessage: CreateEmailOptions = {
+    to: "echannah631@gmail.com",
+    from: senderEmail,
+    subject: "New Appointment Booking",
+    react: NewAppointmentEmail({ newAppointment: newAppt, project }),
+  };
+
+  try {
+    console.log("About to send message...");
+
+    const { data } = await resend.emails.send(adminMessage);
+
+    console.log(data?.id);
+  } catch (error) {
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred creating your appointment."
+    );
   }
 };

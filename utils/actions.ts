@@ -14,51 +14,20 @@ import db from "./db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { validateReviewSchema } from "./reviewSchema";
-import sgMail from "@sendgrid/mail";
 import { deletePhotoFromBucket } from "@/lib/supabase";
-import { calculateReviewScore, defaultAvailibility } from "@/lib/utils";
+import {
+  calculateReviewScore,
+  defaultAvailibility,
+  sendNewAppointmentEmail,
+} from "@/lib/utils";
 
 const revalidatePaths = (paths: string[]) => {
   paths.forEach((path) => revalidatePath(path));
 };
 
-export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
-
-  const adminMessage = {
-    to: "no-reply@shashafaces.com",
-    from: "echannah631@gmail.com",
-    subject: "New Appointment Request",
-    text: `New appointment request from ${newAppt.name}:\n\nService: ${
-      newAppt.service
-    }\nDate: ${newAppt.date}\nDetails: ${
-      newAppt.addtlDetails || "No additional details provided."
-    }`,
-    html: `<p>New appointment request from <strong>${
-      newAppt.name
-    }</strong>:</p><ul><li><strong>Service:</strong> ${
-      newAppt.service
-    }</li><li><strong>Date:</strong> ${
-      newAppt.date
-    }</li><li><strong>Details:</strong> ${
-      newAppt.addtlDetails || "No additional details provided."
-    }</li></ul>`,
-    mail_settings: {
-      sandbox_mode: {
-        enable: process.env.NODE_ENV !== "production",
-      },
-    },
-  };
-
-  const response = await sgMail.send(adminMessage);
-  console.log(response);
-
-  console.log("Email sent successfully");
-};
-
 export const createAppointmentAction = async (formData: NewAppointment) => {
   try {
-    await db.appointment.create({
+    const newAppt = await db.appointment.create({
       data: {
         ...formData,
         service: {
@@ -68,7 +37,7 @@ export const createAppointmentAction = async (formData: NewAppointment) => {
       },
     });
 
-    await sendNewAppointmentEmail(formData);
+    await sendNewAppointmentEmail({ id: newAppt.id, ...formData });
 
     revalidatePaths(["/admin", "/admin/appointments"]);
 
