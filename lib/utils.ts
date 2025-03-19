@@ -1,6 +1,11 @@
+import BookingConfirmationEmail from "@/components/emails/BookingConfirmationEmail";
 import NewAppointmentEmail from "@/components/emails/NewAppointmentEmail";
 import { fetchAppointmentsByDate } from "@/utils/actions";
-import { Availability, Appointment as NewAppointment } from "@/utils/types";
+import {
+  AppointmentWithService,
+  Availability,
+  Appointment as NewAppointment,
+} from "@/utils/types";
 import { clsx, type ClassValue } from "clsx";
 import { CreateEmailOptions, Resend } from "resend";
 import { twMerge } from "tailwind-merge";
@@ -115,13 +120,41 @@ export const calculateReviewScore = (rating: string) => {
   }
 };
 
+export const sendBookingConfirmationEmail = async (
+  newAppt: AppointmentWithService
+) => {
+  const resend = new Resend(process.env.RESEND_API_KEY as string);
+  const senderEmail = process.env.SENDER_EMAIL as string;
+
+  const message: CreateEmailOptions = {
+    to: newAppt.email,
+    from: senderEmail,
+    subject: "Thank You For Booking With Sha Sha Faces",
+    react: BookingConfirmationEmail({ appointmentDetails: newAppt }),
+  };
+
+  try {
+    console.log("About to send message...");
+
+    const { data } = await resend.emails.send(message);
+
+    console.log(data?.id);
+  } catch (error) {
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : "An error occurred creating your appointment."
+    );
+  }
+};
+
 export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
   const resend = new Resend(process.env.RESEND_API_KEY as string);
   const senderEmail = process.env.SENDER_EMAIL as string;
   // const businessEmail = process.env.BUSINESS_EMAIL as string;
   const project = process.env.NEXT_PUBLIC_SUPABASE_PROJECT as string;
 
-  const adminMessage: CreateEmailOptions = {
+  const message: CreateEmailOptions = {
     to: "echannah631@gmail.com",
     from: senderEmail,
     subject: "New Appointment Booking",
@@ -131,7 +164,7 @@ export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
   try {
     console.log("About to send message...");
 
-    const { data } = await resend.emails.send(adminMessage);
+    const { data } = await resend.emails.send(message);
 
     console.log(data?.id);
   } catch (error) {

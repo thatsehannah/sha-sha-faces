@@ -11,6 +11,7 @@ import {
   Section,
   Tailwind,
   Text,
+  Link,
 } from "@react-email/components";
 import React from "react";
 
@@ -48,7 +49,6 @@ export const NewAppointmentEmail = ({
       <Preview>New Appointment Created</Preview>
       <Tailwind>
         <Body>
-          <Preview>Yelp recent login</Preview>
           <Container>
             <Section className='p-4 rounded-lg flex justify-center'>
               <Img
@@ -109,15 +109,19 @@ export const NewAppointmentEmail = ({
                   className='flex'
                   colSpan={2}
                 >
-                  <a
+                  <Link
                     className='bg-[#432f1f] rounded-md text-white cursor-pointer p-3'
                     href={`${baseUrl}/admin/appointments/${id}`}
                   >
                     Go To Appointment
-                  </a>
+                  </Link>
                 </Column>
               </Row>
             </Section>
+            <hr />
+            <Text className='text-center text-xs text-gray-500'>
+              © {new Date().getFullYear()} | Sha Sha Faces | www.shashafaces.com
+            </Text>
           </Container>
         </Body>
       </Tailwind>
