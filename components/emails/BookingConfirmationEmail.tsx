@@ -1,7 +1,6 @@
-import { AppointmentWithService } from "@/utils/types";
+import { Appointment as NewAppointment } from "@/utils/types";
 import {
   Body,
-  Column,
   Container,
   Head,
   Heading,
@@ -18,7 +17,7 @@ import {
 import React from "react";
 
 type BookingConfirmationEmailProps = {
-  appointmentDetails: AppointmentWithService;
+  appointmentDetails: NewAppointment;
 };
 
 export const BookingConfirmationEmail = ({
@@ -29,33 +28,19 @@ export const BookingConfirmationEmail = ({
     <Tailwind>
       <Body>
         <Preview>Sha Sha Faces Booking Details</Preview>
-        <Container style={container}>
-          <Section className='p-8 bg-[#f2eae3]'>
-            <Row>
-              <Column>
-                <Text style={global.paragraphWithBold}>
-                  Appointment Booked 💋
-                </Text>
-              </Column>
-              <Column align='right'>
-                <Link className='border text-lg p-2 w-[220px] block text-center bg-[#432f1f] text-[#f2eae3] rounded-lg'>
-                  Add To Calendar
-                </Link>
-              </Column>
-            </Row>
-          </Section>
+        <Container className='w-[600px] max-w-[100%] border-[1px] border-solid border-[#432f1f]'>
           <Hr style={global.hr} />
           <Section className='p-12 text-center'>
-            <Row className='flex justify-center'>
+            <div className='flex justify-center'>
               <Img
-                src={`https://wdnowudpuwirpcddozlf.supabase.co/storage/v1/object/public/branding/logo-color.png`}
+                src='https://shashafaces.com/branding/logo-color.png'
                 alt='Logo'
                 className='w-auto h-48'
               />
-            </Row>
+            </div>
             <Heading style={global.heading}>Thank You For Booking.</Heading>
             <Text style={global.text}>
-              Hi {appointmentDetails.name} Thank you for booking your makeup
+              Hi {appointmentDetails.name}! Thank you for booking your makeup
               appointment with Sha Sha Faces! We’re so excited to bring your
               beauty vision to life.
             </Text>
@@ -68,38 +53,42 @@ export const BookingConfirmationEmail = ({
           </Section>
           <Hr style={global.hr} />
           <Section className='p-8 bg-[#f2eae3]'>
-            <Text style={{ ...global.text, fontSize: 14 }}>
-              Date: Monday, March 17, 2025
-            </Text>
-            <Text style={{ ...global.text, fontSize: 14 }}>Time: 10:30 AM</Text>
-            <Text style={{ ...global.text, fontSize: 14 }}>
-              Location: 2125 Chestnut St, San Francisco, CA 94123
-            </Text>
-            <Text style={{ ...global.text, fontSize: 14 }}>
-              Booked On: Sunday, March 16, 2025
-            </Text>
-          </Section>
-          <Hr style={global.hr} />
-          <Section
-            style={{ ...paddingX, paddingTop: "40px", paddingBottom: "40px" }}
-          >
-            <Row>
-              <Column>
+            <div className='flex flex-row justify-between'>
+              <div className='flex justify-center items-center'>
                 <Img
-                  src={`https://wdnowudpuwirpcddozlf.supabase.co/storage/v1/object/public/branding/logo-color.png`}
-                  alt='Logo'
+                  src='https://shashafaces.com/images/email-icon.png'
+                  alt='Makeup Icon'
                   className='w-auto h-32'
                 />
-              </Column>
-              <Column style={{ verticalAlign: "top", paddingLeft: "12px" }}>
-                <Text style={{ ...paragraph, fontWeight: "500" }}>
-                  Full Glam Makeup Application
+              </div>
+              <div>
+                <Text
+                  style={{
+                    ...global.text,
+                    fontSize: 16,
+                    textTransform: "capitalize",
+                  }}
+                >
+                  😍: {appointmentDetails.service}
                 </Text>
-              </Column>
-            </Row>
+                <Text style={{ ...global.text, fontSize: 16 }}>
+                  🗓️: {appointmentDetails.date}
+                </Text>
+                <Text style={{ ...global.text, fontSize: 16 }}>
+                  🕛: {appointmentDetails.time}
+                </Text>
+                <Text style={{ ...global.text, fontSize: 16 }}>
+                  📍: {appointmentDetails.location}
+                </Text>
+                <div className='grid place-items-center'>
+                  <Link className='border text-lg p-2 w-[220px] block text-center bg-[#432f1f] text-[#f2eae3] rounded-lg mt-8'>
+                    Add To Calendar
+                  </Link>
+                </div>
+              </div>
+            </div>
           </Section>
-          <Hr style={{ ...global.hr, marginTop: "12px" }} />
-          <Section className='p-8 bg-[#f2eae3]'>
+          <Section className='p-8'>
             <Row>
               <Text style={{ ...footer.text }}>
                 Please contact us if you have any questions. (If you reply to
@@ -118,6 +107,24 @@ export const BookingConfirmationEmail = ({
     </Tailwind>
   </Html>
 );
+
+BookingConfirmationEmail.PreviewProps = {
+  appointmentDetails: {
+    name: "Jane Doe",
+    email: "janedoe@gmail.com",
+    phoneNumber: "2314567890",
+    instagram: "@janedoe",
+    isInstructionsAcknowledged: true,
+    location: "Los Angeles, CA",
+    date: "Tuesday, March 18, 2025",
+    time: "10:00 AM",
+    discovery: "Website",
+    service: "Full Glam Makeup Application",
+    requiresTravel: true,
+    addtlDetails: "Test test test test test",
+    id: "c1469bcc-8f26-4197-be7f-9fe83813ad49",
+  },
+} satisfies BookingConfirmationEmailProps;
 
 export default BookingConfirmationEmail;
 
@@ -155,6 +162,7 @@ const global = {
     ...paragraph,
     color: "#747474",
     fontWeight: "500",
+    fontSize: "16px",
   },
   button: {
     border: "1px solid #929292",
@@ -170,112 +178,6 @@ const global = {
   hr: {
     borderColor: "#E5E5E5",
     margin: "0",
-  },
-};
-
-const main = {
-  backgroundColor: "#ffffff",
-  fontFamily:
-    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-};
-
-const container = {
-  margin: "10px auto",
-  width: "600px",
-  maxWidth: "100%",
-  border: "1px solid #E5E5E5",
-};
-
-const track = {
-  container: {
-    padding: "22px 40px",
-    backgroundColor: "#F7F7F7",
-  },
-  number: {
-    margin: "12px 0 0 0",
-    fontWeight: 500,
-    lineHeight: "1.4",
-    color: "#6F6F6F",
-  },
-};
-
-const message = {
-  padding: "40px 74px",
-  textAlign: "center",
-} as React.CSSProperties;
-
-const adressTitle = {
-  ...paragraph,
-  fontSize: "15px",
-  fontWeight: "bold",
-};
-
-const recomendationsText = {
-  margin: "0",
-  fontSize: "15px",
-  lineHeight: "1",
-  paddingLeft: "10px",
-  paddingRight: "10px",
-};
-
-const recomendations = {
-  container: {
-    padding: "20px 0",
-  },
-  product: {
-    verticalAlign: "top",
-    textAlign: "left" as const,
-    paddingLeft: "2px",
-    paddingRight: "2px",
-  },
-  title: { ...recomendationsText, paddingTop: "12px", fontWeight: "500" },
-  text: {
-    ...recomendationsText,
-    paddingTop: "4px",
-    color: "#747474",
-  },
-};
-
-const menu = {
-  container: {
-    paddingLeft: "20px",
-    paddingRight: "20px",
-    paddingTop: "20px",
-    backgroundColor: "#F7F7F7",
-  },
-  content: {
-    ...paddingY,
-    paddingLeft: "20px",
-    paddingRight: "20px",
-  },
-  title: {
-    paddingLeft: "20px",
-    paddingRight: "20px",
-    fontWeight: "bold",
-  },
-  text: {
-    fontSize: "13.5px",
-    marginTop: 0,
-    fontWeight: 500,
-    color: "#000",
-  },
-  tel: {
-    paddingLeft: "20px",
-    paddingRight: "20px",
-    paddingTop: "32px",
-    paddingBottom: "22px",
-  },
-};
-
-const categories = {
-  container: {
-    width: "370px",
-    margin: "auto",
-    paddingTop: "12px",
-  },
-  text: {
-    fontWeight: "500",
-    color: "#000",
   },
 };
 

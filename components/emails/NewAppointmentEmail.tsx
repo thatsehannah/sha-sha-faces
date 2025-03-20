@@ -17,12 +17,10 @@ import React from "react";
 
 type NewAppointmentEmailProps = {
   newAppointment: NewAppointment;
-  project: string;
 };
 
 export const NewAppointmentEmail = ({
   newAppointment,
-  project,
 }: NewAppointmentEmailProps) => {
   const {
     time,
@@ -52,7 +50,7 @@ export const NewAppointmentEmail = ({
           <Container>
             <Section className='p-4 rounded-lg flex justify-center'>
               <Img
-                src={`https://${project}.supabase.co/storage/v1/object/public/branding/logo-color.png`}
+                src='https://www.shashafaces.com/branding/logo-color.png'
                 alt='Logo'
                 className='w-auto h-48'
               />
@@ -145,7 +143,6 @@ NewAppointmentEmail.PreviewProps = {
     addtlDetails: "Test test test test test",
     id: "c1469bcc-8f26-4197-be7f-9fe83813ad49",
   },
-  project: "wdnowudpuwirpcddozlf",
 } satisfies NewAppointmentEmailProps;
 
 export default NewAppointmentEmail;

@@ -18,6 +18,7 @@ import { deletePhotoFromBucket } from "@/lib/supabase";
 import {
   calculateReviewScore,
   defaultAvailibility,
+  sendBookingConfirmationEmail,
   sendNewAppointmentEmail,
 } from "@/lib/utils";
 
@@ -38,6 +39,7 @@ export const createAppointmentAction = async (formData: NewAppointment) => {
     });
 
     await sendNewAppointmentEmail({ id: newAppt.id, ...formData });
+    await sendBookingConfirmationEmail(formData);
 
     revalidatePaths(["/admin", "/admin/appointments"]);
 
