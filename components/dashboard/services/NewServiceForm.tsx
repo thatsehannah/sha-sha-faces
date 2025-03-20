@@ -37,7 +37,7 @@ const NewServiceForm = () => {
       const validatedData = validateNewServiceSchema(data);
 
       const duration = `${validatedData.durationHours} hr ${
-        validatedData.durationMinutes
+        validatedData.durationMinutes !== "0"
           ? `${validatedData.durationMinutes} min`
           : ""
       }`;

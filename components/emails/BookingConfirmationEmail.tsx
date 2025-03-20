@@ -7,7 +7,7 @@ import {
   Hr,
   Html,
   Img,
-  Link,
+  // Link,
   Preview,
   Row,
   Section,
@@ -53,38 +53,38 @@ export const BookingConfirmationEmail = ({
           </Section>
           <Hr style={global.hr} />
           <Section className='p-8 bg-[#f2eae3]'>
-            <div className='flex flex-row justify-between'>
+            <div className='flex justify-around'>
               <div className='flex justify-center items-center'>
                 <Img
                   src='https://shashafaces.com/images/email-icon.png'
                   alt='Makeup Icon'
-                  className='w-auto h-32'
+                  className='w-auto h-36'
                 />
               </div>
               <div>
                 <Text
                   style={{
                     ...global.text,
-                    fontSize: 16,
+                    fontSize: 18,
                     textTransform: "capitalize",
                   }}
                 >
-                  😍: {appointmentDetails.service}
+                  💭 {appointmentDetails.service}
                 </Text>
-                <Text style={{ ...global.text, fontSize: 16 }}>
-                  🗓️: {appointmentDetails.date}
+                <Text style={{ ...global.text, fontSize: 18 }}>
+                  🗓️ {appointmentDetails.date}
                 </Text>
-                <Text style={{ ...global.text, fontSize: 16 }}>
-                  🕛: {appointmentDetails.time}
+                <Text style={{ ...global.text, fontSize: 18 }}>
+                  🕛 {appointmentDetails.time}
                 </Text>
-                <Text style={{ ...global.text, fontSize: 16 }}>
-                  📍: {appointmentDetails.location}
+                <Text style={{ ...global.text, fontSize: 18 }}>
+                  📍 {appointmentDetails.location}
                 </Text>
-                <div className='grid place-items-center'>
+                {/* <div className='grid place-items-center'>
                   <Link className='border text-lg p-2 w-[220px] block text-center bg-[#432f1f] text-[#f2eae3] rounded-lg mt-8'>
                     Add To Calendar
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           </Section>
@@ -160,7 +160,7 @@ const global = {
   } as React.CSSProperties,
   text: {
     ...paragraph,
-    color: "#747474",
+    color: "#000",
     fontWeight: "500",
     fontSize: "16px",
   },

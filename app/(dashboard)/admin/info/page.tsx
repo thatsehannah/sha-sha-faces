@@ -12,7 +12,7 @@ const AdminInfoPage = async () => {
   return (
     <main>
       <Container className='py-20 w-screen lg:w-[80vw] flex flex-col gap-8'>
-        <p className='text-3xl lg:text-5xl font-normal'>My Information</p>
+        <p className='text-4xl lg:text-5xl font-normal'>My Information</p>
         <Separator />
         <div>
           <ManageAvailabilityCard availability={availability} />

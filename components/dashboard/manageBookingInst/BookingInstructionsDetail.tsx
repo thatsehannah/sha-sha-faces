@@ -16,8 +16,8 @@ import {
   deleteBookingInstruction,
   saveBookingInstruction,
 } from "@/utils/actions";
-import { Pencil, Trash } from "lucide-react";
-import React, { useState } from "react";
+import { Edit, Trash } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 
 type BookingInstructionsDetailProps = {
   rule: string;
@@ -34,7 +34,13 @@ const BookingInstructionsDetail = ({
   const [isEditing, setIsEditing] = useState(false);
   const [openConfrimDialog, setOpenConfirmDialog] = useState(false);
   const { toast } = useToast();
-  const label = `Rule #${index + 1}`;
+  const label = `Instruction #${index + 1}`;
+  const textareaRef = useRef(null);
+
+  const autoGrow = (element: HTMLTextAreaElement) => {
+    element.style.height = "5px";
+    element.style.height = element.scrollHeight + "px";
+  };
 
   const saveRule = async () => {
     try {
@@ -70,6 +76,12 @@ const BookingInstructionsDetail = ({
     }
   };
 
+  useEffect(() => {
+    if (textareaRef.current) {
+      autoGrow(textareaRef.current);
+    }
+  }, []);
+
   return (
     <div className='flex flex-col gap-2'>
       <div className='flex items-center gap-3'>
@@ -79,13 +91,15 @@ const BookingInstructionsDetail = ({
         >
           {label}
         </Label>{" "}
-        <Button
-          size='icon'
-          className='bg-blue-500 hover:bg-blue-500/90'
-          onClick={() => setIsEditing(true)}
-        >
-          <Pencil className='dark:stroke-black' />
-        </Button>
+        {!isEditing && (
+          <Button
+            size='icon'
+            className='bg-blue-500 hover:bg-blue-500/90'
+            onClick={() => setIsEditing(true)}
+          >
+            <Edit className='dark:stroke-black' />
+          </Button>
+        )}
         <Button
           size='icon'
           className='bg-red-500 hover:bg-red-500/90'
@@ -96,6 +110,7 @@ const BookingInstructionsDetail = ({
       </div>
       <Textarea
         id={id.toString()}
+        ref={textareaRef}
         value={text}
         onChange={(e) => setText(e.target.value)}
         readOnly={!isEditing}

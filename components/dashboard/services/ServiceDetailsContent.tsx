@@ -8,7 +8,7 @@ type ServiceDetailsContentProps = {
 
 const ServiceDetailsContent = ({ service }: ServiceDetailsContentProps) => {
   return (
-    <div className='flex flex-col justify-between bg-tertiary p-3 rounded-md'>
+    <div className='flex flex-col justify-between dark:bg-card bg-muted p-3 rounded-md'>
       <ServiceDetail
         id={service.id}
         data={service.description}

@@ -59,7 +59,7 @@ const SimpleFormInput = ({
       <div className='flex'>
         {prefix && (
           <Input
-            disabled
+            readOnly
             defaultValue={prefix}
             className='rounded-r-none w-9 text-center'
           />
@@ -78,7 +78,7 @@ const SimpleFormInput = ({
         />
         {suffix && (
           <Input
-            disabled
+            readOnly
             defaultValue={suffix}
             className='rounded-l-none w-14 text-center'
           />

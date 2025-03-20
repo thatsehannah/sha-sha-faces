@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { updateService } from "@/utils/actions";
 import { Edit } from "lucide-react";
@@ -51,23 +52,35 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
   }, []);
 
   return (
-    <div className='flex items-center group/item gap-8 hover:bg-white/50 transition-all p-4 rounded-md'>
-      <div className='w-1/2'>
-        <p className='font-bold text-[1rem] mb-1 capitalize text-black'>
-          {label}
-        </p>
-        <textarea
+    <div className='flex items-center gap-8 p-4 rounded-md'>
+      <div className='w-full'>
+        <div className='flex items-center gap-3 mb-4'>
+          <p className='font-bold text-[1rem] mb-1 capitalize text-foreground'>
+            {label}
+          </p>
+          {!isEditing && (
+            <Button
+              size='icon'
+              className='bg-blue-500 hover:bg-blue-500/90'
+              onClick={() => setIsEditing(true)}
+            >
+              <Edit className='dark:stroke-black' />
+            </Button>
+          )}
+        </div>
+
+        <Textarea
           id={id.toString()}
           ref={textareaRef}
-          data-disabled={!isEditing}
-          className='font-light text-lg w-full h-auto p-3 data-[disabled="true"]:bg-transparent data-[disabled="true"]:text-gray-600 border border-black rounded-md dark:data-[disabled="false"]:bg-white dark:data-[disabled="false"]:text-black'
           value={text}
           onChange={(e) => setText(e.target.value)}
-          disabled={!isEditing}
+          readOnly={!isEditing}
+          className={`${isEditing} ? bg-background : ""`}
         />
+
         <div
           data-disabled={!isEditing}
-          className='flex gap-2 data-[disabled="true"]:invisible'
+          className='flex mt-4 gap-2 data-[disabled="true"]:invisible'
         >
           <Button
             className='bg-primary '
@@ -91,16 +104,6 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
           </Button>
         </div>
       </div>
-      {!isEditing && (
-        <div className='flex gap-2 group/edit'>
-          <div
-            className='invisible group-hover/item:visible hover:cursor-pointer transition-all flex items-center gap-2'
-            onClick={() => setIsEditing(true)}
-          >
-            <Edit className='group-hover/edit:scale-125 w-5 h-5 stroke-black' />
-          </div>
-        </div>
-      )}
     </div>
   );
 };

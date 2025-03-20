@@ -18,8 +18,10 @@ const AdminManageBookingInstructions = async () => {
 
   return (
     <main>
-      <Container className='py-20 w-screen lg:w-[80vw]'>
-        <p className='text-5xl font-normal mb-4'>Manage Booking Instructions</p>
+      <Container className='py-20 w-screen lg:w-[80vw] flex flex-col gap-4'>
+        <p className='text-4xl lg:text-5xl font-normal'>
+          Manage Booking Instructions
+        </p>
         <Separator />
         <BookingInstructionsContent instructions={instructions} />
       </Container>
