@@ -11,7 +11,7 @@ import { z } from "zod";
 import SimpleFormInput from "./form/SimpleFormInput";
 import { Button } from "@/components/ui/button";
 import { FormNewService, NewService } from "@/utils/types";
-import { TEMP_SERVICE_SVG } from "@/utils/constants";
+import { FALLBACK_SERVICE_SVG } from "@/utils/constants";
 import { createNewService } from "@/utils/actions";
 import { useToast } from "@/hooks/use-toast";
 
@@ -47,7 +47,7 @@ const NewServiceForm = () => {
         duration,
         description: validatedData.description,
         price: parseInt(validatedData.price),
-        svgData: TEMP_SERVICE_SVG,
+        svgData: FALLBACK_SERVICE_SVG,
       };
 
       const resultMessage = await createNewService(newService);
