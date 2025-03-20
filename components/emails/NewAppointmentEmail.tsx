@@ -36,11 +36,6 @@ export const NewAppointmentEmail = ({
     id,
   } = newAppointment;
 
-  const baseUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://www.shashafaces.com";
-
   return (
     <Html>
       <Head />
@@ -109,7 +104,7 @@ export const NewAppointmentEmail = ({
                 >
                   <Link
                     className='bg-[#432f1f] rounded-md text-white cursor-pointer p-3'
-                    href={`${baseUrl}/admin/appointments/${id}`}
+                    href={`https://www.shashafaces.com/admin/appointments/${id}`}
                   >
                     Go To Appointment
                   </Link>
