@@ -15,7 +15,10 @@ export const uploadPhoto = async (photo: File) => {
 
   if (error) {
     captureException(error);
-    return;
+
+    throw new Error(
+      error instanceof Error ? error.message : "An unknown error has occurred"
+    );
   }
 
   //returning the public url after the image upload to the bucket so that we can save it in the database
