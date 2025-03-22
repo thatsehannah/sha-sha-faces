@@ -154,8 +154,6 @@ export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
   };
 
   try {
-    console.log("About to send message...");
-
     const { data } = await resend.emails.send(message);
 
     console.log(data?.id);

@@ -24,8 +24,6 @@ const AppointmentDetail = ({
   label,
   dataLabel,
 }: AppointmentDetailProps) => {
-  console.log(label);
-
   return (
     <div className='flex flex-col gap-1'>
       <p

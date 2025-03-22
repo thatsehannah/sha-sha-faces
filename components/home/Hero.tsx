@@ -10,8 +10,8 @@ import Container from "../global/Container";
 
 const Hero = () => {
   return (
-    <section className='h-full bg-primary py-12'>
-      <Container className='grid grid-cols-1 lg:grid-cols-2 lg:gap-24 justify-center items-center'>
+    <section className='h-auto md:h-[70vh] lg:h-full flex items-center bg-primary py-12'>
+      <Container className='flex justify-center items-center'>
         <motion.div
           initial={{ opacity: 0, x: 75 }}
           animate={{ opacity: 1, x: 0 }}
@@ -20,20 +20,12 @@ const Hero = () => {
           className='flex flex-col justify-center items-center'
         >
           <Image
-            src='/images/glam/photo6.jpeg'
-            height={500}
-            width={500}
-            alt='hero image'
-            priority
-            className='block lg:hidden w-full lg:h-[26rem] h-[30rem] mb-8 rounded-xl object-contain xl:object-cover'
-          />
-          <Image
             src='/branding/logo-color.svg'
             priority
             alt='logo'
             width={400}
             height={400}
-            className='h-[16rem] lg:h-[24rem]'
+            className='h-[16rem] md:h-[24rem]'
           />
           <p
             className={`${parisienne.className} text-3xl lg:text-4xl font-extrabold mt-4 text-primary-foreground`}
@@ -47,22 +39,6 @@ const Hero = () => {
           >
             <Link href='/#portfolio'>View Portfolio &gt;</Link>
           </Button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: -75 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.5 }}
-        >
-          <Image
-            src='/images/glam/photo6.jpeg'
-            height={300}
-            width={300}
-            alt='hero image'
-            priority
-            className='hidden lg:block w-full h-[36rem] rounded-md object-cover'
-          />
         </motion.div>
       </Container>
     </section>

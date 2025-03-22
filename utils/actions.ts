@@ -381,7 +381,7 @@ export const updatePortfolioPhotoCategory = async (
 
     revalidatePaths(["/portfolio", "/", "/admin/info"]);
   } catch (error) {
-    console.log(error);
+    captureException(error);
   }
 };
 

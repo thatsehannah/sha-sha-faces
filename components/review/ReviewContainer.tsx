@@ -14,8 +14,6 @@ type ReviewContainerProps = {
 };
 
 const ReviewContainer = ({ reviews }: ReviewContainerProps) => {
-  console.log(typeof reviews[0]);
-
   return (
     <Container className='py-20'>
       <div className='flex justify-between'>
