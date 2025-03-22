@@ -103,7 +103,7 @@ const AboutPage = () => {
           className='xl:-mt-40 -mt-28'
         >
           <Image
-            src='/branding/instagram.png'
+            src='/branding/about-instagram.png'
             priority
             alt='instagram on iphone'
             width={500}
