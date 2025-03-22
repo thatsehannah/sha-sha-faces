@@ -1,3 +1,4 @@
+import { captureException } from "@sentry/nextjs";
 import { createClient } from "@supabase/supabase-js";
 
 const bucket = "portfolio";
@@ -12,7 +13,10 @@ export const uploadPhoto = async (photo: File) => {
     .from(bucket)
     .upload(photo.name, photo, { cacheControl: "3600" });
 
-  if (error) throw new Error(error.message);
+  if (error) {
+    captureException(error);
+    return;
+  }
 
   //returning the public url after the image upload to the bucket so that we can save it in the database
   return supabase.storage.from(bucket).getPublicUrl(photo.name).data.publicUrl;
@@ -25,5 +29,5 @@ export const deletePhotoFromBucket = (url: string) => {
     return supabase.storage.from(bucket).remove([imageName]);
   }
 
-  throw new Error("Invalid URL");
+  captureException("Error deleting photo from bucket: Invalid URL");
 };

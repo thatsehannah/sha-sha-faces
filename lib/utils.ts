@@ -5,6 +5,7 @@ import { Availability, Appointment as NewAppointment } from "@/utils/types";
 import { clsx, type ClassValue } from "clsx";
 import { CreateEmailOptions, Resend } from "resend";
 import { twMerge } from "tailwind-merge";
+import { captureException } from "@sentry/nextjs";
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
@@ -128,16 +129,14 @@ export const sendBookingConfirmationEmail = async (newAppt: NewAppointment) => {
   };
 
   try {
-    console.log("About to send message...");
-
     const { data } = await resend.emails.send(message);
 
     console.log(data?.id);
   } catch (error) {
+    captureException(error);
+
     throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred creating your appointment."
+      "An error occurred sending your confirmation email. No worries! We're going to figure this out and get back with you soon."
     );
   }
 };
@@ -161,10 +160,10 @@ export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
 
     console.log(data?.id);
   } catch (error) {
+    captureException(error);
+
     throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred creating your appointment."
+      "An error occurred. No worries! We're going to figure this out and get back with you soon."
     );
   }
 };

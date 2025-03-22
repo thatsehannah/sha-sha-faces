@@ -21,6 +21,7 @@ import {
   sendBookingConfirmationEmail,
   sendNewAppointmentEmail,
 } from "@/lib/utils";
+import { captureException } from "@sentry/nextjs";
 
 const revalidatePaths = (paths: string[]) => {
   paths.forEach((path) => revalidatePath(path));
@@ -43,12 +44,12 @@ export const createAppointmentAction = async (formData: NewAppointment) => {
 
     revalidatePaths(["/admin", "/admin/appointments"]);
 
-    return "Appointment request sent! I will get back with you to confirm the details shortly.";
+    return "Appointment request sent! Be on the lookout for a confirmation email soon.";
   } catch (error) {
+    captureException(error);
+
     throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred creating your appointment."
+      "Sorry! An error occurred creating your appointment. Please try again later."
     );
   }
 };
@@ -144,11 +145,9 @@ export const updateAppointment = async (
 
     return "Appointment updated 💋.";
   } catch (error) {
-    throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred updating this appointment."
-    );
+    captureException(error);
+
+    throw new Error("An error occurred updating this appointment.");
   }
 };
 
@@ -162,11 +161,9 @@ export const createNewService = async (newService: NewService) => {
 
     return "New service created 💋.";
   } catch (error) {
-    throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred saving your service."
-    );
+    captureException(error);
+
+    throw new Error("An error occurred saving your service.");
   }
 };
 
@@ -186,11 +183,9 @@ export const updateService = async (
 
     return "Service updated 💋.";
   } catch (error) {
-    throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred updating your service."
-    );
+    captureException(error);
+
+    throw new Error("An error occurred updating your service.");
   }
 };
 
@@ -245,10 +240,10 @@ export const createReviewAction = async (formData: Review) => {
 
     return `Thank you for your review ${formData.reviewer}. Hope to see you again soon!`;
   } catch (error) {
+    captureException(error);
+
     throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred while saving your review."
+      "Sorry! An error occurred while saving your review. Please try again later."
     );
   }
 };
@@ -289,7 +284,7 @@ export const updateReviewVisibility = async (id: string, value: boolean) => {
 
     revalidatePaths(["/admin", "/reviews"]);
   } catch (error) {
-    console.log(error);
+    captureException(error);
   }
 };
 
@@ -366,7 +361,7 @@ export const updatePortfolioPhotoVisibility = async (
 
     revalidatePaths(["/portfolio", "/", "/admin/info"]);
   } catch (error) {
-    console.log(error);
+    captureException(error);
   }
 };
 
@@ -405,11 +400,9 @@ export const createNewPortfolioPhoto = async (photo: NewPhoto) => {
 
     return "Photo uploaded";
   } catch (error) {
-    throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred while uploading your photo."
-    );
+    captureException(error);
+
+    throw new Error("An error occurred while uploading your photo.");
   }
 };
 
@@ -427,11 +420,9 @@ export const deletePortfolioPhoto = async (photo: PortfolioPhoto) => {
 
     return "Photo deleted from portfolio";
   } catch (error) {
-    throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred while deleting your photo."
-    );
+    captureException(error);
+
+    throw new Error("An error occurred while deleting your photo.");
   }
 };
 
@@ -495,11 +486,9 @@ export const submitWeeklyAvailability = async (
 
     return "Your availability has been updated!";
   } catch (error) {
-    throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred while updating your availability."
-    );
+    captureException(error);
+
+    throw new Error("An error occurred while updating your availability.");
   }
 };
 
@@ -515,11 +504,9 @@ export const fetchBookingInstructions = async () => {
 
     return [];
   } catch (error) {
-    console.log(
-      error instanceof Error
-        ? error.message
-        : "An error occurred fetching booking instructions"
-    );
+    captureException(error);
+
+    throw new Error("An error occurred fetching booking instructions");
   }
 };
 
@@ -535,10 +522,10 @@ export const createBookingInstruction = async (rule: string) => {
 
     return "Created rule for booking instructions.";
   } catch (error) {
+    captureException(error);
+
     throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred while updating your availability."
+      "An error occurred while creating your booking instruction."
     );
   }
 };
@@ -561,7 +548,7 @@ export const saveBookingInstruction = async (
 
     return "Updated rule for booking instructions.";
   } catch (error) {
-    console.log(error);
+    captureException(error);
   }
 };
 
@@ -577,10 +564,10 @@ export const deleteBookingInstruction = async (id: string) => {
 
     return "Deleted rule from booking instructions.";
   } catch (error) {
+    captureException(error);
+
     throw new Error(
-      error instanceof Error
-        ? error.message
-        : "An error occurred while updating your availability."
+      "An error occurred while deleting your booking instructions."
     );
   }
 };
