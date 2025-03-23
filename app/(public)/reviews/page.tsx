@@ -8,11 +8,7 @@ const ReviewsPage = async () => {
 
   return (
     <main className='relative'>
-      <LeftSectionTitle
-        title={`client reviews (${reviews.length})`}
-        textClasses='dark:text-tertiary'
-        barClasses='dark:bg-tertiary'
-      />
+      <LeftSectionTitle title={`client reviews (${reviews.length})`} />
       <ReviewContainer reviews={reviews} />
     </main>
   );

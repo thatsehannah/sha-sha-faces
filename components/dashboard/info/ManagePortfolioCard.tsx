@@ -171,7 +171,7 @@ const ManagePortfolioCard = ({ photos }: ManagePortfolioCardProps) => {
                     >
                       <SelectTrigger
                         id='category'
-                        className='text-[1rem] data-[placeholder]:text-gray-500 dark:data-[placeholder]:text-gray-700 data-[placeholder]:font-extralight'
+                        className='text-[1rem] data-[placeholder]:text-gray-500 data-[placeholder]:font-extralight'
                       >
                         <SelectValue placeholder='Select a category' />
                       </SelectTrigger>

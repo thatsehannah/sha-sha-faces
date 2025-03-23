@@ -80,7 +80,6 @@ const BookingInstructionsContent = ({
             </Button>
             <Button
               variant='outline'
-              className='dark:text-tertiary'
               onClick={() => {
                 setIsAddingNewRule(false);
                 setNewRule("");

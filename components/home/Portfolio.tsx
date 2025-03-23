@@ -14,11 +14,7 @@ const Portfolio = async () => {
       id='portfolio'
       className='relative'
     >
-      <RightSectionTitle
-        title='portfolio'
-        textClasses='dark:text-tertiary'
-        barClasses='dark:bg-tertiary'
-      />
+      <RightSectionTitle title='portfolio' />
       <Container className='flex flex-col justify-center items-center py-24 gap-16'>
         <PortfolioCarousel photos={featuredPhotos} />
         <Button

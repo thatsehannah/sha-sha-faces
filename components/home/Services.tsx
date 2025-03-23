@@ -14,11 +14,7 @@ const Services = async () => {
       id='services'
       className='relative bg-gradient-to-l from-primary to-background'
     >
-      <LeftSectionTitle
-        title='popular services'
-        textClasses='dark:text-tertiary'
-        barClasses='dark:bg-tertiary'
-      />
+      <LeftSectionTitle title='popular services' />
       <Container className='py-20 flex flex-col justify-center items-center gap-12'>
         <div className='grid grid-cols-1 lg:grid-cols-3 justify-between gap-y-8 gap-x-4'>
           {popularServices.map((service) => {

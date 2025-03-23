@@ -63,7 +63,7 @@ const FormDatePicker = ({ name, label, availability }: FormDatePickerProps) => {
                   clearErrors(name);
                 }
               }}
-              className='h-12 text-black placeholder:text-gray-500 dark:placeholder:text-gray-700 placeholder:text-xl placeholder:font-extralight border-black border-x-0 border-t-0 shadow-none rounded-none text-xl md:text-2xl font-semibold text-left'
+              className='h-12 text-black placeholder:text-gray-500 placeholder:text-xl placeholder:font-extralight border-black border-x-0 border-t-0 shadow-none rounded-none text-xl md:text-2xl font-semibold text-left'
             />
           </div>
         </PopoverTrigger>

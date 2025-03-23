@@ -97,7 +97,7 @@ const BookingInstructionsDetail = ({
             className='bg-blue-500 hover:bg-blue-500/90'
             onClick={() => setIsEditing(true)}
           >
-            <Edit className='dark:stroke-black' />
+            <Edit />
           </Button>
         )}
         <Button
@@ -105,7 +105,7 @@ const BookingInstructionsDetail = ({
           className='bg-red-500 hover:bg-red-500/90'
           onClick={() => setOpenConfirmDialog(true)}
         >
-          <Trash className='dark:stroke-black' />
+          <Trash />
         </Button>
       </div>
       <Textarea
@@ -131,7 +131,6 @@ const BookingInstructionsDetail = ({
         </Button>
         <Button
           variant='outline'
-          className='dark:text-tertiary'
           onClick={() => {
             setIsEditing(false);
             setText(rule);

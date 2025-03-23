@@ -6,11 +6,7 @@ import React from "react";
 const PortfolioPage = () => {
   return (
     <div className='relative py-20'>
-      <LeftSectionTitle
-        title='portfolio'
-        textClasses='dark:text-tertiary'
-        barClasses='dark:bg-tertiary'
-      />
+      <LeftSectionTitle title='portfolio' />
       <Container className='flex flex-col lg:flex-row gap-8'>
         <div className='lg:w-1/2 lg:h-screen'>
           <PortfolioCard title='glam' />

@@ -51,7 +51,7 @@ const FormDropdown = ({
           }}
           value={selectedValue}
         >
-          <SelectTrigger className='h-12 mt-2 border-black capitalize text-black text-xl md:text-2xl font-semibold data-[placeholder]:text-gray-500 dark:data-[placeholder]:text-gray-700 data-[placeholder]:text-xl data-[placeholder]:normal-case data-[placeholder]:font-extralight'>
+          <SelectTrigger className='h-12 mt-2 border-black capitalize text-black text-xl md:text-2xl font-semibold data-[placeholder]:text-gray-500 data-[placeholder]:text-xl data-[placeholder]:normal-case data-[placeholder]:font-extralight'>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent className='capitalize text-lg'>

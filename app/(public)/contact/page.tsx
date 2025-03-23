@@ -17,11 +17,7 @@ const ContactPage = async () => {
 
   return (
     <main className='relative'>
-      <LeftSectionTitle
-        title='booking form'
-        textClasses='dark:text-tertiary'
-        barClasses='dark:bg-tertiary'
-      />
+      <LeftSectionTitle title='booking form' />
       <Container className='py-20 flex flex-col justify-center items-center '>
         <Suspense>
           <AppointmentForm

@@ -19,13 +19,13 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
   const timeAgo = formatDistance(reviewCreatedDate, now, { addSuffix: true });
 
   return (
-    <div className='group odd:bg-secondary dark:odd:text-secondary-foreground even:bg-muted border border-primary p-3 rounded-lg'>
+    <div className='group odd:bg-secondary even:bg-muted border border-primary p-3 rounded-lg'>
       <div className='mb-8'>
         <p className='text-2xl font-bold'>{review.reviewer}</p>
         <div className='flex items-center gap-2 mt-2'>
           <ServiceIconSvg
             svg={review.service.svgData as ServiceSvg}
-            className='w-10 h-10 lg:w-8 lg:h-8 fill-primary dark:group-even:fill-primary-foreground'
+            className='w-10 h-10 lg:w-8 lg:h-8 fill-primary'
           />
           <p className='capitalize text-lg'>{review.service.name}</p>
         </div>
@@ -55,7 +55,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         <p className='font-light'>{review.comment}</p>
       </div>
       <div className='flex justify-end'>
-        <p className='text-gray-700 dark:text-white group-odd:text-gray-700 dark:group-odd:text-muted text-sm'>
+        <p className='text-gray-700 group-odd:text-gray-700 text-sm'>
           {timeAgo}
         </p>
       </div>

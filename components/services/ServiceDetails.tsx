@@ -37,7 +37,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
         >
           <ServiceIconSvg
             svg={svgData as ServiceSvg}
-            className='fill-primary dark:fill-secondary'
+            className='fill-primary'
           />
         </motion.div>
       </div>

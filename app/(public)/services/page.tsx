@@ -9,11 +9,7 @@ const ServicesPage = async () => {
 
   return (
     <main className='relative'>
-      <RightSectionTitle
-        title='services'
-        textClasses='dark:text-tertiary'
-        barClasses='dark:bg-tertiary'
-      />
+      <RightSectionTitle title='services' />
       <Container className='py-20'>
         {services.map((service, idx) => (
           <ServiceDetails

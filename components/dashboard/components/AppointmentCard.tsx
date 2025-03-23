@@ -52,7 +52,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
               <div className='flex gap-10 text-muted-foreground'>
                 <div className='flex flex-col justify-center'>
                   <User className='stroke-muted-foreground' />
-                  <p className='lg:text-[16px] font-medium text-tertiary-foreground dark:text-secondary'>
+                  <p className='lg:text-[16px] font-medium text-tertiary-foreground'>
                     {name}
                   </p>
                 </div>
@@ -63,7 +63,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
                       <Car className='stroke-muted-foreground' />
                     )}
                   </div>
-                  <p className='lg:text-[16px] font-medium text-tertiary-foreground dark:text-secondary'>
+                  <p className='lg:text-[16px] font-medium text-tertiary-foreground'>
                     {location}
                   </p>
                 </div>

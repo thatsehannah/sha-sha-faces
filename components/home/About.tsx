@@ -15,11 +15,7 @@ const About = () => {
       id='about'
       className='relative'
     >
-      <RightSectionTitle
-        title='About Me'
-        textClasses='dark:text-tertiary'
-        barClasses='dark:bg-primary-foreground'
-      />
+      <RightSectionTitle title='About Me' />
       <Container className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-8 relative py-20'>
         <motion.div
           initial={{ opacity: 0, y: 100 }}

@@ -10,11 +10,7 @@ const NewReviewPage = async () => {
 
   return (
     <main className='relative'>
-      <LeftSectionTitle
-        title='leave a review'
-        textClasses='dark:text-tertiary'
-        barClasses='dark:bg-tertiary'
-      />
+      <LeftSectionTitle title='leave a review' />
       <Container className='py-20'>
         <p className='mb-8 text-4xl font-bold'>
           I&#39;d Love to Hear From You!

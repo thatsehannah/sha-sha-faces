@@ -64,7 +64,7 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
               className='bg-blue-500 hover:bg-blue-500/90'
               onClick={() => setIsEditing(true)}
             >
-              <Edit className='dark:stroke-black' />
+              <Edit />
             </Button>
           )}
         </div>
