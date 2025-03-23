@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: "https://www.shashafaces.com",
     images: [
       {
-        url: "https://www.shashafaces.com/branding/logo-color.png",
+        url: "https://www.shashafaces.com/branding/logo-color.jpg",
         width: 1200,
         height: 630,
         alt: "Sha Sha Faces makeup artist at work",
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     title: "Sha Sha Faces | Professional Makeup Artist",
     description:
       "Expert makeup services for weddings, photoshoots, and special events. Book your appointment today! | Los Angeles Area MUA",
-    images: ["https://www.shashafaces.com/branding/logo-color.png"],
+    images: ["https://www.shashafaces.com/branding/logo-color.jpg"],
   },
   icons: {
-    icon: "../favicon.ico",
+    icon: "../favicon.png",
   },
 };
 
