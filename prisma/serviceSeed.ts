@@ -1,4 +1,4 @@
-export const allServices = [
+export const serviceSeed = [
   {
     name: "full glam makeup application",
     price: 120,

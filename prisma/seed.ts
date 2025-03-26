@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import {
   seedBookingInstructions,
   seedPhotos,
+  seedReviews,
   seedServices,
 } from "./seedFunctions";
 
@@ -18,6 +19,9 @@ const main = async () => {
 
   await seedBookingInstructions();
   console.log("Booking instructions seeded.");
+
+  await seedReviews();
+  console.log("Reviews seeded.");
 
   console.log("Seeding complete!");
 };

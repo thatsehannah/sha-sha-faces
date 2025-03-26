@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef } from "react";
-import reviews from "@/utils/reviews.json";
 import {
   Carousel,
   CarouselContent,
@@ -13,8 +12,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Quote } from "lucide-react";
 import Container from "@/components/global/Container";
 import Autoplay from "embla-carousel-autoplay";
+import { ReviewWithService } from "@/utils/types";
 
-const ReviewCarousel = () => {
+type ReviewCarouselProps = {
+  reviews: ReviewWithService[];
+};
+
+const ReviewCarousel = ({ reviews }: ReviewCarouselProps) => {
   const plugin = useRef(Autoplay({ delay: 6000, stopOnInteraction: true }));
 
   const emphasizeWords = (review: string) => {

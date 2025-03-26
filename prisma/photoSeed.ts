@@ -1,6 +1,6 @@
 const project = process.env.NEXT_PUBLIC_SUPABASE_PROJECT;
 
-export const allPhotos = [
+export const photoSeed = [
   {
     url: `https://${project}.supabase.co/storage/v1/object/public/portfolio/photo0.jpeg`,
     alt: "glam photo 0",

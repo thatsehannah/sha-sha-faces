@@ -1,4 +1,4 @@
-export const allBookingInstructions = [
+export const bookingInstructionsSeed = [
   {
     rule: "Once your appointment is booked, prepare to receive a personal text requesting a non-refundable deposit to secure your appointment. If a deposit isn't received within 3 hours from time of request, the appointment will be cancelled. Location will be provided on the day of service (Hollywood area).",
   },

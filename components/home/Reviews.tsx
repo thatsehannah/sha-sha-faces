@@ -3,8 +3,11 @@ import Container from "../global/Container";
 import ReviewCarousel from "./components/ReviewCarousel";
 import Link from "next/link";
 import { LeftSectionTitle } from "../global/SectionTitles";
+import { fetchViewableReviews } from "@/utils/actions";
 
-const Reviews = () => {
+const Reviews = async () => {
+  const reviews = await fetchViewableReviews();
+
   return (
     <section
       id='reviews'
@@ -16,7 +19,7 @@ const Reviews = () => {
         barClasses='bg-tertiary'
       />
       <Container className='flex flex-col justify-center items-center py-24'>
-        <ReviewCarousel />
+        <ReviewCarousel reviews={reviews} />
         <div className='w-full text-xl text-right mt-4 text-primary'>
           <p>
             Want to leave a review?{" "}
