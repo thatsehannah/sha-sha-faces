@@ -62,6 +62,7 @@ export type NewPhoto = {
   category: string;
   url: string;
   alt: string;
+  file: File;
 };
 
 export type Availability = {

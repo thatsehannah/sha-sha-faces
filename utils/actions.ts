@@ -334,16 +334,6 @@ export const fetchGlamPhotos = async () => {
   return glamPhotos;
 };
 
-export const fetchPortfolioCategoryLength = async (category: string) => {
-  const categoryPhotos = await db.portfolioPhoto.findMany({
-    where: {
-      category,
-    },
-  });
-
-  return categoryPhotos.length;
-};
-
 export const updatePortfolioPhotoVisibility = async (
   id: string,
   key: string,

@@ -28,7 +28,6 @@ const AdminSidebar = () => {
         <Link href='/'>
           <Image
             src='/branding/logo-color.svg'
-            priority
             alt='logo'
             width={400}
             height={400}

@@ -8,10 +8,10 @@ const PortfolioPage = () => {
     <div className='relative py-20'>
       <LeftSectionTitle title='portfolio' />
       <Container className='flex flex-col lg:flex-row gap-8'>
-        <div className='lg:w-1/2 lg:h-screen'>
+        <div className='lg:w-1/2'>
           <PortfolioCard title='glam' />
         </div>
-        <div className='lg:w-1/2 h-screen'>
+        <div className='lg:w-1/2'>
           <PortfolioCard title='bridal' />
         </div>
       </Container>
