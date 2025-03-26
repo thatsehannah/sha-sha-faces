@@ -40,7 +40,6 @@ export const createAppointmentAction = async (formData: NewAppointment) => {
     });
 
     await sendNewAppointmentEmail({ id: newAppt.id, ...formData });
-    await sendBookingConfirmationEmail(formData);
 
     revalidatePaths(["/admin", "/admin/appointments"]);
 
@@ -125,7 +124,7 @@ export const updateAppointment = async (
   try {
     const { service, ...otherUpdates } = updates;
 
-    await db.appointment.update({
+    const appointment: AppointmentWithService = await db.appointment.update({
       where: {
         id,
       },
@@ -139,7 +138,14 @@ export const updateAppointment = async (
           },
         }),
       },
+      include: {
+        service: true,
+      },
     });
+
+    if (updates.status === "Confirmed") {
+      await sendBookingConfirmationEmail(appointment);
+    }
 
     revalidatePaths(["/admin", "/admin/appointments"]);
 

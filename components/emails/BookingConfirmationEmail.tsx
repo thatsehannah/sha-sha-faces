@@ -1,4 +1,4 @@
-import { Appointment as NewAppointment } from "@/utils/types";
+import { AppointmentWithService } from "@/utils/types";
 import {
   Body,
   Container,
@@ -17,7 +17,7 @@ import {
 import React from "react";
 
 type BookingConfirmationEmailProps = {
-  appointmentDetails: NewAppointment;
+  appointmentDetails: Partial<AppointmentWithService>;
 };
 
 export const BookingConfirmationEmail = ({
@@ -69,7 +69,7 @@ export const BookingConfirmationEmail = ({
                     textTransform: "capitalize",
                   }}
                 >
-                  💭 {appointmentDetails.service}
+                  💭 {appointmentDetails.service!.name}
                 </Text>
                 <Text style={{ ...global.text, fontSize: 18 }}>
                   🗓️ {appointmentDetails.date}
@@ -119,7 +119,18 @@ BookingConfirmationEmail.PreviewProps = {
     date: "Tuesday, March 18, 2025",
     time: "10:00 AM",
     discovery: "Website",
-    service: "Full Glam Makeup Application",
+    service: {
+      name: "Full Glam Makeup Application",
+      id: 0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      price: 0,
+      isSale: false,
+      salePrice: 0,
+      duration: "",
+      description: "",
+      svgData: null,
+    },
     requiresTravel: true,
     addtlDetails: "Test test test test test",
     id: "c1469bcc-8f26-4197-be7f-9fe83813ad49",

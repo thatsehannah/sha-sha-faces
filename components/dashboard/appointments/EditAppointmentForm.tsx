@@ -65,6 +65,8 @@ const EditAppointmentForm = ({
   const statusValue = form.watch("status");
 
   const handleSubmit = async (values: EditAppointment) => {
+    let isEditComplete = false;
+
     try {
       const dirtyFields = Object.keys(form.formState.dirtyFields);
       const updatedValues = Object.fromEntries(
@@ -83,7 +85,8 @@ const EditAppointmentForm = ({
       });
 
       setOpenConfirmDialog(false);
-      redirect("/admin/appointments");
+
+      isEditComplete = true;
     } catch (error) {
       toast({
         variant: "destructive",
@@ -91,6 +94,10 @@ const EditAppointmentForm = ({
         description:
           error instanceof Error ? error.message : "An error occurred ",
       });
+    }
+
+    if (isEditComplete) {
+      redirect("/admin/appointments");
     }
   };
 

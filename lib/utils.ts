@@ -1,7 +1,11 @@
 import BookingConfirmationEmail from "@/components/emails/BookingConfirmationEmail";
 import NewAppointmentEmail from "@/components/emails/NewAppointmentEmail";
 import { fetchAppointmentsByDate } from "@/utils/actions";
-import { Availability, Appointment as NewAppointment } from "@/utils/types";
+import {
+  AppointmentWithService,
+  Availability,
+  Appointment as NewAppointment,
+} from "@/utils/types";
 import { clsx, type ClassValue } from "clsx";
 import { CreateEmailOptions, Resend } from "resend";
 import { twMerge } from "tailwind-merge";
@@ -117,15 +121,17 @@ export const calculateReviewScore = (rating: string) => {
   }
 };
 
-export const sendBookingConfirmationEmail = async (newAppt: NewAppointment) => {
+export const sendBookingConfirmationEmail = async (
+  appt: AppointmentWithService
+) => {
   const resend = new Resend(process.env.RESEND_API_KEY as string);
   const senderEmail = process.env.SENDER_EMAIL as string;
 
   const message: CreateEmailOptions = {
-    to: newAppt.email,
+    to: appt.email,
     from: senderEmail,
     subject: "Thank You For Booking With Sha Sha Faces",
-    react: BookingConfirmationEmail({ appointmentDetails: newAppt }),
+    react: BookingConfirmationEmail({ appointmentDetails: appt }),
   };
 
   try {
