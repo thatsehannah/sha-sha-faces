@@ -1,4 +1,4 @@
-import { AppointmentWithService } from "@/utils/types";
+import { BookingConfirmationEmailDetails } from "@/utils/types";
 import {
   Body,
   Container,
@@ -17,11 +17,11 @@ import {
 import React from "react";
 
 type BookingConfirmationEmailProps = {
-  appointmentDetails: Partial<AppointmentWithService>;
+  confirmationDetails: BookingConfirmationEmailDetails;
 };
 
 export const BookingConfirmationEmail = ({
-  appointmentDetails,
+  confirmationDetails,
 }: BookingConfirmationEmailProps) => (
   <Html>
     <Head />
@@ -40,7 +40,7 @@ export const BookingConfirmationEmail = ({
             </div>
             <Heading style={global.heading}>Thank You For Booking.</Heading>
             <Text style={global.text}>
-              Hi {appointmentDetails.name}! Thank you for booking your makeup
+              Hi {confirmationDetails.name}! Thank you for booking your makeup
               appointment with Sha Sha Faces! We’re so excited to bring your
               beauty vision to life.
             </Text>
@@ -69,16 +69,16 @@ export const BookingConfirmationEmail = ({
                     textTransform: "capitalize",
                   }}
                 >
-                  💭 {appointmentDetails.service!.name}
+                  💭 {confirmationDetails.serviceName}
                 </Text>
                 <Text style={{ ...global.text, fontSize: 18 }}>
-                  🗓️ {appointmentDetails.date}
+                  🗓️ {confirmationDetails.apptDate}
                 </Text>
                 <Text style={{ ...global.text, fontSize: 18 }}>
-                  🕛 {appointmentDetails.time}
+                  🕛 {confirmationDetails.apptTime}
                 </Text>
                 <Text style={{ ...global.text, fontSize: 18 }}>
-                  📍 {appointmentDetails.location}
+                  📍 {confirmationDetails.apptLocation}
                 </Text>
                 {/* <div className='grid place-items-center'>
                   <Link className='border text-lg p-2 w-[220px] block text-center bg-[#432f1f] text-[#f2eae3] rounded-lg mt-8'>
@@ -109,31 +109,12 @@ export const BookingConfirmationEmail = ({
 );
 
 BookingConfirmationEmail.PreviewProps = {
-  appointmentDetails: {
+  confirmationDetails: {
     name: "Jane Doe",
-    email: "janedoe@gmail.com",
-    phoneNumber: "2314567890",
-    instagram: "@janedoe",
-    isInstructionsAcknowledged: true,
-    location: "Los Angeles, CA",
-    date: "Tuesday, March 18, 2025",
-    time: "10:00 AM",
-    discovery: "Website",
-    service: {
-      name: "Full Glam Makeup Application",
-      id: 0,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      price: 0,
-      isSale: false,
-      salePrice: 0,
-      duration: "",
-      description: "",
-      svgData: null,
-    },
-    requiresTravel: true,
-    addtlDetails: "Test test test test test",
-    id: "c1469bcc-8f26-4197-be7f-9fe83813ad49",
+    apptDate: "Wednesday, March 26, 2025",
+    apptLocation: "Los Angeles, CA",
+    apptTime: "1:00 PM",
+    serviceName: "Full Glam Makeup Application",
   },
 } satisfies BookingConfirmationEmailProps;
 

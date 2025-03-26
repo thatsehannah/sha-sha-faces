@@ -2,8 +2,8 @@ import BookingConfirmationEmail from "@/components/emails/BookingConfirmationEma
 import NewAppointmentEmail from "@/components/emails/NewAppointmentEmail";
 import { fetchAppointmentsByDate } from "@/utils/actions";
 import {
-  AppointmentWithService,
   Availability,
+  BookingConfirmationEmailDetails,
   Appointment as NewAppointment,
 } from "@/utils/types";
 import { clsx, type ClassValue } from "clsx";
@@ -122,16 +122,17 @@ export const calculateReviewScore = (rating: string) => {
 };
 
 export const sendBookingConfirmationEmail = async (
-  appt: AppointmentWithService
+  clientEmail: string,
+  confirmationDetails: BookingConfirmationEmailDetails
 ) => {
   const resend = new Resend(process.env.RESEND_API_KEY as string);
   const senderEmail = process.env.SENDER_EMAIL as string;
 
   const message: CreateEmailOptions = {
-    to: appt.email,
+    to: clientEmail,
     from: senderEmail,
     subject: "Thank You For Booking With Sha Sha Faces",
-    react: BookingConfirmationEmail({ appointmentDetails: appt }),
+    react: BookingConfirmationEmail({ confirmationDetails }),
   };
 
   try {

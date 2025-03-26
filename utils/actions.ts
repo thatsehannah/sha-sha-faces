@@ -3,6 +3,7 @@
 import {
   AppointmentWithService,
   Availability,
+  BookingConfirmationEmailDetails,
   EditAppointment,
   Appointment as NewAppointment,
   NewPhoto,
@@ -144,7 +145,18 @@ export const updateAppointment = async (
     });
 
     if (updates.status === "Confirmed") {
-      await sendBookingConfirmationEmail(appointment);
+      const confirmationDetails: BookingConfirmationEmailDetails = {
+        name: appointment.name,
+        apptDate: appointment.date,
+        apptLocation: appointment.location,
+        apptTime: appointment.time,
+        serviceName: appointment.service.name,
+      };
+
+      await sendBookingConfirmationEmail(
+        appointment.email,
+        confirmationDetails
+      );
     }
 
     revalidatePaths(["/admin", "/admin/appointments"]);

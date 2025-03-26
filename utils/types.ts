@@ -99,3 +99,11 @@ export type Faq = {
   question: string;
   answer: string;
 };
+
+export type BookingConfirmationEmailDetails = {
+  name: string;
+  serviceName: string;
+  apptDate: string;
+  apptTime: string;
+  apptLocation: string;
+};
