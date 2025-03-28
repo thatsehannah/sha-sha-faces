@@ -10,7 +10,7 @@ import Container from "../global/Container";
 
 const Hero = () => {
   return (
-    <section className='h-auto md:h-[70vh] lg:h-full flex items-center bg-primary py-12'>
+    <section className='h-auto md:h-[70vh] lg:h-full flex items-center bg-hero-bg bg-cover bg-no-repeat py-12'>
       <Container className='flex justify-center items-center'>
         <motion.div
           initial={{ opacity: 0, x: 75 }}
