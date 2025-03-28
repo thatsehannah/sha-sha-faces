@@ -1,6 +1,7 @@
 import React from "react";
 import ServiceDetail from "./ServiceDetail";
 import { Service } from "@prisma/client";
+import ServiceDurationDetail from "./ServiceDurationDetail";
 
 type ServiceDetailsContentProps = {
   service: Service;
@@ -19,10 +20,9 @@ const ServiceDetailsContent = ({ service }: ServiceDetailsContentProps) => {
         data={service.price}
         label='price'
       />
-      <ServiceDetail
+      <ServiceDurationDetail
         id={service.id}
-        data={`${service.duration.toString()}`}
-        label='duration'
+        duration={`${service.duration}`}
       />
     </div>
   );
