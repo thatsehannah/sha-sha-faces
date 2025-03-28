@@ -16,7 +16,7 @@ type ServiceDetailProps = {
 const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
   const { toast } = useToast();
   const [isEditing, setIsEditing] = useState(false);
-  const [text, setText] = useState(data);
+  const [valueToUpdate, setValueToUpdate] = useState<string>(data);
   const textareaRef = useRef(null);
 
   const autoGrow = (element: HTMLTextAreaElement) => {
@@ -26,7 +26,23 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
 
   const handleSave = async () => {
     try {
-      const updates = { [label]: text };
+      let dbValue = valueToUpdate;
+
+      if (label === "price") {
+        if (!parseInt(dbValue)) {
+          throw new Error("Price must be a number");
+        }
+
+        //fail safe if client forgets to add a $ when updating price
+        if (dbValue[0] !== "$") {
+          dbValue = "$" + dbValue;
+          setValueToUpdate(dbValue);
+        }
+      }
+
+      const updates = { [label]: dbValue };
+
+      console.log(updates);
 
       const resultMessage = await updateService(id, updates);
 
@@ -72,8 +88,8 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
         <Textarea
           id={id.toString()}
           ref={textareaRef}
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={valueToUpdate}
+          onChange={(e) => setValueToUpdate(e.target.value)}
           readOnly={!isEditing}
           className={`${isEditing} ? bg-background : ""`}
         />
@@ -88,7 +104,7 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
               setIsEditing(false);
               handleSave();
             }}
-            disabled={text === "" || text === data}
+            disabled={valueToUpdate === "" || valueToUpdate === data}
           >
             Save
           </Button>
@@ -97,7 +113,7 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
             className='bg-transparent text-black'
             onClick={() => {
               setIsEditing(false);
-              setText(data);
+              setValueToUpdate(data);
             }}
           >
             Cancel

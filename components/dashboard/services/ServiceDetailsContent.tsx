@@ -16,7 +16,7 @@ const ServiceDetailsContent = ({ service }: ServiceDetailsContentProps) => {
       />
       <ServiceDetail
         id={service.id}
-        data={`$${service.price.toString()}`}
+        data={service.price}
         label='price'
       />
       <ServiceDetail

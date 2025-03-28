@@ -41,7 +41,7 @@ const ServicesCard = ({ service }: ServiceCardProps) => {
           <CardDescription className='text-lg text-right text-muted-foreground'>
             <div className='flex justify-between'>
               <p>{service.duration}</p>
-              <p>${service.price}</p>
+              <p>{service.price}</p>
             </div>
           </CardDescription>
         </CardHeader>

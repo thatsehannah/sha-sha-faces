@@ -120,7 +120,7 @@ const NewServiceForm = () => {
               <SimpleFormInput
                 label='price'
                 fieldName='price'
-                type='number'
+                type='text'
                 maxLength={4}
                 className='w-20'
                 prefix='$'

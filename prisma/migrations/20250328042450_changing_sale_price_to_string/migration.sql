@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Service" ALTER COLUMN "salePrice" SET DEFAULT '0',
+ALTER COLUMN "salePrice" SET DATA TYPE TEXT;

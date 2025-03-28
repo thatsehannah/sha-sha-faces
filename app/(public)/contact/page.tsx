@@ -15,6 +15,14 @@ const ContactPage = async () => {
     (data) => data!.map((inst) => inst.rule)
   );
 
+  if (serviceData.length === 0) {
+    return (
+      <p>
+        Something went wrong. We are working to get this issue resolved quickly.
+      </p>
+    );
+  }
+
   return (
     <main className='relative'>
       <LeftSectionTitle title='booking form' />

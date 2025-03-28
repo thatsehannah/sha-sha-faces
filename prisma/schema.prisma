@@ -38,9 +38,9 @@ model Appointment {
 model Service {
   id Int @id @default(autoincrement())
   name String @unique
-  price Int
+  price String
   isSale Boolean @default(false)
-  salePrice Int @default(0)
+  salePrice String @default("0")
   duration String
   description String
   svgData Json

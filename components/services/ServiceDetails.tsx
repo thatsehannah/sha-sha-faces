@@ -66,7 +66,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
                 size={20}
                 className='transform rotate-45 text-black'
               />
-              <p className='text-xl text-black'>${price}</p>
+              <p className='text-xl text-black'>{price}</p>
             </div>
           </div>
 

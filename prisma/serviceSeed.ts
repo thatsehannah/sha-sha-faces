@@ -1,7 +1,7 @@
 export const serviceSeed = [
   {
     name: "full glam makeup application",
-    price: 120,
+    price: "$120",
     duration: "2 hr",
     description:
       "Includes, brow fill, flawless foundation,contour/ bronzer, highlight, blush lip color and natural eyeshadow of choice. Strip lashes of choice will also be included.",
@@ -20,7 +20,7 @@ export const serviceSeed = [
   },
   {
     name: "virtual one on one makeup lesson",
-    price: 300,
+    price: "$300",
     duration: "2 hr 30 min",
     description:
       "This is a one on one lesson done on yourself via FaceTime or Zoom. This lesson teaches you how to get a perfect soft everyday glam. My tips, tricks and products used will be shared. Products are provided by you.",
@@ -41,7 +41,7 @@ export const serviceSeed = [
   },
   {
     name: "half day set rate",
-    price: 600,
+    price: "$600",
     duration: "4 hr",
     description:
       "This is my price a 4 hour day varies depending on how many people and what needs to be done. OT is $100 per hour. Please email shashafaces@gmail.com to inquire.",
@@ -62,7 +62,7 @@ export const serviceSeed = [
   },
   {
     name: "daily set rate",
-    price: 1200,
+    price: "$1200",
     duration: "8 hr",
     description:
       "This is my price for an 8 hour day varies depending on how many people and what needs to be done. OT is $100 per hour. Please email shashafaces@gmail.com to inquire.",
@@ -78,7 +78,7 @@ export const serviceSeed = [
   },
   {
     name: "one on one makeup lesson",
-    price: 350,
+    price: "$350",
     duration: "3 hr",
     description:
       "This is a one on one lesson done on yourself. This lesson teaches you how to get a perfect soft everyday glam. My tips, tricks and products used will be shared. Products are provided by you.",
@@ -97,7 +97,7 @@ export const serviceSeed = [
   },
   {
     name: "bridal consultation",
-    price: 160,
+    price: "$160",
     duration: "2 hr 45 min",
     description:
       "The bride will choose the perfect look for the wedding based on color schemes and accessories. Eyeshadow options are endless; from a sparkly to a simple and sultry look the choice is yours.",
@@ -113,7 +113,7 @@ export const serviceSeed = [
   },
   {
     name: "bridal makeup",
-    price: 190,
+    price: "$190",
     duration: "2 hr 30 min",
     description: "Please call or email shashafaces@gmail to book this service.",
     isSale: false,
@@ -128,7 +128,7 @@ export const serviceSeed = [
   },
   {
     name: "bridal party",
-    price: 150,
+    price: "$150",
     duration: "1 hr",
     description:
       "This price varies based on the location of wedding and the size of bridal party. Please call or email shashafaces@gmail.com to provide more information and book.",
@@ -146,7 +146,7 @@ export const serviceSeed = [
   },
   {
     name: "house call/travel fee",
-    price: 60,
+    price: "$60",
     duration: "1 hr",
     description:
       "$60 flat rate within 10 miles of Hollywood. $1.75 per mile both ways for anything over the 10 mile radius",
