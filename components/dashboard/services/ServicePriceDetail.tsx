@@ -7,37 +7,26 @@ import { updateService } from "@/utils/actions";
 import { Edit } from "lucide-react";
 import React, { useState } from "react";
 
-type ServiceDurationDetailProps = {
+type ServicePriceDetailProps = {
   id: number;
-  duration: string;
+  price: string;
 };
 
-const ServiceDurationDetail = ({
-  id,
-  duration,
-}: ServiceDurationDetailProps) => {
-  const durationArr = duration.split(" ");
-  const initialHr = durationArr[0];
-  let initialMin = "0";
-
-  if (durationArr.length === 4) {
-    initialMin = durationArr[2];
-  }
-
+const ServicePriceDetail = ({ id, price }: ServicePriceDetailProps) => {
   const { toast } = useToast();
   const [isEditing, setIsEditing] = useState(false);
-  const [newHour, setNewHour] = useState(initialHr);
-  const [newMinute, setNewMinute] = useState(initialMin);
+
+  const initialPrice = price.slice(1);
+  const [newPrice, setNewPrice] = useState(initialPrice);
 
   const handleSave = async () => {
     try {
       setIsEditing(false);
-      const durationString = `${newHour} hr${
-        newMinute !== "0" ? ` ${newMinute} min` : ""
-      }`;
-      const durationDbValue = { ["duration"]: durationString };
+      const priceString = `$${newPrice}`;
 
-      const resultMessage = await updateService(id, durationDbValue);
+      const priceDbValue = { ["price"]: priceString };
+
+      const resultMessage = await updateService(id, priceDbValue);
 
       toast({
         variant: "success",
@@ -59,7 +48,7 @@ const ServiceDurationDetail = ({
       <div className='w-full'>
         <div className='flex items-center gap-3 mb-4'>
           <p className='font-bold text-[1rem] mb-1 capitalize text-foreground'>
-            duration
+            price
           </p>
           {!isEditing && (
             <Button
@@ -72,42 +61,21 @@ const ServiceDurationDetail = ({
           )}
         </div>
         <div
-          id={"duration-" + id.toString()}
+          id={"price-" + id.toString()}
           className='flex flex-row gap-6'
         >
           <div className='flex'>
             <Input
-              className='rounded-r-none border-r-0 w-16 bg-background'
-              value={newHour}
-              type='number'
-              maxLength={2}
-              min={0}
-              max={23}
-              readOnly={!isEditing}
-              onChange={(e) => setNewHour(e.target.value)}
-            />
-            <Input
               readOnly
-              defaultValue='hr'
-              className='rounded-l-none w-14 text-center'
+              defaultValue='$'
+              className='rounded-r-none w-14 text-center'
             />
-          </div>
-          <div className='flex'>
             <Input
-              className='rounded-r-none border-r-0 w-16 bg-background'
-              value={newMinute}
-              type='number'
-              maxLength={2}
-              min={0}
-              max={45}
-              step={15}
+              className='rounded-l-none border-l-0 w-20 bg-background'
+              value={newPrice}
+              maxLength={4}
               readOnly={!isEditing}
-              onChange={(e) => setNewMinute(e.target.value)}
-            />
-            <Input
-              readOnly
-              defaultValue='min'
-              className='rounded-l-none w-14 text-center'
+              onChange={(e) => setNewPrice(e.target.value)}
             />
           </div>
         </div>
@@ -120,11 +88,7 @@ const ServiceDurationDetail = ({
             onClick={() => {
               handleSave();
             }}
-            disabled={
-              newHour === "" ||
-              newMinute === "" ||
-              (newHour === initialHr && newMinute === initialMin)
-            }
+            disabled={newPrice === "" || newPrice === initialPrice}
           >
             Save
           </Button>
@@ -133,8 +97,7 @@ const ServiceDurationDetail = ({
             className='bg-transparent text-black'
             onClick={() => {
               setIsEditing(false);
-              setNewHour(initialHr);
-              setNewMinute(initialMin);
+              setNewPrice(initialPrice);
             }}
           >
             Cancel
@@ -145,4 +108,4 @@ const ServiceDurationDetail = ({
   );
 };
 
-export default ServiceDurationDetail;
+export default ServicePriceDetail;

@@ -29,9 +29,6 @@ const NewServiceForm = () => {
     },
   });
 
-  const { handleSubmit } = form;
-
-  //TODO: put everything in this function in a try-catch block (do same for everything that has a zod schema)
   const handleCreateService = async (data: FormNewService) => {
     try {
       const validatedData = validateNewServiceSchema(data);
@@ -42,11 +39,13 @@ const NewServiceForm = () => {
           : ""
       }`;
 
+      const price = `$${validatedData.price}`;
+
       const newService: NewService = {
         name: validatedData.name.toLowerCase(),
         duration,
         description: validatedData.description,
-        price: validatedData.price,
+        price,
         svgData: FALLBACK_SERVICE_SVG,
       };
 
@@ -87,7 +86,7 @@ const NewServiceForm = () => {
   return (
     <>
       <FormProvider {...form}>
-        <form onSubmit={handleSubmit(handleCreateService, onInvalid)}>
+        <form onSubmit={form.handleSubmit(handleCreateService, onInvalid)}>
           <section className='flex flex-col gap-8 my-8'>
             <div className='grid grid-cols-2 lg:flex lg:flex-row gap-8 lg:justify-between'>
               <SimpleFormInput

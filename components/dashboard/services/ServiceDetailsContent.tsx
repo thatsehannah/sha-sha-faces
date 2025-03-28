@@ -2,6 +2,7 @@ import React from "react";
 import ServiceDetail from "./ServiceDetail";
 import { Service } from "@prisma/client";
 import ServiceDurationDetail from "./ServiceDurationDetail";
+import ServicePriceDetail from "./ServicePriceDetail";
 
 type ServiceDetailsContentProps = {
   service: Service;
@@ -15,15 +16,16 @@ const ServiceDetailsContent = ({ service }: ServiceDetailsContentProps) => {
         data={service.description}
         label='description'
       />
-      <ServiceDetail
-        id={service.id}
-        data={service.price}
-        label='price'
-      />
-      <ServiceDurationDetail
-        id={service.id}
-        duration={`${service.duration}`}
-      />
+      <div className='flex flex-col xl:flex-row xl:gap-36'>
+        <ServiceDurationDetail
+          id={service.id}
+          duration={service.duration}
+        />
+        <ServicePriceDetail
+          id={service.id}
+          price={service.price}
+        />
+      </div>
     </div>
   );
 };
