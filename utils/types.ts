@@ -74,7 +74,7 @@ export type Availability = {
 
 export type NewService = {
   name: string;
-  price: number;
+  price: string;
   duration: string;
   description: string;
   svgData: {

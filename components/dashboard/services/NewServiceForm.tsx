@@ -46,7 +46,7 @@ const NewServiceForm = () => {
         name: validatedData.name.toLowerCase(),
         duration,
         description: validatedData.description,
-        price: parseInt(validatedData.price),
+        price: validatedData.price,
         svgData: FALLBACK_SERVICE_SVG,
       };
 
