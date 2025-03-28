@@ -10,7 +10,7 @@ export const newServiceSchema = z.object({
     .nonempty("Service name is required"),
   price: z
     .string()
-    .max(4)
+    .max(5)
     .nonempty("Must provide your price for this service")
     .refine(
       (value) => {

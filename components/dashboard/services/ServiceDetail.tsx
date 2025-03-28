@@ -24,20 +24,44 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
     element.style.height = element.scrollHeight + "px";
   };
 
+  const priceValueCheck = () => {
+    //tempPriceValue only will be used to check if valueToUpdate state is a valid num or too long (without modifying the state)
+    let tempPriceValue = valueToUpdate;
+    if (tempPriceValue[0] === "$") {
+      tempPriceValue = valueToUpdate.slice(1);
+    }
+
+    if (tempPriceValue.length > 5) {
+      setIsEditing(true);
+      setValueToUpdate(data);
+      throw new Error("Price is too long.");
+    }
+
+    if (!parseInt(tempPriceValue)) {
+      setIsEditing(true);
+      setValueToUpdate(data);
+      throw new Error("Price must be a number.");
+    }
+
+    //fail safe if client forgets to add a $ when updating price
+    let priceValue = valueToUpdate;
+    if (priceValue[0] !== "$") {
+      priceValue = "$" + priceValue;
+      setValueToUpdate(priceValue);
+    }
+
+    return priceValue;
+  };
+
+  //TODO: add durationValueCheck
+
   const handleSave = async () => {
     try {
+      setIsEditing(false);
       let dbValue = valueToUpdate;
 
       if (label === "price") {
-        if (!parseInt(dbValue)) {
-          throw new Error("Price must be a number");
-        }
-
-        //fail safe if client forgets to add a $ when updating price
-        if (dbValue[0] !== "$") {
-          dbValue = "$" + dbValue;
-          setValueToUpdate(dbValue);
-        }
+        dbValue = priceValueCheck();
       }
 
       const updates = { [label]: dbValue };
@@ -101,7 +125,6 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
           <Button
             className='bg-primary '
             onClick={() => {
-              setIsEditing(false);
               handleSave();
             }}
             disabled={valueToUpdate === "" || valueToUpdate === data}
