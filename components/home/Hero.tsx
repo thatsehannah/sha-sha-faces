@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { parisienne } from "@/lib/fonts";
+import { italianno } from "@/lib/fonts";
 import Container from "../global/Container";
 
 const Hero = () => {
@@ -28,7 +28,7 @@ const Hero = () => {
             className='h-[16rem] md:h-[24rem]'
           />
           <p
-            className={`${parisienne.className} text-3xl lg:text-4xl font-extrabold mt-4 text-primary-foreground`}
+            className={`${italianno.className} text-3xl lg:text-5xl font-extrabold mt-4 text-primary-foreground`}
           >
             Glam that soothes, beauty that shines
           </p>

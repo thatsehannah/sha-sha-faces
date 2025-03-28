@@ -1,7 +1,7 @@
 "use client";
 
 import Container from "@/components/global/Container";
-import { parisienne } from "@/lib/fonts";
+import { italianno } from "@/lib/fonts";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -26,7 +26,7 @@ const AboutPage = () => {
             <span className='text-3xl font-bold'>
               Hey! I’m{" "}
               <span
-                className={`${parisienne.className} text-secondary text-5xl`}
+                className={`${italianno.className} text-secondary text-5xl`}
               >
                 Naisha
               </span>
@@ -40,7 +40,7 @@ const AboutPage = () => {
           </p>
           <p>
             I prioritize working with diverse skin tones and enhancing{" "}
-            <span className={`text-2xl ${parisienne.className}`}>
+            <span className={`text-3xl ${italianno.className}`}>
               natural beauty.
             </span>{" "}
             While bridal makeup is one of my specialties, I’m also venturing
@@ -54,7 +54,7 @@ const AboutPage = () => {
             me perfecting that glow that says “I woke up like this” (but we all
             know it takes a village), keeping things fun, fresh, and most
             importantly—flawless.{" "}
-            <span className={`text-2xl ${parisienne.className}`}>
+            <span className={`text-3xl ${italianno.className}`}>
               Let’s glam it up!
             </span>
           </p>
@@ -97,9 +97,9 @@ const AboutPage = () => {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: false, amount: 1 }}
+          viewport={{ once: true, amount: 0.8 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          transition={{ duration: 2.5, ease: "easeInOut" }}
           className='xl:-mt-40 -mt-28'
         >
           <Image

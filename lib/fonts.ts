@@ -7,6 +7,8 @@ import {
   Merriweather,
   Lora,
   Cormorant_Garamond,
+  Italianno,
+  Imperial_Script,
 } from "next/font/google";
 
 export const cabin = Cabin({
@@ -49,6 +51,18 @@ export const parisienne = Parisienne({
 });
 
 export const inter = Inter({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const italianno = Italianno({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const imperialScript = Imperial_Script({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
