@@ -10,7 +10,7 @@ import Container from "../global/Container";
 
 const Hero = () => {
   return (
-    <section className='h-auto md:h-[70vh] lg:h-full flex items-center bg-hero-bg bg-cover bg-no-repeat py-12'>
+    <section className='h-[90vh] md:h-[70vh] lg:h-full flex items-center bg-hero-bg bg-cover bg-no-repeat py-12'>
       <Container className='flex justify-center items-center'>
         <motion.div
           initial={{ opacity: 0, x: 75 }}
@@ -28,7 +28,7 @@ const Hero = () => {
             className='h-[16rem] md:h-[24rem]'
           />
           <p
-            className={`${italianno.className} text-3xl lg:text-5xl font-extrabold mt-4 text-primary-foreground`}
+            className={`${italianno.className} text-4xl lg:text-5xl font-extrabold mt-4 text-primary-foreground`}
           >
             Glam that soothes, beauty that shines
           </p>
