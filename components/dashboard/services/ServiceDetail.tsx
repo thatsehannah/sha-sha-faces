@@ -24,50 +24,10 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
     element.style.height = element.scrollHeight + "px";
   };
 
-  const priceValueCheck = () => {
-    if (valueToUpdate.trim() !== valueToUpdate) {
-      setIsEditing(true);
-      throw new Error(
-        "There's white space either before or after the text you've provided. Please check and remove."
-      );
-    }
-
-    //tempPriceValue only will be used to check if valueToUpdate state is a valid num or too long (without modifying the state)
-    let tempPriceValue = valueToUpdate;
-    if (tempPriceValue[0] === "$") {
-      tempPriceValue = valueToUpdate.slice(1);
-    }
-
-    if (tempPriceValue.length > 5) {
-      setIsEditing(true);
-      throw new Error("Price is too long.");
-    }
-
-    if (!parseInt(tempPriceValue)) {
-      setIsEditing(true);
-      setValueToUpdate(data);
-      throw new Error("Price must be a number.");
-    }
-
-    //fail safe if client forgets to add a $ when updating price
-    let priceValue = valueToUpdate;
-    if (priceValue[0] !== "$") {
-      priceValue = "$" + priceValue;
-      setValueToUpdate(priceValue);
-    }
-
-    return priceValue;
-  };
-
   const handleSave = async () => {
     try {
       setIsEditing(false);
-      let dbValue = valueToUpdate;
-
-      //TODO: create a ServicePriceDetail component (like ServiceDurationDetail component)
-      if (label === "price") {
-        dbValue = priceValueCheck();
-      }
+      const dbValue = valueToUpdate;
 
       const updates = { [label]: dbValue };
 

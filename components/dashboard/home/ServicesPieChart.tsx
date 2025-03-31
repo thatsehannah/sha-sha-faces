@@ -24,6 +24,7 @@ type ServicesPieChartProps = {
   }[];
 };
 
+//TODO: figure out to create chart config dynamically
 const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
   const chartConfig = {
     "bridal party": {

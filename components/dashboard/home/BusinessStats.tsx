@@ -36,18 +36,18 @@ const BusinessStats = ({ appointments, services }: BusinessStatsProps) => {
     <section>
       <div className='mb-12 bg-muted p-12 rounded-lg w-full'>
         <p className='text-2xl font-medium mb-8'>Business Stats</p>
-        <div className='flex gap-8 lg:flex-row flex-col '>
+        <div className='flex gap-8 lg:flex-row flex-col justify-between'>
           {data.length === 0 ? (
             <EmptyResults />
           ) : (
             isClient && (
-              <div className='xl:w-3/4 w-full'>
+              <div className='flex-1'>
                 <ServicesPieChart data={chartData} />
               </div>
             )
           )}
 
-          <div className=''>
+          <div className='flex-2'>
             <Card className='h-full'>
               <CardHeader className='pb-0'>
                 <CardTitle className='text-2xl font-medium'>

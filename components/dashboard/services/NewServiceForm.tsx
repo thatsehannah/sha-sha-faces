@@ -133,7 +133,6 @@ const NewServiceForm = () => {
                 inputType='textarea'
                 className='h-60 w-full'
               />
-              {/* TODO: add icon bank here */}
             </div>
             <div>
               <Button type='submit'>Create</Button>
