@@ -44,7 +44,7 @@ export const serviceSeed = [
     price: "$600",
     duration: "4 hr",
     description:
-      "This is my price a 4 hour day varies depending on how many people and what needs to be done. OT is $100 per hour. Please email shashafaces@gmail.com to inquire.",
+      "This is my price a 4 hour day varies depending on how many people and what needs to be done. OT is $100 per hour. Please email info@shashafaces.com to inquire.",
     isSale: false,
     salePrice: "0",
     svgData: {
@@ -65,7 +65,7 @@ export const serviceSeed = [
     price: "$1200",
     duration: "8 hr",
     description:
-      "This is my price for an 8 hour day varies depending on how many people and what needs to be done. OT is $100 per hour. Please email shashafaces@gmail.com to inquire.",
+      "This is my price for an 8 hour day varies depending on how many people and what needs to be done. OT is $100 per hour. Please email info@shashafaces.com to inquire.",
     isSale: false,
     salePrice: "0",
     svgData: {
@@ -131,7 +131,7 @@ export const serviceSeed = [
     price: "$150",
     duration: "1 hr",
     description:
-      "This price varies based on the location of wedding and the size of bridal party. Please call or email shashafaces@gmail.com to provide more information and book.",
+      "This price varies based on the location of wedding and the size of bridal party. Please call or email info@shashafaces.com to provide more information and book.",
     isSale: false,
     salePrice: "0",
     svgData: {

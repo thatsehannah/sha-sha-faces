@@ -47,7 +47,7 @@ export const BookingConfirmationEmail = ({
             <Text style={{ ...global.text, marginTop: 24 }}>
               To ensure a smooth experience, please arrive on time with a clean,
               moisturized face. If you need to reschedule or have any questions,
-              feel free to reach out at shashafaces@gmail.com. We can’t wait to
+              feel free to reach out at info@shashafaces.com. We can’t wait to
               see you and enhance your natural beauty!
             </Text>
           </Section>
