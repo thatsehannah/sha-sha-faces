@@ -67,6 +67,25 @@ export const fetchAllAppointments = async (): Promise<
   });
 };
 
+export const fetchTodaysAppointments = async (): Promise<
+  AppointmentWithService[]
+> => {
+  const today = new Date().toLocaleDateString();
+
+  return await db.appointment.findMany({
+    orderBy: {
+      updatedAt: "desc",
+    },
+    where: {
+      date: today,
+      status: "Confirmed",
+    },
+    include: {
+      service: true,
+    },
+  });
+};
+
 export const fetchAppointmentById = async (
   id: string
 ): Promise<AppointmentWithService> => {

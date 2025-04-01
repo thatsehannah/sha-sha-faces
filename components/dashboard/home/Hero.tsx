@@ -1,27 +1,28 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { AppointmentWithService } from "@/utils/types";
 import AppointmentCard from "../components/AppointmentCard";
 
 type HeroProps = {
-  appointments: AppointmentWithService[];
+  todaysAppointments: AppointmentWithService[];
 };
 
-const Hero = ({ appointments }: HeroProps) => {
-  const currentHour = new Date().getHours();
-  const today = new Date().toLocaleDateString();
-  const todayAppointments = appointments.filter(
-    (appt) => appt.date === today && appt.status === "Confirmed"
-  );
+const Hero = ({ todaysAppointments }: HeroProps) => {
+  const [timeOfDay, setTimeOfDay] = useState("");
 
-  let timeOfDay: string;
-  if (currentHour >= 0 && currentHour < 12) {
-    timeOfDay = "morning";
-  } else if (currentHour >= 12 && currentHour < 17) {
-    timeOfDay = "afternoon";
-  } else {
-    timeOfDay = "evening";
-  }
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+
+    if (currentHour >= 0 && currentHour < 12) {
+      setTimeOfDay("morning");
+    } else if (currentHour >= 12 && currentHour < 17) {
+      setTimeOfDay("afternoon");
+    } else {
+      setTimeOfDay("evening");
+    }
+  }, []);
 
   return (
     <section>
@@ -35,12 +36,12 @@ const Hero = ({ appointments }: HeroProps) => {
       </div>
       <div className='mb-24 w-full'>
         <p className='font-medium text-2xl mb-6'>Your day at a glance:</p>
-        {todayAppointments.length === 0 ? (
+        {todaysAppointments.length === 0 ? (
           <p className='text-center font-normal text-black text-xl tracking-wide bg-secondary text-secondary-foreground rounded-md p-4'>
             No appointments today.
           </p>
         ) : (
-          todayAppointments.map((appt, idx) => (
+          todaysAppointments.map((appt, idx) => (
             <AppointmentCard
               key={idx}
               appointment={appt}
