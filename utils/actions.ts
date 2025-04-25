@@ -8,6 +8,7 @@ import {
   Appointment as NewAppointment,
   NewPhoto,
   NewService,
+  NewTestimonialScreenshot,
   Review,
 } from "./types";
 import { PortfolioPhoto, Prisma } from "@prisma/client";
@@ -441,7 +442,7 @@ export const deletePortfolioPhoto = async (photo: PortfolioPhoto) => {
       },
     });
 
-    deletePhotoFromBucket(deletedPhoto.url);
+    deletePhotoFromBucket(deletedPhoto.url, "portfolio");
 
     revalidatePaths(["/", "/portfolio", "/admin/info"]);
 
@@ -601,4 +602,24 @@ export const deleteBookingInstruction = async (id: string) => {
 
 export const fetchAllTestimonials = async () => {
   return await db.testimonialScreenshot.findMany();
+};
+
+export const createNewTestimonialScreenshot = async (
+  screenshot: NewTestimonialScreenshot
+) => {
+  try {
+    await db.testimonialScreenshot.create({
+      data: {
+        url: screenshot.url,
+        alt: screenshot.alt,
+      },
+    });
+    revalidatePaths(["/reviews", "/admin"]);
+
+    return "Tesimonial uploaded";
+  } catch (error) {
+    captureException(error);
+
+    throw new Error("An error occurred while uploading your testimonial.");
+  }
 };

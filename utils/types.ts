@@ -111,4 +111,5 @@ export type BookingConfirmationEmailDetails = {
 export type NewTestimonialScreenshot = {
   url: string;
   alt: string;
+  file: File;
 };

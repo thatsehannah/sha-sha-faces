@@ -9,7 +9,7 @@ const ManageTestimonial = async () => {
   const testimonials = await fetchAllTestimonials();
 
   return (
-    <section>
+    <section id='testimonials'>
       <div className='bg-muted p-12 rounded-lg w-full'>
         <div className='flex justify-between'>
           <p className='text-2xl font-medium'>Your Testimonials</p>

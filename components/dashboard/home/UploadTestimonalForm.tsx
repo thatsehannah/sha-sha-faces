@@ -2,13 +2,20 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { uploadPhoto } from "@/lib/supabase";
+import { chunkArray } from "@/lib/utils";
+import { createNewTestimonialScreenshot } from "@/utils/actions";
 import { NewTestimonialScreenshot } from "@/utils/types";
 import { CircleX, RotateCw } from "lucide-react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import React, { ChangeEvent } from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 
 const UploadTestimonalForm = () => {
+  const { toast } = useToast();
+
   //specify that the form will store an array of screenshots
   const form = useForm<{ screenshots: NewTestimonialScreenshot[] }>({
     defaultValues: { screenshots: [] },
@@ -34,14 +41,68 @@ const UploadTestimonalForm = () => {
         append({
           url: URL.createObjectURL(file),
           alt: "new testimonial",
+          file,
         });
       });
     }
   };
 
+  const handleFormSubmit = async (data: {
+    screenshots: NewTestimonialScreenshot[];
+  }) => {
+    let numPhotosUploaded = 0;
+    let isUploadComplete = false;
+    const chunkSize = 3;
+    const screenshotChunks = chunkArray(data.screenshots, chunkSize);
+
+    try {
+      for (const chunk of screenshotChunks) {
+        const uploadedScreenshots = await Promise.all(
+          chunk.map(async (screenshot) => {
+            const newScreenshotUrl = await uploadPhoto(
+              screenshot.file,
+              "screenshots"
+            );
+            return {
+              ...screenshot,
+              url: newScreenshotUrl,
+              alt: "testimonial screenshot",
+            };
+          })
+        );
+
+        await Promise.all(
+          uploadedScreenshots.map((screenshotData) =>
+            createNewTestimonialScreenshot(screenshotData)
+          )
+        );
+        numPhotosUploaded += chunk.length;
+      }
+
+      isUploadComplete = true;
+
+      toast({
+        variant: "success",
+        title: "Success ✅",
+        description: `${numPhotosUploaded} photos uploaded successfully`,
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh ☹️",
+        description:
+          error instanceof Error ? error.message : "An error occurred ",
+      });
+    }
+
+    if (isUploadComplete) {
+      redirect("/admin#testimonials");
+    }
+  };
+
   return (
     <FormProvider {...form}>
-      <form>
+      <form onSubmit={form.handleSubmit(handleFormSubmit)}>
         <div className='flex flex-col gap-4'>
           <div>
             <Input
