@@ -10,7 +10,7 @@ import {
 import BusinessStats from "@/components/dashboard/home/BusinessStats";
 import AppointmentOverview from "@/components/dashboard/home/AppointmentOverview";
 import ReviewDetail from "@/components/dashboard/home/ReviewDetail";
-import UploadTestimonalForm from "@/components/dashboard/home/UploadTestimonalForm";
+import ManageTestimonial from "@/components/dashboard/home/ManageTestimonial";
 
 const AdminHomePage = async () => {
   const appointments = await fetchAllAppointments();
@@ -28,7 +28,7 @@ const AdminHomePage = async () => {
           appointments={appointments}
         />
         <ReviewDetail reviews={reviews} />
-        <UploadTestimonalForm />
+        <ManageTestimonial />
       </Container>
     </main>
   );
