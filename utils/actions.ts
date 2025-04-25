@@ -598,3 +598,7 @@ export const deleteBookingInstruction = async (id: string) => {
     );
   }
 };
+
+export const fetchAllTestimonials = async () => {
+  return await db.testimonialScreenshot.findMany();
+};
