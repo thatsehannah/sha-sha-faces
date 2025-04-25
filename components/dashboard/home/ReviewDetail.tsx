@@ -42,7 +42,7 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
   );
 
   return (
-    <section>
+    <section className='mb-12'>
       <div className='bg-muted p-12 rounded-lg w-full'>
         <p className='text-2xl font-medium'>Your Reviews</p>
         <p className='text-muted-foreground mt-2'>
