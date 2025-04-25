@@ -1,22 +1,18 @@
-"use client";
-
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Pencil } from "lucide-react";
 import ReviewCard from "./ReviewCard";
 import EmptyResults from "../global/EmptyResults";
-import { ReviewWithService } from "@/utils/types";
+import { fetchViewableReviews } from "@/utils/actions";
 
-type ReviewContainerProps = {
-  reviews: ReviewWithService[];
-};
+const ReviewContainer = async () => {
+  const reviews = await fetchViewableReviews();
 
-const ReviewContainer = ({ reviews }: ReviewContainerProps) => {
   return (
-    <section className='relative'>
+    <section>
       <div className='flex justify-between'>
-        <p className='text-xl text-center'>
+        <p className='text-xl'>
           See what my clients have to say about their experience.
         </p>
         <div>

@@ -11,7 +11,7 @@ import {
   NewTestimonialScreenshot,
   Review,
 } from "./types";
-import { PortfolioPhoto, Prisma } from "@prisma/client";
+import { PortfolioPhoto, Prisma, TestimonialScreenshot } from "@prisma/client";
 import db from "./db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -621,5 +621,27 @@ export const createNewTestimonialScreenshot = async (
     captureException(error);
 
     throw new Error("An error occurred while uploading your testimonial.");
+  }
+};
+
+export const deleteTestimonialScreenshot = async (
+  screenshot: TestimonialScreenshot
+) => {
+  try {
+    const deletedScreenshot = await db.testimonialScreenshot.delete({
+      where: {
+        id: screenshot.id,
+      },
+    });
+
+    deletePhotoFromBucket(deletedScreenshot.url, "screenshots");
+
+    revalidatePaths(["/reviews", "/admin"]);
+
+    return "Testimonial deleted.";
+  } catch (error) {
+    captureException(error);
+
+    throw new Error("An error occurred while deleting your testimonial.");
   }
 };

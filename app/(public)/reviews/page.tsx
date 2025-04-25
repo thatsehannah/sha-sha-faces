@@ -1,15 +1,14 @@
 import Container from "@/components/global/Container";
+import { LeftSectionTitle } from "@/components/global/SectionTitles";
 import ReviewContainer from "@/components/review/ReviewContainer";
 import TestimonialContainer from "@/components/review/TestimonialContainer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { fetchViewableReviews } from "@/utils/actions";
 import React from "react";
 
 const ReviewsPage = async () => {
-  const reviews = await fetchViewableReviews();
-
   return (
-    <main>
+    <main className='relative'>
+      <LeftSectionTitle title='praise' />
       <Container className='py-20'>
         <Tabs
           defaultValue='reviews'
@@ -30,7 +29,7 @@ const ReviewsPage = async () => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value='reviews'>
-            <ReviewContainer reviews={reviews} />
+            <ReviewContainer />
           </TabsContent>
           <TabsContent value='testimonials'>
             <TestimonialContainer />

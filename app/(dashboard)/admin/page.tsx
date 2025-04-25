@@ -4,6 +4,7 @@ import React from "react";
 import {
   fetchAllAppointments,
   fetchAllReviews,
+  fetchAllTestimonials,
   fetchServiceWithAppointments,
   fetchTodaysAppointments,
 } from "@/utils/actions";
@@ -17,18 +18,19 @@ const AdminHomePage = async () => {
   const todaysAppointments = await fetchTodaysAppointments();
   const services = await fetchServiceWithAppointments();
   const reviews = await fetchAllReviews();
+  const testimonials = await fetchAllTestimonials();
 
   return (
     <main>
       <Container className='py-20 w-screen lg:w-[80vw]'>
         <Hero todaysAppointments={todaysAppointments} />
-        <AppointmentOverview appointments={appointments} />
+        <AppointmentOverview />
         <BusinessStats
           services={services}
           appointments={appointments}
         />
         <ReviewDetail reviews={reviews} />
-        <ManageTestimonial />
+        <ManageTestimonial testimonials={testimonials} />
       </Container>
     </main>
   );
