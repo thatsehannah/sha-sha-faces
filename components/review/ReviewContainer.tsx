@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Container from "../global/Container";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Pencil } from "lucide-react";
@@ -15,7 +14,7 @@ type ReviewContainerProps = {
 
 const ReviewContainer = ({ reviews }: ReviewContainerProps) => {
   return (
-    <Container className='py-20'>
+    <section className='relative'>
       <div className='flex justify-between'>
         <p className='text-xl text-center'>
           See what my clients have to say about their experience.
@@ -49,7 +48,7 @@ const ReviewContainer = ({ reviews }: ReviewContainerProps) => {
           ))}
         </div>
       )}
-    </Container>
+    </section>
   );
 };
 
