@@ -42,7 +42,7 @@ const UploadPhotoForm = () => {
           category: "",
           url: URL.createObjectURL(file),
           alt: "new photo",
-          file: file,
+          file,
         });
       });
     }
@@ -58,7 +58,7 @@ const UploadPhotoForm = () => {
       for (const chunk of photoChunks) {
         const uploadedPhotos = await Promise.all(
           chunk.map(async (photo) => {
-            const newPhotoUrl = await uploadPhoto(photo.file);
+            const newPhotoUrl = await uploadPhoto(photo.file, "portfolio");
             return {
               ...photo,
               url: newPhotoUrl,

@@ -25,7 +25,7 @@ const Reviews = async () => {
             Want to leave a review?{" "}
             <span>
               <Link
-                href='/reviews/new'
+                href='/feedback/new'
                 className='text-primary font-bold'
               >
                 Click here

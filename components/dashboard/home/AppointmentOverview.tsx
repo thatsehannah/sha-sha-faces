@@ -1,14 +1,10 @@
-"use client";
-
 import React from "react";
 import OverviewCard from "../components/OverviewCard";
-import { AppointmentWithService } from "@/utils/types";
+import { fetchAllAppointments } from "@/utils/actions";
 
-type AppointmentOverviewProps = {
-  appointments: AppointmentWithService[];
-};
+const AppointmentOverview = async () => {
+  const appointments = await fetchAllAppointments();
 
-const AppointmentOverview = ({ appointments }: AppointmentOverviewProps) => {
   const pendingAppointmentCount = appointments.filter(
     (appt) => appt.status === "Pending"
   ).length;

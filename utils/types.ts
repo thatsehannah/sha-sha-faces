@@ -107,3 +107,9 @@ export type BookingConfirmationEmailDetails = {
   apptTime: string;
   apptLocation: string;
 };
+
+export type NewTestimonialScreenshot = {
+  url: string;
+  alt: string;
+  file: File;
+};

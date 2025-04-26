@@ -8,9 +8,10 @@ import {
   Appointment as NewAppointment,
   NewPhoto,
   NewService,
+  NewTestimonialScreenshot,
   Review,
 } from "./types";
-import { PortfolioPhoto, Prisma } from "@prisma/client";
+import { PortfolioPhoto, Prisma, TestimonialScreenshot } from "@prisma/client";
 import db from "./db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -319,7 +320,7 @@ export const updateReviewVisibility = async (id: string, value: boolean) => {
       },
     });
 
-    revalidatePaths(["/admin", "/reviews"]);
+    revalidatePaths(["/admin", "/feedback"]);
   } catch (error) {
     captureException(error);
   }
@@ -441,7 +442,7 @@ export const deletePortfolioPhoto = async (photo: PortfolioPhoto) => {
       },
     });
 
-    deletePhotoFromBucket(deletedPhoto.url);
+    deletePhotoFromBucket(deletedPhoto.url, "portfolio");
 
     revalidatePaths(["/", "/portfolio", "/admin/info"]);
 
@@ -596,5 +597,51 @@ export const deleteBookingInstruction = async (id: string) => {
     throw new Error(
       "An error occurred while deleting your booking instructions."
     );
+  }
+};
+
+export const fetchAllTestimonials = async () => {
+  return await db.testimonialScreenshot.findMany();
+};
+
+export const createNewTestimonialScreenshot = async (
+  screenshot: NewTestimonialScreenshot
+) => {
+  try {
+    await db.testimonialScreenshot.create({
+      data: {
+        url: screenshot.url,
+        alt: screenshot.alt,
+      },
+    });
+    revalidatePaths(["/feedback", "/admin"]);
+
+    return "Tesimonial uploaded";
+  } catch (error) {
+    captureException(error);
+
+    throw new Error("An error occurred while uploading your testimonial.");
+  }
+};
+
+export const deleteTestimonialScreenshot = async (
+  screenshot: TestimonialScreenshot
+) => {
+  try {
+    const deletedScreenshot = await db.testimonialScreenshot.delete({
+      where: {
+        id: screenshot.id,
+      },
+    });
+
+    deletePhotoFromBucket(deletedScreenshot.url, "screenshots");
+
+    revalidatePaths(["/feedback", "/admin"]);
+
+    return "Testimonial deleted.";
+  } catch (error) {
+    captureException(error);
+
+    throw new Error("An error occurred while deleting your testimonial.");
   }
 };
