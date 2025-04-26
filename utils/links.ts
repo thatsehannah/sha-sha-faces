@@ -25,8 +25,8 @@ export const publicLinks = [
     path: "/#shop",
   },
   {
-    label: "reviews",
-    path: "/reviews",
+    label: "feedback",
+    path: "/feedback",
   },
 ];
 

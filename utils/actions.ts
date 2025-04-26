@@ -320,7 +320,7 @@ export const updateReviewVisibility = async (id: string, value: boolean) => {
       },
     });
 
-    revalidatePaths(["/admin", "/reviews"]);
+    revalidatePaths(["/admin", "/feedback"]);
   } catch (error) {
     captureException(error);
   }
@@ -614,7 +614,7 @@ export const createNewTestimonialScreenshot = async (
         alt: screenshot.alt,
       },
     });
-    revalidatePaths(["/reviews", "/admin"]);
+    revalidatePaths(["/feedback", "/admin"]);
 
     return "Tesimonial uploaded";
   } catch (error) {
@@ -636,7 +636,7 @@ export const deleteTestimonialScreenshot = async (
 
     deletePhotoFromBucket(deletedScreenshot.url, "screenshots");
 
-    revalidatePaths(["/reviews", "/admin"]);
+    revalidatePaths(["/feedback", "/admin"]);
 
     return "Testimonial deleted.";
   } catch (error) {

@@ -8,7 +8,7 @@ import React from "react";
 const ReviewsPage = async () => {
   return (
     <main className='relative'>
-      <LeftSectionTitle title='praise' />
+      <LeftSectionTitle title='feedback' />
       <Container className='py-20'>
         <Tabs
           defaultValue='reviews'

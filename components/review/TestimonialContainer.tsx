@@ -11,11 +11,11 @@ const TestimonialContainer = async () => {
       <p className='text-xl'>
         Explore the heartfelt feedback I&apos;ve received from my clients!
       </p>
-      <div>
-        {testimonials.length === 0 && (
+      {testimonials.length === 0 && (
+        <div className='mt-6'>
           <EmptyResults text='No testimonials as of right now.' />
-        )}
-      </div>
+        </div>
+      )}
       <div className='columns-2 xl:columns-4 gap-4 space-y-4 mt-6'>
         {testimonials.map((testimonial) => (
           <div
