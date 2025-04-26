@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { deleteTestimonialScreenshot } from "@/utils/actions";
@@ -65,33 +66,36 @@ const ManageTestimonial = ({ testimonials }: ManageTestimonialProps) => {
           {testimonials.length === 0 && (
             <EmptyResults text='No testimonials as of right now.' />
           )}
-          <div className='columns-3 xl:columns-4 gap-4 space-y-4'>
-            {testimonials.map((testimonial) => (
-              <div
-                className='flex justify-center lg:justify-start gap-4'
-                key={testimonial.id}
-              >
-                <div className='relative h-auto'>
-                  <div className='absolute -top-2 -right-2 hover:scale-125 hover:cursor-pointer transition-all ease-in-out'>
-                    <CircleX
-                      fill='white'
-                      onClick={() => {
-                        setTestimonialToDelete(testimonial);
-                        setOpenDialog(true);
-                      }}
+          <ScrollArea className='h-[50rem] w-full bg-white p-6'>
+            <div className='columns-3 gap-4 space-y-4 mt-4'>
+              {testimonials.map((testimonial) => (
+                <div
+                  className='flex justify-center lg:justify-start gap-4'
+                  key={testimonial.id}
+                >
+                  <div className='relative'>
+                    <div className='absolute -top-2 -right-2 hover:scale-125 hover:cursor-pointer transition-all ease-in-out'>
+                      <CircleX
+                        fill='white'
+                        onClick={() => {
+                          setTestimonialToDelete(testimonial);
+                          setOpenDialog(true);
+                        }}
+                      />
+                    </div>
+                    <Image
+                      src={testimonial.url}
+                      alt={testimonial.alt}
+                      className='rounded-sm border border-primary'
+                      width={500}
+                      height={500}
                     />
                   </div>
-                  <Image
-                    src={testimonial.url}
-                    alt={testimonial.alt}
-                    className='object-cover w-full rounded-sm'
-                    width={500}
-                    height={500}
-                  />
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+            <ScrollBar orientation='horizontal' />
+          </ScrollArea>
         </div>
       </div>
       <Dialog
