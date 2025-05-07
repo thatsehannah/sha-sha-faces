@@ -129,9 +129,15 @@ export const sendBookingConfirmationEmail = async (
   const senderEmail = process.env.SENDER_EMAIL as string;
 
   const message: CreateEmailOptions = {
-    to: clientEmail,
+    to:
+      process.env.NODE_ENV === "production"
+        ? clientEmail
+        : "echannah631@gmail.com",
     from: senderEmail,
-    subject: "Thank You For Booking With Sha Sha Faces",
+    subject:
+      process.env.NODE_ENV === "production"
+        ? "Thank You For Booking With Sha Sha Faces"
+        : "DEV - Thank You For Booking With Sha Sha Faces",
     react: BookingConfirmationEmail({ confirmationDetails }),
   };
 
@@ -151,12 +157,18 @@ export const sendBookingConfirmationEmail = async (
 export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
   const resend = new Resend(process.env.RESEND_API_KEY as string);
   const senderEmail = process.env.SENDER_EMAIL as string;
-  const businessEmail = process.env.BUSINESS_EMAIL as string;
+  const businessEmail =
+    process.env.NODE_ENV === "production"
+      ? (process.env.BUSINESS_EMAIL as string)
+      : "echannah631@gmail.com";
 
   const message: CreateEmailOptions = {
     to: businessEmail,
     from: senderEmail,
-    subject: "New Appointment Booking",
+    subject:
+      process.env.NODE_ENV === "production"
+        ? "New Appointment Booking"
+        : "DEV - New Appointment Booking",
     react: NewAppointmentEmail({ newAppointment: newAppt }),
   };
 
