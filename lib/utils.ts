@@ -150,12 +150,12 @@ export const sendBookingConfirmationEmail = async (
 
 export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
   const resend = new Resend(process.env.RESEND_API_KEY as string);
-  // const senderEmail = process.env.SENDER_EMAIL as string;
-  const businessEmail = process.env.BUSINESS_EMAIL as string;
+  const senderEmail = process.env.SENDER_EMAIL as string;
+  // const businessEmail = process.env.BUSINESS_EMAIL as string;
 
   const message: CreateEmailOptions = {
-    to: businessEmail,
-    from: "echannah631@gmail.com",
+    to: "echannah631@gmail.com",
+    from: senderEmail,
     subject: "New Appointment Booking",
     react: NewAppointmentEmail({ newAppointment: newAppt }),
   };
