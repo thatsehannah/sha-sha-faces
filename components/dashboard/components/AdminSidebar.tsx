@@ -20,10 +20,10 @@ import Image from "next/image";
 import SignOutButton from "./SignOutButton";
 
 const AdminSidebar = () => {
-  const { setOpenMobile } = useSidebar();
+  const { setOpen } = useSidebar();
 
   return (
-    <Sidebar collapsible='offcanvas'>
+    <Sidebar variant='inset'>
       <SidebarHeader className='bg-slate-100 border-b-2 mb-4'>
         <Link href='/'>
           <Image
@@ -50,7 +50,7 @@ const AdminSidebar = () => {
                   >
                     <Link
                       href={tab.url}
-                      onClick={() => setOpenMobile(false)}
+                      onClick={() => setOpen(false)}
                     >
                       <tab.icon />
                       <span className='font-light'>{tab.title}</span>

@@ -70,7 +70,7 @@ const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
         </div>
       </div>
       <Separator />
-      <div className='mb-8 mt-4 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8 justify-between lg:justify-normal'>
+      <div className='mb-8 mt-4 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 justify-between md:justify-normal'>
         <Suspense>
           <StatusFilterOptions />
           <SearchFilter />

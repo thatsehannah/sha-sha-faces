@@ -22,7 +22,7 @@ const AppointmentOverview = async () => {
     <section>
       <div className='mb-12 bg-muted p-12 rounded-lg w-full'>
         <p className='text-2xl font-medium mb-8'>Appointment Overview</p>
-        <div className='grid grid-cols-1 lg:grid-cols-2 items-center justify-center gap-4 lg:gap-x-12 lg:gap-y-8 '>
+        <div className='grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-4 md:gap-x-12 md:gap-y-8 '>
           <OverviewCard
             title='Pending'
             value={pendingAppointmentCount}
