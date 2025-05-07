@@ -1,5 +1,9 @@
 import AdminSidebar from "@/components/dashboard/components/AdminSidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import {
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarInset,
+} from "@/components/ui/sidebar";
 import React, { ReactNode } from "react";
 import "../globals.css";
 import Providers from "../providers";
@@ -25,12 +29,14 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           <Providers>
             <SidebarProvider>
               <AdminSidebar />
-              <div className='relative'>
-                <div className='absolute top-1 left-1'>
-                  <SidebarTrigger />
+              <SidebarInset>
+                <div className='relative'>
+                  <div className='absolute top-1 left-1'>
+                    <SidebarTrigger />
+                  </div>
+                  {children}
                 </div>
-                {children}
-              </div>
+              </SidebarInset>
             </SidebarProvider>
           </Providers>
         </body>
