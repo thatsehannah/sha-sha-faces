@@ -53,8 +53,8 @@ const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className='hover:bg-secondary lg:flex hidden' />
-        <CarouselNext className='hover:bg-secondary lg:flex hidden' />
+        <CarouselPrevious className='hover:bg-secondary flex md:hidden' />
+        <CarouselNext className='hover:bg-secondary flex md:hidden' />
       </Carousel>
 
       {selectedPhoto && (

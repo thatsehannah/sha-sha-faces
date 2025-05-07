@@ -91,8 +91,8 @@ const ReviewCarousel = ({ reviews }: ReviewCarouselProps) => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className='hover:bg-secondary lg:flex hidden' />
-        <CarouselNext className='hover:bg-secondary lg:flex hidden' />
+        <CarouselPrevious className='hover:bg-secondary flex' />
+        <CarouselNext className='hover:bg-secondary flex' />
       </Carousel>
     </Container>
   );

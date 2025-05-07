@@ -16,7 +16,7 @@ type MobileLinksProps = {
 
 const MobileLinks = ({ links }: MobileLinksProps) => {
   return (
-    <div className='lg:hidden'>
+    <div className='md:hidden'>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Menu size={30} />
