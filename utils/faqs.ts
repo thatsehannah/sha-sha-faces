@@ -43,6 +43,6 @@ export const faqs: Faq[] = [
   {
     question: "What if I need to cancel or reschedule?",
     answer:
-      "Deposits are non-refundable, but you may reschedule your appointment once (with at least 24 hours’ notice) based on availability. Cancellations and no shows with less than 24 hours notice will forfeit the deposit. ",
+      "Deposits are non-refundable, but you may reschedule your appointment once (with at least 24 hours’ notice) based on availability. Cancelations and no shows with less than 24 hours notice will forfeit the deposit. ",
   },
 ];

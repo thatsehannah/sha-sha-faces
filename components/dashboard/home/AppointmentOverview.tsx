@@ -14,8 +14,8 @@ const AppointmentOverview = async () => {
   const completedAppointmentCount = appointments.filter(
     (appt) => appt.status === "Completed"
   ).length;
-  const cancelledAppointmentCount = appointments.filter(
-    (appt) => appt.status === "Cancelled"
+  const canceledAppointmentCount = appointments.filter(
+    (appt) => appt.status === "Canceled"
   ).length;
 
   return (
@@ -37,7 +37,7 @@ const AppointmentOverview = async () => {
           />
           <OverviewCard
             title='Canceled'
-            value={cancelledAppointmentCount}
+            value={canceledAppointmentCount}
           />
         </div>
       </div>
