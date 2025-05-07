@@ -23,10 +23,11 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 1, delay: 0.3 }}
       viewport={{ once: true, amount: 0.3 }}
-      className='flex lg:flex-row flex-col lg:even:flex-row-reverse mb-16 lg:mb-0 last:mb-8 lg:gap-0 shadow-lg lg:shadow-none'
+      className='flex md:flex-row flex-col md:even:flex-row-reverse mb-16 md:mb-0 last:mb-8 md:gap-0 shadow-lg md:shadow-none'
     >
-      <div className='lg:w-1/2 lg:h-[80vh] flex justify-center items-center'>
-        <div className='hidden lg:flex relative w-full h-full justify-center items-center py-8 lg:py-0'>
+      <div className='md:w-1/2 lg:h-[80vh] flex justify-center items-center'>
+        {/* icon that shows opposite of service information (large screens) */}
+        <div className='hidden md:flex relative w-full h-full justify-center items-center py-8 lg:py-0'>
           <ServiceIconSvg
             svg={svgData as ServiceSvg}
             className='fill-primary'
@@ -34,10 +35,11 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
         </div>
       </div>
       <div
-        className={`lg:w-1/2 lg:h-[80vh] flex rounded-lg xl:rounded-none bg-tertiary`}
+        className={`md:w-1/2 h-auto flex rounded-lg xl:rounded-none bg-tertiary`}
       >
         <div className='flex flex-col lg:p-12 p-8'>
-          <div className='lg:hidden flex justify-center items-center mb-8'>
+          {/* icon that shows above service information (smaller screens) */}
+          <div className='md:hidden flex justify-center items-center mb-8'>
             <ServiceIconSvg
               svg={svgData as ServiceSvg}
               className='fill-primary'
