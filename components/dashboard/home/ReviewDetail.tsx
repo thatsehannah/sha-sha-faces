@@ -43,7 +43,7 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
 
   return (
     <section className='mb-12'>
-      <div className='bg-muted p-12 rounded-lg w-full'>
+      <div className='bg-muted md:p-12 p-4 rounded-lg w-full'>
         <p className='text-2xl font-medium'>Your Reviews</p>
         <p className='text-muted-foreground mt-2'>
           {reviewsLength} review{reviewsLength === 1 ? "" : "s"}
@@ -84,7 +84,7 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
                       className='relative transition-all ease-in-out'
                     >
                       <div className='mb-8 bg-muted p-6 rounded-md border'>
-                        <div className='flex justify-between items-start'>
+                        <div className='flex md:flex-col flex-row justify-between items-start'>
                           <p className='font-bold text-xl mb-4'>
                             {review.reviewer}
                           </p>

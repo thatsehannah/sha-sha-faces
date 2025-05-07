@@ -22,6 +22,7 @@ type ServicesPieChartProps = {
     service: string;
     pieChartLabel: string;
     total: number;
+    fill: string;
   }[];
 };
 
@@ -30,38 +31,11 @@ const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
   //acc is the object (chartConfig) that we're building up
   //curr is the current service being processed from the data array
   const chartConfig2 = data.reduce((acc, item) => {
-    acc[item.service] = { label: item.pieChartLabel };
+    acc[item.service] = { label: item.pieChartLabel, color: item.fill };
 
     //returning the iterator so it can be used in the next iteration
     return acc;
   }, {} as ChartConfig);
-
-  // const chartConfig = {
-  //   "bridal party": {
-  //     label: "Bridal Party",
-  //   },
-  //   "full glam makeup application": {
-  //     label: "Full Glam",
-  //   },
-  //   "virtual one on one makeup lesson": {
-  //     label: "Virtual 1/1 Lesson",
-  //   },
-  //   "daily set rate": {
-  //     label: "Daily Set Rate",
-  //   },
-  //   "one on one makeup lesson": {
-  //     label: "1/1 Lesson",
-  //   },
-  //   "bridal consultation": {
-  //     label: "Bridal Consult",
-  //   },
-  //   "bridal makeup": {
-  //     label: "Bridal Makeup",
-  //   },
-  //   "house call/travel fee": {
-  //     label: "House Call/Travel",
-  //   },
-  // } satisfies ChartConfig;
 
   const dataArr = Array.from(data);
 

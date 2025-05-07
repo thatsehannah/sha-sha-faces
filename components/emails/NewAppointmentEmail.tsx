@@ -36,6 +36,11 @@ export const NewAppointmentEmail = ({
     id,
   } = newAppointment;
 
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://www.shashafaces.com"
+      : "http://localhost:3000";
+
   return (
     <Html>
       <Head />
@@ -45,7 +50,7 @@ export const NewAppointmentEmail = ({
           <Container>
             <Section className='p-4 rounded-lg flex justify-center'>
               <Img
-                src='https://www.shashafaces.com/branding/logo-color.png'
+                src={`${baseUrl}/branding/logo-color.png`}
                 alt='Logo'
                 className='w-auto h-48'
               />
@@ -104,7 +109,7 @@ export const NewAppointmentEmail = ({
                 >
                   <Link
                     className='bg-[#432f1f] rounded-md text-white cursor-pointer p-3'
-                    href={`https://www.shashafaces.com/admin/appointments/${id}`}
+                    href={`${baseUrl}/admin/appointments/${id}`}
                   >
                     Go To Appointment
                   </Link>
