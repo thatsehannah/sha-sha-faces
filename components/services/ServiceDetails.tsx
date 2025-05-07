@@ -23,23 +23,15 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 1, delay: 0.3 }}
       viewport={{ once: true, amount: 0.3 }}
-      exit={{ opacity: 0, x: 100 }}
       className='flex lg:flex-row flex-col lg:even:flex-row-reverse mb-16 lg:mb-0 last:mb-8 lg:gap-0 shadow-lg lg:shadow-none'
     >
       <div className='lg:w-1/2 lg:h-[80vh] flex justify-center items-center'>
-        <motion.div
-          initial={{ opacity: 0, y: -100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          viewport={{ once: true, amount: 0.5 }}
-          exit={{ opacity: 0, y: 100 }}
-          className='hidden lg:flex relative w-full h-full justify-center items-center py-8 lg:py-0'
-        >
+        <div className='hidden lg:flex relative w-full h-full justify-center items-center py-8 lg:py-0'>
           <ServiceIconSvg
             svg={svgData as ServiceSvg}
             className='fill-primary'
           />
-        </motion.div>
+        </div>
       </div>
       <div
         className={`lg:w-1/2 lg:h-[80vh] flex rounded-lg xl:rounded-none bg-tertiary`}
@@ -57,11 +49,11 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
             </p>
           </div>
           <div className='flex justify-between text-2xl mb-12'>
-            <div className='flex gap-3 p-4 rounded-full bg-secondary font-bold shadow-md'>
+            <div className='flex gap-3 p-4 rounded-full bg-secondary font-bold shadow-md justify-center items-center'>
               <Clock className='text-black' />
               <p className='text-xl text-black'>{duration}</p>
             </div>
-            <div className='flex gap-3 p-4 rounded-full bg-secondary font-bold shadow-md'>
+            <div className='flex justify-center items-center gap-3 p-4 rounded-full bg-secondary font-bold shadow-md'>
               <Banknote
                 size={20}
                 className='transform rotate-45 text-black'
