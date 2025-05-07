@@ -84,6 +84,7 @@ export type NewService = {
       [key: string]: string | undefined;
     };
   };
+  pieChartLabel: string;
 };
 
 export type FormNewService = {

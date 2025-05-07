@@ -20,6 +20,7 @@ const BusinessStats = ({ appointments, services }: BusinessStatsProps) => {
   const data = services.filter((s) => s.Appointment.length > 0);
   const chartData = data.map((service) => ({
     service: service.name,
+    pieChartLabel: service.pieChartLabel,
     total: service.Appointment.length,
     fill: `hsl(var(--chart-${service.id}))`,
   }));

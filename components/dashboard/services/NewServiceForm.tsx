@@ -48,6 +48,7 @@ const NewServiceForm = () => {
         description: validatedData.description,
         price,
         svgData: FALLBACK_SERVICE_SVG,
+        pieChartLabel: validatedData.pieChartLabel,
       };
 
       const resultMessage = await createNewService(newService);
