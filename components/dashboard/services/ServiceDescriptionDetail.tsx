@@ -7,13 +7,17 @@ import { updateService } from "@/utils/actions";
 import { Edit } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
-type ServiceDetailProps = {
+type ServiceDescriptionDetailProps = {
   id: number;
   data: string;
   label: "price" | "description";
 };
 
-const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
+const ServiceDescriptionDetail = ({
+  id,
+  data,
+  label,
+}: ServiceDescriptionDetailProps) => {
   const { toast } = useToast();
   const [isEditing, setIsEditing] = useState(false);
   const [valueToUpdate, setValueToUpdate] = useState<string>(data);
@@ -110,4 +114,4 @@ const ServiceDetail = ({ id, data, label }: ServiceDetailProps) => {
   );
 };
 
-export default ServiceDetail;
+export default ServiceDescriptionDetail;

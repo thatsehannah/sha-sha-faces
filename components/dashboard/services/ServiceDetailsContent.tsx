@@ -1,5 +1,5 @@
 import React from "react";
-import ServiceDetail from "./ServiceDetail";
+import ServiceDescriptionDetail from "./ServiceDescriptionDetail";
 import { Service } from "@prisma/client";
 import ServiceDurationDetail from "./ServiceDurationDetail";
 import ServicePriceDetail from "./ServicePriceDetail";
@@ -11,7 +11,7 @@ type ServiceDetailsContentProps = {
 const ServiceDetailsContent = ({ service }: ServiceDetailsContentProps) => {
   return (
     <div className='flex flex-col justify-between bg-muted p-3 rounded-md'>
-      <ServiceDetail
+      <ServiceDescriptionDetail
         id={service.id}
         data={service.description}
         label='description'

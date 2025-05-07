@@ -44,6 +44,7 @@ export const newServiceSchema = z.object({
       { message: "Minute(s) must be a valid number" }
     ),
   description: z.string().nonempty("Description is required"),
+  pieChartLabel: z.string().nonempty("Label for stats overview is required"),
 });
 
 export const validateNewServiceSchema = (data: FormNewService) => {

@@ -38,6 +38,7 @@ model Appointment {
 model Service {
   id Int @id @default(autoincrement())
   name String @unique
+  pieChartLabel String @default("")
   price String
   isSale Boolean @default(false)
   salePrice String @default("0")

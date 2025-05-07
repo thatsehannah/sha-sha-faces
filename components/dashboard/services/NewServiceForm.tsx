@@ -26,6 +26,7 @@ const NewServiceForm = () => {
       durationHours: "",
       durationMinutes: "",
       description: "",
+      pieChartLabel: "",
     },
   });
 
@@ -88,7 +89,7 @@ const NewServiceForm = () => {
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(handleCreateService, onInvalid)}>
           <section className='flex flex-col gap-8 my-8'>
-            <div className='grid grid-cols-2 lg:flex lg:flex-row gap-8 lg:justify-between'>
+            <div className='grid grid-cols-2 lg:flex lg:flex-row lg:gap-32 gap-8'>
               <SimpleFormInput
                 label='name'
                 fieldName='name'
@@ -125,13 +126,19 @@ const NewServiceForm = () => {
                 prefix='$'
               />
             </div>
-            <div className='flex flex-col justify-between'>
+            <div className='flex lg:flex-row flex-col lg:gap-32 gap-8'>
               <SimpleFormInput
                 label='description'
                 fieldName='description'
                 type='text'
                 inputType='textarea'
-                className='h-60 w-full'
+                className='h-60 w-80'
+              />
+              <SimpleFormInput
+                label='chart label (for admin stats)'
+                fieldName='pieChartLabel'
+                type='text'
+                className='w-auto lg:w-80'
               />
             </div>
             <div>
