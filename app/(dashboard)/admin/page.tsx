@@ -22,7 +22,7 @@ const AdminHomePage = async () => {
 
   return (
     <main>
-      <Container className='py-20 w-screen lg:w-[80vw]'>
+      <Container className='py-20 w-screen'>
         <Hero todaysAppointments={todaysAppointments} />
         <AppointmentOverview />
         <BusinessStats

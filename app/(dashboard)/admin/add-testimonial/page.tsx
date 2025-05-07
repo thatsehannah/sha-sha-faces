@@ -6,7 +6,7 @@ import React from "react";
 const page = () => {
   return (
     <main>
-      <Container className='py-20 w-screen lg:w-[80vw]'>
+      <Container className='py-20 w-screen'>
         <div>
           <p className='text-3xl lg:text-5xl font-normal mb-2'>
             Upload Testimonials

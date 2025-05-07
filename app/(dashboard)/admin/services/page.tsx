@@ -11,7 +11,7 @@ const AdminServicesPage = async () => {
 
   return (
     <main>
-      <Container className='py-20 w-screen lg:w-[80vw] flex flex-col gap-4'>
+      <Container className='py-20 w-screen  flex flex-col gap-4'>
         <div className='flex gap-4 items-center'>
           <p className='text-4xl lg:text-5xl font-normal'>My Services</p>
           <Link

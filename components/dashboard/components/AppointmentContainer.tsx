@@ -39,7 +39,7 @@ const AppointmentContainer = ({ appointments }: AppointmentContainerProps) => {
   }
 
   return (
-    <Container className='py-20 w-screen lg:w-[80vw]'>
+    <Container className='py-20 w-screen '>
       <div className='flex justify-between items-center pb-3'>
         <p className='text-4xl lg:text-5xl font-normal'>Appointments</p>
         <div className='flex gap-2'>
