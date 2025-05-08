@@ -28,6 +28,7 @@ type ManageTestimonialProps = {
 const ManageTestimonial = ({ testimonials }: ManageTestimonialProps) => {
   const { toast } = useToast();
   const isMobile = useIsMobile();
+  testimonials = [];
 
   const [openDialog, setOpenDialog] = useState(false);
   const [testimonialToDelete, setTestimonialToDelete] =
@@ -67,39 +68,40 @@ const ManageTestimonial = ({ testimonials }: ManageTestimonialProps) => {
         </div>
         <Separator className='my-6 bg-primary' />
         <div>
-          {testimonials.length === 0 && (
+          {testimonials.length === 0 ? (
             <EmptyResults text='No testimonials as of right now.' />
-          )}
-          <ScrollArea className='h-[50rem] w-full bg-white p-6'>
-            <div className='columns-3 gap-4 space-y-4 mt-4'>
-              {testimonials.map((testimonial) => (
-                <div
-                  className='flex justify-center lg:justify-start gap-4'
-                  key={testimonial.id}
-                >
-                  <div className='relative'>
-                    <div className='absolute -top-2 -right-2 hover:scale-125 hover:cursor-pointer transition-all ease-in-out'>
-                      <CircleX
-                        fill='white'
-                        onClick={() => {
-                          setTestimonialToDelete(testimonial);
-                          setOpenDialog(true);
-                        }}
+          ) : (
+            <ScrollArea className='h-[50rem] w-full bg-white p-6'>
+              <div className='columns-3 gap-4 space-y-4 mt-4'>
+                {testimonials.map((testimonial) => (
+                  <div
+                    className='flex justify-center lg:justify-start gap-4'
+                    key={testimonial.id}
+                  >
+                    <div className='relative'>
+                      <div className='absolute -top-2 -right-2 hover:scale-125 hover:cursor-pointer transition-all ease-in-out'>
+                        <CircleX
+                          fill='white'
+                          onClick={() => {
+                            setTestimonialToDelete(testimonial);
+                            setOpenDialog(true);
+                          }}
+                        />
+                      </div>
+                      <Image
+                        src={testimonial.url}
+                        alt={testimonial.alt}
+                        className='rounded-sm border border-primary'
+                        width={500}
+                        height={500}
                       />
                     </div>
-                    <Image
-                      src={testimonial.url}
-                      alt={testimonial.alt}
-                      className='rounded-sm border border-primary'
-                      width={500}
-                      height={500}
-                    />
                   </div>
-                </div>
-              ))}
-            </div>
-            <ScrollBar orientation='horizontal' />
-          </ScrollArea>
+                ))}
+              </div>
+              <ScrollBar orientation='horizontal' />
+            </ScrollArea>
+          )}
         </div>
       </div>
       <Dialog
