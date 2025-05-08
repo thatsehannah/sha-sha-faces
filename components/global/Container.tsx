@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils';
-import React, { ReactNode } from 'react';
+import { cn } from "@/lib/utils";
+import React, { ReactNode } from "react";
 
 type ContainerProps = {
   className?: string;
@@ -8,7 +8,9 @@ type ContainerProps = {
 
 const Container = ({ className, children }: ContainerProps) => {
   return (
-    <div className={cn('mx-auto max-w-6xl xl:max-w-7xl px-8', className)}>
+    <div
+      className={cn("mx-auto max-w-6xl xl:max-w-7xl px-4 md:px-8", className)}
+    >
       {children}
     </div>
   );

@@ -50,7 +50,7 @@ const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
       <CardContent>
         <ChartContainer
           config={chartConfig2}
-          className='mx-auto max-h-[450px]'
+          className='mx-auto aspect-square max-h-[450px]'
         >
           <PieChart>
             <Pie

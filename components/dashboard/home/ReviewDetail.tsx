@@ -72,7 +72,7 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
           </aside>
 
           {/* Review Window */}
-          <div className='flex-1 xl:w-3/4 w-full bg-background p-4 h-[50rem]'>
+          <div className='flex-1 xl:w-3/4 w-full bg-background md:p-4 p-2 h-[50rem]'>
             {reviewsToShow.length === 0 ? (
               <EmptyResults text='No reviews quite yet.' />
             ) : (
@@ -83,9 +83,9 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
                       key={idx}
                       className='relative transition-all ease-in-out'
                     >
-                      <div className='mb-8 bg-muted p-6 rounded-md border'>
-                        <div className='flex md:flex-col flex-row justify-between items-start'>
-                          <p className='font-bold text-xl mb-4'>
+                      <div className='mb-8 bg-muted md:p-6 p-2 rounded-md border'>
+                        <div className='flex md:flex-fow flex-col justify-between items-start md:mb-0 mb-6'>
+                          <p className='font-bold md:text-xl text-2xl md:mb-4 mb-2'>
                             {review.reviewer}
                           </p>
                           <div className='flex gap-2 items-center'>
@@ -100,7 +100,7 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
                             />
                           </div>
                         </div>
-                        <div className='flex flex-col xl:flex-row xl:justify-between gap-1 mb-4'>
+                        <div className='flex flex-col xl:flex-row xl:justify-between md:gap-1 gap-4 mb-4'>
                           <div>
                             <span className='inline-flex font-semibold'>
                               Created:

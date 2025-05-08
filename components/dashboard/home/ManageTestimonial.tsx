@@ -12,10 +12,11 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useToast } from "@/hooks/use-toast";
 import { deleteTestimonialScreenshot } from "@/utils/actions";
 import { TestimonialScreenshot } from "@prisma/client";
-import { CircleX } from "lucide-react";
+import { CircleX, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -26,6 +27,7 @@ type ManageTestimonialProps = {
 
 const ManageTestimonial = ({ testimonials }: ManageTestimonialProps) => {
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
   const [openDialog, setOpenDialog] = useState(false);
   const [testimonialToDelete, setTestimonialToDelete] =
@@ -54,11 +56,13 @@ const ManageTestimonial = ({ testimonials }: ManageTestimonialProps) => {
 
   return (
     <section id='testimonials'>
-      <div className='bg-muted p-12 rounded-lg w-full'>
-        <div className='flex justify-between'>
+      <div className='bg-muted md:p-12 p-4 rounded-lg w-full'>
+        <div className='flex justify-between items-center'>
           <p className='text-2xl font-medium'>Your Testimonials</p>
           <Button asChild>
-            <Link href='/admin/add-testimonial'>Add New Testimonial</Link>
+            <Link href='/admin/add-testimonial'>
+              {isMobile ? <Plus /> : "Add New Testimonial"}
+            </Link>
           </Button>
         </div>
         <Separator className='my-6 bg-primary' />

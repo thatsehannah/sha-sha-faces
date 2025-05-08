@@ -95,7 +95,7 @@ const NewServiceForm = () => {
                 label='name'
                 fieldName='name'
                 type='text'
-                className='w-auto lg:w-80'
+                className='md:w-auto w-40 lg:w-80'
               />
               <SimpleFormInput
                 label='duration (hours)'

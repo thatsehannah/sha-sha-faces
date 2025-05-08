@@ -20,7 +20,7 @@ const AppointmentOverview = async () => {
 
   return (
     <section>
-      <div className='mb-12 bg-muted p-12 rounded-lg w-full'>
+      <div className='mb-12 bg-muted md:p-12 p-3 rounded-lg w-full'>
         <p className='text-2xl font-medium mb-8'>Appointment Overview</p>
         <div className='grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-4 md:gap-x-12 md:gap-y-8 '>
           <OverviewCard

@@ -64,7 +64,9 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
             </div>
           </div>
 
-          <p className='text-2xl font-light mb-12 text-black'>{description}</p>
+          <p className='text-xl lg:text-2xl font-light mb-12 text-black'>
+            {description}
+          </p>
           <Button
             className='mt-auto capitalize text-xl bg-primary text-primary-foreground'
             asChild

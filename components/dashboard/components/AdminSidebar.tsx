@@ -20,7 +20,7 @@ import Image from "next/image";
 import SignOutButton from "./SignOutButton";
 
 const AdminSidebar = () => {
-  const { setOpen } = useSidebar();
+  const { setOpen, setOpenMobile } = useSidebar();
 
   return (
     <Sidebar variant='inset'>
@@ -50,7 +50,10 @@ const AdminSidebar = () => {
                   >
                     <Link
                       href={tab.url}
-                      onClick={() => setOpen(false)}
+                      onClick={() => {
+                        setOpen(false);
+                        setOpenMobile(false);
+                      }}
                     >
                       <tab.icon />
                       <span className='font-light'>{tab.title}</span>

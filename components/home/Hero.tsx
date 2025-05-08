@@ -21,11 +21,10 @@ const Hero = () => {
         >
           <Image
             src='/branding/logo-color.svg'
-            priority
             alt='logo'
             width={400}
             height={400}
-            className='h-[16rem] md:h-[24rem]'
+            className='h-[16rem] md:h-[24rem] w-auto'
           />
           <p
             className={`${italianno.className} text-3xl lg:text-5xl font-extrabold mt-4 text-primary-foreground`}
