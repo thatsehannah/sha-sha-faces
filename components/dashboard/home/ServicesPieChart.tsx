@@ -15,7 +15,7 @@ import {
   ChartLegendContent,
 } from "@/components/ui/chart";
 import React from "react";
-import { Pie, PieChart } from "recharts";
+import { LabelList, Pie, PieChart } from "recharts";
 
 type ServicesPieChartProps = {
   data: {
@@ -30,14 +30,14 @@ type ServicesPieChartProps = {
 const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
   //acc is the object (chartConfig) that we're building up
   //curr is the current service being processed from the data array
-  const chartConfig2 = data.reduce((acc, item) => {
+  const chartConfig = data.reduce((acc, item) => {
     acc[item.service] = { label: item.pieChartLabel, color: item.fill };
 
     //returning the iterator so it can be used in the next iteration
     return acc;
   }, {} as ChartConfig);
 
-  const dataArr = Array.from(data);
+  const chartData = Array.from(data);
 
   return (
     <Card className='flex flex-col w-full'>
@@ -49,14 +49,21 @@ const ServicesPieChart = ({ data }: ServicesPieChartProps) => {
       </CardHeader>
       <CardContent>
         <ChartContainer
-          config={chartConfig2}
+          config={chartConfig}
           className='mx-auto aspect-square max-h-[450px]'
         >
           <PieChart>
             <Pie
-              data={dataArr}
+              data={chartData}
               dataKey='total'
-            />
+            >
+              <LabelList
+                dataKey='total'
+                className='fill-background'
+                stroke='none'
+                fontSize={12}
+              />
+            </Pie>
             <ChartLegend
               content={<ChartLegendContent nameKey='service' />}
               className='-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center text-sm'

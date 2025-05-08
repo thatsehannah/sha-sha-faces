@@ -109,6 +109,20 @@ export type BookingConfirmationEmailDetails = {
   apptLocation: string;
 };
 
+export type NewAppointmentEmailDetails = {
+  name: string;
+  location: string;
+  requiresTravel: boolean;
+  date: string;
+  time: string;
+  service: string;
+  email: string;
+  phoneNumber: string;
+  discovery: string;
+  addtlDetails?: string;
+  id: string;
+};
+
 export type NewTestimonialScreenshot = {
   url: string;
   alt: string;

@@ -1,4 +1,4 @@
-import { Appointment as NewAppointment } from "@/utils/types";
+import { NewAppointmentEmailDetails } from "@/utils/types";
 import {
   Body,
   Column,
@@ -16,14 +16,13 @@ import {
 import React from "react";
 
 type NewAppointmentEmailProps = {
-  newAppointment: NewAppointment;
+  newAppointmentDetails: NewAppointmentEmailDetails;
 };
 
 export const NewAppointmentEmail = ({
-  newAppointment,
+  newAppointmentDetails,
 }: NewAppointmentEmailProps) => {
   const {
-    time,
     date,
     location,
     name,
@@ -31,15 +30,16 @@ export const NewAppointmentEmail = ({
     addtlDetails,
     email,
     phoneNumber,
-    service,
     discovery,
+    time,
+    service,
     id,
-  } = newAppointment;
+  } = newAppointmentDetails;
 
   const baseUrl =
     process.env.NODE_ENV === "production"
       ? "https://www.shashafaces.com"
-      : "http://localhost:3000";
+      : process.env.DEV_NETWORK_URL;
 
   return (
     <Html>
@@ -128,12 +128,10 @@ export const NewAppointmentEmail = ({
 };
 
 NewAppointmentEmail.PreviewProps = {
-  newAppointment: {
+  newAppointmentDetails: {
     name: "Jane Doe",
     email: "janedoe@gmail.com",
     phoneNumber: "2314567890",
-    instagram: "@janedoe",
-    isInstructionsAcknowledged: true,
     location: "Los Angeles, CA",
     date: "Tuesday, March 18, 2025",
     time: "10:00 AM",
@@ -141,7 +139,7 @@ NewAppointmentEmail.PreviewProps = {
     service: "Full Glam Makeup Application",
     requiresTravel: true,
     addtlDetails: "Test test test test test",
-    id: "c1469bcc-8f26-4197-be7f-9fe83813ad49",
+    id: "1",
   },
 } satisfies NewAppointmentEmailProps;
 

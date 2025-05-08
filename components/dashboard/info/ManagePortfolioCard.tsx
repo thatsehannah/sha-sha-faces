@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { CircleX } from "lucide-react";
+import { CircleX, Plus } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -32,6 +32,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type ManagePortfolioCardProps = {
   photos: PortfolioPhoto[];
@@ -40,6 +42,7 @@ type ManagePortfolioCardProps = {
 const ManagePortfolioCard = ({ photos }: ManagePortfolioCardProps) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [photoToDelete, setPhotoToDelete] = useState<PortfolioPhoto>();
+  const isMobile = useIsMobile();
 
   const { toast } = useToast();
 
@@ -101,100 +104,104 @@ const ManagePortfolioCard = ({ photos }: ManagePortfolioCardProps) => {
               Manage Photos
             </CardTitle>
             <Button asChild>
-              <Link href='/admin/info/add-photo'>Add Photo to Portfolio</Link>
+              <Link href='/admin/info/add-photo'>
+                {isMobile ? <Plus /> : "Add Photo to Portfolio"}
+              </Link>
             </Button>
           </div>
           <Separator />
         </CardHeader>
         <CardContent>
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-y-8'>
-            {/* TODO: add pagination and/or filter */}
-            {photos.map((photo) => (
-              <div
-                className='flex justify-center lg:justify-start gap-4'
-                key={photo.id}
-              >
-                <div className='relative hover:scale-110 hover:cursor-pointer transition-all ease-in-out'>
-                  <div className='absolute -top-2 -right-2 hover:scale-125 hover:cursor-pointer transition-all ease-in-out'>
-                    <CircleX
-                      fill='white'
-                      onClick={() => {
-                        setPhotoToDelete(photo);
-                        setOpenDialog(true);
-                      }}
+          <ScrollArea className='h-[50rem] w-full'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-y-8 p-4'>
+              {/* TODO: add pagination and/or filter */}
+              {photos.map((photo) => (
+                <div
+                  className='flex justify-center lg:justify-start gap-4'
+                  key={photo.id}
+                >
+                  <div className='relative hover:scale-110 hover:cursor-pointer transition-all ease-in-out'>
+                    <div className='absolute -top-2 -right-2 hover:scale-125 hover:cursor-pointer transition-all ease-in-out'>
+                      <CircleX
+                        fill='white'
+                        onClick={() => {
+                          setPhotoToDelete(photo);
+                          setOpenDialog(true);
+                        }}
+                      />
+                    </div>
+                    <Image
+                      src={photo.url}
+                      alt={photo.alt}
+                      className='object-cover aspect-square rounded-md'
+                      width={300}
+                      height={300}
                     />
                   </div>
-                  <Image
-                    src={photo.url}
-                    alt={photo.alt}
-                    className='object-cover aspect-square rounded-md'
-                    width={300}
-                    height={300}
-                  />
-                </div>
-                <div className='flex flex-col gap-6 w-full'>
-                  <div className='flex flex-col gap-1'>
-                    <Label htmlFor={`isFeatured-${photo.id}`}>
-                      Featured Photo
-                    </Label>
+                  <div className='flex flex-col gap-6 w-full'>
+                    <div className='flex flex-col gap-1'>
+                      <Label htmlFor={`isFeatured-${photo.id}`}>
+                        Featured Photo
+                      </Label>
 
-                    <Switch
-                      id='isFeatured'
-                      defaultChecked={photo.isFeatured}
-                      onCheckedChange={(value) => {
-                        showToast("Featured visibility saved.");
-                        handleIsFeaturedSwitch(photo.id, value);
-                      }}
-                    />
-                  </div>
-                  <div className='flex flex-col gap-1'>
-                    <Label htmlFor='isShown'>Show in Portfolio</Label>
+                      <Switch
+                        id='isFeatured'
+                        defaultChecked={photo.isFeatured}
+                        onCheckedChange={(value) => {
+                          showToast("Featured visibility saved.");
+                          handleIsFeaturedSwitch(photo.id, value);
+                        }}
+                      />
+                    </div>
+                    <div className='flex flex-col gap-1'>
+                      <Label htmlFor='isShown'>Show in Portfolio</Label>
 
-                    <Switch
-                      id='isShown'
-                      defaultChecked={photo.isShown}
-                      onCheckedChange={(value) => {
-                        showToast("Porfolio visibility saved.");
-                        handleIsShownSwitch(photo.id, value);
-                      }}
-                    />
-                  </div>
-                  <div className='flex flex-col gap-1 w-3/4'>
-                    <Label htmlFor='category'>Category</Label>
+                      <Switch
+                        id='isShown'
+                        defaultChecked={photo.isShown}
+                        onCheckedChange={(value) => {
+                          showToast("Porfolio visibility saved.");
+                          handleIsShownSwitch(photo.id, value);
+                        }}
+                      />
+                    </div>
+                    <div className='flex flex-col gap-1 w-3/4'>
+                      <Label htmlFor='category'>Category</Label>
 
-                    <Select
-                      defaultValue={photo.category}
-                      onValueChange={(value) => {
-                        showToast("Category change saved.");
-                        handleCategoryChange(photo.id, value);
-                      }}
-                    >
-                      <SelectTrigger
-                        id='category'
-                        className='text-[1rem] data-[placeholder]:text-gray-500 data-[placeholder]:font-extralight'
+                      <Select
+                        defaultValue={photo.category}
+                        onValueChange={(value) => {
+                          showToast("Category change saved.");
+                          handleCategoryChange(photo.id, value);
+                        }}
                       >
-                        <SelectValue placeholder='Select a category' />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem
-                          className='text-[1rem]'
-                          value='bridal'
+                        <SelectTrigger
+                          id='category'
+                          className='text-[1rem] data-[placeholder]:text-gray-500 data-[placeholder]:font-extralight'
                         >
-                          Bridal
-                        </SelectItem>
-                        <SelectItem
-                          className='text-[1rem]'
-                          value='glam'
-                        >
-                          Glam
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
+                          <SelectValue placeholder='Select a category' />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem
+                            className='text-[1rem]'
+                            value='bridal'
+                          >
+                            Bridal
+                          </SelectItem>
+                          <SelectItem
+                            className='text-[1rem]'
+                            value='glam'
+                          >
+                            Glam
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </ScrollArea>
         </CardContent>
       </Card>
       <Dialog

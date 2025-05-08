@@ -57,7 +57,9 @@ const BusinessStats = ({ appointments, services }: BusinessStatsProps) => {
               </CardHeader>
               <CardContent>
                 {recentAppointments.length === 0 ? (
-                  <EmptyResults />
+                  <div className='my-8'>
+                    <EmptyResults />
+                  </div>
                 ) : (
                   recentAppointments.map((appt) => (
                     <RecentAppointmentDetail
