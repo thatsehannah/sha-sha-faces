@@ -1,7 +1,7 @@
 import Container from "@/components/global/Container";
 import { LeftSectionTitle } from "@/components/global/SectionTitles";
-import ReviewContainer from "@/components/review/ReviewContainer";
-import TestimonialContainer from "@/components/review/TestimonialContainer";
+import ReviewContainer from "@/components/feedback/ReviewContainer";
+import TestimonialContainer from "@/components/feedback/TestimonialContainer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from "react";
 

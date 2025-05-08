@@ -16,7 +16,7 @@ const TestimonialContainer = async () => {
           <EmptyResults text='No testimonials as of right now.' />
         </div>
       )}
-      <div className='columns-2 xl:columns-4 gap-4 space-y-4 mt-6'>
+      <div className='columns-2 lg:columns-3 gap-4 space-y-4 mt-6'>
         {testimonials.map((testimonial) => (
           <div
             key={testimonial.id}

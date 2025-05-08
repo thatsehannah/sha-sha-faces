@@ -1,6 +1,6 @@
 import Container from "@/components/global/Container";
 import { LeftSectionTitle } from "@/components/global/SectionTitles";
-import ReviewForm from "@/components/review/ReviewForm";
+import ReviewForm from "@/components/feedback/ReviewForm";
 import { fetchServiceInfo } from "@/utils/actions";
 import React from "react";
 

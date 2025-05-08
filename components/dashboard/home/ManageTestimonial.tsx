@@ -71,7 +71,7 @@ const ManageTestimonial = ({ testimonials }: ManageTestimonialProps) => {
             <EmptyResults text='No testimonials as of right now.' />
           ) : (
             <ScrollArea className='h-[50rem] w-full bg-white'>
-              <div className='columns-3 gap-4 space-y-4 mt-4 p-4'>
+              <div className='lg:columns-3 columns-2 gap-4 space-y-4 mt-4 p-4'>
                 {testimonials.map((testimonial) => (
                   <div
                     className='flex justify-center lg:justify-start gap-4'
