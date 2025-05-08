@@ -6,6 +6,7 @@ import {
   BookingConfirmationEmailDetails,
   EditAppointment,
   Appointment as NewAppointment,
+  NewAppointmentEmailDetails,
   NewPhoto,
   NewService,
   NewTestimonialScreenshot,
@@ -39,13 +40,30 @@ export const createAppointmentAction = async (formData: NewAppointment) => {
         },
         addtlDetails: formData.addtlDetails ? formData.addtlDetails : "",
       },
+      include: {
+        service: true,
+      },
     });
 
-    await sendNewAppointmentEmail({ id: newAppt.id, ...formData });
+    const newAppointmentDetails: NewAppointmentEmailDetails = {
+      name: newAppt.name,
+      location: newAppt.location,
+      requiresTravel: newAppt.requiresTravel,
+      date: newAppt.date,
+      time: newAppt.time,
+      service: newAppt.service.name,
+      email: newAppt.email,
+      phoneNumber: newAppt.phoneNumber,
+      discovery: newAppt.discovery,
+      addtlDetails: newAppt.addtlDetails,
+      id: newAppt.id,
+    };
+
+    await sendNewAppointmentEmail(newAppointmentDetails);
 
     revalidatePaths(["/admin", "/admin/appointments"]);
 
-    return "Appointment request sent! Be on the lookout for a confirmation email soon.";
+    return "Appointment request sent! Be on the lookout for a confirmation email soon. Check your spam/junk folder if necessary.";
   } catch (error) {
     captureException(error);
 

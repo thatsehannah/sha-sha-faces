@@ -4,7 +4,7 @@ import { fetchAppointmentsByDate } from "@/utils/actions";
 import {
   Availability,
   BookingConfirmationEmailDetails,
-  Appointment as NewAppointment,
+  NewAppointmentEmailDetails,
 } from "@/utils/types";
 import { clsx, type ClassValue } from "clsx";
 import { CreateEmailOptions, Resend } from "resend";
@@ -154,7 +154,9 @@ export const sendBookingConfirmationEmail = async (
   }
 };
 
-export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
+export const sendNewAppointmentEmail = async (
+  newAppointmentDetails: NewAppointmentEmailDetails
+) => {
   const resend = new Resend(process.env.RESEND_API_KEY as string);
   const senderEmail = process.env.SENDER_EMAIL as string;
   const businessEmail =
@@ -169,7 +171,7 @@ export const sendNewAppointmentEmail = async (newAppt: NewAppointment) => {
       process.env.NODE_ENV === "production"
         ? "New Appointment Booking"
         : "DEV - New Appointment Booking",
-    react: NewAppointmentEmail({ newAppointment: newAppt }),
+    react: NewAppointmentEmail({ newAppointmentDetails }),
   };
 
   try {
