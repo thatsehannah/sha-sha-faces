@@ -38,7 +38,7 @@ const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
             return (
               <CarouselItem
                 key={idx}
-                className='lg:basis-1/3 basis-1/2 flex justify-center'
+                className='lg:basis-1/3 flex justify-center'
               >
                 <div className='bg-gradient-to-r from-tertiary via-white to-tertiary flex justify-center items-center p-2 rounded-md'>
                   <Image
@@ -46,7 +46,7 @@ const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
                     alt={img.alt}
                     width={500}
                     height={500}
-                    className='w-auto h-full rounded-md object-cover hover:cursor-pointer'
+                    className='w-auto h-auto rounded-md object-cover hover:cursor-pointer aspect-square'
                     onClick={() => handlePhotoClick(img)}
                   />
                 </div>
