@@ -21,11 +21,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
-type ManageTestimonialProps = {
+type ManageTestimonialsProps = {
   testimonials: TestimonialScreenshot[];
 };
 
-const ManageTestimonial = ({ testimonials }: ManageTestimonialProps) => {
+const ManageTestimonials = ({ testimonials }: ManageTestimonialsProps) => {
   const { toast } = useToast();
   const isMobile = useIsMobile();
 
@@ -133,4 +133,4 @@ const ManageTestimonial = ({ testimonials }: ManageTestimonialProps) => {
   );
 };
 
-export default ManageTestimonial;
+export default ManageTestimonials;

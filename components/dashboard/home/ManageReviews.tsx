@@ -12,11 +12,11 @@ import { ReviewWithService } from "@/utils/types";
 import React, { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-type ReviewDetail = {
+type ManageReviewsProps = {
   reviews: ReviewWithService[];
 };
 
-const ReviewDetail = ({ reviews }: ReviewDetail) => {
+const ManageReviews = ({ reviews }: ManageReviewsProps) => {
   const ratingsReversed = RATING_OPTIONS.slice().reverse();
   const [activeRating, setActiveRating] = useState(ratingsReversed[0].value);
 
@@ -84,10 +84,12 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
                       className='relative transition-all ease-in-out'
                     >
                       <div className='mb-8 bg-muted md:p-6 p-2 rounded-md border'>
-                        <div className='flex md:flex-fow flex-col justify-between items-start md:mb-0 mb-6'>
-                          <p className='font-bold md:text-xl text-2xl md:mb-4 mb-2'>
-                            {review.reviewer}
-                          </p>
+                        <div className='flex flex-fow justify-between items-center place-items-baseline md:mb-4 mb-6'>
+                          <div className='flex items-center'>
+                            <p className='font-bold md:text-2xl text-xl'>
+                              {review.reviewer}
+                            </p>
+                          </div>
                           <div className='flex gap-2 items-center'>
                             <Label htmlFor='isShown'>Display review</Label>
                             <Switch
@@ -100,7 +102,7 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
                             />
                           </div>
                         </div>
-                        <div className='flex flex-col xl:flex-row xl:justify-between md:gap-1 gap-4 mb-4'>
+                        <div className='flex flex-col xl:flex-row xl:justify-between md:gap-1 gap-3 mb-4'>
                           <div>
                             <span className='inline-flex font-semibold'>
                               Created:
@@ -142,4 +144,4 @@ const ReviewDetail = ({ reviews }: ReviewDetail) => {
   );
 };
 
-export default ReviewDetail;
+export default ManageReviews;
