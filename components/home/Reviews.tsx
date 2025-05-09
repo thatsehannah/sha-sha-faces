@@ -18,7 +18,7 @@ const Reviews = async () => {
         textClasses='text-tertiary'
         barClasses='bg-tertiary'
       />
-      <Container className='flex flex-col justify-center items-center py-24'>
+      <Container className='flex flex-col justify-center items-center py-24 px-4'>
         <ReviewCarousel reviews={reviews} />
         <div className='w-full text-xl text-right mt-4 text-primary'>
           <p>

@@ -17,7 +17,7 @@ const Services = async () => {
     >
       <LeftSectionTitle title='popular services' />
       <Container className='py-20 flex flex-col justify-center items-center gap-12'>
-        <div className='grid grid-cols-1 lg:grid-cols-3 justify-between gap-y-8 gap-x-4'>
+        <div className='grid grid-cols-1 xl:grid-cols-3 justify-between gap-y-8 gap-x-4'>
           {popularServices.length === 0 ? (
             <EmptyResults text='Services Currently Unavailable' />
           ) : (

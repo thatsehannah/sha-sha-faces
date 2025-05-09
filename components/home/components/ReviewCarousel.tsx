@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote } from "lucide-react";
-import Container from "@/components/global/Container";
 import Autoplay from "embla-carousel-autoplay";
 import { ReviewWithService } from "@/utils/types";
 
@@ -53,48 +52,47 @@ const ReviewCarousel = ({ reviews }: ReviewCarouselProps) => {
   };
 
   return (
-    <Container className='w-full lg:p-6'>
-      <Carousel
-        plugins={[plugin.current]}
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={() => plugin.current.play(false)}
-      >
-        <CarouselContent>
-          {reviews.map((item, idx) => {
-            const { before, emphasizedWord, after } = emphasizeWords(
-              item.comment
-            );
+    <Carousel
+      plugins={[plugin.current]}
+      onMouseEnter={plugin.current.stop}
+      onMouseLeave={() => plugin.current.play(false)}
+      className='w-[16rem] sm:w-[18rem] xl:w-full md:w-[36rem] lg:w-[56rem]'
+    >
+      <CarouselContent>
+        {reviews.map((item, idx) => {
+          const { before, emphasizedWord, after } = emphasizeWords(
+            item.comment
+          );
 
-            return (
-              <CarouselItem key={idx}>
-                <Card className='bg-secondary shadow-inner border border-primary-foreground'>
-                  <CardContent className='flex flex-col justify-center items-center p-8 gap-5'>
-                    <Quote
-                      size={30}
-                      className='fill-black stroke-black'
-                    />
-                    <p className='text-xl lg:text-2xl normal-case text-secondary-foreground'>
-                      {before}{" "}
-                      {emphasizedWord && (
-                        <span className='text-secondary-foreground tracking-wide font-black uppercase text-2xl lg:text-3xl'>
-                          {emphasizedWord}
-                        </span>
-                      )}{" "}
-                      {after}
-                    </p>
-                    <p className='text-2xl font-bold shrink-2 text-secondary-foreground'>
-                      -- {item.reviewer}
-                    </p>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            );
-          })}
-        </CarouselContent>
-        <CarouselPrevious className='hover:bg-secondary md:flex hidden' />
-        <CarouselNext className='hover:bg-secondary md:flex hidden' />
-      </Carousel>
-    </Container>
+          return (
+            <CarouselItem key={idx}>
+              <Card className='bg-secondary shadow-inner border border-primary-foreground'>
+                <CardContent className='flex flex-col justify-center items-center md:p-8 p-4 gap-6'>
+                  <Quote
+                    size={30}
+                    className='fill-black stroke-black'
+                  />
+                  <p className='text-xl lg:text-2xl normal-case text-secondary-foreground'>
+                    {before}{" "}
+                    {emphasizedWord && (
+                      <span className='text-secondary-foreground tracking-wide font-black uppercase text-2xl lg:text-3xl'>
+                        {emphasizedWord}
+                      </span>
+                    )}{" "}
+                    {after}
+                  </p>
+                  <p className='text-2xl font-bold shrink-2 text-secondary-foreground'>
+                    -- {item.reviewer}
+                  </p>
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          );
+        })}
+      </CarouselContent>
+      <CarouselPrevious className='hover:bg-secondary flex' />
+      <CarouselNext className='hover:bg-secondary flex' />
+    </Carousel>
   );
 };
 

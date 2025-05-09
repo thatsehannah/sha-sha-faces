@@ -31,13 +31,14 @@ const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
         opts={{
           loop: true,
         }}
+        className='w-[16rem] xl:w-full sm:w-[32rem] lg:w-[56rem]'
       >
         <CarouselContent>
           {photos.map((img, idx) => {
             return (
               <CarouselItem
                 key={idx}
-                className='lg:basis-1/3 flex justify-center'
+                className='lg:basis-1/3 basis-1/2 flex justify-center'
               >
                 <div className='bg-gradient-to-r from-tertiary via-white to-tertiary flex justify-center items-center p-2 rounded-md'>
                   <Image
@@ -45,7 +46,7 @@ const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
                     alt={img.alt}
                     width={500}
                     height={500}
-                    className='w-auto h-[28rem] rounded-md object-cover hover:cursor-pointer'
+                    className='w-auto h-full rounded-md object-cover hover:cursor-pointer'
                     onClick={() => handlePhotoClick(img)}
                   />
                 </div>
@@ -53,8 +54,8 @@ const PortfolioCarousel = ({ photos }: PortfolioCarouselProps) => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className='hover:bg-secondary flex md:hidden' />
-        <CarouselNext className='hover:bg-secondary flex md:hidden' />
+        <CarouselPrevious className='hover:bg-secondary flex' />
+        <CarouselNext className='hover:bg-secondary flex' />
       </Carousel>
 
       {selectedPhoto && (
