@@ -15,9 +15,9 @@ const ServicesPage = async () => {
         {services.length === 0 ? (
           <EmptyResults text='Services Currently Unavailable' />
         ) : (
-          services.map((service, idx) => (
+          services.map((service) => (
             <ServiceDetails
-              key={idx}
+              key={service.id}
               index={service.id}
               service={service}
             />

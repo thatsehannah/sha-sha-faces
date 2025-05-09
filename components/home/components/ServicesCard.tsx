@@ -45,8 +45,12 @@ const ServicesCard = ({ service }: ServiceCardProps) => {
             </div>
           </CardDescription>
         </CardHeader>
-        <CardContent className='font-light text-lg text-black'>
-          <div className='h-full'>{service.description}</div>
+        <CardContent className='font-light text-lg text-black overflow-hidden cursor-pointer'>
+          <Link href={`/services#${service.id}`}>
+            <div className='h-36 overflow-y-auto'>
+              <p className='line-clamp-5'>{service.description}</p>
+            </div>
+          </Link>
         </CardContent>
         <CardFooter className=''>
           <Button

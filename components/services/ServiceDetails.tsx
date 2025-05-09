@@ -15,7 +15,7 @@ type ServiceDetailsProps = {
 };
 
 const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
-  const { name, price, duration, description, svgData } = service;
+  const { name, price, duration, description, svgData, id } = service;
 
   return (
     <motion.article
@@ -24,6 +24,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
       transition={{ duration: 1, delay: 0.3 }}
       viewport={{ once: true, amount: 0.3 }}
       className='flex md:flex-row flex-col md:even:flex-row-reverse mb-16 md:mb-0 last:mb-8 md:gap-0 shadow-lg md:shadow-none'
+      id={id.toString()}
     >
       <div className='md:w-1/2 lg:h-[80vh] flex justify-center items-center'>
         {/* icon that shows opposite of service information (large screens) */}
