@@ -9,7 +9,7 @@ const ServicesPage = async () => {
   const services = await fetchAllServices();
 
   return (
-    <main className='relative'>
+    <main className='relative overflow-hidden'>
       <RightSectionTitle title='services' />
       <Container className='py-20'>
         {services.length === 0 ? (

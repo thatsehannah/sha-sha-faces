@@ -27,7 +27,7 @@ const Hero = () => {
             className='h-[16rem] md:h-[24rem] w-auto'
           />
           <p
-            className={`${italianno.className} text-3xl lg:text-5xl font-extrabold mt-4 text-primary-foreground`}
+            className={`${italianno.className} text-3xl md:text-5xl font-extrabold mt-4 text-primary-foreground`}
           >
             Glam that soothes, beauty that shines
           </p>
