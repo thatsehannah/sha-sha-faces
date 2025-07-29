@@ -1,6 +1,6 @@
 # 💄 Sha Sha Faces – Makeup Artist Portfolio & Booking Site
 
-A modern, responsive portfolio and booking platform for a professional makeup artist, built with **Next.js 13 App Router**, **Tailwind CSS**, **TypeScript**, and **ShadCN UI**. This full-stack site features a sleek client-facing UI, an integrated appointment form, secure deposit payments via Stripe, and dynamic form gating logic powered by Supabase.
+A modern, responsive portfolio and booking platform for a professional makeup artist, built with **Next.js 13 App Router**, **Tailwind CSS**, **TypeScript**, and **ShadCN UI**. This full-stack site features a sleek client-facing UI, an integrated appointment form, and dynamic form gating logic powered by Supabase.
 
 ## 🌐 Live Site
 
@@ -55,7 +55,3 @@ This code is part of a client project and is not intended for commerical reuse w
 ---
 
 Crafted with care and clarity by @thatsehannah
-
-```
-
-```
