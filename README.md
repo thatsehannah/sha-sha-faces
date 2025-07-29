@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💄 Sha Sha Faces – Makeup Artist Portfolio & Booking Site
 
-## Getting Started
+A modern, responsive portfolio and booking platform for a professional makeup artist, built with **Next.js 13 App Router**, **Tailwind CSS**, **TypeScript**, and **ShadCN UI**. This full-stack site features a sleek client-facing UI, an integrated appointment form, secure deposit payments via Stripe, and dynamic form gating logic powered by Supabase.
 
-First, run the development server:
+## 🌐 Live Site
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+🔗 [www.shashafaces.com](https://www.shashafaces.com)
+
+## ✨ Features
+
+- 🎨 Responsive portfolio with smooth animations and mobile-first design
+- 📅 Appointment booking form with date, time, location, and service selection
+- ✅ Conditional form logic
+- 🔒 Secure authentication and backend access via Clerk and Supabase
+- 📊 Dashboard for artist to manage booked appointments, graphical insights, services offered, etc.
+- 📸 Client gallery with styled image grids and smooth transitions
+
+## 🛠 Tech Stack
+
+- **Next.js 13 App Router** – frontend and routing framework
+- **TypeScript** – static type safety
+- **Tailwind CSS** – styling
+- **ShadCN UI** – accessible component system
+- **Framer Motion** – for smooth animations and transitions
+- **Supabase** – backend service for data and form logic
+- **Clerk** – authentication (admin-only access)
+- **Vercel** – deployment platform
+- **Sentry** - for site error reporting
+
+## 🗂 Project Structure
+
+```
+/app
+├── (dashboard)           # Dashboard related pages and layout files (for authorized user)
+├── (public)              # Client-facing pages and layout files
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+├── components            # Reusable components
+├── prisma                # Prisma-related files, such as database seeding files
+├── supabase              # Supabase-related files
+├── utils                 # Server actions, zod schemas, constants, etc.
+├── lib                   # Contains email sending functions and data manipulation functions
+├── public                # Icons and images
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📄 License
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This code is part of a client project and is not intended for commerical reuse without permission.
 
-## Learn More
+## ✅ To-do
 
-To learn more about Next.js, take a look at the following resources:
+- Add Stripe integration for deposits
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Crafted with care and clarity by @thatsehannah
 
-## Deploy on Vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
