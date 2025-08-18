@@ -9,6 +9,22 @@ export const metadata: Metadata = {
   title: "Sha Sha Faces | Professional Makeup Artist",
   description:
     "Expert makeup services for weddings, photoshoots, and special events. Book your appointment today! | Los Angeles Area MUA",
+  keywords: [
+    "professional makeup artist",
+    "soft glam makeup",
+    "bridal makeup services",
+    "makeup lessons",
+    "travel-friendly makeup services",
+    "soothing glam",
+    "personalized makeup experience",
+    "los angeles makeup artist",
+    "california makeup artist",
+    "red carpet glam",
+    "passionate makeup artist",
+    "bridal consultation",
+    "virtual makeup lesson",
+    "personalized makeup tips & tricks",
+  ],
   openGraph: {
     title: "Sha Sha Faces | Professional Makeup Artist",
     description:
@@ -16,7 +32,7 @@ export const metadata: Metadata = {
     url: "https://www.shashafaces.com",
     images: [
       {
-        url: "https://www.shashafaces.com/branding/logo-color.jpg",
+        url: "https://www.shashafaces.com/open-graph.jpg",
         width: 1200,
         height: 630,
         alt: "Sha Sha Faces makeup artist at work",
@@ -29,7 +45,7 @@ export const metadata: Metadata = {
     title: "Sha Sha Faces | Professional Makeup Artist",
     description:
       "Expert makeup services for weddings, photoshoots, and special events. Book your appointment today! | Los Angeles Area MUA",
-    images: ["https://www.shashafaces.com/branding/logo-color.jpg"],
+    images: ["https://www.shashafaces.com/branding/open-graph.jpg"],
   },
   icons: {
     icon: "../favicon.png",
