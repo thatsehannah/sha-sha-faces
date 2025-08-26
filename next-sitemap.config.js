@@ -1,8 +1,8 @@
 module.exports = {
-  siteUrl: "https://www.shashafaces.com",
+  siteUrl: "https://shashafaces.com",
   generateRobotsTxt: true,
   sitemapSize: 5000,
   changefreq: "weekly",
   priority: 0.7,
-  exclude: ["/admin/*"],
+  exclude: ["/admin", "/admin/*"],
 };
