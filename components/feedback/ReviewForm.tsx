@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { FieldErrors, FormProvider, useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import FormInput from "../form/FormInput";
-import FormDropdown from "../form/FormDropdown";
+import FormSelect from "../form/FormSelect";
 import FormRadioGroup from "../form/FormRadioGroup";
 import Rating from "./Rating";
 import { RotateCw } from "lucide-react";
@@ -105,7 +105,7 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
               />
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-8'>
-              <FormDropdown
+              <FormSelect
                 name='service'
                 label='Service'
                 values={serviceNames}

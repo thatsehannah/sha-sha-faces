@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import FormInput from "../form/FormInput";
-import FormDropdown from "../form/FormDropdown";
+import FormSelect from "../form/FormSelect";
 import FormDatePicker from "../form/FormDatePicker";
 import { Appointment, Availability } from "@/utils/types";
 import {
@@ -248,7 +248,7 @@ const AppointmentForm = ({
               </p>
 
               {/* service */}
-              <FormDropdown
+              <FormSelect
                 name='service'
                 label='Type'
                 placeholder='Select a service'
@@ -263,7 +263,7 @@ const AppointmentForm = ({
               />
 
               {/* time */}
-              <FormDropdown
+              <FormSelect
                 name='time'
                 label='Time'
                 placeholder='Select a time'
@@ -292,7 +292,7 @@ const AppointmentForm = ({
               </p>
 
               {/* how did you hear about us */}
-              <FormDropdown
+              <FormSelect
                 name='discovery'
                 label='How did you hear about us?'
                 placeholder='Select a source'

@@ -10,19 +10,14 @@ import { useFormContext } from "react-hook-form";
 import { Label } from "../ui/label";
 import FormError from "./FormError";
 
-type FormDropwdownProps = {
+type FormSelectProps = {
   name: string;
   label: string;
   values: string[];
   placeholder?: string;
 };
 
-const FormDropdown = ({
-  name,
-  label,
-  values,
-  placeholder,
-}: FormDropwdownProps) => {
+const FormSelect = ({ name, label, values, placeholder }: FormSelectProps) => {
   const {
     setValue,
     watch,
@@ -86,4 +81,4 @@ const FormDropdown = ({
   );
 };
 
-export default FormDropdown;
+export default FormSelect;
