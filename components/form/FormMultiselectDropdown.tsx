@@ -49,7 +49,9 @@ const FormMultiselectDropdown = ({
                   setSelectedOptions((prevState) => [...prevState, opt])
                 }
                 className='text-lg capitalize'
+                checked={selectedOptions.includes(opt)}
                 disabled={selectedOptions.includes(opt)}
+                onSelect={(e) => e.preventDefault()}
               >
                 {opt}
               </DropdownMenuCheckboxItem>
