@@ -15,6 +15,7 @@ import Rating from "./Rating";
 import { RotateCw } from "lucide-react";
 import { createReviewAction } from "@/utils/actions";
 import { useToast } from "@/hooks/use-toast";
+import { captureEvent, captureException } from "@sentry/nextjs";
 
 type ReviewFormProps = {
   serviceNames: string[];
@@ -39,6 +40,12 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
     try {
       const resultMessage = await createReviewAction(values);
 
+      captureEvent({
+        message: "New review created",
+        level: "info",
+        extra: { timestamp: new Date().toISOString() },
+      });
+
       toast({
         variant: "success",
         title: "Success ✅",
@@ -47,6 +54,8 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
 
       form.reset();
     } catch (error) {
+      captureException(error);
+
       toast({
         variant: "destructive",
         title: "Uh oh ☹️",

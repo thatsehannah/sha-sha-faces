@@ -29,6 +29,7 @@ import {
 } from "@/lib/utils";
 import { DISCOVERIES } from "@/utils/constants";
 import Link from "next/link";
+import { captureEvent, captureException } from "@sentry/nextjs";
 
 type AppointmentFormProps = {
   serviceData: { name: string; id: number }[];
@@ -87,6 +88,11 @@ const AppointmentForm = ({
 
       const resultMessage = await createAppointmentAction(validatedData);
 
+      captureEvent({
+        message: "New appointment created for " + validatedData.name,
+        level: "info",
+      });
+
       toast({
         variant: "success",
         title: "Success! ✅",
@@ -95,6 +101,8 @@ const AppointmentForm = ({
 
       form.reset();
     } catch (error) {
+      captureException(error);
+
       toast({
         variant: "destructive",
         title: "Uh oh ☹️",
