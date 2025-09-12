@@ -30,6 +30,7 @@ import {
 import { DISCOVERIES } from "@/utils/constants";
 import Link from "next/link";
 import { captureEvent, captureException } from "@sentry/nextjs";
+import FormMultiselectDropdown from "../form/FormMultiselectDropdown";
 
 type AppointmentFormProps = {
   serviceData: { name: string; id: number }[];
@@ -253,6 +254,13 @@ const AppointmentForm = ({
                 label='Type'
                 placeholder='Select a service'
                 values={serviceNames}
+              />
+
+              {/* service multiselect */}
+              <FormMultiselectDropdown
+                label='Service(s)'
+                values={serviceNames}
+                placeholder='Select a service(s)'
               />
 
               {/* date */}
