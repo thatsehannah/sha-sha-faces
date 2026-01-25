@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-  process.env.NEXT_PUBLIC_SUPABASE_KEY as string
+  process.env.NEXT_PUBLIC_SUPABASE_KEY as string,
 );
 
 export const uploadPhoto = async (photo: File, bucket: string) => {
@@ -11,11 +11,11 @@ export const uploadPhoto = async (photo: File, bucket: string) => {
     .from(bucket)
     .upload(photo.name, photo, { cacheControl: "3600" });
 
-  if (error) {
-    captureException(error);
+  if (error && error instanceof Error) {
+    captureException(error.message);
 
     throw new Error(
-      error instanceof Error ? error.message : "An unknown error has occurred"
+      error.message ? error.message : "An unknown error has occurred",
     );
   }
 

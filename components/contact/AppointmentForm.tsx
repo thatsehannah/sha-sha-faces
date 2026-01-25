@@ -46,7 +46,7 @@ const AppointmentForm = ({
   const [open, setOpen] = useState(false);
 
   const [availableTimes, setAvailableTimes] = useState(
-    getAvailabilityTimeOptions()
+    getAvailabilityTimeOptions(),
   );
 
   const serviceNames = serviceData.map((s) => s.name);
@@ -101,7 +101,9 @@ const AppointmentForm = ({
 
       form.reset();
     } catch (error) {
-      captureException(error);
+      if (error instanceof Error) {
+        captureException(error.message);
+      }
 
       toast({
         variant: "destructive",
@@ -138,7 +140,7 @@ const AppointmentForm = ({
       if (selectedDate) {
         const dayOfSelectedDate = format(
           new Date(selectedDate),
-          "EEEE"
+          "EEEE",
         ).toLowerCase();
 
         const availability = await fetchAvailabilityForDay(dayOfSelectedDate);
@@ -149,7 +151,7 @@ const AppointmentForm = ({
 
         const modifiedAvailableTimes = await blockOffAvailbilityTimeOptions(
           selectedDate,
-          availableTimes
+          availableTimes,
         );
 
         if (isFormMounted) {

@@ -75,7 +75,7 @@ export const getAvailabilityTimeOptions = () => {
 // adds a unique identifier to subsequent times based on already reserved appointment time for selected date (e.g. if client selects a day where a full glam appointment (2 hrs) is already made for 12:00pm, times from 12:00pm to 3:00pm will be appended with a 'd' so it can be easily identified & disabled in the appointment form time dropdown)
 export const blockOffAvailbilityTimeOptions = async (
   selectedDate: string,
-  availableTimes: string[]
+  availableTimes: string[],
 ) => {
   const modifiedAvailableTimes = availableTimes;
 
@@ -87,7 +87,7 @@ export const blockOffAvailbilityTimeOptions = async (
       modifiedAvailableTimes.indexOf(appointmentTime);
 
     const appointmentExpectedDuration = parseInt(
-      appointment.service.duration.split("")[0]
+      appointment.service.duration.split("")[0],
     );
 
     //multiplying by 4 since availableTimes are in 15 minute increments + adding 4 to give extra hour between completed appointment
@@ -123,7 +123,7 @@ export const calculateReviewScore = (rating: string) => {
 
 export const sendBookingConfirmationEmail = async (
   clientEmail: string,
-  confirmationDetails: BookingConfirmationEmailDetails
+  confirmationDetails: BookingConfirmationEmailDetails,
 ) => {
   const resend = new Resend(process.env.RESEND_API_KEY as string);
   const senderEmail = process.env.SENDER_EMAIL as string;
@@ -146,16 +146,18 @@ export const sendBookingConfirmationEmail = async (
 
     console.log(data?.id);
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error(
-      "An error occurred sending your confirmation email. No worries! We're going to figure this out and get back with you soon."
+      "An error occurred sending your confirmation email. No worries! We're going to figure this out and get back with you soon.",
     );
   }
 };
 
 export const sendNewAppointmentEmail = async (
-  newAppointmentDetails: NewAppointmentEmailDetails
+  newAppointmentDetails: NewAppointmentEmailDetails,
 ) => {
   const resend = new Resend(process.env.RESEND_API_KEY as string);
   const senderEmail = process.env.SENDER_EMAIL as string;
@@ -179,10 +181,12 @@ export const sendNewAppointmentEmail = async (
 
     console.log(data?.id);
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error(
-      "An error occurred. No worries! We're going to figure this out and get back with you soon."
+      "An error occurred. No worries! We're going to figure this out and get back with you soon.",
     );
   }
 };

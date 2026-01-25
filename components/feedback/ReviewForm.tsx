@@ -54,7 +54,9 @@ const ReviewForm = ({ serviceNames }: ReviewFormProps) => {
 
       form.reset();
     } catch (error) {
-      captureException(error);
+      if (error instanceof Error) {
+        captureException(error.message);
+      }
 
       toast({
         variant: "destructive",

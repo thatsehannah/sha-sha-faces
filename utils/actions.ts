@@ -65,10 +65,12 @@ export const createAppointmentAction = async (formData: NewAppointment) => {
 
     return "Appointment request sent! Be on the lookout for a confirmation email soon. Check your spam/junk folder if necessary.";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error(
-      "Sorry! An error occurred creating your appointment. Please try again later."
+      "Sorry! An error occurred creating your appointment. Please try again later.",
     );
   }
 };
@@ -106,7 +108,7 @@ export const fetchTodaysAppointments = async (): Promise<
 };
 
 export const fetchAppointmentById = async (
-  id: string
+  id: string,
 ): Promise<AppointmentWithService> => {
   const appointment = await db.appointment.findFirst({
     where: {
@@ -158,7 +160,7 @@ export const fetchServiceInfo = async () => {
 
 export const updateAppointment = async (
   id: string,
-  updates: EditAppointment
+  updates: EditAppointment,
 ) => {
   try {
     const { service, ...otherUpdates } = updates;
@@ -193,7 +195,7 @@ export const updateAppointment = async (
 
       await sendBookingConfirmationEmail(
         appointment.email,
-        confirmationDetails
+        confirmationDetails,
       );
     }
 
@@ -201,7 +203,9 @@ export const updateAppointment = async (
 
     return "Appointment updated 💋.";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error("An error occurred updating this appointment.");
   }
@@ -217,7 +221,9 @@ export const createNewService = async (newService: NewService) => {
 
     return "New service created 💋.";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error("An error occurred saving your service.");
   }
@@ -225,7 +231,7 @@ export const createNewService = async (newService: NewService) => {
 
 export const updateService = async (
   id: number,
-  updates: Partial<Prisma.ServiceUpdateInput>
+  updates: Partial<Prisma.ServiceUpdateInput>,
 ) => {
   try {
     await db.service.update({
@@ -239,7 +245,9 @@ export const updateService = async (
 
     return "Service updated 💋.";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error("An error occurred updating your service.");
   }
@@ -296,10 +304,12 @@ export const createReviewAction = async (formData: Review) => {
 
     return `Thank you for your review ${formData.reviewer}. Hope to see you again soon!`;
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error(
-      "Sorry! An error occurred while saving your review. Please try again later."
+      "Sorry! An error occurred while saving your review. Please try again later.",
     );
   }
 };
@@ -340,7 +350,9 @@ export const updateReviewVisibility = async (id: string, value: boolean) => {
 
     revalidatePaths(["/admin", "/feedback"]);
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
   }
 };
 
@@ -393,7 +405,7 @@ export const fetchGlamPhotos = async () => {
 export const updatePortfolioPhotoVisibility = async (
   id: string,
   key: string,
-  value: boolean
+  value: boolean,
 ) => {
   try {
     const update = { [key]: value };
@@ -407,13 +419,15 @@ export const updatePortfolioPhotoVisibility = async (
 
     revalidatePaths(["/portfolio", "/", "/admin/info"]);
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
   }
 };
 
 export const updatePortfolioPhotoCategory = async (
   id: string,
-  category: string
+  category: string,
 ) => {
   try {
     await db.portfolioPhoto.update({
@@ -427,7 +441,9 @@ export const updatePortfolioPhotoCategory = async (
 
     revalidatePaths(["/portfolio", "/", "/admin/info"]);
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
   }
 };
 
@@ -446,7 +462,9 @@ export const createNewPortfolioPhoto = async (photo: NewPhoto) => {
 
     return "Photo uploaded";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error("An error occurred while uploading your photo.");
   }
@@ -466,7 +484,9 @@ export const deletePortfolioPhoto = async (photo: PortfolioPhoto) => {
 
     return "Photo deleted from portfolio";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error("An error occurred while deleting your photo.");
   }
@@ -493,7 +513,7 @@ export const fetchAvailabilityForDay = async (day: string) => {
 };
 
 export const submitWeeklyAvailability = async (
-  submittedAvailability: Availability[]
+  submittedAvailability: Availability[],
 ) => {
   try {
     submittedAvailability.forEach(async (submittedDay) => {
@@ -532,7 +552,9 @@ export const submitWeeklyAvailability = async (
 
     return "Your availability has been updated!";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error("An error occurred while updating your availability.");
   }
@@ -550,7 +572,9 @@ export const fetchBookingInstructions = async () => {
 
     return [];
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error("An error occurred fetching booking instructions");
   }
@@ -568,17 +592,19 @@ export const createBookingInstruction = async (rule: string) => {
 
     return "Created rule for booking instructions.";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error(
-      "An error occurred while creating your booking instruction."
+      "An error occurred while creating your booking instruction.",
     );
   }
 };
 
 export const saveBookingInstruction = async (
   id: string,
-  updatedRule: string
+  updatedRule: string,
 ) => {
   try {
     await db.bookingInstructions.update({
@@ -594,7 +620,9 @@ export const saveBookingInstruction = async (
 
     return "Updated rule for booking instructions.";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
   }
 };
 
@@ -610,10 +638,12 @@ export const deleteBookingInstruction = async (id: string) => {
 
     return "Deleted rule from booking instructions.";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error(
-      "An error occurred while deleting your booking instructions."
+      "An error occurred while deleting your booking instructions.",
     );
   }
 };
@@ -623,7 +653,7 @@ export const fetchAllTestimonials = async () => {
 };
 
 export const createNewTestimonialScreenshot = async (
-  screenshot: NewTestimonialScreenshot
+  screenshot: NewTestimonialScreenshot,
 ) => {
   try {
     await db.testimonialScreenshot.create({
@@ -636,14 +666,16 @@ export const createNewTestimonialScreenshot = async (
 
     return "Tesimonial uploaded";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error("An error occurred while uploading your testimonial.");
   }
 };
 
 export const deleteTestimonialScreenshot = async (
-  screenshot: TestimonialScreenshot
+  screenshot: TestimonialScreenshot,
 ) => {
   try {
     const deletedScreenshot = await db.testimonialScreenshot.delete({
@@ -658,7 +690,9 @@ export const deleteTestimonialScreenshot = async (
 
     return "Testimonial deleted.";
   } catch (error) {
-    captureException(error);
+    if (error instanceof Error) {
+      captureException(error.message);
+    }
 
     throw new Error("An error occurred while deleting your testimonial.");
   }
