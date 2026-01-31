@@ -5,17 +5,18 @@ import { fetchAllAppointments } from "@/utils/actions";
 const AppointmentOverview = async () => {
   const appointments = await fetchAllAppointments();
 
+  //TODO: create a loop that does this using the STATUSES array
   const pendingAppointmentCount = appointments.filter(
-    (appt) => appt.status === "Pending"
+    (appt) => appt.status === "Pending",
   ).length;
   const confirmedAppointmentCount = appointments.filter(
-    (appt) => appt.status === "Confirmed"
+    (appt) => appt.status === "Confirmed",
   ).length;
   const completedAppointmentCount = appointments.filter(
-    (appt) => appt.status === "Completed"
+    (appt) => appt.status === "Completed",
   ).length;
   const canceledAppointmentCount = appointments.filter(
-    (appt) => appt.status === "Canceled"
+    (appt) => appt.status === "Canceled",
   ).length;
 
   return (
