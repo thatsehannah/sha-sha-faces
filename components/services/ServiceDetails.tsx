@@ -64,7 +64,7 @@ const ServiceDetails = ({ service, index }: ServiceDetailsProps) => {
             </div>
           </div>
 
-          <p className='text-xl lg:text-2xl font-light mb-12 text-black'>
+          <p className='text-xl lg:text-2xl font-light mb-12 text-black whitespace-pre-wrap'>
             {description}
           </p>
           <Button
